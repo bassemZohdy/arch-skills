@@ -191,7 +191,8 @@ class SkillTester:
                    "arch-cloud", "arch-event", "arch-ddd", "arch-metrics",
                    "arch-resilience", "arch-test", "arch-data", "arch-observability",
                    "arch-usability", "arch-accessibility", "arch-compliance", "arch-deployment",
-                   "arch-integration", "arch-microservices", "arch-devops", "arch-cost", "arch-governance"]
+                   "arch-integration", "arch-microservices", "arch-devops", "arch-cost", "arch-governance",
+                   "arch-patterns", "arch-refactoring", "arch-frontend", "arch-features"]
         
         print("=" * 60)
         print("Architecture Skills Test Suite")

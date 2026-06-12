@@ -1,10 +1,10 @@
 # Architecture Skills
 
-[![Tests](https://img.shields.io/badge/tests-175%20passing-brightgreen)]()
-[![Skills](https://img.shields.io/badge/skills-25-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-152-orange)]()
+[![Tests](https://img.shields.io/badge/tests-203%20passing-brightgreen)]()
+[![Skills](https://img.shields.io/badge/skills-29-blue)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-168-orange)]()
 
-A comprehensive collection of 25 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
+A comprehensive collection of 29 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
 
 ## Quick Start
 
@@ -70,7 +70,7 @@ Use arch-cost to optimize our cloud spending
 | **arch-resilience** | Resilience patterns | Circuit breaker, retry, bulkhead |
 | **arch-test** | Test architecture | Test pyramids, contract testing |
 
-### System Architecture (8 skills)
+### System Architecture (10 skills)
 
 | Skill | Purpose | Key Topics |
 |-------|---------|------------|
@@ -82,6 +82,14 @@ Use arch-cost to optimize our cloud spending
 | **arch-metrics** | Architecture metrics | Complexity, dependencies, debt |
 | **arch-integration** | Integration patterns | Service mesh, API gateway, ESB |
 | **arch-microservices** | Microservices architecture | Service decomposition, communication |
+| **arch-patterns** | Architecture patterns | Clean, Hexagonal, Layered, Pipes & Filters |
+| **arch-refactoring** | Refactoring patterns | Code smells, incremental improvement |
+
+### Frontend (1 skill)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-frontend** | Frontend architecture | Micro frontends, UI patterns, SPA |
 
 ### Operations (5 skills)
 
@@ -92,6 +100,12 @@ Use arch-cost to optimize our cloud spending
 | **arch-deployment** | Deployment architecture | CI/CD, blue-green, canary, GitOps |
 | **arch-devops** | DevOps & infrastructure | IaC, Kubernetes, GitOps |
 | **arch-cost** | Cost optimization | FinOps, cost modeling, optimization |
+
+### Feature Management (1 skill)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-features** | Feature management | Feature flags, toggles, experimentation |
 
 ### Non-Functional Requirements (3 skills)
 
