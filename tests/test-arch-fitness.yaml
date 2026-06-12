@@ -1,0 +1,100 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-fitness
+
+scenarios:
+  - name: "explains fitness functions"
+    steps:
+      - prompt: "What are architecture fitness functions and how do they work?"
+        assert:
+          - type: contains
+            value: "fitness function"
+          - type: contains
+            value: "automated"
+          - type: contains
+            value: "architectural"
+
+  - name: "creates ArchUnit test"
+    steps:
+      - prompt: "Create an ArchUnit test to enforce that service layer does not depend on infrastructure layer in a Java project."
+        assert:
+          - type: contains
+            value: "ArchUnit"
+          - type: contains
+            value: "noClasses"
+          - type: contains
+            value: "resideInAPackage"
+
+  - name: "creates dependency rule"
+    steps:
+      - prompt: "Write a fitness function to ensure controllers only depend on services, not directly on repositories."
+        assert:
+          - type: contains
+            value: "dependency"
+          - type: contains
+            value: "controller"
+          - type: contains
+            value: "service"
+          - type: contains
+            value: "repository"
+
+  - name: "CI/CD integration"
+    steps:
+      - prompt: "Show me how to integrate architecture fitness functions into a GitHub Actions CI/CD pipeline."
+        assert:
+          - type: contains
+            value: "github"
+          - type: contains
+            value: "actions"
+          - type: contains
+            value: "pipeline"
+
+  - name: "performance fitness function"
+    steps:
+      - prompt: "Create a fitness function to ensure API response times stay under 200ms."
+        assert:
+          - type: contains
+            value: "performance"
+          - type: contains
+            value: "200ms"
+          - type: contains
+            value: "response time"
+
+  - name: "creates ArchUnitTS test"
+    steps:
+      - prompt: "Create an ArchUnitTS test to enforce layer dependencies in a TypeScript project."
+        assert:
+          - type: contains
+            value: "ArchUnitTS"
+          - type: contains
+            value: "describe"
+          - type: contains
+            value: "expect"
+
+  - name: "creates quality gate configuration"
+    steps:
+      - prompt: "Create a quality gate configuration for architecture compliance."
+        assert:
+          - type: contains
+            value: "quality gate"
+          - type: contains
+            value: "threshold"
+
+  - name: "creates naming convention rule"
+    steps:
+      - prompt: "Create a fitness function to enforce naming conventions for controllers."
+        assert:
+          - type: contains
+            value: "naming"
+          - type: contains
+            value: "Controller"
+
+  - name: "creates module structure rule"
+    steps:
+      - prompt: "Create a fitness function to ensure no cyclic dependencies between modules."
+        assert:
+          - type: contains
+            value: "cyclic"
+          - type: contains
+            value: "module"

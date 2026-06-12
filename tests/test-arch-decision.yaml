@@ -1,0 +1,92 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-decision
+
+scenarios:
+  - name: "frames the decision"
+    steps:
+      - prompt: "I need to decide between PostgreSQL and MongoDB for our user store. Help me run a DAR."
+        assert:
+          - type: contains
+            value: "Decision Statement"
+          - type: contains
+            value: "Scope"
+          - type: contains
+            value: "Constraints"
+
+  - name: "defines gate criteria"
+    steps:
+      - prompt: "What gate criteria should I use for selecting a database? We need ACID compliance and SOC 2 certification."
+        assert:
+          - type: contains
+            value: "Gate"
+          - type: contains
+            value: "Must"
+
+  - name: "lists alternatives with do nothing"
+    steps:
+      - prompt: "List alternatives for our database selection. Include a do nothing option."
+        assert:
+          - type: contains
+            value: "Alternative"
+          - type: contains
+            value: "Do Nothing"
+
+  - name: "creates weighted scoring criteria"
+    steps:
+      - prompt: "Create weighted evaluation criteria for database selection. Weights must sum to 100."
+        assert:
+          - type: contains
+            value: "Weight"
+          - type: contains
+            value: "100"
+          - type: contains
+            value: "Criterion"
+
+  - name: "scores evaluation matrix"
+    steps:
+      - prompt: "Score PostgreSQL vs MongoDB for our use case. PostgreSQL has better ACID support, MongoDB has better horizontal scaling."
+        assert:
+          - type: contains
+            value: "Score"
+          - type: contains
+            value: "weighted"
+
+  - name: "performs sensitivity check"
+    steps:
+      - prompt: "Run a sensitivity check on the database selection. What happens if we change the weight of scalability?"
+        assert:
+          - type: contains
+            value: "Sensitivity"
+          - type: contains
+            value: "ranking"
+
+  - name: "provides recommendation with tradeoffs"
+    steps:
+      - prompt: "Based on the scoring, what do you recommend for our database? What are the tradeoffs?"
+        assert:
+          - type: contains
+            value: "Recommend"
+          - type: contains
+            value: "tradeoff"
+          - type: contains
+            value: "risk"
+
+  - name: "uses criteria library"
+    steps:
+      - prompt: "Show me the criteria bundle for evaluating cloud services."
+        assert:
+          - type: contains
+            value: "Security"
+          - type: contains
+            value: "Compliance"
+          - type: contains
+            value: "Pricing"
+
+  - name: "validates weight sum"
+    steps:
+      - prompt: "I have criteria with weights 30, 25, 20, 15, 10. Do these sum to 100?"
+        assert:
+          - type: contains
+            value: "100"

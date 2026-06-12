@@ -1,0 +1,91 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-review
+
+scenarios:
+  - name: "reviews architecture with patterns"
+    steps:
+      - prompt: "Review this architecture description: A monolithic Java application with REST API, MySQL database, and no caching layer. Identify design patterns and anti-patterns."
+        assert:
+          - type: contains
+            value: "pattern"
+          - type: contains
+            value: "anti-pattern"
+          - type: contains
+            value: "SOLID"
+
+  - name: "evaluates quality attributes"
+    steps:
+      - prompt: "Evaluate the quality attributes of this system: A web application handling 1000 concurrent users with 200ms response time target."
+        assert:
+          - type: contains
+            value: "performance"
+          - type: contains
+            value: "scalability"
+          - type: contains
+            value: "availability"
+
+  - name: "assesses technical debt"
+    steps:
+      - prompt: "Assess technical debt in this codebase: 3-year-old codebase with 45% test coverage, 15 TODO comments, and outdated dependencies."
+        assert:
+          - type: contains
+            value: "technical debt"
+          - type: contains
+            value: "testing debt"
+          - type: contains
+            value: "dependency"
+
+  - name: "checks best practices"
+    steps:
+      - prompt: "Check if this architecture follows best practices: Layered architecture with business logic in controllers, no dependency injection."
+        assert:
+          - type: contains
+            value: "best practice"
+          - type: contains
+            value: "separation of concerns"
+          - type: contains
+            value: "dependency injection"
+
+  - name: "generates review report"
+    steps:
+      - prompt: "Generate a review report for a microservices architecture with 10 services, API gateway, and event-driven communication."
+        assert:
+          - type: contains
+            value: "Executive Summary"
+          - type: contains
+            value: "Findings"
+          - type: contains
+            value: "Recommendations"
+          - type: contains
+            value: "Remediation"
+
+  - name: "assesses fitness functions"
+    steps:
+      - prompt: "Does this architecture have fitness functions set up? Check for automated architecture validation."
+        assert:
+          - type: contains
+            value: "fitness function"
+          - type: contains
+            value: "automated"
+
+  - name: "provides severity ratings"
+    steps:
+      - prompt: "Rate the severity of these findings: missing tests, tight coupling, no monitoring."
+        assert:
+          - type: contains
+            value: "Critical"
+          - type: contains
+            value: "High"
+          - type: contains
+            value: "Medium"
+
+  - name: "uses ISO 25010 quality model"
+    steps:
+      - prompt: "Evaluate this system using the ISO 25010 quality model."
+        assert:
+          - type: contains
+            value: "ISO 25010"
+          - type: contains
+            value: "functional suitability"

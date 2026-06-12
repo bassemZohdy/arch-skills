@@ -1,0 +1,112 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-doc
+
+scenarios:
+  - name: "generates C4 context diagram"
+    steps:
+      - prompt: "Create architecture documentation for an e-commerce platform using the C4 model. Start with a System Context diagram."
+        assert:
+          - type: contains
+            value: "C4Context"
+          - type: contains
+            value: "System Context"
+          - type: contains
+            value: "Person"
+          - type: contains
+            value: "System"
+
+  - name: "generates container diagram"
+    steps:
+      - prompt: "Continue documenting the e-commerce platform. Create a Container diagram showing the major technology building blocks."
+        assert:
+          - type: contains
+            value: "C4Container"
+          - type: contains
+            value: "Container"
+          - type: contains
+            value: "System_Boundary"
+
+  - name: "selects arc42 for comprehensive docs"
+    steps:
+      - prompt: "I need comprehensive architecture documentation for a new microservices platform. What framework should I use?"
+        assert:
+          - type: contains
+            value: "arc42"
+
+  - name: "creates ADR for decisions"
+    steps:
+      - prompt: "Document an architecture decision to use PostgreSQL as the primary database. Use the MADR format."
+        assert:
+          - type: contains
+            value: "ADR"
+          - type: contains
+            value: "Status"
+          - type: contains
+            value: "Context"
+          - type: contains
+            value: "Decision"
+          - type: contains
+            value: "Consequences"
+
+  - name: "generates sequence diagram"
+    steps:
+      - prompt: "Create a sequence diagram showing how a user places an order in the e-commerce system."
+        assert:
+          - type: contains
+            value: "sequenceDiagram"
+          - type: contains
+            value: "participant"
+
+  - name: "generates deployment diagram"
+    steps:
+      - prompt: "Create a deployment diagram showing how the e-commerce system is deployed to AWS."
+        assert:
+          - type: contains
+            value: "graph"
+          - type: contains
+          value: "subgraph"
+
+  - name: "generates component diagram"
+    steps:
+      - prompt: "Create a component diagram showing the internal components of the Order Service."
+        assert:
+          - type: contains
+            value: "C4Component"
+          - type: contains
+            value: "Component"
+
+  - name: "uses TOGAF for enterprise architecture"
+    steps:
+      - prompt: "I need enterprise architecture documentation that follows TOGAF standards. What phases should I document?"
+        assert:
+          - type: contains
+            value: "TOGAF"
+          - type: contains
+            value: "ADM"
+
+  - name: "uses ISO 42010 viewpoints"
+    steps:
+      - prompt: "Document this system using ISO 42010 viewpoints and views."
+        assert:
+          - type: contains
+            value: "ISO 42010"
+          - type: contains
+            value: "viewpoint"
+
+  - name: "generates package diagram"
+    steps:
+      - prompt: "Create a package diagram showing the module organization of this system."
+        assert:
+          - type: contains
+            value: "graph"
+          - type: contains
+            value: "subgraph"
+
+  - name: "recommends diagram format"
+    steps:
+      - prompt: "What diagram format should I use for C4 Context diagrams in markdown documentation?"
+        assert:
+          - type: contains
+            value: "Mermaid"
