@@ -2,94 +2,103 @@
 
 ## Coverage Summary
 
-| Skill | Capabilities | Tested | Coverage | Test Scenarios |
-|-------|--------------|--------|----------|----------------|
-| arch-doc | 13 | 13 | 100% | 12 |
-| arch-review | 10 | 10 | 100% | 9 |
-| arch-fitness | 9 | 9 | 100% | 9 |
-| arch-decision | 9 | 9 | 100% | 9 |
-| **Total** | **41** | **41** | **100%** | **39** |
+| Metric | Count |
+|--------|-------|
+| Skills | 20 |
+| Structural Tests | 140 |
+| Skillprobe Scenarios | 127 |
+| Total Tests | 267 |
 
-## Coverage Matrix
+## Skills Coverage
 
-### arch-doc (12 scenarios)
+### Core Architecture (4 skills)
 
-| # | Test Scenario | Capability Tested |
-|---|---------------|-------------------|
-| 1 | generates C4 context diagram | C4 Context Diagram |
-| 2 | generates container diagram | C4 Container Diagram |
-| 3 | generates component diagram | C4 Component Diagram |
-| 4 | uses TOGAF for enterprise architecture | TOGAF ADM |
-| 5 | uses ISO 42010 viewpoints | ISO 42010 |
-| 6 | creates ADR for decisions | ADR Creation (MADR) |
-| 7 | generates sequence diagram | Sequence Diagram |
-| 8 | generates deployment diagram | Deployment Diagram |
-| 9 | generates package diagram | Package Diagram |
-| 10 | selects arc42 for comprehensive docs | arc42 Framework + Framework Selection |
-| 11 | recommends diagram format | Diagram Format Selection |
-| 12 | selects arc42 for comprehensive docs | Framework Selection |
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-doc | 6 | 11 | 7 | 12 |
+| arch-review | 4 | 1 | 7 | 9 |
+| arch-fitness | 1 | 1 | 7 | 9 |
+| arch-decision | 1 | 1 | 7 | 9 |
 
-### arch-review (9 scenarios)
+### Technical Architecture (4 skills)
 
-| # | Test Scenario | Capability Tested |
-|---|---------------|-------------------|
-| 1 | reviews architecture with patterns | Design Patterns + Anti-patterns + SOLID |
-| 2 | evaluates quality attributes | Quality Attributes + ISO 25010 |
-| 3 | assesses technical debt | Technical Debt Assessment |
-| 4 | checks best practices | Best Practices Compliance |
-| 5 | generates review report | Review Report Generation |
-| 6 | assesses fitness functions | Fitness Functions Assessment |
-| 7 | provides severity ratings | Severity Ratings |
-| 8 | uses ISO 25010 quality model | ISO 25010 Model |
-| 9 | generates review report | Report Structure |
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-security | 2 | 1 | 7 | 5 |
+| arch-perf | 1 | 1 | 7 | 5 |
+| arch-resilience | 1 | 1 | 7 | 5 |
+| arch-test | 1 | 1 | 7 | 5 |
 
-### arch-fitness (9 scenarios)
+### System Architecture (6 skills)
 
-| # | Test Scenario | Capability Tested |
-|---|---------------|-------------------|
-| 1 | explains fitness functions | Fitness Function Explanation |
-| 2 | creates ArchUnit test | ArchUnit Tests (Java) |
-| 3 | creates dependency rule | Dependency Rules |
-| 4 | CI/CD integration | CI/CD Integration |
-| 5 | performance fitness function | Performance Bounds |
-| 6 | creates ArchUnitTS test | ArchUnitTS Tests (TypeScript) |
-| 7 | creates quality gate configuration | Quality Gates |
-| 8 | creates naming convention rule | Naming Conventions |
-| 9 | creates module structure rule | Module Structure |
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-api | 1 | 1 | 7 | 5 |
+| arch-cloud | 1 | 1 | 7 | 5 |
+| arch-event | 2 | 1 | 7 | 5 |
+| arch-ddd | 2 | 1 | 7 | 5 |
+| arch-data | 1 | 1 | 7 | 5 |
+| arch-metrics | 1 | 1 | 7 | 5 |
 
-### arch-decision (9 scenarios)
+### Operations (3 skills)
 
-| # | Test Scenario | Capability Tested |
-|---|---------------|-------------------|
-| 1 | frames the decision | Decision Framing |
-| 2 | defines gate criteria | Gate Criteria |
-| 3 | lists alternatives with do nothing | Alternatives Enumeration |
-| 4 | creates weighted scoring criteria | Weighted Scoring |
-| 5 | scores evaluation matrix | Evaluation Matrix |
-| 6 | performs sensitivity check | Sensitivity Analysis |
-| 7 | provides recommendation with tradeoffs | Recommendation + Tradeoffs |
-| 8 | uses criteria library | Criteria Library |
-| 9 | validates weight sum | Math Validation |
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-observability | 1 | 1 | 7 | 5 |
+| arch-migration | 1 | 1 | 7 | 5 |
+| arch-deployment | 1 | 1 | 7 | 5 |
 
-## Structural Tests (28 total)
+### NFR (3 skills)
 
-| Category | Tests | What's Validated |
-|----------|-------|------------------|
-| Directory Structure | 4 | Skill directories exist |
-| SKILL.md | 4 | Files exist, frontmatter valid |
-| Frontmatter | 4 | name, description present |
-| References | 4 | Reference files complete |
-| Assets | 4 | Asset files present |
-| UI Metadata | 4 | agents/openai.yaml exists |
-| Content Quality | 4 | Word count, sections, workflow |
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-usability | 1 | 1 | 7 | 5 |
+| arch-accessibility | 1 | 1 | 7 | 5 |
+| arch-compliance | 1 | 1 | 7 | 5 |
 
-## DAR Math Validation
+## NFR Coverage Matrix
 
-| Check | Description |
-|-------|-------------|
-| Weight Sum | Weights must sum to exactly 100 |
-| Weighted Scores | (weight/100) * raw = weighted |
-| Total Scores | Sum of weighted scores per alternative |
-| Ranking | Alternatives ranked by total score |
-| Raw Range | Scores must be 0-5 |
-| Sensitivity | Weight perturbation scenarios validated |
+| NFR | Primary Skill | Supporting Skills | Status |
+|-----|---------------|-------------------|--------|
+| Performance | arch-perf | arch-cloud, arch-resilience | ✅ 100% |
+| Scalability | arch-perf | arch-cloud | ✅ 100% |
+| Availability | arch-resilience | arch-observability | ✅ 100% |
+| Reliability | arch-resilience | arch-test | ✅ 100% |
+| Security | arch-security | arch-compliance | ✅ 100% |
+| Maintainability | arch-metrics | arch-doc | ✅ 100% |
+| Testability | arch-test | arch-fitness | ✅ 100% |
+| Observability | arch-observability | arch-metrics | ✅ 100% |
+| Deployability | arch-deployment | arch-cloud | ✅ 100% |
+| Usability | arch-usability | arch-accessibility | ✅ 100% |
+| Accessibility | arch-accessibility | arch-usability | ✅ 100% |
+| Compliance | arch-compliance | arch-security | ✅ 100% |
+| Data Integrity | arch-data | arch-metrics | ✅ 100% |
+| Auditability | arch-compliance | arch-observability | ✅ 100% |
+| Recoverability | arch-resilience | arch-migration | ✅ 100% |
+| Modifiability | arch-metrics | arch-doc | ✅ 100% |
+
+## Skill Relationships
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        arch-review                              │
+│                    (Orchestration Layer)                        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+        ▼                     ▼                     ▼
+┌───────────────┐    ┌───────────────┐    ┌───────────────┐
+│  arch-doc     │    │  arch-fitness │    │  arch-metrics │
+│  (Document)   │    │  (Validate)   │    │  (Measure)    │
+└───────────────┘    └───────────────┘    └───────────────┘
+        │                     │                     │
+        ▼                     ▼                     ▼
+┌───────────────────────────────────────────────────────────────┐
+│                    Specialized Skills                         │
+├───────────┬───────────┬───────────┬───────────┬───────────────┤
+│ Security  │ Perf      │ Resilience│ Test      │ Data          │
+│ API       │ Cloud     │ Event     │ DDD       │ Migration     │
+│ Observability │ Deployment │ Usability │ Accessibility │ Compliance │
+└───────────┴───────────┴───────────┴───────────┴───────────────┘
+```

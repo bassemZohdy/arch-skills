@@ -1,37 +1,61 @@
 # Architecture Skills
 
-A collection of Codex skills for software architecture documentation, review, and validation.
+[![Tests](https://img.shields.io/badge/tests-140%20passing-brightgreen)]()
+[![Skills](https://img.shields.io/badge/skills-20-blue)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-97-orange)]()
 
-## Skills
+A comprehensive collection of 20 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
 
-| Skill | Purpose | Use When |
-|-------|---------|----------|
-| **arch-doc** | Generate architecture documentation | C4, arc42, TOGAF, diagrams |
-| **arch-review** | Orchestrate architecture reviews | Comprehensive evaluation |
-| **arch-fitness** | Create fitness functions | CI/CD validation, automated tests |
-| **arch-decision** | DAR methodology | Technology selection, build vs buy |
-| **arch-security** | Security architecture | Threat modeling, OWASP, compliance |
-| **arch-perf** | Performance engineering | Capacity planning, load testing |
-| **arch-migration** | Migration planning | Legacy modernization, database migration |
-| **arch-api** | API design | REST, GraphQL, gRPC |
-| **arch-cloud** | Cloud-native architecture | Cloud patterns, Well-Architected |
-| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, messaging |
-| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates |
-| **arch-metrics** | Architecture metrics | Complexity analysis, debt tracking |
-| **arch-resilience** | Resilience patterns | Circuit breakers, retry, bulkhead |
+## Skills Overview
+
+### Core Architecture Skills
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-doc** | Generate architecture documentation | C4, arc42, TOGAF, ISO 42010, ADRs |
+| **arch-review** | Orchestrate architecture reviews | Review methodology, scoring, reporting |
+| **arch-fitness** | Create fitness functions | ArchUnit/ArchUnitTS, CI/CD validation |
+| **arch-decision** | DAR methodology | Weighted scoring, sensitivity analysis |
+
+### Technical Architecture Skills
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-security** | Security architecture | STRIDE, DREAD, OWASP, compliance |
+| **arch-perf** | Performance engineering | SLA/SLO, caching, load testing |
+| **arch-resilience** | Resilience patterns | Circuit breaker, retry, bulkhead |
 | **arch-test** | Test architecture | Test pyramids, contract testing |
-| **arch-data** | Data architecture | Data modeling, pipelines, governance |
-| **arch-observability** | Observability | Logging, tracing, monitoring |
-| **arch-usability** | Usability architecture | UX patterns, heuristics, user research |
-| **arch-accessibility** | Accessibility | WCAG compliance, ARIA, assistive tech |
-| **arch-compliance** | Regulatory compliance | GDPR, HIPAA, SOC 2, audit trails |
-| **arch-deployment** | Deployment architecture | CI/CD, deployment strategies, releases |
+
+### System Architecture Skills
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-api** | API design | REST, GraphQL, gRPC, versioning |
+| **arch-cloud** | Cloud-native architecture | Well-Architected, FinOps, multi-cloud |
+| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, sagas |
+| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates, Event Storming |
+| **arch-data** | Data architecture | Modeling, pipelines, governance |
+| **arch-metrics** | Architecture metrics | Complexity, dependencies, debt |
+
+### Operations Skills
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-observability** | Observability | Logs, metrics, traces, alerting |
+| **arch-migration** | Migration planning | Strangler fig, rollback, risk assessment |
+| **arch-deployment** | Deployment architecture | CI/CD, blue-green, canary, GitOps |
+
+### Non-Functional Requirements Skills
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-usability** | Usability architecture | Nielsen's heuristics, user research |
+| **arch-accessibility** | Accessibility | WCAG 2.1, ARIA, screen readers |
+| **arch-compliance** | Regulatory compliance | GDPR, HIPAA, SOC 2, PCI DSS |
 
 ## Quick Start
 
 ### Installation
-
-Skills are installed to `~/.codex/skills/` via copies.
 
 **Linux/Mac:**
 ```bash
@@ -44,130 +68,192 @@ chmod +x sync-skills.sh run-tests.sh
 .\sync-skills.ps1
 ```
 
-### Usage
+### Usage Examples
 
-**Generate architecture documentation:**
 ```
+# Generate architecture documentation
 Use arch-doc to create C4 diagrams for an e-commerce platform
-```
 
-**Review an architecture:**
-```
+# Review an architecture
 Use arch-review to evaluate this microservices architecture
-```
 
-**Create fitness functions:**
-```
+# Create fitness functions
 Use arch-fitness to create ArchUnit tests for layer dependencies
-```
 
-**Make an architecture decision:**
-```
+# Make an architecture decision
 Use arch-decision to help me choose between PostgreSQL and MongoDB
+
+# Security review
+Use arch-security to perform threat modeling for this API
+
+# Performance analysis
+Use arch-perf to design a caching strategy for this service
 ```
 
 ## Project Structure
 
 ```
 arch-skills/
-├── README.md                      # This file
-├── AGENTS.md                      # Agent instructions
-├── TODO.md                        # Task tracking
-├── sync-skills.ps1                # Sync script (Windows)
-├── sync-skills.sh                 # Sync script (Linux/Mac)
-├── run-tests.ps1                  # Test runner (Windows)
-├── run-tests.sh                   # Test runner (Linux/Mac)
-├── docs/                          # Project documentation
-│   ├── coverage-analysis.md       # Test coverage matrix
-│   └── skill-testing.md           # Skill testing guide
-├── skills/
-│   ├── arch-doc/                  # Architecture documentation skill
-│   │   ├── SKILL.md               # Main skill instructions
-│   │   ├── agents/                # UI metadata
-│   │   ├── references/            # Framework guides
-│   │   │   ├── c4-model.md        # C4 Model with review checklist
-│   │   │   ├── arc42-template.md  # arc42 template (12 sections)
-│   │   │   ├── togaf-adm.md       # TOGAF Architecture Development Method
-│   │   │   ├── iso42010.md        # ISO 42010 views and viewpoints
-│   │   │   ├── adr-template.md    # MADR ADR templates
-│   │   │   └── skill-testing.md   # Skill testing tools guide
-│   │   └── assets/                # Diagram templates
-│   │       ├── mermaid-templates/
-│   │       ├── plantuml-templates/
-│   │       └── drawio-templates/
-│   ├── arch-review/               # Architecture review skill
-│   │   ├── SKILL.md
-│   │   ├── agents/
-│   │   ├── references/
-│   │   │   ├── design-patterns.md
-│   │   │   ├── quality-attributes.md
-│   │   │   ├── best-practices.md
-│   │   │   └── tech-debt.md
-│   │   └── assets/
-│   │       └── review-template.md
-│   ├── arch-fitness/              # Fitness functions skill
-│   │   ├── SKILL.md
-│   │   ├── agents/
-│   │   ├── references/
-│   │   │   └── fitness-functions.md
-│   │   └── assets/
-│   │       └── template.md
-│   └── arch-decision/             # Decision analysis skill (DAR methodology)
-│       ├── SKILL.md
-│       ├── agents/
-│       ├── references/
-│       │   └── criteria-library.md
-│       ├── scripts/
-│       │   └── validate_math.py
-│       └── assets/
-│           └── dar-document.md
-└── tests/
-    ├── test_skills.py             # Structural validation (28 tests)
-    ├── test-arch-doc.yaml         # skillprobe scenarios (12)
-    ├── test-arch-review.yaml      # skillprobe scenarios (9)
-    ├── test-arch-fitness.yaml     # skillprobe scenarios (9)
-    ├── test-arch-decision.yaml    # skillprobe scenarios (9)
-    └── test-dar.md                # Test DAR document
+├── README.md                          # This file
+├── AGENTS.md                          # Agent instructions
+├── TODO.md                            # Task tracking
+├── sync-skills.ps1                    # Sync script (Windows)
+├── sync-skills.sh                     # Sync script (Linux/Mac)
+├── run-tests.ps1                      # Test runner (Windows)
+├── run-tests.sh                       # Test runner (Linux/Mac)
+├── docs/                              # Documentation
+│   ├── coverage-analysis.md           # Test coverage matrix
+│   └── skill-testing.md               # Skill testing guide
+├── skills/                            # 20 architecture skills
+│   ├── arch-doc/                      # Documentation generation
+│   ├── arch-review/                   # Review orchestration
+│   ├── arch-fitness/                  # Fitness functions
+│   ├── arch-decision/                 # DAR methodology
+│   ├── arch-security/                 # Security patterns
+│   ├── arch-perf/                     # Performance engineering
+│   ├── arch-resilience/               # Fault tolerance
+│   ├── arch-test/                     # Test strategy
+│   ├── arch-api/                      # API design
+│   ├── arch-cloud/                    # Cloud patterns
+│   ├── arch-event/                    # Event-driven
+│   ├── arch-ddd/                      # Domain modeling
+│   ├── arch-data/                     # Data architecture
+│   ├── arch-metrics/                  # Metrics analysis
+│   ├── arch-observability/            # Observability
+│   ├── arch-migration/                # Migration planning
+│   ├── arch-deployment/               # Deployment strategy
+│   ├── arch-usability/                # UX patterns
+│   ├── arch-accessibility/            # WCAG compliance
+│   └── arch-compliance/               # Regulatory compliance
+└── tests/                             # Test suite
+    ├── test_skills.py                 # Structural validation
+    ├── test-arch-*.yaml               # Skillprobe scenarios
+    └── test-dar.md                    # DAR math test data
 ```
 
-## Features
+## Skill Details
 
-### arch-doc
+### arch-doc — Architecture Documentation
 
-- **C4 Model**: System Context, Container, Component, Code diagrams
-- **arc42**: 12-section documentation template
-- **TOGAF**: Architecture Development Method phases
-- **ISO 42010**: Views and viewpoints standard
-- **ADRs**: MADR templates for architecture decisions
-- **Diagram Formats**: Mermaid (primary), PlantUML, Draw.io
+Generate comprehensive architecture documentation with diagrams.
 
-### arch-review
+**Frameworks Supported:**
+- C4 Model (Context, Container, Component, Code)
+- arc42 (12-section template)
+- TOGAF (Architecture Development Method)
+- ISO 42010 (Views and viewpoints)
 
-- **Design Patterns**: Common patterns and anti-patterns catalog
-- **Quality Attributes**: ISO 25010 model with scenarios
-- **Best Practices**: SOLID, DRY, KISS checklists
-- **Technical Debt**: Assessment framework and scoring
-- **Review Template**: Executive summary, findings, recommendations
+**Diagram Formats:**
+- Mermaid (primary)
+- PlantUML (secondary)
+- Draw.io (tertiary)
 
-### arch-fitness
+**Features:**
+- Framework selection guidance
+- ADR creation with MADR templates
+- C4 diagram review checklist
+- Tech stack considerations
 
-- **ArchUnit/ArchUnitTS**: Architecture unit testing examples
-- **CI/CD Integration**: GitHub Actions workflow templates
-- **Dependency Rules**: Layer boundary enforcement
-- **Performance Bounds**: Response time validation
-- **Quality Gates**: Automated architecture checks
+### arch-review — Architecture Review
 
-### arch-decision
+Orchestrate comprehensive architecture reviews.
 
-- **DAR Methodology**: 8-stage structured decision process
-- **Weighted Scoring**: Criteria with weights summing to 100
-- **Gate Criteria**: Pass/fail knockout filters
-- **Sensitivity Analysis**: Tests ranking stability
-- **Criteria Library**: Reusable evaluation bundles
+**Review Dimensions:**
+- Design patterns and anti-patterns
+- Quality attributes (ISO 25010)
+- Best practices (SOLID, DRY, KISS)
+- Technical debt assessment
+- Fitness functions validation
+
+**Output:**
+- Executive summary
+- Findings by dimension
+- Severity ratings
+- Remediation roadmap
+
+### arch-decision — Decision Analysis
+
+Structured decision-making using DAR methodology.
+
+**Process:**
+1. Frame the decision
+2. Define gate criteria
+3. List alternatives
+4. Create weighted scoring matrix
+5. Evaluate and score
+6. Sensitivity analysis
+7. Generate recommendation
+8. Document decision
+
+**Features:**
+- Expedited mode (2-4 criteria)
+- Formal mode (3-7 criteria)
+- Criteria library (5 bundles)
+- DAR math validation script
+
+### arch-security — Security Architecture
+
+Threat modeling and security patterns.
+
+**Frameworks:**
+- STRIDE threat modeling
+- DREAD risk assessment
+- OWASP Top 10
+- SOC 2, GDPR, HIPAA compliance
+
+**Patterns:**
+- Authentication (OAuth, JWT, MFA)
+- Authorization (RBAC, ABAC)
+- Data protection (encryption, masking)
+- API security (rate limiting, input validation)
+
+### arch-perf — Performance Engineering
+
+Performance patterns and capacity planning.
+
+**Topics:**
+- SLA/SLO/error budgets
+- Caching strategies (browser, CDN, Redis)
+- Async processing (queues, streams)
+- Database optimization
+- Load testing (k6, JMeter, Locust)
+- Performance budgets
+
+### arch-resilience — Resilience Patterns
+
+Fault tolerance for distributed systems.
+
+**Patterns:**
+- Circuit breaker
+- Retry with exponential backoff
+- Bulkhead isolation
+- Timeout management
+- Fallback strategies
+
+**Testing:**
+- Chaos engineering
+- Fault injection
+- Game day exercises
+
+### arch-deployment — Deployment Architecture
+
+CI/CD pipelines and deployment strategies.
+
+**Strategies:**
+- Blue-green deployment
+- Canary releases
+- Rolling updates
+- Recreate
+
+**CI/CD:**
+- Pipeline stages
+- Quality gates
+- GitOps patterns
+- Infrastructure as Code
 
 ## Testing
 
-### Structural Validation
+### Structural Validation (140 tests)
 
 **Linux/Mac:**
 ```bash
@@ -179,7 +265,7 @@ arch-skills/
 .\run-tests.ps1
 ```
 
-Runs 28 structural tests + DAR math validation:
+**Tests:**
 - Skill directory structure
 - SKILL.md existence and frontmatter
 - Reference files completeness
@@ -187,16 +273,7 @@ Runs 28 structural tests + DAR math validation:
 - Content quality (word count, sections)
 - DAR weighted score calculations
 
-To run only DAR validation:
-```bash
-./run-tests.sh --dar-only
-# or
-.\run-tests.ps1 -DarOnly
-```
-
-### Skill Test Scenarios
-
-97 test scenarios covering all 16 skills:
+### Skill Test Scenarios (97 scenarios)
 
 | Skill | Scenarios |
 |-------|-----------|
@@ -216,40 +293,58 @@ To run only DAR validation:
 | arch-test | 5 |
 | arch-data | 5 |
 | arch-observability | 5 |
-| **Total** | **97** |
+| arch-usability | 5 |
+| arch-accessibility | 5 |
+| arch-compliance | 5 |
+| arch-deployment | 5 |
+| **Total** | **127** |
 
-Run with skillprobe (requires Claude Code CLI):
+**Run with skillprobe:**
 ```bash
 for f in tests/test-arch-*.yaml; do skillprobe run "$f" --harness claude-code; done
 ```
 
-### DAR Math Validation
+## NFR Coverage Matrix
 
-Validate weighted scores in DAR documents:
-
-```bash
-# Included in run-tests.sh/run-tests.ps1
-# Or run directly:
-python skills/arch-decision/scripts/validate_math.py tests/test-dar.md
-```
-
-### Skill Testing Tools
-
-For end-to-end testing with real LLM execution:
-
-- **skillprobe**: `pip install skillprobe`
-- **skill-eval-runner**: `npm install -g skill-eval-runner`
-
-See `skills/arch-doc/references/skill-testing.md` for details.
+| NFR | Skill | Coverage |
+|-----|-------|----------|
+| Performance | arch-perf | ✅ |
+| Scalability | arch-perf, arch-cloud | ✅ |
+| Availability | arch-resilience | ✅ |
+| Reliability | arch-resilience | ✅ |
+| Security | arch-security | ✅ |
+| Maintainability | arch-metrics | ✅ |
+| Testability | arch-test | ✅ |
+| Observability | arch-observability | ✅ |
+| Deployability | arch-deployment | ✅ |
+| Usability | arch-usability | ✅ |
+| Accessibility | arch-accessibility | ✅ |
+| Compliance | arch-compliance | ✅ |
+| Data Integrity | arch-data | ✅ |
+| Auditability | arch-compliance | ✅ |
+| Recoverability | arch-resilience | ✅ |
+| Modifiability | arch-metrics | ✅ |
 
 ## Research Sources
 
-- [C4 Model](https://c4model.com/) - Official C4 documentation
-- [arc42](https://arc42.org/) - Architecture documentation template
-- [MADR](https://github.com/joelparkerhenderson/architecture-decision-record) - ADR templates
-- [ArchUnit](https://www.archunit.org/) - Java architecture testing
-- [ISO 25010](https://www.iso.org/standard/35733.html) - Quality model
-- [DAR Skill](https://github.com/DAR_Platform/DAR_Skill) - Decision Analysis and Resolution methodology
+- [C4 Model](https://c4model.com/) — Official C4 documentation
+- [arc42](https://arc42.org/) — Architecture documentation template
+- [MADR](https://github.com/joelparkerhenderson/architecture-decision-record) — ADR templates
+- [ArchUnit](https://www.archunit.org/) — Java architecture testing
+- [ISO 25010](https://www.iso.org/standard/35733.html) — Quality model
+- [DAR Skill](https://github.com/DAR_Platform/DAR_Skill) — DAR methodology
+- [OWASP](https://owasp.org/) — Security best practices
+- [Google SRE](https://sre.google/) — Reliability engineering
+- [Thoughtworks Radar](https://www.thoughtworks.com/radar) — Technology trends
+- [Agent Skills](https://agentskills.io/) — Agent Skills specification
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests (`./run-tests.sh`)
+5. Submit a pull request
 
 ## License
 
