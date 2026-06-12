@@ -1,10 +1,10 @@
 # Architecture Skills
 
-[![Tests](https://img.shields.io/badge/tests-203%20passing-brightgreen)]()
-[![Skills](https://img.shields.io/badge/skills-29-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-168-orange)]()
+[![Tests](https://img.shields.io/badge/tests-210%20passing-brightgreen)]()
+[![Skills](https://img.shields.io/badge/skills-30-blue)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-172-orange)]()
 
-A comprehensive collection of 29 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
+A comprehensive collection of 30 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
 
 ## Quick Start
 
@@ -106,6 +106,12 @@ Use arch-cost to optimize our cloud spending
 | Skill | Purpose | Key Topics |
 |-------|---------|------------|
 | **arch-features** | Feature management | Feature flags, toggles, experimentation |
+
+### Automation (1 skill)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-automation** | Architecture automation | CI/CD, documentation, infrastructure automation |
 
 ### Non-Functional Requirements (3 skills)
 

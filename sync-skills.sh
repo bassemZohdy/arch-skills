@@ -59,6 +59,14 @@ for skill in arch-features; do
     fi
 done
 
+# Automation
+for skill in arch-automation; do
+    if [ -d "${SOURCE}/${skill}" ]; then
+        cp -r "${SOURCE}/${skill}" "${DESTINATION}/${skill}"
+        echo "  Synced: ${skill}"
+    fi
+done
+
 # NFR
 for skill in arch-usability arch-accessibility arch-compliance; do
     if [ -d "${SOURCE}/${skill}" ]; then

@@ -44,6 +44,9 @@ Copy-Item -Path "$source\arch-cost" -Destination "$destination\arch-cost" -Recur
 # Feature Management
 Copy-Item -Path "$source\arch-features" -Destination "$destination\arch-features" -Recurse -Force
 
+# Automation
+Copy-Item -Path "$source\arch-automation" -Destination "$destination\arch-automation" -Recurse -Force
+
 # NFR
 Copy-Item -Path "$source\arch-usability" -Destination "$destination\arch-usability" -Recurse -Force
 Copy-Item -Path "$source\arch-accessibility" -Destination "$destination\arch-accessibility" -Recurse -Force
