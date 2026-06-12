@@ -188,7 +188,8 @@ class SkillTester:
         """Run all tests for all skills."""
         skills = ["arch-doc", "arch-review", "arch-fitness", "arch-decision",
                    "arch-security", "arch-perf", "arch-migration", "arch-api",
-                   "arch-cloud", "arch-event", "arch-ddd", "arch-metrics"]
+                   "arch-cloud", "arch-event", "arch-ddd", "arch-metrics",
+                   "arch-resilience", "arch-test", "arch-data", "arch-observability"]
         
         print("=" * 60)
         print("Architecture Skills Test Suite")

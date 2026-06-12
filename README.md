@@ -18,6 +18,10 @@ A collection of Codex skills for software architecture documentation, review, an
 | **arch-event** | Event-driven architecture | CQRS, Event Sourcing, messaging patterns |
 | **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates, domain modeling |
 | **arch-metrics** | Architecture metrics | Complexity analysis, debt tracking |
+| **arch-resilience** | Resilience patterns | Circuit breakers, retry, bulkhead, fault tolerance |
+| **arch-test** | Test architecture | Test pyramids, contract testing, test strategy |
+| **arch-data** | Data architecture | Data modeling, pipelines, governance |
+| **arch-observability** | Observability architecture | Logging, tracing, monitoring, alerting |
 
 ## Quick Start
 
