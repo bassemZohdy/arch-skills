@@ -1,0 +1,4 @@
+interface:
+  display_name: "Microservices Architecture"
+  short_description: "Service decomposition, communication patterns"
+  default_prompt: "Use -microservices for microservices"

@@ -1,10 +1,10 @@
 # Architecture Skills
 
-[![Tests](https://img.shields.io/badge/tests-140%20passing-brightgreen)]()
-[![Skills](https://img.shields.io/badge/skills-20-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-97-orange)]()
+[![Tests](https://img.shields.io/badge/tests-175%20passing-brightgreen)]()
+[![Skills](https://img.shields.io/badge/skills-25-blue)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-152-orange)]()
 
-A comprehensive collection of 20 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
+A comprehensive collection of 25 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
 
 ## Skills Overview
 
@@ -16,6 +16,7 @@ A comprehensive collection of 20 Codex skills for software architecture document
 | **arch-review** | Orchestrate architecture reviews | Review methodology, scoring, reporting |
 | **arch-fitness** | Create fitness functions | ArchUnit/ArchUnitTS, CI/CD validation |
 | **arch-decision** | DAR methodology | Weighted scoring, sensitivity analysis |
+| **arch-governance** | Architecture governance | Standards, boards, compliance |
 
 ### Technical Architecture Skills
 
@@ -36,6 +37,8 @@ A comprehensive collection of 20 Codex skills for software architecture document
 | **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates, Event Storming |
 | **arch-data** | Data architecture | Modeling, pipelines, governance |
 | **arch-metrics** | Architecture metrics | Complexity, dependencies, debt |
+| **arch-integration** | Integration patterns | Service mesh, API gateway, ESB |
+| **arch-microservices** | Microservices architecture | Service decomposition, communication |
 
 ### Operations Skills
 
@@ -44,6 +47,8 @@ A comprehensive collection of 20 Codex skills for software architecture document
 | **arch-observability** | Observability | Logs, metrics, traces, alerting |
 | **arch-migration** | Migration planning | Strangler fig, rollback, risk assessment |
 | **arch-deployment** | Deployment architecture | CI/CD, blue-green, canary, GitOps |
+| **arch-devops** | DevOps & infrastructure | IaC, Kubernetes, GitOps |
+| **arch-cost** | Cost optimization | FinOps, cost modeling, optimization |
 
 ### Non-Functional Requirements Skills
 
