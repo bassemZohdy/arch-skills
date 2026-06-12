@@ -47,6 +47,9 @@ Use arch-microservices to decompose this monolith
 
 # Cost optimization
 Use arch-cost to optimize our cloud spending
+
+# Automate architecture validation
+Use arch-automation to set up CI/CD for architecture checks
 ```
 
 ## Skills Overview
@@ -56,7 +59,7 @@ Use arch-cost to optimize our cloud spending
 | Skill | Purpose | Key Topics |
 |-------|---------|------------|
 | **arch-doc** | Generate architecture documentation | C4, arc42, TOGAF, ISO 42010, ADRs |
-| **arch-review** | Orchestrate architecture reviews | Review methodology, scoring, reporting |
+| **arch-review** | Orchestrate architecture reviews | ATAM, SAAM, review methodology |
 | **arch-fitness** | Create fitness functions | ArchUnit/ArchUnitTS, CI/CD validation |
 | **arch-decision** | DAR methodology | Weighted scoring, sensitivity analysis |
 | **arch-governance** | Architecture governance | Standards, boards, compliance |
@@ -74,7 +77,7 @@ Use arch-cost to optimize our cloud spending
 
 | Skill | Purpose | Key Topics |
 |-------|---------|------------|
-| **arch-api** | API design | REST, GraphQL, gRPC, versioning |
+| **arch-api** | API design | REST, GraphQL, gRPC, OpenAPI |
 | **arch-cloud** | Cloud-native architecture | Well-Architected, FinOps, multi-cloud |
 | **arch-event** | Event-driven architecture | CQRS, Event Sourcing, sagas |
 | **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates |
@@ -136,7 +139,7 @@ arch-skills/
 │   ├── coverage-analysis.md           # Test coverage matrix
 │   ├── skill-testing.md               # Skill testing guide
 │   └── best-practices-master.md       # Best practices cross-reference
-├── skills/                            # 25 architecture skills
+├── skills/                            # 30 architecture skills
 │   ├── arch-doc/                      # Documentation generation
 │   ├── arch-review/                   # Review orchestration
 │   ├── arch-fitness/                  # Fitness functions
@@ -154,11 +157,16 @@ arch-skills/
 │   ├── arch-metrics/                  # Metrics analysis
 │   ├── arch-integration/              # Integration patterns
 │   ├── arch-microservices/            # Microservices architecture
+│   ├── arch-patterns/                 # Architecture patterns
+│   ├── arch-refactoring/              # Refactoring patterns
+│   ├── arch-frontend/                 # Frontend architecture
 │   ├── arch-observability/            # Observability
 │   ├── arch-migration/                # Migration planning
 │   ├── arch-deployment/               # Deployment strategy
 │   ├── arch-devops/                   # DevOps & infrastructure
 │   ├── arch-cost/                     # Cost optimization
+│   ├── arch-features/                 # Feature management
+│   ├── arch-automation/               # Architecture automation
 │   ├── arch-usability/                # UX patterns
 │   ├── arch-accessibility/            # WCAG compliance
 │   └── arch-compliance/               # Regulatory compliance
@@ -170,7 +178,7 @@ arch-skills/
 
 ## Testing
 
-### Structural Validation (175 tests)
+### Structural Validation (210 tests)
 
 **Linux/Mac:**
 ```bash
@@ -182,7 +190,7 @@ arch-skills/
 .\run-tests.ps1
 ```
 
-### Skill Test Scenarios (152 scenarios)
+### Skill Test Scenarios (172 scenarios)
 
 | Skill | Scenarios |
 |-------|-----------|
@@ -211,7 +219,12 @@ arch-skills/
 | arch-devops | 5 |
 | arch-cost | 5 |
 | arch-governance | 5 |
-| **Total** | **152** |
+| arch-patterns | 5 |
+| arch-refactoring | 5 |
+| arch-frontend | 5 |
+| arch-features | 5 |
+| arch-automation | 5 |
+| **Total** | **172** |
 
 **Run with skillprobe:**
 ```bash
@@ -254,6 +267,7 @@ for f in tests/test-arch-*.yaml; do skillprobe run "$f" --harness claude-code; d
 - [microservices.io](https://microservices.io/) — Microservices patterns
 - [FinOps Foundation](https://www.finops.org/) — FinOps framework
 - [Kubernetes](https://kubernetes.io/) — Container orchestration
+- [Martin Fowler](https://martinfowler.com/) — Software architecture patterns
 
 ## License
 

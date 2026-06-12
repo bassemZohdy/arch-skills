@@ -4,10 +4,10 @@
 
 | Metric | Count |
 |--------|-------|
-| Skills | 25 |
-| Structural Tests | 175 |
-| Skillprobe Scenarios | 152 |
-| Total Tests | 327 |
+| Skills | 30 |
+| Structural Tests | 210 |
+| Skillprobe Scenarios | 172 |
+| Total Tests | 382 |
 
 ## Skills Coverage
 
@@ -15,8 +15,8 @@
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-doc | 6 | 11 | 7 | 12 |
-| arch-review | 4 | 1 | 7 | 9 |
+| arch-doc | 7 | 11 | 7 | 12 |
+| arch-review | 5 | 1 | 7 | 9 |
 | arch-fitness | 1 | 1 | 7 | 9 |
 | arch-decision | 1 | 1 | 7 | 9 |
 | arch-governance | 1 | 1 | 7 | 5 |
@@ -30,11 +30,11 @@
 | arch-resilience | 1 | 1 | 7 | 5 |
 | arch-test | 1 | 1 | 7 | 5 |
 
-### System Architecture (8 skills)
+### System Architecture (10 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-api | 1 | 1 | 7 | 5 |
+| arch-api | 2 | 1 | 7 | 5 |
 | arch-cloud | 1 | 1 | 7 | 5 |
 | arch-event | 2 | 1 | 7 | 5 |
 | arch-ddd | 2 | 1 | 7 | 5 |
@@ -42,6 +42,14 @@
 | arch-metrics | 1 | 1 | 7 | 5 |
 | arch-integration | 1 | 1 | 7 | 5 |
 | arch-microservices | 1 | 1 | 7 | 5 |
+| arch-patterns | 1 | 1 | 7 | 5 |
+| arch-refactoring | 1 | 1 | 7 | 5 |
+
+### Frontend (1 skill)
+
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-frontend | 1 | 1 | 7 | 5 |
 
 ### Operations (5 skills)
 
@@ -52,6 +60,18 @@
 | arch-deployment | 1 | 1 | 7 | 5 |
 | arch-devops | 1 | 1 | 7 | 5 |
 | arch-cost | 1 | 1 | 7 | 5 |
+
+### Feature Management (1 skill)
+
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-features | 1 | 1 | 7 | 5 |
+
+### Automation (1 skill)
+
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-automation | 1 | 1 | 7 | 5 |
 
 ### NFR (3 skills)
 
@@ -106,5 +126,6 @@
 │ API       │ Cloud     │ Event     │ DDD       │ Migration     │
 │ Observability │ Deployment │ Usability │ Accessibility │ Compliance │
 │ Integration │ Microservices │ DevOps │ Cost │ Governance     │
+│ Patterns  │ Refactoring │ Frontend │ Features │ Automation    │
 └───────────┴───────────┴───────────┴───────────┴───────────────┘
 ```
