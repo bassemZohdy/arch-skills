@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deployment Architecture"
+  short_description: "CI/CD, deployment strategies, release engineering"
+  default_prompt: "Use -deployment for deployment"

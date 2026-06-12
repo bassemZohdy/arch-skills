@@ -6,22 +6,26 @@ A collection of Codex skills for software architecture documentation, review, an
 
 | Skill | Purpose | Use When |
 |-------|---------|----------|
-| **arch-doc** | Generate architecture documentation with diagrams | Creating docs, documenting systems, C4/arc42/TOGAF diagrams |
-| **arch-review** | Review and validate architecture implementations | Evaluating architectures, anti-patterns, technical debt |
-| **arch-fitness** | Create automated architecture fitness functions | CI/CD validation, architecture unit tests |
-| **arch-decision** | Structured decision analysis (DAR methodology) | Technology selections, build vs buy, weighted scoring |
-| **arch-security** | Security architecture review | Threat modeling, OWASP, compliance audits |
-| **arch-perf** | Performance engineering | Capacity planning, load testing, bottlenecks |
-| **arch-migration** | Migration planning | Legacy modernization, database migrations |
-| **arch-api** | API design patterns | REST, GraphQL, gRPC design and governance |
-| **arch-cloud** | Cloud-native architecture | Cloud patterns, Well-Architected, cost optimization |
-| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, messaging patterns |
-| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates, domain modeling |
+| **arch-doc** | Generate architecture documentation | C4, arc42, TOGAF, diagrams |
+| **arch-review** | Orchestrate architecture reviews | Comprehensive evaluation |
+| **arch-fitness** | Create fitness functions | CI/CD validation, automated tests |
+| **arch-decision** | DAR methodology | Technology selection, build vs buy |
+| **arch-security** | Security architecture | Threat modeling, OWASP, compliance |
+| **arch-perf** | Performance engineering | Capacity planning, load testing |
+| **arch-migration** | Migration planning | Legacy modernization, database migration |
+| **arch-api** | API design | REST, GraphQL, gRPC |
+| **arch-cloud** | Cloud-native architecture | Cloud patterns, Well-Architected |
+| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, messaging |
+| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates |
 | **arch-metrics** | Architecture metrics | Complexity analysis, debt tracking |
-| **arch-resilience** | Resilience patterns | Circuit breakers, retry, bulkhead, fault tolerance |
-| **arch-test** | Test architecture | Test pyramids, contract testing, test strategy |
+| **arch-resilience** | Resilience patterns | Circuit breakers, retry, bulkhead |
+| **arch-test** | Test architecture | Test pyramids, contract testing |
 | **arch-data** | Data architecture | Data modeling, pipelines, governance |
-| **arch-observability** | Observability architecture | Logging, tracing, monitoring, alerting |
+| **arch-observability** | Observability | Logging, tracing, monitoring |
+| **arch-usability** | Usability architecture | UX patterns, heuristics, user research |
+| **arch-accessibility** | Accessibility | WCAG compliance, ARIA, assistive tech |
+| **arch-compliance** | Regulatory compliance | GDPR, HIPAA, SOC 2, audit trails |
+| **arch-deployment** | Deployment architecture | CI/CD, deployment strategies, releases |
 
 ## Quick Start
 
