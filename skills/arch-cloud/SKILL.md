@@ -15,8 +15,14 @@ Systematic approach to designing cloud-native systems.
 3. Design Architecture → Apply cloud patterns
 4. Optimize Costs → FinOps practices
 5. Implement → Use managed services
-6. Monitor → Observability and alerting
 ```
+
+## Related Skills
+
+- **Migration planning**: See `arch-migration` for legacy modernization, strangler fig, rollback strategies
+- **Observability**: See `arch-observability` for logging, metrics, tracing, alerting
+- **Data patterns**: See `arch-data` for data modeling, pipelines, governance
+- **Performance**: See `arch-perf` for caching, capacity planning, load testing
 
 ## Step 1: Well-Architected Framework
 
@@ -101,29 +107,6 @@ Systematic approach to designing cloud-native systems.
 | Right-sizing | 20-40% | Low |
 | Auto-scaling | 10-30% | Medium |
 | Storage tiering | 30-50% | Low |
-
-## Step 5: Cloud Migration
-
-### 6 R's of Migration
-
-| Strategy | Description |
-|----------|-------------|
-| **Rehost** | Lift and shift |
-| **Replatform** | Minor optimizations |
-| **Repurchase** | Move to SaaS |
-| **Refactor** | Re-architect |
-| **Retire** | Turn off |
-| **Retain** | Keep as-is |
-
-## Step 6: Observability
-
-### Three Pillars
-
-| Pillar | Purpose | Tools |
-|--------|---------|-------|
-| **Logs** | Debug issues | CloudWatch, ELK |
-| **Metrics** | Track health | Prometheus, Grafana |
-| **Traces** | Understand flow | X-Ray, Jaeger |
 
 ## Cloud Review Template
 

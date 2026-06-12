@@ -1,21 +1,22 @@
 ---
 name: arch-review
-description: Review and validate software architecture implementations against best practices, design patterns, quality attributes, and industry standards. Use when evaluating an existing architecture, performing architecture reviews, identifying anti-patterns, assessing technical debt, checking compliance with architectural principles, or preparing for architecture board reviews.
+description: Orchestrate architecture reviews by coordinating specialized review dimensions. Use when performing comprehensive architecture reviews, evaluating system quality, preparing for architecture board reviews, or assessing overall architecture health. Delegates to specialized skills for detailed evaluation.
 ---
 
-# Architecture Review & Validation
+# Architecture Review
 
-Systematically review and validate software architecture implementations against established criteria.
+Orchestrate comprehensive architecture reviews using specialized skills.
 
 ## Workflow
 
 ```
 1. Understand Context → System purpose, constraints, stakeholders
-2. Collect Evidence → Codebase analysis, documentation review
-3. Evaluate Dimensions → Patterns, quality attributes, practices, debt
-4. Score & Rate → Severity ratings for findings
-5. Generate Report → Structured findings with recommendations
-6. Prioritize Actions → Remediation roadmap
+2. Define Scope → Which dimensions to review?
+3. Collect Evidence → Gather information
+4. Evaluate Dimensions → Use specialized skills
+5. Synthesize Findings → Combine results
+6. Generate Report → Structured output
+7. Prioritize Actions → Remediation roadmap
 ```
 
 ## Step 1: Understand Context
@@ -27,7 +28,27 @@ Gather before reviewing:
 - **Stakeholders**: Who cares about the architecture?
 - **History**: Previous decisions, known issues, technical debt
 
-## Step 2: Collect Evidence
+## Step 2: Define Scope
+
+Select review dimensions based on context:
+
+| Dimension | Skill | When to Review |
+|-----------|-------|----------------|
+| **Design Patterns** | arch-review | Always |
+| **Security** | arch-security | Always |
+| **Performance** | arch-perf | User-facing systems |
+| **Resilience** | arch-resilience | Distributed systems |
+| **Data** | arch-data | Data-intensive systems |
+| **API Design** | arch-api | API-first systems |
+| **Testing** | arch-test | Quality-critical systems |
+| **Observability** | arch-observability | Production systems |
+| **Cloud** | arch-cloud | Cloud-deployed systems |
+| **DDD** | arch-ddd | Complex domains |
+| **Migration** | arch-migration | Legacy modernization |
+| **Metrics** | arch-metrics | Code health assessment |
+| **Fitness Functions** | arch-fitness | Automated validation |
+
+## Step 3: Collect Evidence
 
 Analyze the codebase and documentation:
 
@@ -51,29 +72,13 @@ Analyze the codebase and documentation:
    - ADRs and decision logs
    - API specifications
 
-## Step 3: Evaluate Dimensions
+## Step 4: Evaluate Dimensions
 
-Review across four dimensions. Read reference files for detailed checklists:
-- `references/design-patterns.md`
-- `references/quality-attributes.md`
-- `references/best-practices.md`
-- `references/tech-debt.md`
-
-### Fitness Functions Assessment
-
-Check if the system has architecture fitness functions:
-- Are architectural decisions automated and testable?
-- Are there ArchUnit/ArchUnitTS tests for dependency rules?
-- Are quality gates configured in CI/CD?
-- Are performance benchmarks automated?
-
-Read `references/fitness-functions.md` for guidance on creating and evaluating fitness functions.
-
-### 3.1 Design Patterns & Anti-patterns
+### Design Patterns Review
 
 **Positive Patterns to Look For:**
 - SOLID principles adherence
-- appropriate use of design patterns (Repository, Strategy, Factory, etc.)
+- Appropriate use of design patterns (Repository, Strategy, Factory, etc.)
 - Clear separation of concerns
 - Proper abstraction levels
 
@@ -84,20 +89,22 @@ Read `references/fitness-functions.md` for guidance on creating and evaluating f
 - Magic numbers and hardcoded values
 - Anemic domain models
 
-### 3.2 Quality Attributes
+Read `references/design-patterns.md` for detailed guidance.
 
-Evaluate each relevant quality attribute:
+### Quality Attributes Review
 
-| Attribute | Key Questions | Metrics |
-|-----------|--------------|---------|
-| **Performance** | Response times, throughput, resource usage | Latency, CPU/memory utilization |
-| **Scalability** | Can it handle growth? Horizontal vs vertical? | Load test results, bottleneck analysis |
-| **Security** | Authentication, authorization, data protection | Vulnerability scan results, OWASP compliance |
-| **Availability** | Uptime requirements, failure handling | SLA compliance, recovery time |
-| **Maintainability** | Code clarity, modularity, testability | Code coverage, complexity metrics |
-| **Extensibility** | How easy to add new features? | Coupling metrics, plugin points |
+| Attribute | Key Questions | Delegated To |
+|-----------|--------------|--------------|
+| **Performance** | Response times, throughput | arch-perf |
+| **Security** | Authentication, authorization | arch-security |
+| **Scalability** | Can it handle growth? | arch-perf |
+| **Availability** | Uptime, failure handling | arch-resilience |
+| **Maintainability** | Code clarity, modularity | arch-metrics |
+| **Testability** | Test coverage, quality | arch-test |
 
-### 3.3 Best Practices Compliance
+Read `references/quality-attributes.md` for detailed criteria.
+
+### Best Practices Compliance
 
 **SOLID Principles:**
 - [ ] Single Responsibility: Each class has one reason to change
@@ -112,36 +119,33 @@ Evaluate each relevant quality attribute:
 - [ ] YAGNI (You Aren't Gonna Need It)
 - [ ] Separation of Concerns
 - [ ] Composition over Inheritance
-- [ ] Fail Fast and Gracefully
-- [ ] Defensive Programming at Boundaries
 
-### 3.4 Technical Debt Assessment
+Read `references/best-practices.md` for complete checklist.
 
-Identify and categorize technical debt:
+### Technical Debt Assessment
 
 **Debt Categories:**
 1. **Code Debt**: Quick fixes, workarounds, TODOs
 2. **Architecture Debt**: Shortcut designs, missing abstractions
-3. **Testing Debt**: Missing tests, low coverage, flaky tests
+3. **Testing Debt**: Missing tests, low coverage
 4. **Documentation Debt**: Missing or outdated docs
-5. **Dependency Debt**: Outdated packages, security vulnerabilities
+5. **Dependency Debt**: Outdated packages, vulnerabilities
 6. **Infrastructure Debt**: Manual processes, missing automation
 
-**Scoring:**
-- **Critical**: Blocks features or causes incidents
-- **High**: Significant impact on velocity or quality
-- **Medium**: Moderate impact, should be addressed soon
-- **Low**: Minor issues, address opportunistically
+Read `references/tech-debt.md` for scoring methodology.
 
-## Step 4: Score & Rate
+## Step 5: Synthesize Findings
+
+Combine results from all dimensions:
 
 For each finding:
 - **Severity**: Critical / High / Medium / Low
-- **Confidence**: High / Medium / Low (based on evidence)
+- **Confidence**: High / Medium / Low
 - **Impact**: Business / Technical / Both
 - **Effort to Fix**: Large / Medium / Small
+- **Category**: Which dimension it belongs to
 
-## Step 5: Generate Report
+## Step 6: Generate Report
 
 Use template from `assets/review-template.md`.
 
@@ -153,7 +157,7 @@ Report structure:
 5. Recommendations
 6. Remediation Roadmap
 
-## Step 6: Prioritize Actions
+## Step 7: Prioritize Actions
 
 Create prioritized remediation plan:
 1. **Immediate** (Critical issues): Fix within sprint
@@ -165,7 +169,7 @@ Create prioritized remediation plan:
 
 | Type | Scope | Duration | Output |
 |------|-------|----------|--------|
-| **Quick Scan** | High-level patterns, obvious issues | 1-2 hours | Summary with key findings |
-| **Standard Review** | Full dimension evaluation | 1-2 days | Complete review report |
-| **Deep Dive** | Specific concern (security, performance) | 3-5 days | Focused analysis |
-| **Compliance Audit** | Standards adherence | 1-2 weeks | Audit report |
+| **Quick Scan** | High-level patterns | 1-2 hours | Summary |
+| **Standard** | Full evaluation | 1-2 days | Complete report |
+| **Deep Dive** | Specific concern | 3-5 days | Focused analysis |
+| **Compliance** | Standards adherence | 1-2 weeks | Audit report |
