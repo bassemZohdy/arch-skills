@@ -6,58 +6,6 @@
 
 A comprehensive collection of 25 Codex skills for software architecture documentation, review, validation, and governance. Covers all major non-functional requirements (NFRs) with best practices from industry standards.
 
-## Skills Overview
-
-### Core Architecture Skills
-
-| Skill | Purpose | Key Topics |
-|-------|---------|------------|
-| **arch-doc** | Generate architecture documentation | C4, arc42, TOGAF, ISO 42010, ADRs |
-| **arch-review** | Orchestrate architecture reviews | Review methodology, scoring, reporting |
-| **arch-fitness** | Create fitness functions | ArchUnit/ArchUnitTS, CI/CD validation |
-| **arch-decision** | DAR methodology | Weighted scoring, sensitivity analysis |
-| **arch-governance** | Architecture governance | Standards, boards, compliance |
-
-### Technical Architecture Skills
-
-| Skill | Purpose | Key Topics |
-|-------|---------|------------|
-| **arch-security** | Security architecture | STRIDE, DREAD, OWASP, compliance |
-| **arch-perf** | Performance engineering | SLA/SLO, caching, load testing |
-| **arch-resilience** | Resilience patterns | Circuit breaker, retry, bulkhead |
-| **arch-test** | Test architecture | Test pyramids, contract testing |
-
-### System Architecture Skills
-
-| Skill | Purpose | Key Topics |
-|-------|---------|------------|
-| **arch-api** | API design | REST, GraphQL, gRPC, versioning |
-| **arch-cloud** | Cloud-native architecture | Well-Architected, FinOps, multi-cloud |
-| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, sagas |
-| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates, Event Storming |
-| **arch-data** | Data architecture | Modeling, pipelines, governance |
-| **arch-metrics** | Architecture metrics | Complexity, dependencies, debt |
-| **arch-integration** | Integration patterns | Service mesh, API gateway, ESB |
-| **arch-microservices** | Microservices architecture | Service decomposition, communication |
-
-### Operations Skills
-
-| Skill | Purpose | Key Topics |
-|-------|---------|------------|
-| **arch-observability** | Observability | Logs, metrics, traces, alerting |
-| **arch-migration** | Migration planning | Strangler fig, rollback, risk assessment |
-| **arch-deployment** | Deployment architecture | CI/CD, blue-green, canary, GitOps |
-| **arch-devops** | DevOps & infrastructure | IaC, Kubernetes, GitOps |
-| **arch-cost** | Cost optimization | FinOps, cost modeling, optimization |
-
-### Non-Functional Requirements Skills
-
-| Skill | Purpose | Key Topics |
-|-------|---------|------------|
-| **arch-usability** | Usability architecture | Nielsen's heuristics, user research |
-| **arch-accessibility** | Accessibility | WCAG 2.1, ARIA, screen readers |
-| **arch-compliance** | Regulatory compliance | GDPR, HIPAA, SOC 2, PCI DSS |
-
 ## Quick Start
 
 ### Installation
@@ -93,7 +41,65 @@ Use arch-security to perform threat modeling for this API
 
 # Performance analysis
 Use arch-perf to design a caching strategy for this service
+
+# Microservices design
+Use arch-microservices to decompose this monolith
+
+# Cost optimization
+Use arch-cost to optimize our cloud spending
 ```
+
+## Skills Overview
+
+### Core Architecture (5 skills)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-doc** | Generate architecture documentation | C4, arc42, TOGAF, ISO 42010, ADRs |
+| **arch-review** | Orchestrate architecture reviews | Review methodology, scoring, reporting |
+| **arch-fitness** | Create fitness functions | ArchUnit/ArchUnitTS, CI/CD validation |
+| **arch-decision** | DAR methodology | Weighted scoring, sensitivity analysis |
+| **arch-governance** | Architecture governance | Standards, boards, compliance |
+
+### Technical Architecture (4 skills)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-security** | Security architecture | STRIDE, DREAD, OWASP, compliance |
+| **arch-perf** | Performance engineering | SLA/SLO, caching, load testing |
+| **arch-resilience** | Resilience patterns | Circuit breaker, retry, bulkhead |
+| **arch-test** | Test architecture | Test pyramids, contract testing |
+
+### System Architecture (8 skills)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-api** | API design | REST, GraphQL, gRPC, versioning |
+| **arch-cloud** | Cloud-native architecture | Well-Architected, FinOps, multi-cloud |
+| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, sagas |
+| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates |
+| **arch-data** | Data architecture | Modeling, pipelines, governance |
+| **arch-metrics** | Architecture metrics | Complexity, dependencies, debt |
+| **arch-integration** | Integration patterns | Service mesh, API gateway, ESB |
+| **arch-microservices** | Microservices architecture | Service decomposition, communication |
+
+### Operations (5 skills)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-observability** | Observability | Logs, metrics, traces, alerting |
+| **arch-migration** | Migration planning | Strangler fig, rollback, risk assessment |
+| **arch-deployment** | Deployment architecture | CI/CD, blue-green, canary, GitOps |
+| **arch-devops** | DevOps & infrastructure | IaC, Kubernetes, GitOps |
+| **arch-cost** | Cost optimization | FinOps, cost modeling, optimization |
+
+### Non-Functional Requirements (3 skills)
+
+| Skill | Purpose | Key Topics |
+|-------|---------|------------|
+| **arch-usability** | Usability architecture | UX patterns, heuristics, user research |
+| **arch-accessibility** | Accessibility | WCAG compliance, ARIA, assistive tech |
+| **arch-compliance** | Regulatory compliance | GDPR, HIPAA, SOC 2, audit trails |
 
 ## Project Structure
 
@@ -108,12 +114,14 @@ arch-skills/
 ├── run-tests.sh                       # Test runner (Linux/Mac)
 ├── docs/                              # Documentation
 │   ├── coverage-analysis.md           # Test coverage matrix
-│   └── skill-testing.md               # Skill testing guide
-├── skills/                            # 20 architecture skills
+│   ├── skill-testing.md               # Skill testing guide
+│   └── best-practices-master.md       # Best practices cross-reference
+├── skills/                            # 25 architecture skills
 │   ├── arch-doc/                      # Documentation generation
 │   ├── arch-review/                   # Review orchestration
 │   ├── arch-fitness/                  # Fitness functions
 │   ├── arch-decision/                 # DAR methodology
+│   ├── arch-governance/               # Architecture governance
 │   ├── arch-security/                 # Security patterns
 │   ├── arch-perf/                     # Performance engineering
 │   ├── arch-resilience/               # Fault tolerance
@@ -124,9 +132,13 @@ arch-skills/
 │   ├── arch-ddd/                      # Domain modeling
 │   ├── arch-data/                     # Data architecture
 │   ├── arch-metrics/                  # Metrics analysis
+│   ├── arch-integration/              # Integration patterns
+│   ├── arch-microservices/            # Microservices architecture
 │   ├── arch-observability/            # Observability
 │   ├── arch-migration/                # Migration planning
 │   ├── arch-deployment/               # Deployment strategy
+│   ├── arch-devops/                   # DevOps & infrastructure
+│   ├── arch-cost/                     # Cost optimization
 │   ├── arch-usability/                # UX patterns
 │   ├── arch-accessibility/            # WCAG compliance
 │   └── arch-compliance/               # Regulatory compliance
@@ -136,129 +148,9 @@ arch-skills/
     └── test-dar.md                    # DAR math test data
 ```
 
-## Skill Details
-
-### arch-doc — Architecture Documentation
-
-Generate comprehensive architecture documentation with diagrams.
-
-**Frameworks Supported:**
-- C4 Model (Context, Container, Component, Code)
-- arc42 (12-section template)
-- TOGAF (Architecture Development Method)
-- ISO 42010 (Views and viewpoints)
-
-**Diagram Formats:**
-- Mermaid (primary)
-- PlantUML (secondary)
-- Draw.io (tertiary)
-
-**Features:**
-- Framework selection guidance
-- ADR creation with MADR templates
-- C4 diagram review checklist
-- Tech stack considerations
-
-### arch-review — Architecture Review
-
-Orchestrate comprehensive architecture reviews.
-
-**Review Dimensions:**
-- Design patterns and anti-patterns
-- Quality attributes (ISO 25010)
-- Best practices (SOLID, DRY, KISS)
-- Technical debt assessment
-- Fitness functions validation
-
-**Output:**
-- Executive summary
-- Findings by dimension
-- Severity ratings
-- Remediation roadmap
-
-### arch-decision — Decision Analysis
-
-Structured decision-making using DAR methodology.
-
-**Process:**
-1. Frame the decision
-2. Define gate criteria
-3. List alternatives
-4. Create weighted scoring matrix
-5. Evaluate and score
-6. Sensitivity analysis
-7. Generate recommendation
-8. Document decision
-
-**Features:**
-- Expedited mode (2-4 criteria)
-- Formal mode (3-7 criteria)
-- Criteria library (5 bundles)
-- DAR math validation script
-
-### arch-security — Security Architecture
-
-Threat modeling and security patterns.
-
-**Frameworks:**
-- STRIDE threat modeling
-- DREAD risk assessment
-- OWASP Top 10
-- SOC 2, GDPR, HIPAA compliance
-
-**Patterns:**
-- Authentication (OAuth, JWT, MFA)
-- Authorization (RBAC, ABAC)
-- Data protection (encryption, masking)
-- API security (rate limiting, input validation)
-
-### arch-perf — Performance Engineering
-
-Performance patterns and capacity planning.
-
-**Topics:**
-- SLA/SLO/error budgets
-- Caching strategies (browser, CDN, Redis)
-- Async processing (queues, streams)
-- Database optimization
-- Load testing (k6, JMeter, Locust)
-- Performance budgets
-
-### arch-resilience — Resilience Patterns
-
-Fault tolerance for distributed systems.
-
-**Patterns:**
-- Circuit breaker
-- Retry with exponential backoff
-- Bulkhead isolation
-- Timeout management
-- Fallback strategies
-
-**Testing:**
-- Chaos engineering
-- Fault injection
-- Game day exercises
-
-### arch-deployment — Deployment Architecture
-
-CI/CD pipelines and deployment strategies.
-
-**Strategies:**
-- Blue-green deployment
-- Canary releases
-- Rolling updates
-- Recreate
-
-**CI/CD:**
-- Pipeline stages
-- Quality gates
-- GitOps patterns
-- Infrastructure as Code
-
 ## Testing
 
-### Structural Validation (140 tests)
+### Structural Validation (175 tests)
 
 **Linux/Mac:**
 ```bash
@@ -270,15 +162,7 @@ CI/CD pipelines and deployment strategies.
 .\run-tests.ps1
 ```
 
-**Tests:**
-- Skill directory structure
-- SKILL.md existence and frontmatter
-- Reference files completeness
-- Asset files presence
-- Content quality (word count, sections)
-- DAR weighted score calculations
-
-### Skill Test Scenarios (97 scenarios)
+### Skill Test Scenarios (152 scenarios)
 
 | Skill | Scenarios |
 |-------|-----------|
@@ -302,7 +186,12 @@ CI/CD pipelines and deployment strategies.
 | arch-accessibility | 5 |
 | arch-compliance | 5 |
 | arch-deployment | 5 |
-| **Total** | **127** |
+| arch-integration | 5 |
+| arch-microservices | 5 |
+| arch-devops | 5 |
+| arch-cost | 5 |
+| arch-governance | 5 |
+| **Total** | **152** |
 
 **Run with skillprobe:**
 ```bash
@@ -311,8 +200,8 @@ for f in tests/test-arch-*.yaml; do skillprobe run "$f" --harness claude-code; d
 
 ## NFR Coverage Matrix
 
-| NFR | Skill | Coverage |
-|-----|-------|----------|
+| NFR | Primary Skill | Status |
+|-----|---------------|--------|
 | Performance | arch-perf | ✅ |
 | Scalability | arch-perf, arch-cloud | ✅ |
 | Availability | arch-resilience | ✅ |
@@ -342,14 +231,9 @@ for f in tests/test-arch-*.yaml; do skillprobe run "$f" --harness claude-code; d
 - [Google SRE](https://sre.google/) — Reliability engineering
 - [Thoughtworks Radar](https://www.thoughtworks.com/radar) — Technology trends
 - [Agent Skills](https://agentskills.io/) — Agent Skills specification
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests (`./run-tests.sh`)
-5. Submit a pull request
+- [microservices.io](https://microservices.io/) — Microservices patterns
+- [FinOps Foundation](https://www.finops.org/) — FinOps framework
+- [Kubernetes](https://kubernetes.io/) — Container orchestration
 
 ## License
 

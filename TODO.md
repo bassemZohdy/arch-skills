@@ -2,72 +2,65 @@
 
 ## Completed
 
-### Phase 1: Workspace Setup
-- [x] Create `skills/` directory structure
-- [x] Scaffold `arch-doc` skill
-- [x] Scaffold `arch-review` skill
+### Phase 1: Initial Skills (4)
+- [x] arch-doc — Architecture documentation (C4, arc42, TOGAF, ISO 42010)
+- [x] arch-review — Review orchestration
+- [x] arch-fitness — Fitness functions (ArchUnit/ArchUnitTS)
+- [x] arch-decision — DAR methodology
 
-### Phase 2: arch-doc — Architecture Documentation Skill
-- [x] Write framework references (C4, arc42, TOGAF, ISO 42010)
-- [x] Create diagram templates (Mermaid, PlantUML, Draw.io)
-- [x] Write SKILL.md with workflow
-- [x] Create ADR reference with MADR templates
+### Phase 2: Technical Skills (4)
+- [x] arch-security — Security patterns (STRIDE, OWASP)
+- [x] arch-perf — Performance engineering (SLA/SLO)
+- [x] arch-resilience — Resilience patterns (circuit breaker, retry)
+- [x] arch-test — Test architecture (pyramids, contracts)
 
-### Phase 3: arch-review — Architecture Review Skill
-- [x] Write review references (patterns, quality attributes, best practices, tech-debt)
-- [x] Create review template
-- [x] Write SKILL.md with workflow
+### Phase 3: System Skills (8)
+- [x] arch-api — API design (REST, GraphQL, gRPC)
+- [x] arch-cloud — Cloud patterns (Well-Architected, FinOps)
+- [x] arch-event — Event-driven (CQRS, Event Sourcing)
+- [x] arch-ddd — Domain-Driven Design
+- [x] arch-data — Data architecture
+- [x] arch-metrics — Architecture metrics
+- [x] arch-integration — Integration patterns (service mesh, ESB)
+- [x] arch-microservices — Microservices architecture
 
-### Phase 4: Research & Updates
-- [x] Research C4 Model best practices (c4model.com)
-- [x] Research arc42 template best practices (arc42.org)
-- [x] Research ADR best practices (MADR, Thoughtworks Radar)
-- [x] Research quality attributes (ISO 25010)
-- [x] Research architecture fitness functions (ArchUnit)
-- [x] Update C4 reference with official review checklist
-- [x] Update arc42 reference with 12 sections and canvas
-- [x] Create ADR reference with MADR templates
-- [x] Create arch-fitness skill for automated validation
-- [x] Update quality attributes with ISO 25010 model
-- [x] Research skill testing tools (skillprobe, skill-eval-runner, skill-test-skill)
+### Phase 4: Operations Skills (5)
+- [x] arch-observability — Observability (logs, metrics, traces)
+- [x] arch-migration — Migration planning
+- [x] arch-deployment — Deployment strategies
+- [x] arch-devops — DevOps (IaC, Kubernetes, GitOps)
+- [x] arch-cost — Cost optimization (FinOps)
 
-### Phase 5: Validation & Installation
-- [x] Run `quick_validate.py` on all skills
-- [x] Generate `agents/openai.yaml` for all skills
-- [x] Create skill testing reference (`references/skill-testing.md`)
-- [x] Install skillprobe for testing
-- [x] Write test scenarios for all skills (39 total)
-- [x] Run tests and validate (28/28 structural + 39 scenarios)
-- [x] Install skills to `~/.codex/skills/`
+### Phase 5: NFR Skills (3)
+- [x] arch-usability — Usability patterns (Nielsen's heuristics)
+- [x] arch-accessibility — WCAG compliance (ARIA)
+- [x] arch-compliance — Regulatory compliance (GDPR, HIPAA)
 
-### Phase 6: DAR Integration
-- [x] Create arch-decision skill with DAR methodology
-- [x] Copy criteria library from DAR_Skill
-- [x] Copy validate_math.py script
-- [x] Create DAR document template
-- [x] Add test scenarios for arch-decision (9 scenarios)
-- [x] Validate DAR math script works
+### Phase 6: Governance
+- [x] arch-governance — Architecture governance
 
-### Phase 7: Cross-Platform Scripts
-- [x] Create sync-skills.sh for Linux/Mac
-- [x] Create run-tests.sh for Linux/Mac
-- [x] Create validate-dar.sh for Linux/Mac
-- [x] Update README.md with cross-platform instructions
-- [x] Update AGENTS.md with arch-decision
-- [x] Clean up unused files (dry-run test files)
+### Phase 7: Documentation & Testing
+- [x] README.md — Complete project documentation
+- [x] AGENTS.md — Agent instructions
+- [x] docs/coverage-analysis.md — Test coverage matrix
+- [x] docs/best-practices-master.md — Best practices cross-reference
+- [x] tests/test_skills.py — 175 structural tests
+- [x] tests/test-arch-*.yaml — 152 skillprobe scenarios
+- [x] sync-skills.ps1 / sync-skills.sh — Cross-platform sync
 
 ## Project Status
 
 | Metric | Value |
 |--------|-------|
-| Skills | 4 (arch-doc, arch-review, arch-fitness, arch-decision) |
-| Structural Tests | 28 (all passing) |
-| Skill Test Scenarios | 39 (30% documented, 100% coverage) |
-| References | 13 files |
-| Assets | 14 files |
-| Scripts | 4 (validate_math.py, sync-skills.ps1/sh, run-tests.sh) |
+| Skills | 25 |
+| Structural Tests | 175 |
+| Skill Scenarios | 152 |
+| Total Tests | 327 |
+| References | 40+ |
+| Assets | 25+ |
+| NFR Coverage | 100% |
 
-## Files
+## File Structure
 
 ```
 arch-skills/
@@ -76,19 +69,15 @@ arch-skills/
 ├── TODO.md
 ├── sync-skills.ps1
 ├── sync-skills.sh
+├── run-tests.ps1
 ├── run-tests.sh
-├── validate-dar.sh
-├── skills/
-│   ├── arch-doc/
-│   ├── arch-review/
-│   ├── arch-fitness/
-│   └── arch-decision/
+├── docs/
+│   ├── coverage-analysis.md
+│   ├── skill-testing.md
+│   └── best-practices-master.md
+├── skills/ (25 skills)
 └── tests/
     ├── test_skills.py
-    ├── test-arch-doc.yaml
-    ├── test-arch-review.yaml
-    ├── test-arch-fitness.yaml
-    ├── test-arch-decision.yaml
-    ├── test-dar.md
-    └── coverage-analysis.md
+    ├── test-arch-*.yaml
+    └── test-dar.md
 ```

@@ -4,14 +4,14 @@
 
 | Metric | Count |
 |--------|-------|
-| Skills | 20 |
-| Structural Tests | 140 |
-| Skillprobe Scenarios | 127 |
-| Total Tests | 267 |
+| Skills | 25 |
+| Structural Tests | 175 |
+| Skillprobe Scenarios | 152 |
+| Total Tests | 327 |
 
 ## Skills Coverage
 
-### Core Architecture (4 skills)
+### Core Architecture (5 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
@@ -19,6 +19,7 @@
 | arch-review | 4 | 1 | 7 | 9 |
 | arch-fitness | 1 | 1 | 7 | 9 |
 | arch-decision | 1 | 1 | 7 | 9 |
+| arch-governance | 1 | 1 | 7 | 5 |
 
 ### Technical Architecture (4 skills)
 
@@ -29,7 +30,7 @@
 | arch-resilience | 1 | 1 | 7 | 5 |
 | arch-test | 1 | 1 | 7 | 5 |
 
-### System Architecture (6 skills)
+### System Architecture (8 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
@@ -39,14 +40,18 @@
 | arch-ddd | 2 | 1 | 7 | 5 |
 | arch-data | 1 | 1 | 7 | 5 |
 | arch-metrics | 1 | 1 | 7 | 5 |
+| arch-integration | 1 | 1 | 7 | 5 |
+| arch-microservices | 1 | 1 | 7 | 5 |
 
-### Operations (3 skills)
+### Operations (5 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
 | arch-observability | 1 | 1 | 7 | 5 |
 | arch-migration | 1 | 1 | 7 | 5 |
 | arch-deployment | 1 | 1 | 7 | 5 |
+| arch-devops | 1 | 1 | 7 | 5 |
+| arch-cost | 1 | 1 | 7 | 5 |
 
 ### NFR (3 skills)
 
@@ -100,5 +105,6 @@
 │ Security  │ Perf      │ Resilience│ Test      │ Data          │
 │ API       │ Cloud     │ Event     │ DDD       │ Migration     │
 │ Observability │ Deployment │ Usability │ Accessibility │ Compliance │
+│ Integration │ Microservices │ DevOps │ Cost │ Governance     │
 └───────────┴───────────┴───────────┴───────────┴───────────────┘
 ```
