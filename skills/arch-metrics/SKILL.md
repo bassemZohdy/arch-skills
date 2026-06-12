@@ -1,0 +1,176 @@
+---
+name: arch-metrics
+description: Guide architecture metrics and complexity analysis. Use when measuring architecture health, tracking technical debt, analyzing dependencies, quantifying complexity, or setting up architecture dashboards.
+---
+
+# Architecture Metrics
+
+Systematic approach to measuring and tracking architecture health.
+
+## Workflow
+
+```
+1. Define Metrics → What to measure?
+2. Collect Data → How to gather?
+3. Analyze → What does it mean?
+4. Visualize → Dashboard and reports
+5. Act → Prioritize improvements
+6. Track → Monitor over time
+```
+
+## Step 1: Complexity Metrics
+
+### Code Metrics
+
+| Metric | Description | Target |
+|--------|-------------|--------|
+| **Cyclomatic Complexity** | Decision points per function | < 10 |
+| **Lines of Code** | Function/class size | < 50 lines/function |
+| **Nesting Depth** | Maximum nesting level | < 4 |
+| **Coupling** | Dependencies between modules | Low |
+| **Cohesion** | Internal module unity | High |
+
+### Architecture Metrics
+
+| Metric | Formula | Interpretation |
+|--------|---------|----------------|
+| **Afferent Coupling (Ca)** | Incoming dependencies | How depended upon |
+| **Efferent Coupling (Ce)** | Outgoing dependencies | What depends on |
+| **Instability** | Ce / (Ca + Ce) | 0=stable, 1=unstable |
+| **Abstractness** | Abstract classes / Total | 0=concrete, 1=abstract |
+
+### Stability Formula
+
+```
+Instability = Ce / (Ca + Ce)
+
+- 0.0 = Highly stable (no outgoing deps)
+- 1.0 = Highly unstable (no incoming deps)
+```
+
+**Zone of Pain:** High instability, low abstractness
+**Zone of Uselessness:** Low instability, high abstractness
+
+## Step 2: Dependency Analysis
+
+### Dependency Graph Metrics
+
+| Metric | Description | Concern |
+|--------|-------------|---------|
+| **Depth** | Longest dependency chain | Complexity |
+| **Width** | Number of direct dependencies | Coupling |
+| **Cycles** | Circular dependencies | Architecture violation |
+| **Fan-in/Fan-out** | Import/export ratio | Stability |
+
+### Dependency Rules
+
+- **Acyclic Dependencies Principle** — No cycles
+- **Stable Dependencies Principle** — Depend on stable modules
+- **Stable Abstractions Principle** — Stable modules should be abstract
+
+## Step 3: Technical Debt Metrics
+
+### Debt Quantification
+
+| Category | Metric | Measurement |
+|----------|--------|-------------|
+| **Code Debt** | Code smells | SonarQube |
+| **Test Debt** | Coverage gaps | < 80% = debt |
+| **Doc Debt** | Missing docs | Coverage % |
+| **Dependency Debt** | Outdated packages | Age, CVEs |
+| **Architecture Debt** | Violations | Dependency cycles |
+
+### Debt Score
+
+```
+Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
+```
+
+### Debt Trend
+
+| Trend | Meaning | Action |
+|-------|---------|--------|
+| ↑ Increasing | Getting worse | Address urgently |
+| → Stable | Plateau | Plan improvements |
+| ↓ Decreasing | Improving | Continue effort |
+
+## Step 4: Design Health Metrics
+
+### SOLID Compliance
+
+| Principle | Metric | How to Measure |
+|-----------|--------|----------------|
+| **SRP** | Class responsibility count | Manual review |
+| **OCP** | Open for extension points | Pattern analysis |
+| **LSP** | Subtype substitutability | Test coverage |
+| **ISP** | Interface size | Method count |
+| **DIP** | Dependency direction | Dependency graph |
+
+### Pattern Compliance
+
+| Pattern | Violation | Detection |
+|---------|-----------|-----------|
+| **Layered** | Skip-level calls | Dependency analysis |
+| **Hexagonal** | Core depends on infrastructure | Import analysis |
+| **Microservices** | Shared databases | Schema analysis |
+
+## Step 5: Dashboard Metrics
+
+### Architecture Health Dashboard
+
+```
+┌─────────────────────────────────────────────────────┐
+│                Architecture Health                  │
+├─────────────────────────────────────────────────────┤
+│  Complexity    │  Dependencies  │  Debt             │
+│  ────────────  │  ────────────  │  ────────────    │
+│  CC: 7.2       │  Cycles: 0     │  Score: 45       │
+│  LOC: 12.5K    │  Depth: 4      │  Trend: ↓        │
+│  Duplication: 3%│ Width: 12     │  Critical: 2     │
+├─────────────────────────────────────────────────────┤
+│  Trends: 30-day moving averages                     │
+│  [Chart: Complexity over time]                      │
+│  [Chart: Debt score over time]                      │
+└─────────────────────────────────────────────────────┘
+```
+
+### Key Indicators
+
+| Indicator | Green | Yellow | Red |
+|-----------|-------|--------|-----|
+| Cyclomatic Complexity | < 10 | 10-20 | > 20 |
+| Test Coverage | > 80% | 60-80% | < 60% |
+| Debt Score | < 50 | 50-100 | > 100 |
+| Dependency Cycles | 0 | 1-2 | > 2 |
+
+## Step 6: Tools
+
+| Tool | Purpose | Language |
+|------|---------|----------|
+| **SonarQube** | Code quality | Multi |
+| **Structure101** | Architecture analysis | Multi |
+| **jDepend** | Java dependency analysis | Java |
+| **Dependency-Cruiser** | JS/TS dependency analysis | JS/TS |
+| **Pydeps** | Python dependency analysis | Python |
+
+## Metrics Review Template
+
+```markdown
+## Architecture Metrics Review: [System]
+
+### Complexity
+| Metric | Value | Target | Status |
+|--------|-------|--------|--------|
+
+### Dependencies
+| Metric | Value | Target | Status |
+|--------|-------|--------|--------|
+
+### Technical Debt
+| Category | Score | Trend |
+|----------|-------|-------|
+
+### Recommendations
+1. [Highest priority improvement]
+2. [Next improvement]
+```

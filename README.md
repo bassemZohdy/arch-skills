@@ -6,10 +6,18 @@ A collection of Codex skills for software architecture documentation, review, an
 
 | Skill | Purpose | Use When |
 |-------|---------|----------|
-| **arch-doc** | Generate architecture documentation with diagrams | Creating docs from scratch, documenting existing systems, generating C4/arc42/TOGAF diagrams |
-| **arch-review** | Review and validate architecture implementations | Evaluating existing architectures, identifying anti-patterns, assessing technical debt |
-| **arch-fitness** | Create automated architecture fitness functions | Setting up architecture validation in CI/CD, writing architecture unit tests |
-| **arch-decision** | Structured decision analysis (DAR methodology) | Making technology selections, build vs buy decisions, weighted scoring analysis |
+| **arch-doc** | Generate architecture documentation with diagrams | Creating docs, documenting systems, C4/arc42/TOGAF diagrams |
+| **arch-review** | Review and validate architecture implementations | Evaluating architectures, anti-patterns, technical debt |
+| **arch-fitness** | Create automated architecture fitness functions | CI/CD validation, architecture unit tests |
+| **arch-decision** | Structured decision analysis (DAR methodology) | Technology selections, build vs buy, weighted scoring |
+| **arch-security** | Security architecture review | Threat modeling, OWASP, compliance audits |
+| **arch-perf** | Performance engineering | Capacity planning, load testing, bottlenecks |
+| **arch-migration** | Migration planning | Legacy modernization, database migrations |
+| **arch-api** | API design patterns | REST, GraphQL, gRPC design and governance |
+| **arch-cloud** | Cloud-native architecture | Cloud patterns, Well-Architected, cost optimization |
+| **arch-event** | Event-driven architecture | CQRS, Event Sourcing, messaging patterns |
+| **arch-ddd** | Domain-Driven Design | Bounded contexts, aggregates, domain modeling |
+| **arch-metrics** | Architecture metrics | Complexity analysis, debt tracking |
 
 ## Quick Start
 
