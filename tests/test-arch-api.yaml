@@ -1,0 +1,54 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-api
+
+scenarios:
+  - name: "designs REST API"
+    steps:
+      - prompt: "Design a REST API for a blog platform with users, posts, and comments."
+        assert:
+          - type: contains
+            value: "REST"
+          - type: contains
+            value: "GET"
+          - type: contains
+            value: "POST"
+
+  - name: "designs GraphQL schema"
+    steps:
+      - prompt: "Design a GraphQL schema for an e-commerce product catalog."
+        assert:
+          - type: contains
+            value: "GraphQL"
+          - type: contains
+            value: "type"
+          - type: contains
+            value: "Query"
+
+  - name: "defines API versioning"
+    steps:
+      - prompt: "What API versioning strategy should I use for a public API?"
+        assert:
+          - type: contains
+            value: "version"
+          - type: contains
+            value: "URI"
+
+  - name: "creates error handling"
+    steps:
+      - prompt: "Design a consistent error response format for my REST API."
+        assert:
+          - type: contains
+            value: "error"
+          - type: contains
+            value: "code"
+
+  - name: "implements rate limiting"
+    steps:
+      - prompt: "How should I implement rate limiting for my API?"
+        assert:
+          - type: contains
+            value: "rate limit"
+          - type: contains
+            value: "throttle"

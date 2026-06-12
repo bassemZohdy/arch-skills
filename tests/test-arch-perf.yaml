@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-perf
+
+scenarios:
+  - name: "defines performance requirements"
+    steps:
+      - prompt: "Define performance requirements for a high-traffic e-commerce site handling 10k concurrent users."
+        assert:
+          - type: contains
+            value: "latency"
+          - type: contains
+            value: "throughput"
+
+  - name: "recommends caching strategy"
+    steps:
+      - prompt: "What caching strategy should I use for a social media feed?"
+        assert:
+          - type: contains
+            value: "cache"
+          - type: contains
+            value: "Redis"
+
+  - name: "designs load testing"
+    steps:
+      - prompt: "Design a load test for an API endpoint that needs to handle 1000 req/s."
+        assert:
+          - type: contains
+            value: "load test"
+          - type: contains
+            value: "k6"
+
+  - name: "plans capacity"
+    steps:
+      - prompt: "How should I size my database for 10TB of data with 5000 queries per second?"
+        assert:
+          - type: contains
+            value: "capacity"
+          - type: contains
+            value: "replica"
+
+  - name: "defines SLAs"
+    steps:
+      - prompt: "Help me define SLOs and error budgets for a critical payment service."
+        assert:
+          - type: contains
+            value: "SLO"
+          - type: contains
+            value: "error budget"

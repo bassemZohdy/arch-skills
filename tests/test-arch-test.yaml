@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-test
+
+scenarios:
+  - name: "designs test pyramid"
+    steps:
+      - prompt: "Design a test pyramid for a microservices architecture."
+        assert:
+          - type: contains
+            value: "test pyramid"
+          - type: contains
+            value: "unit"
+
+  - name: "implements contract testing"
+    steps:
+      - prompt: "How do I implement contract testing between services?"
+        assert:
+          - type: contains
+            value: "contract"
+          - type: contains
+            value: "Pact"
+
+  - name: "creates test strategy"
+    steps:
+      - prompt: "Create a test strategy for a new feature with API, database, and UI components."
+        assert:
+          - type: contains
+            value: "test strategy"
+          - type: contains
+            value: "coverage"
+
+  - name: "defines quality gates"
+    steps:
+      - prompt: "What quality gates should I set for my CI/CD pipeline?"
+        assert:
+          - type: contains
+            value: "quality gate"
+          - type: contains
+            value: "coverage"
+
+  - name: "designs E2E tests"
+    steps:
+      - prompt: "How should I design end-to-end tests for critical user flows?"
+        assert:
+          - type: contains
+            value: "E2E"
+          - type: contains
+            value: "critical path"

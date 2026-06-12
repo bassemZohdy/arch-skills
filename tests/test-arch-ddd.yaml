@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-ddd
+
+scenarios:
+  - name: "identifies bounded contexts"
+    steps:
+      - prompt: "Identify bounded contexts for an e-commerce platform with users, products, orders, and shipping."
+        assert:
+          - type: contains
+            value: "bounded context"
+          - type: contains
+            value: "domain"
+
+  - name: "designs aggregates"
+    steps:
+      - prompt: "Design aggregates for an order management domain."
+        assert:
+          - type: contains
+            value: "aggregate"
+          - type: contains
+            value: "invariant"
+
+  - name: "creates context map"
+    steps:
+      - prompt: "Create a context map showing relationships between Sales, Shipping, and Finance contexts."
+        assert:
+          - type: contains
+            value: "context map"
+          - type: contains
+            value: "relationship"
+
+  - name: "applies tactical patterns"
+    steps:
+      - prompt: "When should I use a Value Object instead of an Entity in DDD?"
+        assert:
+          - type: contains
+            value: "Value Object"
+          - type: contains
+            value: "immutable"
+
+  - name: "refactors to DDD"
+    steps:
+      - prompt: "How do I refactor an anemic domain model to a rich domain model?"
+        assert:
+          - type: contains
+            value: "anemic"
+          - type: contains
+            value: "rich"

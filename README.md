@@ -192,22 +192,31 @@ To run only DAR validation:
 
 ### Skill Test Scenarios
 
-39 test scenarios covering all skill capabilities:
+97 test scenarios covering all 16 skills:
 
-| Skill | Scenarios | Coverage |
-|-------|-----------|----------|
-| arch-doc | 12 | 100% |
-| arch-review | 9 | 100% |
-| arch-fitness | 9 | 100% |
-| arch-decision | 9 | 100% |
-| **Total** | **39** | **100%** |
+| Skill | Scenarios |
+|-------|-----------|
+| arch-doc | 12 |
+| arch-review | 9 |
+| arch-fitness | 9 |
+| arch-decision | 9 |
+| arch-security | 5 |
+| arch-perf | 5 |
+| arch-migration | 5 |
+| arch-api | 5 |
+| arch-cloud | 5 |
+| arch-event | 5 |
+| arch-ddd | 5 |
+| arch-metrics | 5 |
+| arch-resilience | 5 |
+| arch-test | 5 |
+| arch-data | 5 |
+| arch-observability | 5 |
+| **Total** | **97** |
 
 Run with skillprobe (requires Claude Code CLI):
 ```bash
-skillprobe run tests/test-arch-doc.yaml --harness claude-code
-skillprobe run tests/test-arch-review.yaml --harness claude-code
-skillprobe run tests/test-arch-fitness.yaml --harness claude-code
-skillprobe run tests/test-arch-decision.yaml --harness claude-code
+for f in tests/test-arch-*.yaml; do skillprobe run "$f" --harness claude-code; done
 ```
 
 ### DAR Math Validation

@@ -1,0 +1,52 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-observability
+
+scenarios:
+  - name: "designs logging strategy"
+    steps:
+      - prompt: "Design a structured logging strategy for microservices."
+        assert:
+          - type: contains
+            value: "structured"
+          - type: contains
+            value: "JSON"
+
+  - name: "implements distributed tracing"
+    steps:
+      - prompt: "How do I implement distributed tracing across services?"
+        assert:
+          - type: contains
+            value: "trace"
+          - type: contains
+            value: "OpenTelemetry"
+
+  - name: "creates monitoring dashboard"
+    steps:
+      - prompt: "Create a monitoring dashboard using the RED method."
+        assert:
+          - type: contains
+            value: "RED"
+          - type: contains
+            value: "latency"
+
+  - name: "defines alerting rules"
+    steps:
+      - prompt: "What alerting rules should I set for a payment service?"
+        assert:
+          - type: contains
+            value: "alert"
+          - type: contains
+            value: "error rate"
+
+  - name: "designs observability stack"
+    steps:
+      - prompt: "Design an observability stack with logs, metrics, and traces."
+        assert:
+          - type: contains
+            value: "logs"
+          - type: contains
+            value: "metrics"
+          - type: contains
+            value: "traces"

@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-resilience
+
+scenarios:
+  - name: "implements circuit breaker"
+    steps:
+      - prompt: "Implement a circuit breaker pattern for calling a payment service."
+        assert:
+          - type: contains
+            value: "circuit breaker"
+          - type: contains
+            value: "threshold"
+
+  - name: "designs retry policy"
+    steps:
+      - prompt: "Design a retry policy with exponential backoff for transient failures."
+        assert:
+          - type: contains
+            value: "retry"
+          - type: contains
+            value: "exponential"
+
+  - name: "implements bulkhead"
+    steps:
+      - prompt: "Implement bulkhead isolation for multiple downstream services."
+        assert:
+          - type: contains
+            value: "bulkhead"
+          - type: contains
+            value: "isolation"
+
+  - name: "creates fallback strategy"
+    steps:
+      - prompt: "Design a fallback strategy when a recommendation service is unavailable."
+        assert:
+          - type: contains
+            value: "fallback"
+          - type: contains
+            value: "degraded"
+
+  - name: "plans chaos engineering"
+    steps:
+      - prompt: "How do I run chaos engineering experiments on my distributed system?"
+        assert:
+          - type: contains
+            value: "chaos"
+          - type: contains
+            value: "experiment"

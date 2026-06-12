@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-event
+
+scenarios:
+  - name: "designs event-driven system"
+    steps:
+      - prompt: "Design an event-driven architecture for an order processing system."
+        assert:
+          - type: contains
+            value: "event"
+          - type: contains
+            value: "publisher"
+
+  - name: "implements CQRS"
+    steps:
+      - prompt: "Implement CQRS for a product catalog with different read and write patterns."
+        assert:
+          - type: contains
+            value: "CQRS"
+          - type: contains
+            value: "command"
+
+  - name: "designs saga pattern"
+    steps:
+      - prompt: "Design a saga pattern for distributed transactions in an e-commerce checkout."
+        assert:
+          - type: contains
+            value: "saga"
+          - type: contains
+            value: "compensation"
+
+  - name: "facilitates Event Storming"
+    steps:
+      - prompt: "How do I run an Event Storming workshop for domain discovery?"
+        assert:
+          - type: contains
+            value: "Event Storming"
+          - type: contains
+            value: "domain"
+
+  - name: "handles event schema evolution"
+    steps:
+      - prompt: "How do I handle schema evolution for domain events?"
+        assert:
+          - type: contains
+            value: "schema"
+          - type: contains
+            value: "version"

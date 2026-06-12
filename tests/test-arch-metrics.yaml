@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-metrics
+
+scenarios:
+  - name: "measures complexity"
+    steps:
+      - prompt: "How do I measure cyclomatic complexity and what thresholds should I use?"
+        assert:
+          - type: contains
+            value: "cyclomatic"
+          - type: contains
+            value: "complexity"
+
+  - name: "analyzes dependencies"
+    steps:
+      - prompt: "How do I analyze module dependencies and detect cycles?"
+        assert:
+          - type: contains
+            value: "dependency"
+          - type: contains
+            value: "cycle"
+
+  - name: "quantifies technical debt"
+    steps:
+      - prompt: "How do I quantify technical debt in a codebase?"
+        assert:
+          - type: contains
+            value: "debt"
+          - type: contains
+            value: "score"
+
+  - name: "creates metrics dashboard"
+    steps:
+      - prompt: "What metrics should I track on an architecture health dashboard?"
+        assert:
+          - type: contains
+            value: "dashboard"
+          - type: contains
+            value: "metric"
+
+  - name: "calculates stability metrics"
+    steps:
+      - prompt: "How do I calculate stability and abstractness metrics for my modules?"
+        assert:
+          - type: contains
+            value: "stability"
+          - type: contains
+            value: "instability"

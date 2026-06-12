@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-data
+
+scenarios:
+  - name: "designs data model"
+    steps:
+      - prompt: "Design a relational data model for an e-commerce system with users, products, and orders."
+        assert:
+          - type: contains
+            value: "entity"
+          - type: contains
+            value: "relationship"
+
+  - name: "chooses storage"
+    steps:
+      - prompt: "Should I use PostgreSQL or MongoDB for a product catalog with complex queries?"
+        assert:
+          - type: contains
+            value: "PostgreSQL"
+          - type: contains
+            value: "MongoDB"
+
+  - name: "designs data pipeline"
+    steps:
+      - prompt: "Design a real-time data pipeline for clickstream analytics."
+        assert:
+          - type: contains
+            value: "pipeline"
+          - type: contains
+            value: "streaming"
+
+  - name: "implements data governance"
+    steps:
+      - prompt: "How should I implement data governance for PII data?"
+        assert:
+          - type: contains
+            value: "governance"
+          - type: contains
+            value: "classification"
+
+  - name: "designs dimensional model"
+    steps:
+      - prompt: "Design a star schema for a sales data warehouse."
+        assert:
+          - type: contains
+            value: "star schema"
+          - type: contains
+            value: "fact"

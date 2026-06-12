@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-cloud
+
+scenarios:
+  - name: "designs cloud architecture"
+    steps:
+      - prompt: "Design a cloud-native architecture for a real-time analytics platform on AWS."
+        assert:
+          - type: contains
+            value: "AWS"
+          - type: contains
+            value: "serverless"
+
+  - name: "applies Well-Architected"
+    steps:
+      - prompt: "Review this architecture against the AWS Well-Architected Framework."
+        assert:
+          - type: contains
+            value: "Well-Architected"
+          - type: contains
+            value: "pillar"
+
+  - name: "optimizes costs"
+    steps:
+      - prompt: "How can I reduce cloud costs for a staging environment running 24/7?"
+        assert:
+          - type: contains
+            value: "cost"
+          - type: contains
+            value: "reserved"
+
+  - name: "designs multi-cloud"
+    steps:
+      - prompt: "Design a multi-cloud strategy to avoid vendor lock-in."
+        assert:
+          - type: contains
+            value: "multi-cloud"
+          - type: contains
+            value: "Terraform"
+
+  - name: "plans cloud migration"
+    steps:
+      - prompt: "Plan a lift-and-shift migration from on-premise to AWS."
+        assert:
+          - type: contains
+            value: "rehost"
+          - type: contains
+            value: "migration"

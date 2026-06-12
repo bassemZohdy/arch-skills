@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-security
+
+scenarios:
+  - name: "performs threat modeling"
+    steps:
+      - prompt: "Perform a threat model for a user authentication system using STRIDE."
+        assert:
+          - type: contains
+            value: "STRIDE"
+          - type: contains
+            value: "Spoofing"
+          - type: contains
+            value: "Tampering"
+
+  - name: "assesses risk with DREAD"
+    steps:
+      - prompt: "Assess the risk of SQL injection vulnerability using DREAD."
+        assert:
+          - type: contains
+            value: "DREAD"
+          - type: contains
+            value: "Damage"
+
+  - name: "checks OWASP Top 10"
+    steps:
+      - prompt: "Check this API against OWASP Top 10 vulnerabilities."
+        assert:
+          - type: contains
+            value: "OWASP"
+
+  - name: "recommends security patterns"
+    steps:
+      - prompt: "What authentication pattern should I use for a mobile app?"
+        assert:
+          - type: contains
+            value: "OAuth"
+          - type: contains
+            value: "JWT"
+
+  - name: "reviews compliance requirements"
+    steps:
+      - prompt: "What are the GDPR requirements for handling user data?"
+        assert:
+          - type: contains
+            value: "GDPR"
+          - type: contains
+            value: "data"

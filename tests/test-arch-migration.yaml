@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-migration
+
+scenarios:
+  - name: "assesses legacy system"
+    steps:
+      - prompt: "Assess this legacy monolith for migration readiness. It has 500k LOC, no tests, and is 10 years old."
+        assert:
+          - type: contains
+            value: "legacy"
+          - type: contains
+            value: "monolith"
+
+  - name: "designs strangler fig"
+    steps:
+      - prompt: "Design a strangler fig migration plan to extract user management from a monolith."
+        assert:
+          - type: contains
+            value: "strangler"
+          - type: contains
+            value: "fig"
+
+  - name: "plans database migration"
+    steps:
+      - prompt: "Plan a zero-downtime database migration from MySQL to PostgreSQL."
+        assert:
+          - type: contains
+            value: "database"
+          - type: contains
+            value: "migration"
+
+  - name: "assesses migration risks"
+    steps:
+      - prompt: "What are the risks of migrating from SOAP to REST APIs?"
+        assert:
+          - type: contains
+            value: "risk"
+          - type: contains
+            value: "SOAP"
+
+  - name: "creates rollback strategy"
+    steps:
+      - prompt: "Design a rollback strategy for a critical system migration."
+        assert:
+          - type: contains
+            value: "rollback"
+          - type: contains
+            value: "backup"
