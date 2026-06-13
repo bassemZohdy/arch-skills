@@ -22,6 +22,10 @@ This skill set follows the [Agent Skills specification](https://agentskills.io/s
 | **JetBrains Junie** | ✅ | `.agents/skills/` |
 | **OpenHands** | ✅ | `.agents/skills/` |
 | **OpenCode** | ✅ | `.config/opencode/skills/` |
+| **Pi (badlogic)** | ✅ | `.pi/skills/` |
+| **Cline** | ✅ | `.cline/skills/` |
+| **Kilo Code** | ✅ | `.kilo/skills/` |
+| **MiMoCode** | ✅ | `.mimocode/skills/` |
 
 ### Installation
 

@@ -14,6 +14,10 @@ This skill set follows the [Agent Skills specification](https://agentskills.io/s
 | **JetBrains Junie** | ✅ Supported | Use `.agents/skills` path |
 | **OpenHands** | ✅ Supported | Use `.agents/skills` path |
 | **OpenCode** | ✅ Supported | Multiple path support |
+| **Pi (badlogic)** | ✅ Supported | Use `.pi/skills` path |
+| **Cline** | ✅ Supported | Use `.cline/skills` path |
+| **Kilo Code** | ✅ Supported | Use `.kilo/skills` or `.kilocode/skills` path |
+| **MiMoCode** | ✅ Supported | Use `.mimocode/skills` path |
 
 ## Installation Paths
 
@@ -27,6 +31,10 @@ This skill set follows the [Agent Skills specification](https://agentskills.io/s
 | Junie | - | `.agents/skills/` |
 | OpenHands | - | `.agents/skills/` |
 | OpenCode | `~/.config/opencode/skills/` | `.opencode/skills/` or `.agents/skills/` |
+| Pi | `~/.pi/skills/` | `.pi/skills/` |
+| Cline | - | `.cline/skills/` or `.clinerules` |
+| Kilo Code | - | `.kilo/skills/` or `.kilocode/skills/` |
+| MiMoCode | `~/.mimocode/skills/` | `.mimocode/skills/` or `.agents/skills/` |
 
 ## Cross-Harness Compatibility
 

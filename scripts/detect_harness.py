@@ -74,6 +74,39 @@ HARNESSES = {
         ],
         "command": "opencode",
     },
+    "pi": {
+        "name": "Pi (badlogic)",
+        "paths": [
+            Path.cwd() / ".pi" / "skills",
+            Path.home() / ".pi" / "skills",
+        ],
+        "command": "pi",
+    },
+    "cline": {
+        "name": "Cline",
+        "paths": [
+            Path.cwd() / ".cline" / "skills",
+            Path.cwd() / ".clinerules",
+        ],
+        "command": "cline",
+    },
+    "kilocode": {
+        "name": "Kilo Code",
+        "paths": [
+            Path.cwd() / ".kilo" / "skills",
+            Path.cwd() / ".kilocode" / "skills",
+        ],
+        "command": "kilo",
+    },
+    "mimocode": {
+        "name": "MiMoCode",
+        "paths": [
+            Path.home() / ".mimocode" / "skills",
+            Path.cwd() / ".mimocode" / "skills",
+            Path.cwd() / ".agents" / "skills",
+        ],
+        "command": "mimocode",
+    },
 }
 
 
