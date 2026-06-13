@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-patterns
+
+scenarios:
+  - name: "selects clean architecture"
+    steps:
+      - prompt: "When should I use Clean Architecture vs Layered Architecture?"
+        assert:
+          - type: contains
+            value: "Clean Architecture"
+          - type: contains
+            value: "Layered"
+
+  - name: "implements hexagonal architecture"
+    steps:
+      - prompt: "How do I implement Hexagonal Architecture (Ports and Adapters)?"
+        assert:
+          - type: contains
+            value: "Hexagonal"
+          - type: contains
+            value: "Ports"
+
+  - name: "applies pipes and filters"
+    steps:
+      - prompt: "When should I use the Pipes and Filters pattern?"
+        assert:
+          - type: contains
+            value: "Pipes"
+          - type: contains
+            value: "Filters"
+
+  - name: "selects event-driven pattern"
+    steps:
+      - prompt: "When should I use Event-Driven Architecture vs request-response?"
+        assert:
+          - type: contains
+            value: "Event-Driven"
+          - type: contains
+            value: "request-response"
+
+  - name: "implements repository pattern"
+    steps:
+      - prompt: "How do I implement the Repository pattern in a clean architecture?"
+        assert:
+          - type: contains
+            value: "Repository"
+          - type: contains
+            value: "interface"

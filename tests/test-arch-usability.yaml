@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-usability
+
+scenarios:
+  - name: "applies Nielsen heuristics"
+    steps:
+      - prompt: "Apply Nielsen's 10 usability heuristics to evaluate this user interface."
+        assert:
+          - type: contains
+            value: "Nielsen"
+          - type: contains
+            value: "heuristic"
+
+  - name: "conducts user research"
+    steps:
+      - prompt: "How do I conduct user research for a new feature?"
+        assert:
+          - type: contains
+            value: "user research"
+          - type: contains
+            value: "interview"
+
+  - name: "creates personas"
+    steps:
+      - prompt: "How do I create user personas for my application?"
+        assert:
+          - type: contains
+            value: "persona"
+          - type: contains
+            value: "user"
+
+  - name: "designs information architecture"
+    steps:
+      - prompt: "How do I design information architecture for a complex web application?"
+        assert:
+          - type: contains
+            value: "information architecture"
+          - type: contains
+            value: "navigation"
+
+  - name: "conducts usability testing"
+    steps:
+      - prompt: "How do I conduct usability testing for a mobile application?"
+        assert:
+          - type: contains
+            value: "usability testing"
+          - type: contains
+            value: "task"

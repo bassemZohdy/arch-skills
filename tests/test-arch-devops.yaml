@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-devops
+
+scenarios:
+  - name: "writes Terraform module"
+    steps:
+      - prompt: "Write a Terraform module for provisioning an AWS VPC with public and private subnets."
+        assert:
+          - type: contains
+            value: "resource"
+          - type: contains
+            value: "aws_vpc"
+
+  - name: "creates Kubernetes manifest"
+    steps:
+      - prompt: "Create a Kubernetes deployment manifest for a Node.js application with 3 replicas."
+        assert:
+          - type: contains
+            value: "Deployment"
+          - type: contains
+            value: "replicas"
+
+  - name: "configures CI/CD pipeline"
+    steps:
+      - prompt: "Configure a GitHub Actions CI/CD pipeline for a Python application with testing and deployment."
+        assert:
+          - type: contains
+            value: "on:"
+          - type: contains
+            value: "jobs"
+
+  - name: "implements GitOps workflow"
+    steps:
+      - prompt: "How do I implement a GitOps workflow with Flux for Kubernetes?"
+        assert:
+          - type: contains
+            value: "GitOps"
+          - type: contains
+            value: "Flux"
+
+  - name: "creates Ansible playbook"
+    steps:
+      - prompt: "Create an Ansible playbook to configure a web server with Nginx and SSL."
+        assert:
+          - type: contains
+            value: "hosts:"
+          - type: contains
+            value: "tasks:"

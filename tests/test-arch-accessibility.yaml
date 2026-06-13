@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-accessibility
+
+scenarios:
+  - name: "checks WCAG compliance"
+    steps:
+      - prompt: "Check this web application for WCAG 2.1 AA compliance."
+        assert:
+          - type: contains
+            value: "WCAG"
+          - type: contains
+            value: "AA"
+
+  - name: "implements ARIA patterns"
+    steps:
+      - prompt: "How do I implement ARIA labels for screen reader accessibility?"
+        assert:
+          - type: contains
+            value: "ARIA"
+          - type: contains
+            value: "aria-label"
+
+  - name: "validates color contrast"
+    steps:
+      - prompt: "What are the minimum color contrast ratios for WCAG AA compliance?"
+        assert:
+          - type: contains
+            value: "contrast"
+          - type: contains
+            value: "4.5:1"
+
+  - name: "tests keyboard navigation"
+    steps:
+      - prompt: "How do I test keyboard navigation accessibility?"
+        assert:
+          - type: contains
+            value: "keyboard"
+          - type: contains
+            value: "focus"
+
+  - name: "creates accessibility statement"
+    steps:
+      - prompt: "Create an accessibility statement for a web application."
+        assert:
+          - type: contains
+            value: "accessibility"
+          - type: contains
+            value: "statement"

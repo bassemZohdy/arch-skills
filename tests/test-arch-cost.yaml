@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-cost
+
+scenarios:
+  - name: "implements FinOps framework"
+    steps:
+      - prompt: "How do I implement a FinOps framework for our cloud infrastructure?"
+        assert:
+          - type: contains
+            value: "FinOps"
+          - type: contains
+            value: "cloud"
+
+  - name: "optimizes cloud costs"
+    steps:
+      - prompt: "What strategies can I use to optimize AWS costs?"
+        assert:
+          - type: contains
+            value: "AWS"
+          - type: contains
+            value: "optimize"
+
+  - name: "creates cost allocation"
+    steps:
+      - prompt: "How do I create cost allocation tags for our cloud resources?"
+        assert:
+          - type: contains
+            value: "allocation"
+          - type: contains
+            value: "tag"
+
+  - name: "sets up budget alerts"
+    steps:
+      - prompt: "How do I set up budget alerts for our cloud spending?"
+        assert:
+          - type: contains
+            value: "budget"
+          - type: contains
+            value: "alert"
+
+  - name: "measures unit economics"
+    steps:
+      - prompt: "How do I measure cost per user for our cloud services?"
+        assert:
+          - type: contains
+            value: "cost per user"
+          - type: contains
+            value: "unit economics"

@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-frontend
+
+scenarios:
+  - name: "designs micro frontends"
+    steps:
+      - prompt: "Design a micro frontends architecture for a large e-commerce platform."
+        assert:
+          - type: contains
+            value: "micro frontend"
+          - type: contains
+            value: "independent"
+
+  - name: "implements state management"
+    steps:
+      - prompt: "What state management pattern should I use for a complex React application?"
+        assert:
+          - type: contains
+            value: "state"
+          - type: contains
+            value: "management"
+
+  - name: "creates component library"
+    steps:
+      - prompt: "How do I create a shared component library for multiple frontend applications?"
+        assert:
+          - type: contains
+            value: "component"
+          - type: contains
+            value: "library"
+
+  - name: "optimizes performance"
+    steps:
+      - prompt: "How do I optimize frontend performance for a React application?"
+        assert:
+          - type: contains
+            value: "performance"
+          - type: contains
+            value: "optimization"
+
+  - name: "implements lazy loading"
+    steps:
+      - prompt: "How do I implement lazy loading for routes in a React application?"
+        assert:
+          - type: contains
+            value: "lazy"
+          - type: contains
+            value: "loading"

@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-features
+
+scenarios:
+  - name: "creates feature flag"
+    steps:
+      - prompt: "Create a feature flag for a new checkout experience with 10% rollout."
+        assert:
+          - type: contains
+            value: "feature"
+          - type: contains
+            value: "flag"
+
+  - name: "implements A/B testing"
+    steps:
+      - prompt: "How do I implement A/B testing for a new user interface?"
+        assert:
+          - type: contains
+            value: "A/B"
+          - type: contains
+            value: "variant"
+
+  - name: "designs rollout strategy"
+    steps:
+      - prompt: "Design a gradual rollout strategy for a new payment feature."
+        assert:
+          - type: contains
+            value: "rollout"
+          - type: contains
+            value: "gradual"
+
+  - name: "manages feature lifecycle"
+    steps:
+      - prompt: "How do I manage the lifecycle of a feature flag from creation to cleanup?"
+        assert:
+          - type: contains
+            value: "lifecycle"
+          - type: contains
+            value: "cleanup"
+
+  - name: "implements feature toggle"
+    steps:
+      - prompt: "Implement a feature toggle that can be controlled via API."
+        assert:
+          - type: contains
+            value: "toggle"
+          - type: contains
+            value: "API"

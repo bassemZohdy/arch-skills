@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-refactoring
+
+scenarios:
+  - name: "identifies code smells"
+    steps:
+      - prompt: "What are the common code smells in a Java application?"
+        assert:
+          - type: contains
+            value: "code smell"
+          - type: contains
+            value: "God Class"
+
+  - name: "refactors god class"
+    steps:
+      - prompt: "How do I refactor a God Class into smaller, focused classes?"
+        assert:
+          - type: contains
+            value: "Extract Class"
+          - type: contains
+            value: "responsibility"
+
+  - name: "applies extract method"
+    steps:
+      - prompt: "When should I use the Extract Method refactoring?"
+        assert:
+          - type: contains
+          value: "Extract Method"
+          - type: contains
+            value: "method"
+
+  - name: "plans incremental refactoring"
+    steps:
+      - prompt: "How do I plan an incremental refactoring strategy for a legacy codebase?"
+        assert:
+          - type: contains
+            value: "incremental"
+          - type: contains
+            value: "legacy"
+
+  - name: "refactors to clean architecture"
+    steps:
+      - prompt: "How do I refactor a layered architecture to clean architecture?"
+        assert:
+          - type: contains
+            value: "clean architecture"
+          - type: contains
+            value: "dependency"

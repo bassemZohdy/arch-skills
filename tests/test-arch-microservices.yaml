@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-microservices
+
+scenarios:
+  - name: "decomposes monolith"
+    steps:
+      - prompt: "How do I decompose a monolithic application into microservices?"
+        assert:
+          - type: contains
+            value: "decompose"
+          - type: contains
+            value: "monolith"
+
+  - name: "designs service boundaries"
+    steps:
+      - prompt: "How do I design service boundaries for a microservices architecture?"
+        assert:
+          - type: contains
+            value: "boundary"
+          - type: contains
+            value: "service"
+
+  - name: "implements saga pattern"
+    steps:
+      - prompt: "How do I implement the saga pattern for distributed transactions?"
+        assert:
+          - type: contains
+            value: "saga"
+          - type: contains
+            value: "distributed"
+
+  - name: "designs data management"
+    steps:
+      - prompt: "How should I manage data in a microservices architecture with database per service?"
+        assert:
+          - type: contains
+            value: "database per service"
+          - type: contains
+            value: "eventual consistency"
+
+  - name: "implements service discovery"
+    steps:
+      - prompt: "How do I implement service discovery for microservices?"
+        assert:
+          - type: contains
+            value: "service discovery"
+          - type: contains
+            value: "registry"

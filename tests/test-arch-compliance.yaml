@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-compliance
+
+scenarios:
+  - name: "reviews GDPR compliance"
+    steps:
+      - prompt: "Review this system for GDPR compliance. What data processing activities need documentation?"
+        assert:
+          - type: contains
+            value: "GDPR"
+          - type: contains
+            value: "data processing"
+
+  - name: "designs audit trail"
+    steps:
+      - prompt: "Design an audit trail for a financial transaction system."
+        assert:
+          - type: contains
+            value: "audit"
+          - type: contains
+            value: "log"
+
+  - name: "implements data retention"
+    steps:
+      - prompt: "How should I implement data retention policies for GDPR compliance?"
+        assert:
+          - type: contains
+            value: "retention"
+          - type: contains
+            value: "policy"
+
+  - name: "creates privacy policy"
+    steps:
+      - prompt: "What should a GDPR-compliant privacy policy include?"
+        assert:
+          - type: contains
+            value: "privacy"
+          - type: contains
+            value: "consent"
+
+  - name: "reviews SOC 2 controls"
+    steps:
+      - prompt: "What SOC 2 controls should be in place for a SaaS application?"
+        assert:
+          - type: contains
+            value: "SOC 2"
+          - type: contains
+            value: "control"

@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-governance
+
+scenarios:
+  - name: "establishes architecture board"
+    steps:
+      - prompt: "How do I establish an architecture review board for our organization?"
+        assert:
+          - type: contains
+            value: "architecture"
+          - type: contains
+            value: "board"
+
+  - name: "defines architecture principles"
+    steps:
+      - prompt: "Define architecture principles for a microservices platform."
+        assert:
+          - type: contains
+            value: "principle"
+          - type: contains
+            value: "microservices"
+
+  - name: "manages exceptions"
+    steps:
+      - prompt: "How do I manage architecture exceptions when standards cannot be met?"
+        assert:
+          - type: contains
+            value: "exception"
+          - type: contains
+            value: "standard"
+
+  - name: "tracks technical debt"
+    steps:
+      - prompt: "How do I track and manage technical debt across multiple teams?"
+        assert:
+          - type: contains
+            value: "technical debt"
+          - type: contains
+            value: "track"
+
+  - name: "creates ADR process"
+    steps:
+      - prompt: "How do I establish an Architecture Decision Record process?"
+        assert:
+          - type: contains
+            value: "ADR"
+          - type: contains
+            value: "decision"

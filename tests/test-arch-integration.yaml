@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-integration
+
+scenarios:
+  - name: "designs API gateway"
+    steps:
+      - prompt: "Design an API gateway for a microservices architecture."
+        assert:
+          - type: contains
+            value: "API gateway"
+          - type: contains
+            value: "microservices"
+
+  - name: "implements service mesh"
+    steps:
+      - prompt: "How do I implement a service mesh with Istio for my Kubernetes cluster?"
+        assert:
+          - type: contains
+            value: "service mesh"
+          - type: contains
+            value: "Istio"
+
+  - name: "creates integration pattern"
+    steps:
+      - prompt: "What integration pattern should I use for synchronous communication between services?"
+        assert:
+          - type: contains
+            value: "synchronous"
+          - type: contains
+            value: "pattern"
+
+  - name: "designs ESB integration"
+    steps:
+      - prompt: "How do I design an Enterprise Service Bus for legacy system integration?"
+        assert:
+          - type: contains
+            value: "ESB"
+          - type: contains
+            value: "legacy"
+
+  - name: "implements circuit breaker"
+    steps:
+      - prompt: "Implement a circuit breaker pattern for service integration."
+        assert:
+          - type: contains
+            value: "circuit breaker"
+          - type: contains
+            value: "threshold"
