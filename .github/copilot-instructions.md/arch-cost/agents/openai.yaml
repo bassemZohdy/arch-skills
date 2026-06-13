@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cost Optimization"
+  short_description: "FinOps, cost modeling, optimization"
+  default_prompt: "Use -cost for cost optimization"

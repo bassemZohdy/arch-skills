@@ -112,14 +112,14 @@ def print_detection_results():
         print("Detected harnesses:")
         for harness_id in available:
             config = HARNESSES[harness_id]
-            print(f"  ✓ {config['name']} ({harness_id})")
+            print(f"  [OK] {config['name']} ({harness_id})")
     else:
         print("No harnesses detected.")
     
     print()
     print("Supported harnesses:")
     for harness_id, config in HARNESSES.items():
-        status = "✓" if harness_id in available else "○"
+        status = "[OK]" if harness_id in available else "[--]"
         print(f"  {status} {config['name']} ({harness_id})")
     
     print()
@@ -127,7 +127,7 @@ def print_detection_results():
     for harness_id in HARNESSES:
         config = HARNESSES[harness_id]
         for path in config["paths"]:
-            exists = "✓" if path.exists() else "○"
+            exists = "[OK]" if path.exists() else "[--]"
             print(f"  {exists} {path}")
     
     print()

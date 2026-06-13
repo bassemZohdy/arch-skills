@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Patterns"
+  short_description: "Clean, Hexagonal, Layered, Pipes & Filters"
+  default_prompt: "Use -patterns for architecture patterns"

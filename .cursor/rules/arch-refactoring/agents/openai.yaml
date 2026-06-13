@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refactoring Architecture"
+  short_description: "Code smells, refactoring patterns, incremental improvement"
+  default_prompt: "Use -refactoring for refactoring"

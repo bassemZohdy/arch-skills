@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compliance Architecture"
+  short_description: "GDPR, HIPAA, SOC 2, audit trails"
+  default_prompt: "Use -compliance for compliance"

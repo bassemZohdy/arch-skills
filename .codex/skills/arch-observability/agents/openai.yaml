@@ -1,0 +1,4 @@
+interface:
+  display_name: "Observability Architecture"
+  short_description: "Logging, tracing, monitoring"
+  default_prompt: "Use -observability for observability"

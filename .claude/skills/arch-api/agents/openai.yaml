@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Design"
+  short_description: "REST, GraphQL, gRPC design patterns"
+  default_prompt: "Use -api for API design"

@@ -24,6 +24,11 @@ def sync_skills(source_dir, target_paths):
     for target in target_paths:
         target = Path(target)
         try:
+            # Skip file paths (like copilot-instructions.md)
+            if target.suffix:
+                print(f"  [SKIP] {target} (file, not directory)")
+                continue
+            
             target.mkdir(parents=True, exist_ok=True)
             
             for skill_dir in source.iterdir():
@@ -32,11 +37,11 @@ def sync_skills(source_dir, target_paths):
                     if dest.exists():
                         shutil.rmtree(dest)
                     shutil.copytree(skill_dir, dest)
-                    print(f"  Synced: {skill_dir.name} → {target}")
+                    print(f"  Synced: {skill_dir.name} -> {target}")
             
-            print(f"  ✓ Synced to {target}")
+            print(f"  [OK] Synced to {target}")
         except Exception as e:
-            print(f"  ✗ Error syncing to {target}: {e}")
+            print(f"  [ERROR] Error syncing to {target}: {e}")
             success = False
     
     return success

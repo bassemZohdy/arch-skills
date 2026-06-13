@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Documentation Generator"
+  short_description: "Generate architecture docs with diagrams"
+  default_prompt: "Use -doc to create architecture documentation"

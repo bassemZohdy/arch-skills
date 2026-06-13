@@ -1,0 +1,4 @@
+interface:
+  display_name: "Usability Architecture"
+  short_description: "UX patterns, heuristics, user research"
+  default_prompt: "Use -usability for UX design"

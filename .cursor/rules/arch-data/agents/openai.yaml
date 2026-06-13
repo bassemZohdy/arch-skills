@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Architecture"
+  short_description: "Data modeling, pipelines, governance"
+  default_prompt: "Use -data for data architecture"

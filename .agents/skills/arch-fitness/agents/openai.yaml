@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Fitness Functions"
+  short_description: "Automated architecture validation tests"
+  default_prompt: "Use -fitness to create architecture tests"

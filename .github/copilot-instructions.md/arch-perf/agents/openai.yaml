@@ -1,0 +1,4 @@
+interface:
+  display_name: "Performance Engineering"
+  short_description: "Performance patterns, capacity planning"
+  default_prompt: "Use -perf for performance review"

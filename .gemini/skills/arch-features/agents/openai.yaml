@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Management"
+  short_description: "Feature flags, toggles, experimentation"
+  default_prompt: "Use -features for feature management"

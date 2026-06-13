@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Automation"
+  short_description: "CI/CD, documentation, infrastructure automation"
+  default_prompt: "Use -automation for architecture automation"
