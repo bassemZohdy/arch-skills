@@ -2,12 +2,12 @@
 
 ## What This Repo Is
 
-Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), and decision analysis (`arch-decision`). Skills are Markdown + YAML + templates — no compiled code.
+Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), and 26 more specialized skills covering all architecture concerns. Skills are Markdown + YAML + templates — no compiled code.
 
 ## Key Commands
 
 ```powershell
-# Validate skill structure (28 tests, fast, no LLM needed)
+# Validate skill structure (210 tests, fast, no LLM needed)
 python tests/test_skills.py
 
 # Sync skills to Codex install location
@@ -24,6 +24,7 @@ skillprobe run tests/test-arch-doc.yaml --harness claude-code
 - `skills/<name>/assets/` — Templates/files used in output, not loaded into context.
 - `skills/<name>/agents/openai.yaml` — UI metadata. Regenerate with `generate_openai_yaml.py`.
 - `tests/` — Structural validation (`test_skills.py`) and skillprobe scenarios (`.yaml`).
+- `scripts/` — Detection and sync scripts for multiple AI harnesses.
 - `sync-skills.ps1` — Copies skills to `~/.codex/skills/`. Run after edits.
 
 ## Skill Authoring Conventions
@@ -51,3 +52,4 @@ skillprobe run tests/test-arch-<skill>.yaml --harness claude-code
 - Windows symlinks require admin privileges or Developer Mode. Repo uses copy+sync instead.
 - `quick_validate.py` lives at `~/.codex/skills/.system/skill-creator/scripts/`.
 - Skills are generic (framework/language agnostic) by design.
+- 12 AI harnesses supported: Claude Code, Codex, Cursor, Copilot, Gemini, Junie, OpenHands, OpenCode, Pi, Cline, Kilo Code, MiMoCode.

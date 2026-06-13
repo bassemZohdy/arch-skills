@@ -49,18 +49,13 @@ Skills follow the Agent Skills specification and are harness-agnostic. The same 
 
 ### Installation
 
-Use the provided scripts to sync skills to all detected harnesses:
+Use the unified setup script (recommended):
 
 ```bash
-# Detect available harnesses
-python scripts/detect_harness.py
-
-# Sync to all detected harnesses
-python scripts/sync_all.py
-
-# Sync to specific harness
-python scripts/sync_all.py --harness claude-code
+python scripts/setup_unified.py
 ```
+
+This creates symlinks from each tool's expected location to the central `skills/` directory. Changes to `skills/` are immediately visible to all tools.
 
 Or use platform-specific scripts:
 

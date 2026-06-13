@@ -54,10 +54,15 @@
 - [x] README.md — Complete project documentation
 - [x] AGENTS.md — Agent instructions
 - [x] docs/coverage-analysis.md — Test coverage matrix
-- [x] docs/best-practices-master.md — Best practices cross-reference
+- [x] docs/harness-compatibility.md — Supported harnesses
+- [x] docs/skill-testing.md — Skill testing guide
 - [x] tests/test_skills.py — 210 structural tests
-- [x] tests/test-arch-*.yaml — 172 skillprobe scenarios
-- [x] sync-skills.ps1 / sync-skills.sh — Cross-platform sync
+- [x] tests/test-arch-*.yaml — 167 skillprobe scenarios
+
+### Phase 11: Cross-Harness Support
+- [x] scripts/detect_harness.py — Detect available harnesses
+- [x] scripts/setup_unified.py — Unified skill management
+- [x] 12 harnesses supported
 
 ## Project Status
 
@@ -65,11 +70,12 @@
 |--------|-------|
 | Skills | 30 |
 | Structural Tests | 210 |
-| Skill Scenarios | 172 |
-| Total Tests | 382 |
-| References | 50+ |
-| Assets | 30+ |
+| Skill Scenarios | 167 |
+| Total Tests | 377 |
+| References | 60+ |
+| Assets | 40+ |
 | NFR Coverage | 100% |
+| Harnesses | 12 |
 
 ## File Structure
 
@@ -82,8 +88,13 @@ arch-skills/
 ├── sync-skills.sh
 ├── run-tests.ps1
 ├── run-tests.sh
+├── scripts/
+│   ├── detect_harness.py
+│   ├── setup_unified.py
+│   └── sync_all.py
 ├── docs/
 │   ├── coverage-analysis.md
+│   ├── harness-compatibility.md
 │   ├── skill-testing.md
 │   └── best-practices-master.md
 ├── skills/ (30 skills)

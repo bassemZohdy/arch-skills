@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Detect which AI agent harness is available and configure skill paths.
-Supports: Claude Code, OpenAI Codex, Cursor, Gemini CLI, Copilot, Junie, OpenHands
+Supports: Claude Code, OpenAI Codex, Cursor, Gemini CLI, Copilot, Junie,
+OpenHands, OpenCode, Pi, Cline, Kilo Code, MiMoCode (12 harnesses total)
 """
 
 import os
