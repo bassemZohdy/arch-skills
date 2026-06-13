@@ -2,7 +2,7 @@
 
 [![Tests](https://img.shields.io/badge/tests-210%20passing-brightgreen)]()
 [![Skills](https://img.shields.io/badge/skills-30-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-172-orange)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-167-orange)]()
 
 A comprehensive collection of 30 Codex skills for software architecture documentation, review, validation, and governance. Works with 12 AI agent harnesses.
 
