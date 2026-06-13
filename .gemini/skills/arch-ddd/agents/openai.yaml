@@ -1,4 +1,0 @@
-interface:
-  display_name: "Domain-Driven Design"
-  short_description: "Bounded contexts, aggregates, DDD"
-  default_prompt: "Use -ddd for domain modeling"

@@ -7,7 +7,7 @@ Codex skills for software architecture: documentation generation (`arch-doc`), r
 ## Key Commands
 
 ```powershell
-# Validate skill structure (210 tests, fast, no LLM needed)
+# Validate skill structure (28 tests, fast, no LLM needed)
 python tests/test_skills.py
 
 # Sync skills to Codex install location

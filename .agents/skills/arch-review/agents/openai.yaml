@@ -1,4 +1,0 @@
-interface:
-  display_name: "Architecture Review & Validation"
-  short_description: "Review and validate architecture implementations"
-  default_prompt: "Use -review to review architecture"

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Integration Architecture"
-  short_description: "Service mesh, API gateway, ESB patterns"
-  default_prompt: "Use -integration for integration patterns"

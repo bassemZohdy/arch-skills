@@ -1,4 +1,0 @@
-interface:
-  display_name: "Frontend Architecture"
-  short_description: "Micro frontends, UI patterns, SPA architecture"
-  default_prompt: "Use -frontend for frontend architecture"

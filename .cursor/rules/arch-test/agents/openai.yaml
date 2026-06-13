@@ -1,4 +1,0 @@
-interface:
-  display_name: "Test Architecture"
-  short_description: "Test strategy, pyramids, contracts"
-  default_prompt: "Use -test for test strategy"

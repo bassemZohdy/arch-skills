@@ -1,4 +1,0 @@
-interface:
-  display_name: "Event-Driven Architecture"
-  short_description: "CQRS, Event Sourcing, messaging"
-  default_prompt: "Use -event for event-driven design"

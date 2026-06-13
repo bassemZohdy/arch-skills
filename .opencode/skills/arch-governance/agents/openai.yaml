@@ -1,4 +1,0 @@
-interface:
-  display_name: "Architecture Governance"
-  short_description: "Standards, boards, compliance, debt"
-  default_prompt: "Use -governance for governance"

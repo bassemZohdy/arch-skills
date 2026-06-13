@@ -1,4 +1,0 @@
-interface:
-  display_name: "DevOps Architecture"
-  short_description: "IaC, Kubernetes, GitOps, CI/CD"
-  default_prompt: "Use -devops for DevOps"

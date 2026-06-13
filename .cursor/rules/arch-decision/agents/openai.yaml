@@ -1,4 +1,0 @@
-interface:
-  display_name: "Architecture Decision Analysis"
-  short_description: "Structured DAR methodology for architecture decisions"
-  default_prompt: "Use -decision to make architecture decisions"

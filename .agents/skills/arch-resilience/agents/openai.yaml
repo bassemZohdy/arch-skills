@@ -1,4 +1,0 @@
-interface:
-  display_name: "Resilience Patterns"
-  short_description: "Circuit breakers, retry, bulkhead"
-  default_prompt: "Use -resilience for fault tolerance"

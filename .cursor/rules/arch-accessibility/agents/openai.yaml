@@ -1,4 +1,0 @@
-interface:
-  display_name: "Accessibility Architecture"
-  short_description: "WCAG compliance, ARIA, assistive tech"
-  default_prompt: "Use -accessibility for accessibility"
