@@ -29,26 +29,17 @@ This skill set follows the [Agent Skills specification](https://agentskills.io/s
 
 ### Installation
 
-**Detect available harnesses:**
+**Set up unified skills (single source of truth):**
+
 ```bash
-python scripts/detect_harness.py
+python scripts/setup_unified.py
 ```
 
-**Sync to all detected harnesses:**
-```bash
-# Python (cross-platform)
-python scripts/sync_all.py
+This creates symlinks from each tool's expected location to the central `skills/` directory. Changes to `skills/` are immediately visible to all tools.
 
-# Windows
+**For Windows (if symlinks fail):**
+```powershell
 .\sync-skills.ps1
-
-# Linux/Mac
-./sync-skills.sh
-```
-
-**Sync to specific harness:**
-```bash
-python scripts/sync_all.py --harness claude-code
 ```
 
 ### Usage Examples
