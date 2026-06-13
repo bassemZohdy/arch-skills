@@ -8,17 +8,43 @@ A comprehensive collection of 30 Codex skills for software architecture document
 
 ## Quick Start
 
+### Supported Harnesses
+
+This skill set follows the [Agent Skills specification](https://agentskills.io/specification) and works with:
+
+| Harness | Status | Path |
+|---------|--------|------|
+| **Claude Code** | ✅ | `~/.claude/skills/` |
+| **OpenAI Codex** | ✅ | `~/.codex/skills/` |
+| **Cursor** | ✅ | `.cursor/rules/` |
+| **GitHub Copilot** | ✅ | `.github/copilot-instructions.md` |
+| **Gemini CLI** | ✅ | `.gemini/skills/` |
+| **JetBrains Junie** | ✅ | `.agents/skills/` |
+| **OpenHands** | ✅ | `.agents/skills/` |
+| **OpenCode** | ✅ | `.config/opencode/skills/` |
+
 ### Installation
 
-**Linux/Mac:**
+**Detect available harnesses:**
 ```bash
-chmod +x sync-skills.sh run-tests.sh
+python scripts/detect_harness.py
+```
+
+**Sync to all detected harnesses:**
+```bash
+# Python (cross-platform)
+python scripts/sync_all.py
+
+# Windows
+.\sync-skills.ps1
+
+# Linux/Mac
 ./sync-skills.sh
 ```
 
-**Windows:**
-```powershell
-.\sync-skills.ps1
+**Sync to specific harness:**
+```bash
+python scripts/sync_all.py --harness claude-code
 ```
 
 ### Usage Examples
