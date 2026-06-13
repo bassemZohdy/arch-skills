@@ -23,3 +23,7 @@ Thumbs.db
 # Local secrets
 .env
 *.key
+
+# Codex system skills (not part of this repo)
+skills/.system/
+.github/.system/
