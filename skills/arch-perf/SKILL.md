@@ -124,6 +124,24 @@ Safety Margin = 20-50% depending on criticality
 | **Database Query** | < 50ms | Query analyzer |
 | **Bundle Size** | < 200KB | Webpack |
 
+## Examples
+
+- Define SLOs and an error budget for a checkout API, then design the caching strategy to meet them.
+- Plan capacity for a 10x traffic spike during a product launch.
+- Diagnose p99 latency spikes caused by connection pool exhaustion.
+
+## Common Gotchas
+
+- Averages hide tail latency; always look at p95/p99, not means.
+- Caching without an invalidation strategy trades a latency bug for a correctness bug.
+- Load tests against staging with production-unlike data give false confidence.
+
+## Related Skills
+
+- **arch-resilience** - Timeouts and circuit breakers that bound latency
+- **arch-observability** - Measuring latency, throughput, and saturation
+- **arch-cost** - Trading performance headroom against spend
+
 ## Performance Review Template
 
 ```markdown

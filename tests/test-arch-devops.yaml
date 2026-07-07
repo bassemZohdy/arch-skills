@@ -48,3 +48,47 @@ scenarios:
             value: "hosts:"
           - type: contains
             value: "tasks:"
+  - name: "designs blue-green deployment"
+    steps:
+      - prompt: "Design a blue-green deployment strategy for a critical production system."
+        assert:
+          - type: contains
+            value: "blue-green"
+          - type: contains
+            value: "zero-downtime"
+
+  - name: "implements canary release"
+    steps:
+      - prompt: "How do I implement a canary release strategy for gradual rollout?"
+        assert:
+          - type: contains
+            value: "canary"
+          - type: contains
+            value: "percentage"
+
+  - name: "creates rollback plan"
+    steps:
+      - prompt: "Create a rollback plan for a deployment that introduces a critical bug."
+        assert:
+          - type: contains
+            value: "rollback"
+          - type: contains
+            value: "plan"
+
+  - name: "sets up GitOps"
+    steps:
+      - prompt: "How do I set up GitOps with ArgoCD for Kubernetes deployments?"
+        assert:
+          - type: contains
+            value: "GitOps"
+          - type: contains
+            value: "ArgoCD"
+
+  - name: "defines DORA metrics"
+    steps:
+      - prompt: "What are DORA metrics and how do I measure deployment performance?"
+        assert:
+          - type: contains
+            value: "DORA"
+          - type: contains
+            value: "deployment frequency"

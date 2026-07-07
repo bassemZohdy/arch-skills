@@ -136,6 +136,24 @@ Systematic approach to cost management and optimization.
 | Optimization savings | [Target] | [Actual] |
 | Waste reduction | [Target] | [Actual] |
 
+## Examples
+
+- Build a tagging and allocation model so each team sees its own cloud spend.
+- Cut compute cost with right-sizing plus reserved instances for steady load.
+- Set budget alerts and anomaly detection before a usage-based launch.
+
+## Common Gotchas
+
+- Reserved capacity bought before right-sizing locks in the waste.
+- Untagged resources make allocation guesswork; enforce tags at provision time via IaC.
+- Optimizing unit cost while ignoring cost-per-transaction can hide real efficiency losses.
+
+## Related Skills
+
+- **arch-cloud** - Provider services and Well-Architected cost pillar
+- **arch-devops** - IaC enforcement of tagging and budgets
+- **arch-ai** - Inference spend budgeting
+
 ## Cost Review Template
 
 ```markdown

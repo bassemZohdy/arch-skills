@@ -98,3 +98,12 @@ scenarios:
             value: "cyclic"
           - type: contains
             value: "module"
+
+  - name: "automates security scanning"
+    steps:
+      - prompt: "How do I automate security scanning in my CI/CD pipeline?"
+        assert:
+          - type: contains
+            value: "security"
+          - type: contains
+            value: "scanning"

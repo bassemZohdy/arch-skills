@@ -1,6 +1,6 @@
 ---
 name: arch-security
-description: Guide security architecture design and review. Use when performing threat modeling (STRIDE, DREAD), reviewing OWASP Top 10 compliance, designing authentication/authorization patterns, assessing security posture, or ensuring compliance with SOC 2, GDPR, HIPAA requirements.
+description: Design and review secure architectures with threat modeling, OWASP, authentication, authorization, and compliance. Use when assessing security posture, hardening APIs and systems, or reviewing SOC 2, GDPR, HIPAA, or PCI DSS requirements.
 ---
 
 # Security Architecture
@@ -113,6 +113,27 @@ Categorize what needs protection:
 | **HIPAA** | Health information | PHI protection, BAAs |
 | **PCI DSS** | Payment card data | Cardholder data protection |
 | **ISO 27001** | Information security | ISMS implementation |
+
+For control mapping, audit trails, and evidence collection, see **arch-compliance**.
+
+## Examples
+
+- Threat model a new public API using STRIDE and the OWASP Top 10.
+- Review authorization for a multi-tenant SaaS app.
+- Assess compliance requirements for a payment system handling card data.
+
+## Common Gotchas
+
+- Do not write generic "best practice" advice without naming the threat and the control.
+- Separate authentication from authorization when analyzing failures.
+- Treat logging and monitoring as security controls, not just operational concerns.
+
+## Related Skills
+
+- **arch-compliance** - Regulatory requirements and audit trails
+- **arch-api** - API-specific security controls
+- **arch-ai** - Prompt injection and AI-specific threats
+- **arch-devops** - Secrets management and pipeline security
 
 ## Security Review Template
 

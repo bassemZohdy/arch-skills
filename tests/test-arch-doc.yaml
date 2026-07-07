@@ -66,7 +66,7 @@ scenarios:
           - type: contains
             value: "graph"
           - type: contains
-          value: "subgraph"
+            value: "subgraph"
 
   - name: "generates component diagram"
     steps:
@@ -110,3 +110,12 @@ scenarios:
         assert:
           - type: contains
             value: "Mermaid"
+
+  - name: "automates documentation"
+    steps:
+      - prompt: "How do I automate API documentation generation from code?"
+        assert:
+          - type: contains
+            value: "documentation"
+          - type: contains
+            value: "automation"

@@ -1,10 +1,10 @@
 # Architecture Skills
 
-[![Tests](https://img.shields.io/badge/tests-210%20passing-brightgreen)]()
-[![Skills](https://img.shields.io/badge/skills-30-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-167-orange)]()
+[![Tests](https://img.shields.io/badge/tests-203%20passing-brightgreen)]()
+[![Skills](https://img.shields.io/badge/skills-29-blue)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-170-orange)]()
 
-A comprehensive collection of 30 Codex skills for software architecture documentation, review, validation, and governance. Works with 12 AI agent harnesses.
+A comprehensive collection of 29 Codex skills for software architecture documentation, review, validation, and governance. Works with 12 AI agent harnesses.
 
 ## Quick Start
 
@@ -33,7 +33,7 @@ python tests/test_skills.py
 | Kilo Code | `.kilo/skills/` |
 | MiMoCode | `.mimocode/skills/` |
 
-## Skills (30)
+## Skills (29)
 
 ### Core (5)
 arch-doc, arch-review, arch-fitness, arch-decision, arch-governance
@@ -47,11 +47,14 @@ arch-api, arch-cloud, arch-event, arch-ddd, arch-data, arch-metrics, arch-integr
 ### Frontend (1)
 arch-frontend
 
-### Operations (5)
-arch-observability, arch-migration, arch-deployment, arch-devops, arch-cost
+### Operations (4)
+arch-observability, arch-migration, arch-devops, arch-cost
 
-### Features & Automation (2)
-arch-features, arch-automation
+### Features (1)
+arch-features
+
+### AI (1)
+arch-ai
 
 ### NFR (3)
 arch-usability, arch-accessibility, arch-compliance
@@ -70,8 +73,8 @@ Use arch-perf for performance analysis
 
 ```
 arch-skills/
-├── skills/          # 30 skills (source of truth)
-├── tests/           # 210 structural tests, 167 scenarios
+├── skills/          # 29 skills (source of truth)
+├── tests/           # 373 total checks (203 structural, 170 scenarios)
 ├── scripts/         # Detection and sync scripts
 ├── docs/            # Documentation
 ├── README.md

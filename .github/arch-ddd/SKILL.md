@@ -150,6 +150,24 @@ class PricingService:
 | **Primitive Obsession** | Primitives instead of VOs | Create value objects |
 | **Hidden Bounded Context** | No clear boundaries | Define contexts |
 
+## Examples
+
+- Facilitate an Event Storming session to find bounded contexts in an insurance domain.
+- Split a god aggregate handling orders, inventory, and pricing into consistent boundaries.
+- Map context relationships between a new platform and a legacy billing system with an ACL.
+
+## Common Gotchas
+
+- Bounded contexts follow business language boundaries, not database or team org charts.
+- Large aggregates serialize writes and cause contention; keep them small around true invariants.
+- An anemic domain model with all logic in services loses the point of DDD.
+
+## Related Skills
+
+- **arch-microservices** - Bounded contexts as service boundaries
+- **arch-event** - Domain events and eventual consistency
+- **arch-patterns** - Clean/Hexagonal architectures that host the domain model
+
 ## DDD Review Template
 
 ```markdown

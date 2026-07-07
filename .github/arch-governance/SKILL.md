@@ -139,6 +139,24 @@ Systematic approach to architecture governance.
 | **Exception Management** | Manage exceptions |
 | **Reporting** | Compliance dashboards |
 
+## Examples
+
+- Set up an architecture board and review cadence for a 10-team engineering org.
+- Define an exception process for teams that cannot meet the database standard.
+- Build a compliance dashboard tracking standards adherence and architecture debt.
+
+## Common Gotchas
+
+- Governance that only says no becomes a bottleneck; pair standards with paved-road defaults.
+- Untracked exceptions silently become the de facto standard.
+- Manual review boards do not scale; automate repeatable checks with fitness functions.
+
+## Related Skills
+
+- **arch-fitness** - Automated enforcement of standards
+- **arch-decision** - Structured decision-making the board can ratify
+- **arch-review** - Review process the board consumes
+
 ## Governance Review Template
 
 ```markdown

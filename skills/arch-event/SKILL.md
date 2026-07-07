@@ -182,6 +182,24 @@ Event ID → Check if processed → Skip if yes
 - Transactional outbox
 - Consumer deduplication
 
+## Examples
+
+- Design an order fulfillment saga with compensation across payment and shipping services.
+- Introduce a transactional outbox to fix lost events between DB writes and publishes.
+- Plan event schema evolution for a topic with a dozen consumers.
+
+## Common Gotchas
+
+- Consumers must be idempotent; at-least-once delivery is the realistic default everywhere.
+- Event sourcing is a heavy commitment; do not adopt it just for an audit log.
+- Publishing an event and writing to the database without an outbox loses events on crashes.
+
+## Related Skills
+
+- **arch-ddd** - Domain events and Event Storming
+- **arch-microservices** - Service boundaries that events cross
+- **arch-resilience** - DLQs, retries, and failure isolation
+
 ## Event-Driven Review Template
 
 ```markdown

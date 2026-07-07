@@ -144,6 +144,24 @@ Source System → Ingestion → Processing → Storage → Consumption
 | **Data masking** | Hide sensitive values |
 | **Audit logging** | Track access |
 
+## Examples
+
+- Choose storage per data domain for an analytics-heavy SaaS product.
+- Design an ELT pipeline into a warehouse with data quality checks.
+- Classify data and define retention for a system holding PII.
+
+## Common Gotchas
+
+- Schema-on-read defers, not removes, the modeling work; someone still pays it at query time.
+- One database rarely fits all access patterns; but every extra store adds operational cost.
+- Data lineage retrofitted after an audit request is painful; capture it in the pipeline from day one.
+
+## Related Skills
+
+- **arch-event** - Streaming pipelines and CDC
+- **arch-compliance** - Retention, classification, and audit requirements
+- **arch-ai** - Embedding pipelines and training data
+
 ## Data Architecture Review Template
 
 ```markdown

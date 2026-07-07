@@ -27,7 +27,7 @@ Systematic approach to selecting and applying architecture patterns.
 | **Layered** | Horizontal layers (UI, Business, Data) | Traditional apps |
 | **Hexagonal** | Ports and adapters | Testable systems |
 | **Clean Architecture** | Concentric circles with dependencies inward | Complex business logic |
-| **Onion Architecture** | Similar to Clean, emphasizes domain |
+| **Onion Architecture** | Similar to Clean, emphasizes domain | Domain-centric systems |
 
 ### Behavioral Patterns
 
@@ -166,6 +166,24 @@ Input → [Filter 1] → [Filter 2] → [Filter 3] → Output
 | **Event Processing** | Event-Driven, CQRS |
 | **Distributed Systems** | Service Mesh, Saga |
 | **Legacy Integration** | Hexagonal, Adapter |
+
+## Examples
+
+- Choose between layered and hexagonal architecture for a new order service.
+- Introduce ports and adapters to make a legacy core testable.
+- Validate that a codebase actually follows its claimed clean architecture.
+
+## Common Gotchas
+
+- Patterns are trade-offs, not virtue; layers and indirection have a real cost in simple CRUD apps.
+- A pattern only half-applied (domain importing frameworks) gives the cost without the benefit.
+- Enforce the dependency rule with automated checks or it will erode (see arch-fitness).
+
+## Related Skills
+
+- **arch-ddd** - Domain model at the center of these patterns
+- **arch-fitness** - Enforcing pattern rules in CI
+- **arch-refactoring** - Migrating toward a target pattern
 
 ## Pattern Review Template
 

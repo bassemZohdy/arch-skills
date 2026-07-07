@@ -1,6 +1,6 @@
 ---
 name: arch-fitness
-description: Create and maintain architecture fitness functions - automated checks that verify architectural decisions are being followed. Use when setting up automated architecture validation, writing architecture unit tests, implementing architecture guardrails in CI/CD, or validating architectural constraints are maintained over time.
+description: Create architecture fitness functions, automated guardrails, and architecture automation. Use when encoding architectural decisions as CI/CD checks, dependency rules, runtime validations, architecture unit tests, or automating documentation generation and compliance checks that keep constraints enforced over time.
 ---
 
 # Architecture Fitness Functions
@@ -206,6 +206,32 @@ Add tests to your build pipeline.
 
 Set up alerts for fitness function failures.
 
+## Automating Other Architecture Concerns
+
+Fitness functions are one part of architecture automation. Automate adjacent concerns in the same pipeline:
+
+| Concern | Automation | Tools |
+|---------|------------|-------|
+| **Documentation** | Generate docs/diagrams from code and specs | OpenAPI Generator, SchemaSpy, Structurizr |
+| **Security** | Vulnerability and dependency scanning | Snyk, Trivy, npm audit |
+| **Monitoring** | Alert rules and health checks as code | Prometheus rules, CloudWatch alarms |
+| **Cost** | Budget alerts and right-sizing recommendations | AWS Budgets, Compute Optimizer (see arch-cost) |
+| **Policy** | Infrastructure policy as code | Open Policy Agent, Kyverno |
+
+Read `references/automation-reference.md` for detailed automation guidance.
+
+## Examples
+
+- Enforce that service-layer code does not import infrastructure packages.
+- Fail CI when critical dependency vulnerabilities are detected.
+- Verify that p95 latency stays below the agreed threshold in a benchmark run.
+
+## Common Gotchas
+
+- Keep checks deterministic and cheap enough to run continuously.
+- Tie each rule to a concrete architectural decision or ADR.
+- Use automated checks for repeatable rules; keep subjective review separate.
+
 ## Best Practices
 
 1. **Start Small** - Begin with most critical decisions
@@ -214,3 +240,10 @@ Set up alerts for fitness function failures.
 4. **Document Decisions** - Link fitness functions to ADRs
 5. **Review Regularly** - Update fitness functions as architecture evolves
 6. **Use as Guardrails** - Not punishment; help developers make good choices
+
+## Related Skills
+
+- **arch-devops** - CI/CD pipelines that host fitness functions
+- **arch-metrics** - Metrics that fitness functions assert thresholds on
+- **arch-decision** - Decisions that fitness functions enforce
+- **arch-governance** - Governance processes that fitness functions scale

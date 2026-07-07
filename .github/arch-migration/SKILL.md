@@ -120,6 +120,24 @@ Phase 4: Decommission → Remove legacy
 | Critical bugs | Toggle feature flag |
 | Complete failure | Full rollback |
 
+## Examples
+
+- Plan a strangler-fig migration of a legacy ERP module to services.
+- Design a dual-write-plus-backfill database migration with verification.
+- Run old and new billing engines in parallel and reconcile outputs before cutover.
+
+## Common Gotchas
+
+- Long-lived dual-write setups drift; add continuous reconciliation and a firm cutover date.
+- A migration without a tested rollback path is a one-way door taken blind.
+- Feature parity lists always miss undocumented behavior users depend on; parallel-run to find it.
+
+## Related Skills
+
+- **arch-refactoring** - Code-level restructuring within the migration
+- **arch-devops** - Deployment strategies for cutover
+- **arch-data** - Data movement and validation
+
 ## Migration Plan Template
 
 ```markdown

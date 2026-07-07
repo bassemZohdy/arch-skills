@@ -147,3 +147,21 @@ See `references/criteria-library.md` for reusable evaluation bundles:
 5. Be concise in conversation
 6. Never force a recommendation
 7. Verify your own math
+
+## Examples
+
+- Choose between PostgreSQL and DynamoDB for a new order service using a weighted matrix.
+- Run a build-vs-buy analysis for an internal feature-flag platform.
+- Document an expedited decision to adopt a logging library with a lightweight DAR.
+
+## Common Gotchas
+
+- Do not let one stakeholder's preferred option drive the criteria weights; set weights before scoring.
+- Overlapping criteria double-count the same concern and skew totals.
+- A close call (gap < 0.5) without a sensitivity check is a coin flip dressed as analysis.
+
+## Related Skills
+
+- **arch-doc** - ADR templates and documentation frameworks
+- **arch-fitness** - Encoding decisions as automated checks
+- **arch-governance** - Approval workflows and decision boards

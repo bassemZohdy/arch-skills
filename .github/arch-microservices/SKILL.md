@@ -142,6 +142,25 @@ CLOSED → (failures) → OPEN → (timeout) → HALF-OPEN
 | **Metrics** | Prometheus, Datadog |
 | **Service Health** | Health checks, readiness probes |
 
+## Examples
+
+- Decompose an e-commerce monolith along bounded contexts using the strangler fig.
+- Fix a distributed monolith where every deploy requires four services to release together.
+- Choose sync vs async communication per interaction in a new platform.
+
+## Common Gotchas
+
+- Services that must deploy together are a distributed monolith - the worst of both worlds.
+- Start with a modular monolith unless team scale demands independent deployment.
+- Synchronous call chains across services multiply latency and failure probability.
+
+## Related Skills
+
+- **arch-ddd** - Finding service boundaries
+- **arch-resilience** - Circuit breakers, retries, bulkheads
+- **arch-event** - Sagas and async communication
+- **arch-integration** - Gateways and service mesh
+
 ## Microservices Review Template
 
 ```markdown

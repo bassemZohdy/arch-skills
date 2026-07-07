@@ -1,6 +1,6 @@
 ---
 name: arch-test
-description: Guide test architecture and strategy. Use when designing test pyramids, implementing contract testing, planning integration tests, or establishing testing standards for architecture.
+description: Design test strategy, test pyramids, and verification standards. Use when planning unit, integration, contract, or end-to-end tests, or when reducing flakiness and setting quality gates for a system.
 ---
 
 # Test Architecture
@@ -180,6 +180,24 @@ Commit → Unit Tests → Build → Integration Tests → Deploy → E2E Tests
 | **Fragile Tests** | Break with changes | Stable selectors |
 | **Slow Tests** | Block CI pipeline | Parallelize, optimize |
 | **Flaky Tests** | Non-deterministic | Isolate, fix |
+
+## Examples
+
+- Define a test pyramid for a web app with a slow payment flow.
+- Add contract tests between order and shipping services.
+- Reduce flaky E2E coverage by moving logic into faster integration tests.
+
+## Common Gotchas
+
+- Do not over-rotate to E2E tests when unit or integration tests will catch the same behavior sooner.
+- Keep selectors and test data stable so refactors do not break healthy tests.
+- Separate contract tests from smoke tests; they answer different questions.
+
+## Related Skills
+
+- **arch-fitness** - Architecture tests as part of the suite
+- **arch-refactoring** - The safety net tests provide
+- **arch-devops** - Where the tests run in the pipeline
 
 ## Test Strategy Template
 

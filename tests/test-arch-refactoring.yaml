@@ -27,7 +27,7 @@ scenarios:
       - prompt: "When should I use the Extract Method refactoring?"
         assert:
           - type: contains
-          value: "Extract Method"
+            value: "Extract Method"
           - type: contains
             value: "method"
 

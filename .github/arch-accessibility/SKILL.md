@@ -190,6 +190,24 @@ function trapFocus(modal) {
 | VoiceOver | VO+Command+H | VO+A | VO+Command+Space |
 | JAWS | H (headings) | Insert+F5 | Tab |
 
+## Examples
+
+- Audit a signup flow for WCAG 2.2 AA and produce a prioritized fix list.
+- Make a custom dropdown fully keyboard- and screen-reader-operable.
+- Add automated axe-core checks to CI with manual screen reader spot checks.
+
+## Common Gotchas
+
+- Automated tools catch roughly a third of WCAG issues; manual keyboard and screen reader testing is mandatory.
+- ARIA misused is worse than no ARIA; prefer native semantic HTML first.
+- Accessibility bolted on before launch costs far more than building it into components.
+
+## Related Skills
+
+- **arch-usability** - Overall UX quality
+- **arch-frontend** - Component architecture where semantics live
+- **arch-compliance** - Legal requirements (ADA, EAA, Section 508)
+
 ## Accessibility Review Template
 
 ```markdown

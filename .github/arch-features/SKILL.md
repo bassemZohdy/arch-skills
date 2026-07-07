@@ -133,6 +133,24 @@ if (variant === 'control') {
 - [ ] Flag removed from code
 - [ ] Flag removed from config
 
+## Examples
+
+- Roll out a new checkout flow to 5% of users with automated rollback on error spikes.
+- Design a ring-based rollout (internal, beta, GA) for a risky feature.
+- Audit and remove stale feature flags older than two quarters.
+
+## Common Gotchas
+
+- Stale flags are technical debt with combinatorial test cost; schedule cleanup at creation time.
+- Flags evaluated client-side leak unreleased features to anyone reading the bundle.
+- A flag guarding a schema change does not make the migration reversible by itself.
+
+## Related Skills
+
+- **arch-devops** - Decoupling deploy from release
+- **arch-observability** - Measuring rollout health
+- **arch-test** - Testing both flag states
+
 ## Feature Review Template
 
 ```markdown

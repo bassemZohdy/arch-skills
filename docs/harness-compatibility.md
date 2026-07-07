@@ -55,7 +55,7 @@ Use the unified setup script (recommended):
 python scripts/setup_unified.py
 ```
 
-This creates symlinks from each tool's expected location to the central `skills/` directory. Changes to `skills/` are immediately visible to all tools.
+This creates symlinks for directory-based harnesses and writes `.github/copilot-instructions.md` for GitHub Copilot. Changes to `skills/` are immediately visible to all tools that use the shared directory.
 
 Or use platform-specific scripts:
 

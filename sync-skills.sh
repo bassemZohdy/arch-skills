@@ -8,7 +8,10 @@ DESTINATION="${HOME}/.codex/skills"
 echo "Syncing skills to ${DESTINATION}..."
 
 mkdir -p "${DESTINATION}"
-cp -r "${SOURCE}/"* "${DESTINATION}/"
+find "${SOURCE}" -mindepth 1 -maxdepth 1 ! -name 'copilot-instructions.md' -print0 | \
+  while IFS= read -r -d '' item; do
+    cp -r "${item}" "${DESTINATION}/"
+  done
 
 echo "Done! Installed skills:"
 ls -d "${DESTINATION}"/arch-* 2>/dev/null | xargs -I {} basename {} | sed 's/^/  - /'

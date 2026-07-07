@@ -20,6 +20,8 @@ Systematic approach to designing cloud-native systems.
 ## Related Skills
 
 - **Migration planning**: See `arch-migration` for legacy modernization, strangler fig, rollback strategies
+- **DevOps & deployment**: See `arch-devops` for IaC, CI/CD, Kubernetes, and deployment strategies
+- **Cost optimization**: See `arch-cost` for FinOps practices and cost governance in depth
 - **Observability**: See `arch-observability` for logging, metrics, tracing, alerting
 - **Data patterns**: See `arch-data` for data modeling, pipelines, governance
 - **Performance**: See `arch-perf` for caching, capacity planning, load testing
@@ -107,6 +109,18 @@ Systematic approach to designing cloud-native systems.
 | Right-sizing | 20-40% | Low |
 | Auto-scaling | 10-30% | Medium |
 | Storage tiering | 30-50% | Low |
+
+## Examples
+
+- Run a Well-Architected review of an AWS workload before a compliance audit.
+- Choose between serverless and containers for a spiky background workload.
+- Design a hybrid architecture keeping regulated data on-premises.
+
+## Common Gotchas
+
+- Cloud-agnostic abstractions cost real engineering effort; only pay for portability you actually need.
+- Lift-and-shift without re-architecting usually raises costs instead of lowering them.
+- Egress fees and cross-AZ traffic are the silent budget killers.
 
 ## Cloud Review Template
 

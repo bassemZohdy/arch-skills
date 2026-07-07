@@ -153,6 +153,24 @@ Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 | **Dependency-Cruiser** | JS/TS dependency analysis | JS/TS |
 | **Pydeps** | Python dependency analysis | Python |
 
+## Examples
+
+- Baseline complexity and coupling metrics before a large refactor.
+- Find modules in the zone of pain using instability and abstractness.
+- Set up a debt score trend dashboard for quarterly architecture reviews.
+
+## Common Gotchas
+
+- Metrics gamed as targets stop measuring health (Goodhart's law); use them as signals, not KPIs.
+- Absolute thresholds vary by language and domain; trends matter more than snapshots.
+- High coverage with weak assertions is still test debt; pair coverage with mutation score.
+
+## Related Skills
+
+- **arch-fitness** - Turning metric thresholds into CI gates
+- **arch-refactoring** - Acting on what the metrics reveal
+- **arch-review** - Metrics as evidence in reviews
+
 ## Metrics Review Template
 
 ```markdown

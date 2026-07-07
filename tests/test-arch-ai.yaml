@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-ai
+
+scenarios:
+  - name: "designs RAG pipeline"
+    steps:
+      - prompt: "Design a RAG pipeline for answering questions over our internal documentation."
+        assert:
+          - type: contains
+            value: "chunk"
+          - type: contains
+            value: "embedding"
+          - type: contains
+            value: "retriev"
+
+  - name: "recommends against unnecessary agents"
+    steps:
+      - prompt: "I want to build a multi-agent system to classify support tickets into 5 categories. What architecture do you recommend?"
+        assert:
+          - type: contains
+            value: "direct prompting"
+
+  - name: "addresses prompt injection"
+    steps:
+      - prompt: "What guardrails do I need for an LLM agent that can read user-uploaded documents and call internal APIs?"
+        assert:
+          - type: contains
+            value: "prompt injection"
+          - type: contains
+            value: "permission"
+
+  - name: "designs evaluation strategy"
+    steps:
+      - prompt: "How should I evaluate the quality of my LLM-powered summarization feature before and after deployment?"
+        assert:
+          - type: contains
+            value: "eval"
+          - type: contains
+            value: "golden"
+
+  - name: "optimizes inference cost"
+    steps:
+      - prompt: "Our LLM API bill is too high. What architectural levers can reduce inference cost?"
+        assert:
+          - type: contains
+            value: "cach"
+          - type: contains
+            value: "model"

@@ -8,6 +8,7 @@ OpenHands, OpenCode, Pi, Cline, Kilo Code, MiMoCode (12 harnesses total)
 import os
 import sys
 import platform
+import shutil
 from pathlib import Path
 
 # Supported harnesses and their skill paths
@@ -42,7 +43,7 @@ HARNESSES = {
             Path.cwd() / ".github" / "copilot-instructions.md",
             Path.home() / ".github" / "copilot-instructions.md",
         ],
-        "command": "copilot",
+        "command": None,
     },
     "gemini": {
         "name": "Gemini CLI",
@@ -115,9 +116,12 @@ def detect_harnesses():
     """Detect available harnesses on the system."""
     available = []
     for harness_id, config in HARNESSES.items():
-        # Check if command exists
-        import shutil
-        if shutil.which(config["command"]):
+        command = config.get("command")
+        if command and shutil.which(command):
+            available.append(harness_id)
+        elif harness_id == "copilot" and any(path.exists() for path in config["paths"]):
+            available.append(harness_id)
+        elif not command and any(path.exists() for path in config["paths"]):
             available.append(harness_id)
     return available
 

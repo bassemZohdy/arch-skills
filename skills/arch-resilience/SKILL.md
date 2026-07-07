@@ -155,6 +155,24 @@ Request → Bulkhead → Timeout → Service
 - [ ] Verify recovery
 - [ ] Document findings
 
+## Examples
+
+- Add circuit breakers and fallbacks around a flaky third-party payment gateway.
+- Design retry policies with exponential backoff and jitter for a message consumer.
+- Run a game day that kills a service instance and verifies recovery.
+
+## Common Gotchas
+
+- Retries without idempotency create duplicate side effects (double charges, double emails).
+- Retry storms amplify outages; combine retries with circuit breakers and jitter.
+- Timeouts must shrink down the call chain; equal timeouts everywhere guarantee cascading failures.
+
+## Related Skills
+
+- **arch-perf** - Latency budgets that timeouts must respect
+- **arch-observability** - Detecting failures the patterns must handle
+- **arch-event** - Dead letter queues and idempotent consumers
+
 ## Resilience Review Template
 
 ```markdown

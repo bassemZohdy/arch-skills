@@ -27,7 +27,7 @@ Systematic approach to code and architecture refactoring.
 | **God Class** | Too many responsibilities | Extract Class |
 | **Feature Envy** | Uses another class's data more than own | Move Method |
 | **Data Clumps** | Same data groups in multiple places | Extract Class |
-| **Long Parameter List** | Too many parameters | Introduce Parameter Object |
+| **Divergent Change** | One class changed for many reasons | Extract Class |
 | **Switch Statements** | Complex conditionals | Replace with Polymorphism |
 
 ### Method-Level Smells
@@ -54,7 +54,7 @@ Systematic approach to code and architecture refactoring.
 
 | Smell | Description | Refactoring |
 |-------|-------------|-------------|
-| **Modular Monolith** | Well-structured monolith | Consider microservices |
+| **Big Ball of Mud** | No discernible structure | Extract modules incrementally |
 | **God Package** | Package with too many classes | Extract modules |
 | **Circular Dependencies** | A depends on B, B depends on A | Introduce interface |
 | **Tangled Dependencies** | Spaghetti of dependencies | Apply Dependency Inversion |
@@ -153,6 +153,24 @@ Legacy System → Facade → New Components
 - [ ] Code review after refactoring
 - [ ] Documentation updated
 - [ ] No new functionality added
+
+## Examples
+
+- Break up a god class handling orders, pricing, and notifications.
+- Plan an incremental strangler-fig refactor of a tangled module with tests as a safety net.
+- Remove circular dependencies between two packages by extracting an interface.
+
+## Common Gotchas
+
+- Never refactor and change behavior in the same commit; tests must stay green throughout.
+- Refactoring without characterization tests on legacy code is just rewriting with extra risk.
+- Big-bang refactors stall; ship small reversible steps that each leave the build releasable.
+
+## Related Skills
+
+- **arch-metrics** - Measuring smells and tracking improvement
+- **arch-migration** - Larger-scale system modernization
+- **arch-test** - The safety net refactoring depends on
 
 ## Refactoring Review Template
 

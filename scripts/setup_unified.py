@@ -9,12 +9,13 @@ import sys
 import platform
 from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
 # Tool skill locations (where each tool expects to find skills)
 TOOL_PATHS = {
     "claude-code": Path.home() / ".claude" / "skills",
     "codex": Path.home() / ".codex" / "skills",
     "cursor": Path.cwd() / ".cursor" / "rules",
-    "copilot": Path.cwd() / ".github",
     "gemini": Path.home() / ".gemini" / "skills",
     "junie": Path.cwd() / ".agents" / "skills",
     "openhands": Path.cwd() / ".agents" / "skills",
@@ -24,6 +25,8 @@ TOOL_PATHS = {
     "kilocode": Path.home() / ".kilo" / "skills",
     "mimocode": Path.home() / ".mimocode" / "skills",
 }
+
+COPILOT_INSTRUCTIONS = PROJECT_ROOT / ".github" / "copilot-instructions.md"
 
 
 def create_symlink(source: Path, target: Path, force: bool = False):
@@ -55,6 +58,28 @@ def create_symlink(source: Path, target: Path, force: bool = False):
         return False
 
 
+def ensure_copilot_instructions(path: Path, force: bool = False):
+    """Create the GitHub Copilot instructions file without touching .github itself."""
+    content = """# Copilot Instructions
+
+This repository stores Codex skills in `skills/` as the source of truth.
+
+When assisting in this repo:
+- Prefer the most specific skill under `skills/` for the task.
+- Use `README.md` for the high-level repository map.
+- Use `python tests/test_skills.py` to validate skill structure after edits.
+
+The shared directory is intentionally separate from this file, so do not replace `.github/` with a directory link.
+"""
+
+    if path.exists() and not force:
+        return True
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return True
+
+
 def setup_unified_skills(skills_dir: Path, force: bool = False):
     """Set up symlinks from tool locations to central skills directory."""
     print("=" * 60)
@@ -73,6 +98,14 @@ def setup_unified_skills(skills_dir: Path, force: bool = False):
                 print(f"  [SKIP] {tool_name}: {tool_path}")
         except Exception as e:
             print(f"  [WARN] {tool_name}: {e}")
+
+    try:
+        if ensure_copilot_instructions(COPILOT_INSTRUCTIONS, force):
+            print(f"  [OK] copilot: {COPILOT_INSTRUCTIONS}")
+        else:
+            print(f"  [SKIP] copilot: {COPILOT_INSTRUCTIONS}")
+    except Exception as e:
+        print(f"  [WARN] copilot: {e}")
     
     print()
     print("=" * 60)

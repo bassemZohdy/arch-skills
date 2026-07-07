@@ -189,6 +189,24 @@ IF disk_usage > 90% THEN alert:high
 | **Errors** | Failure rate |
 | **Saturation** | How full is service |
 
+## Examples
+
+- Design an OpenTelemetry rollout across a dozen services with trace propagation.
+- Define RED-method dashboards and alert thresholds for a payment service.
+- Cut log volume costs with sampling without losing incident forensics.
+
+## Common Gotchas
+
+- Alert on symptoms users feel (SLO burn), not on every internal metric - alert fatigue kills response.
+- Logs without trace/correlation IDs make distributed debugging archaeology.
+- Unbounded label cardinality (user IDs in metric labels) melts time-series databases.
+
+## Related Skills
+
+- **arch-resilience** - Failures observability must surface
+- **arch-perf** - SLOs the dashboards track
+- **arch-devops** - Deployment health and pipeline integration
+
 ## Observability Review Template
 
 ```markdown

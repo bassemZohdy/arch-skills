@@ -50,3 +50,12 @@ scenarios:
             value: "metrics"
           - type: contains
             value: "traces"
+
+  - name: "creates monitoring automation"
+    steps:
+      - prompt: "How do I automate monitoring and alerting for my applications?"
+        assert:
+          - type: contains
+            value: "monitoring"
+          - type: contains
+            value: "alerting"

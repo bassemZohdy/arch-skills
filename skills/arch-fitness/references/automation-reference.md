@@ -7,7 +7,7 @@
 | **Documentation** | arch-doc | Generate docs from code/specs |
 | **Review** | arch-review | Automated review checks |
 | **Testing** | arch-test, arch-fitness | Test automation |
-| **Deployment** | arch-deployment, arch-devops | CI/CD pipelines |
+| **Deployment** | arch-devops | CI/CD pipelines |
 | **Infrastructure** | arch-cloud, arch-devops | IaC automation |
 | **Monitoring** | arch-observability | Alert automation |
 | **Cost** | arch-cost | Cost optimization automation |

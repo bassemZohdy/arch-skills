@@ -20,7 +20,7 @@ Systematic approach to designing system integrations.
 
 ## Step 1: Integration Patterns
 
-### synchronous Patterns
+### Synchronous Patterns
 
 | Pattern | Description | Use Case |
 |---------|-------------|----------|
@@ -129,6 +129,24 @@ Systematic approach to designing system integrations.
 | **Throughput** | Messages per second |
 | **Error Rate** | Failed integrations |
 | **Availability** | Uptime of integration points |
+
+## Examples
+
+- Design an API gateway strategy with a BFF per client type.
+- Evaluate whether a service mesh is justified for a 12-service platform.
+- Bridge a legacy SOAP system into an event-driven platform with a translator.
+
+## Common Gotchas
+
+- A service mesh adds real operational complexity; below ~10 services, libraries usually suffice.
+- Point-to-point integrations grow quadratically; mediate once pairs exceed a handful.
+- Schema changes without a registry and compatibility rules break consumers silently.
+
+## Related Skills
+
+- **arch-api** - Contract design for the integrated surfaces
+- **arch-event** - Async messaging patterns
+- **arch-microservices** - Service-to-service communication
 
 ## Integration Review Template
 

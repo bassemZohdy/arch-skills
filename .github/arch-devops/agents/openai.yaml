@@ -1,4 +1,4 @@
 interface:
-  display_name: "DevOps Architecture"
-  short_description: "IaC, Kubernetes, GitOps, CI/CD"
-  default_prompt: "Use -devops for DevOps"
+  display_name: "DevOps & Deployment"
+  short_description: "IaC, Kubernetes, GitOps, CI/CD, deployment strategies, releases"
+  default_prompt: "Use arch-devops for DevOps and deployment"

@@ -141,6 +141,24 @@ Systematic approach to regulatory compliance and auditability.
 | **Confidential** | Sensitive data | Encryption, audit |
 | **Restricted** | Highly sensitive | Strict controls, MFA |
 
+## Examples
+
+- Map GDPR data subject rights to concrete features (export, deletion, consent).
+- Design an audit trail that satisfies SOC 2 without logging PII into it.
+- Scope PCI DSS by isolating cardholder data behind a tokenization boundary.
+
+## Common Gotchas
+
+- Logging sensitive data into audit trails creates a new compliance problem inside the solution.
+- GDPR deletion must reach backups and downstream copies, not just the primary database.
+- Compliance scope grows with data spread; minimize where regulated data lives to shrink audits.
+
+## Related Skills
+
+- **arch-security** - Controls that compliance frameworks require
+- **arch-data** - Classification, retention, lineage
+- **arch-governance** - Processes that keep compliance continuous
+
 ## Compliance Review Template
 
 ```markdown

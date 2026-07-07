@@ -54,7 +54,7 @@ Comprehensive best practices compiled from industry standards and research.
 |-------|-------------------|-----------|
 | arch-observability | Three pillars, RED/USE methods, OpenTelemetry | Google SRE |
 | arch-migration | Strangler fig, rollback strategies, risk assessment | Martin Fowler |
-| arch-deployment | Blue-green, canary, GitOps, immutable artifacts | DORA metrics |
+| arch-devops | Blue-green, canary, GitOps, immutable artifacts | DORA metrics |
 
 ### Non-Functional Requirements
 

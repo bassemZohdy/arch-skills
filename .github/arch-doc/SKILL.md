@@ -1,6 +1,6 @@
 ---
 name: arch-doc
-description: Generate comprehensive software architecture documentation with diagrams following industry frameworks (C4 Model, arc42, TOGAF, ISO 42010). Use when creating architecture documentation from scratch, documenting an existing system, generating architecture diagrams (Mermaid, PlantUML, Draw.io), writing Architecture Decision Records (ADRs), or producing architecture design documents for reviews and stakeholder communication.
+description: Create software architecture documentation, diagrams, and ADRs for systems and features. Use when documenting an existing system or new design, generating C4, arc42, TOGAF, or ISO 42010 views, or producing Mermaid, PlantUML, or Draw.io diagrams for reviews and stakeholder communication.
 ---
 
 # Architecture Documentation Generator
@@ -157,7 +157,7 @@ For each significant architectural decision, create an ADR. Use the MADR templat
 
 **File naming:** `{number}-{verb-phrase}.md` (e.g., `001-choose-database.md`)
 
-Read `references/adr-template.md` for complete templates and team practices.
+Read `references/adr-template.md` for complete templates and team practices. For structured trade-off analysis behind a decision (weighted scoring, sensitivity checks), use **arch-decision**.
 
 ## Step 6: Review & Refine
 
@@ -168,6 +168,18 @@ Checklist:
 - [ ] Quality attributes addressed
 - [ ] External dependencies identified
 - [ ] Constraints and assumptions documented
+
+## Examples
+
+- Create a C4 context diagram for a customer onboarding platform.
+- Generate an ADR for choosing PostgreSQL over MySQL.
+- Produce an arc42 overview for a microservices platform with multiple teams.
+
+## Common Gotchas
+
+- Keep each view focused; do not cram context, container, and component detail into one diagram.
+- Use references for long explanations and examples instead of expanding `SKILL.md` indefinitely.
+- Match the framework to the audience; do not force TOGAF or ISO 42010 when a simpler C4 set is enough.
 
 ## Output Formats
 

@@ -1,6 +1,6 @@
 ---
 name: arch-review
-description: Orchestrate architecture reviews by coordinating specialized review dimensions. Use when performing comprehensive architecture reviews, evaluating system quality, preparing for architecture board reviews, or assessing overall architecture health. Delegates to specialized skills for detailed evaluation.
+description: Review software architecture across patterns, quality attributes, and technical debt. Use when performing architecture reviews, preparing board-level assessments, or evaluating system health, with specialized skills for security, performance, resilience, data, API, testing, observability, and migration.
 ---
 
 # Architecture Review
@@ -47,6 +47,8 @@ Select review dimensions based on context:
 | **Migration** | arch-migration | Legacy modernization |
 | **Metrics** | arch-metrics | Code health assessment |
 | **Fitness Functions** | arch-fitness | Automated validation |
+| **DevOps & Deployment** | arch-devops | CI/CD and release health |
+| **AI Systems** | arch-ai | Systems embedding LLMs or agents |
 
 ## Step 3: Collect Evidence
 
@@ -164,6 +166,18 @@ Create prioritized remediation plan:
 2. **Short-term** (High issues): Plan for next quarter
 3. **Medium-term** (Medium issues): Add to backlog
 4. **Long-term** (Low issues): Consider during major refactors
+
+## Examples
+
+- Review a monolith with high coupling, slow tests, and missing observability.
+- Assess a microservices platform for resilience, security, and deployment risk.
+- Prepare a concise architecture board summary with evidence-backed findings.
+
+## Common Gotchas
+
+- Tie every finding to evidence and impact; do not report symptoms without consequences.
+- Separate implementation bugs from architectural issues unless the design causes the bug.
+- Record confidence and effort so remediation can be prioritized without re-reading the full report.
 
 ## Review Types
 

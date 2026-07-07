@@ -54,7 +54,7 @@ Systematic approach to designing usable systems.
 | 7 | **Flexibility and Efficiency of Use** | Shortcuts for experts |
 | 8 | **Aesthetic and Minimalist Design** | Only essential info |
 | 9 | **Help Users Recognize and Recover from Errors** | Clear error messages |
-| 10 | **Help and Documentation** | Provide help when needed
+| 10 | **Help and Documentation** | Provide help when needed |
 
 ### Severity Rating
 
@@ -136,6 +136,23 @@ Systematic approach to designing usable systems.
 4. Task 2: [Description] (10 min)
 5. Debrief (5 min)
 ```
+
+## Examples
+
+- Run a heuristic evaluation of a checkout flow against Nielsen's 10 heuristics.
+- Restructure a settings area's information architecture based on card sorting.
+- Define task success and SUS targets before a redesign.
+
+## Common Gotchas
+
+- Five users find most usability problems; do not wait for a large study to fix obvious issues.
+- What users say and what they do differ; observe behavior, not just opinions.
+- Severity without frequency misprioritizes: a minor issue hit by everyone often beats a major edge case.
+
+## Related Skills
+
+- **arch-accessibility** - Usable for people with disabilities
+- **arch-frontend** - Component and interaction implementation
 
 ## Usability Review Template
 

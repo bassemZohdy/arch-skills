@@ -4,10 +4,10 @@
 
 | Metric | Count |
 |--------|-------|
-| Skills | 30 |
-| Structural Tests | 210 |
-| Skillprobe Scenarios | 172 |
-| Total Tests | 382 |
+| Skills | 29 |
+| Structural Tests | 203 |
+| Skillprobe Scenarios | 170 |
+| Total Tests | 373 |
 
 ## Skills Coverage
 
@@ -16,8 +16,8 @@
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
 | arch-doc | 7 | 11 | 7 | 12 |
-| arch-review | 5 | 1 | 7 | 9 |
-| arch-fitness | 1 | 1 | 7 | 9 |
+| arch-review | 5 | 1 | 7 | 8 |
+| arch-fitness | 2 | 1 | 7 | 10 |
 | arch-decision | 1 | 1 | 7 | 9 |
 | arch-governance | 1 | 1 | 7 | 5 |
 
@@ -51,14 +51,13 @@
 |-------|------------|--------|-------|-----------|
 | arch-frontend | 1 | 1 | 7 | 5 |
 
-### Operations (5 skills)
+### Operations (4 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-observability | 1 | 1 | 7 | 5 |
+| arch-observability | 1 | 1 | 7 | 6 |
 | arch-migration | 1 | 1 | 7 | 5 |
-| arch-deployment | 1 | 1 | 7 | 5 |
-| arch-devops | 1 | 1 | 7 | 5 |
+| arch-devops | 3 | 1 | 7 | 10 |
 | arch-cost | 1 | 1 | 7 | 5 |
 
 ### Feature Management (1 skill)
@@ -67,11 +66,11 @@
 |-------|------------|--------|-------|-----------|
 | arch-features | 1 | 1 | 7 | 5 |
 
-### Automation (1 skill)
+### AI (1 skill)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-automation | 1 | 1 | 7 | 5 |
+| arch-ai | 1 | 1 | 7 | 5 |
 
 ### NFR (3 skills)
 
@@ -93,7 +92,7 @@
 | Maintainability | arch-metrics | arch-doc | ✅ 100% |
 | Testability | arch-test | arch-fitness | ✅ 100% |
 | Observability | arch-observability | arch-metrics | ✅ 100% |
-| Deployability | arch-deployment | arch-cloud | ✅ 100% |
+| Deployability | arch-devops | arch-cloud | ✅ 100% |
 | Usability | arch-usability | arch-accessibility | ✅ 100% |
 | Accessibility | arch-accessibility | arch-usability | ✅ 100% |
 | Compliance | arch-compliance | arch-security | ✅ 100% |
@@ -124,8 +123,8 @@
 ├───────────┬───────────┬───────────┬───────────┬───────────────┤
 │ Security  │ Perf      │ Resilience│ Test      │ Data          │
 │ API       │ Cloud     │ Event     │ DDD       │ Migration     │
-│ Observability │ Deployment │ Usability │ Accessibility │ Compliance │
+│ Observability │ Usability │ Accessibility │ Compliance │ AI │
 │ Integration │ Microservices │ DevOps │ Cost │ Governance     │
-│ Patterns  │ Refactoring │ Frontend │ Features │ Automation    │
+│ Patterns  │ Refactoring │ Frontend │ Features │ Fitness       │
 └───────────┴───────────┴───────────┴───────────┴───────────────┘
 ```

@@ -7,7 +7,7 @@ Codex skills for software architecture: documentation generation (`arch-doc`), r
 ## Key Commands
 
 ```powershell
-# Validate skill structure (210 tests, fast, no LLM needed)
+# Validate skill structure (203 tests, fast, no LLM needed)
 python tests/test_skills.py
 
 # Sync skills to Codex install location
@@ -38,7 +38,7 @@ skillprobe run tests/test-arch-doc.yaml --harness claude-code
 ## Validation
 
 After editing any skill:
-1. `python tests/test_skills.py` — must pass all 210 checks
+1. `python tests/test_skills.py` — must pass all 203 checks
 2. `.\sync-skills.ps1` — sync to Codex
 
 For end-to-end testing (optional, needs Claude Code CLI):

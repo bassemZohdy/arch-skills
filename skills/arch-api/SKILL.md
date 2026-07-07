@@ -176,6 +176,24 @@ message User {
 - [ ] Linting rules configured
 - [ ] Deprecation policy defined
 
+## Examples
+
+- Design a REST API for a multi-tenant invoicing system with cursor pagination.
+- Choose between REST and gRPC for internal service-to-service calls.
+- Define a deprecation policy and versioning strategy for a public API.
+
+## Common Gotchas
+
+- Breaking changes hide in behavior, not just schemas: stricter validation or changed defaults break clients too.
+- Offset pagination degrades on large tables; prefer cursor-based for growing datasets.
+- Do not expose internal domain models directly; API contracts outlive implementations.
+
+## Related Skills
+
+- **arch-integration** - Gateways and cross-system contracts
+- **arch-security** - AuthN/AuthZ and rate limiting for APIs
+- **arch-event** - AsyncAPI and event contracts
+
 ## API Design Review Template
 
 ```markdown

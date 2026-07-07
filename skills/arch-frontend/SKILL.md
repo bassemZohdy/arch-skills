@@ -104,6 +104,24 @@ Systematic approach to frontend architecture.
 | **E2E** | User flows | Playwright, Cypress |
 | **Visual** | UI consistency | Chromatic, Percy |
 
+## Examples
+
+- Decide between a monolithic SPA and micro frontends for a 6-team product org.
+- Design a state management approach separating server cache from UI state.
+- Set performance budgets and code-splitting boundaries for a slow dashboard.
+
+## Common Gotchas
+
+- Micro frontends solve an organizational problem; below several teams they only add complexity.
+- Server state belongs in a query cache (React Query/SWR), not in global UI state stores.
+- Shared dependencies across micro frontends reintroduce the coupling you tried to remove.
+
+## Related Skills
+
+- **arch-usability** - UX heuristics and information architecture
+- **arch-accessibility** - WCAG and assistive technology support
+- **arch-perf** - Performance budgets and caching
+
 ## Frontend Review Template
 
 ```markdown
