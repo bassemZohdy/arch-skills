@@ -1,10 +1,10 @@
 # Architecture Skills
 
-[![Tests](https://img.shields.io/badge/tests-203%20passing-brightgreen)]()
-[![Skills](https://img.shields.io/badge/skills-29-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-170-orange)]()
+[![Tests](https://img.shields.io/badge/tests-224%20passing-brightgreen)]()
+[![Skills](https://img.shields.io/badge/skills-32-blue)]()
+[![Scenarios](https://img.shields.io/badge/scenarios-185-orange)]()
 
-A comprehensive collection of 29 Codex skills for software architecture documentation, review, validation, and governance. Works with 12 AI agent harnesses.
+A comprehensive collection of 32 Codex skills for software architecture documentation, review, validation, and governance. Works with 12 AI agent harnesses.
 
 ## Quick Start
 
@@ -33,10 +33,16 @@ python tests/test_skills.py
 | Kilo Code | `.kilo/skills/` |
 | MiMoCode | `.mimocode/skills/` |
 
-## Skills (29)
+## Skills (32)
+
+### Orchestration (1)
+solution-architecture-orchestrator
 
 ### Core (5)
 arch-doc, arch-review, arch-fitness, arch-decision, arch-governance
+
+### Design Fundamentals (2)
+arch-principles, arch-antipatterns
 
 ### Technical (4)
 arch-security, arch-perf, arch-resilience, arch-test
@@ -73,8 +79,8 @@ Use arch-perf for performance analysis
 
 ```
 arch-skills/
-├── skills/          # 29 skills (source of truth)
-├── tests/           # 373 total checks (203 structural, 170 scenarios)
+├── skills/          # 32 skills (source of truth)
+├── tests/           # 409 total checks (224 structural, 185 scenarios)
 ├── scripts/         # Detection and sync scripts
 ├── docs/            # Documentation
 ├── README.md

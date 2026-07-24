@@ -154,6 +154,10 @@ CLOSED → (failures) → OPEN → (timeout) → HALF-OPEN
 - Start with a modular monolith unless team scale demands independent deployment.
 - Synchronous call chains across services multiply latency and failure probability.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-ddd** - Finding service boundaries

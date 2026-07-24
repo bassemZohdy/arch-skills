@@ -128,6 +128,10 @@ For control mapping, audit trails, and evidence collection, see **arch-complianc
 - Separate authentication from authorization when analyzing failures.
 - Treat logging and monitoring as security controls, not just operational concerns.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-compliance** - Regulatory requirements and audit trails

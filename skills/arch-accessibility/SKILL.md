@@ -202,6 +202,10 @@ function trapFocus(modal) {
 - ARIA misused is worse than no ARIA; prefer native semantic HTML first.
 - Accessibility bolted on before launch costs far more than building it into components.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-usability** - Overall UX quality

@@ -162,6 +162,10 @@ class PricingService:
 - Large aggregates serialize writes and cause contention; keep them small around true invariants.
 - An anemic domain model with all logic in services loses the point of DDD.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-microservices** - Bounded contexts as service boundaries

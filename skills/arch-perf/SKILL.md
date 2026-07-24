@@ -136,6 +136,10 @@ Safety Margin = 20-50% depending on criticality
 - Caching without an invalidation strategy trades a latency bug for a correctness bug.
 - Load tests against staging with production-unlike data give false confidence.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-resilience** - Timeouts and circuit breakers that bound latency

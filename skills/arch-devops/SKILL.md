@@ -1,6 +1,6 @@
 ---
 name: arch-devops
-description: Guide DevOps, deployment, and release engineering architecture. Use when designing CI/CD pipelines, choosing deployment strategies (blue-green, canary, rolling), writing Infrastructure as Code, setting up Kubernetes, implementing GitOps, planning environments, or establishing release management and rollback processes.
+description: Design DevOps, deployment, and release engineering architecture. Use when designing CI/CD pipelines, choosing deployment strategies (blue-green, canary, rolling), writing Infrastructure as Code, setting up Kubernetes, implementing GitOps, planning environments, or establishing release management and rollback processes.
 ---
 
 # DevOps & Deployment Architecture
@@ -234,6 +234,10 @@ Measure delivery performance with the four DORA metrics:
 - Blue-green doubles infrastructure cost and does not solve stateful cutover by itself.
 - Staging that diverges from production hides deployment bugs; enforce parity through IaC.
 - A canary without automated health-based rollback is just a slow big-bang release.
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 
 ## Related Skills
 

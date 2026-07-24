@@ -2,12 +2,12 @@
 
 ## What This Repo Is
 
-Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), and 26 more specialized skills covering all architecture concerns. Skills are Markdown + YAML + templates — no compiled code.
+Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`solution-architecture-orchestrator`), and 27 more specialized skills covering all architecture concerns. Skills are Markdown + YAML + templates — no compiled code.
 
 ## Key Commands
 
 ```powershell
-# Validate skill structure (203 tests, fast, no LLM needed)
+# Validate skill structure (224 tests, fast, no LLM needed)
 python tests/test_skills.py
 
 # Sync skills to Codex install location
@@ -38,7 +38,7 @@ skillprobe run tests/test-arch-doc.yaml --harness claude-code
 ## Validation
 
 After editing any skill:
-1. `python tests/test_skills.py` — must pass all 203 checks
+1. `python tests/test_skills.py` — must pass all 224 checks
 2. `.\sync-skills.ps1` — sync to Codex
 
 For end-to-end testing (optional, needs Claude Code CLI):

@@ -193,6 +193,10 @@ Commit → Unit Tests → Build → Integration Tests → Deploy → E2E Tests
 - Keep selectors and test data stable so refactors do not break healthy tests.
 - Separate contract tests from smoke tests; they answer different questions.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-fitness** - Architecture tests as part of the suite

@@ -149,6 +149,10 @@ Systematic approach to designing usable systems.
 - What users say and what they do differ; observe behavior, not just opinions.
 - Severity without frequency misprioritizes: a minor issue hit by everyone often beats a major edge case.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-accessibility** - Usable for people with disabilities

@@ -9,6 +9,16 @@ Automated checks that verify architectural decisions are maintained.
 
 **Source:** [Building Evolutionary Architectures](https://www.oreilly.com/library/view/building-evolutionary-architectures/9781492043447/) by Ford, Parsons, Kua
 
+## Workflow
+
+```
+1. Identify Decisions → Extract automatable rules from ADRs
+2. Choose Approach → Pick static/dynamic, atomic/holistic validation
+3. Implement Tests → Write the checks (ArchUnit, benchmarks, scans)
+4. Integrate into CI/CD → Run every commit/build
+5. Monitor and Alert → Surface failures, review and evolve rules
+```
+
 ## What Are Fitness Functions?
 
 Fitness functions are objective, automated checks that evaluate architectural characteristics. They:
@@ -174,9 +184,7 @@ quality-gates:
         threshold: 80%
 ```
 
-## Creating Fitness Functions
-
-### Step 1: Identify Architectural Decisions
+## Step 1: Identify Architectural Decisions
 
 From your ADRs, extract decisions that can be automated:
 - Layer boundaries
@@ -184,7 +192,7 @@ From your ADRs, extract decisions that can be automated:
 - Naming conventions
 - Performance requirements
 
-### Step 2: Choose Validation Approach
+## Step 2: Choose Validation Approach
 
 | Decision Type | Validation Approach |
 |---------------|---------------------|
@@ -194,15 +202,15 @@ From your ADRs, extract decisions that can be automated:
 | Security | Vulnerability scanning |
 | Dependencies | Dependency checking |
 
-### Step 3: Implement Tests
+## Step 3: Implement Tests
 
 Write tests that verify each decision.
 
-### Step 4: Integrate into CI/CD
+## Step 4: Integrate into CI/CD
 
 Add tests to your build pipeline.
 
-### Step 5: Monitor and Alert
+## Step 5: Monitor and Alert
 
 Set up alerts for fitness function failures.
 
@@ -231,15 +239,13 @@ Read `references/automation-reference.md` for detailed automation guidance.
 - Keep checks deterministic and cheap enough to run continuously.
 - Tie each rule to a concrete architectural decision or ADR.
 - Use automated checks for repeatable rules; keep subjective review separate.
+- Begin with the most critical decisions and expand over time; manual checks do not scale.
+- Make architecture violations fail the build so they are acted on, not ignored.
+- Review and update fitness functions as the architecture evolves; treat them as guardrails that help developers, not punishment.
 
-## Best Practices
+## Further Reading
 
-1. **Start Small** - Begin with most critical decisions
-2. **Automate Everything** - Manual checks don't scale
-3. **Fail the Build** - Architecture violations should break CI
-4. **Document Decisions** - Link fitness functions to ADRs
-5. **Review Regularly** - Update fitness functions as architecture evolves
-6. **Use as Guardrails** - Not punishment; help developers make good choices
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 
 ## Related Skills
 

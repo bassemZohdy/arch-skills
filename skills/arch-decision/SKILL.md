@@ -160,6 +160,10 @@ See `references/criteria-library.md` for reusable evaluation bundles:
 - Overlapping criteria double-count the same concern and skew totals.
 - A close call (gap < 0.5) without a sensitivity check is a coin flip dressed as analysis.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-doc** - ADR templates and documentation frameworks

@@ -187,3 +187,15 @@ Create prioritized remediation plan:
 | **Standard** | Full evaluation | 1-2 days | Complete report |
 | **Deep Dive** | Specific concern | 3-5 days | Focused analysis |
 | **Compliance** | Standards adherence | 1-2 weeks | Audit report |
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
+## Related Skills
+
+- **arch-doc** - Generate or update the documentation a review assesses against
+- **arch-decision** - Capture review outcomes as architecture decision records
+- **arch-fitness** - Turn review findings into automated, continuous checks
+- **arch-governance** - Track review-driven remediation and standards adoption
+- **solution-architecture-orchestrator** - Feed review results back into coordinated redesign

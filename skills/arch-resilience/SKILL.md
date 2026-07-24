@@ -167,6 +167,10 @@ Request → Bulkhead → Timeout → Service
 - Retry storms amplify outages; combine retries with circuit breakers and jitter.
 - Timeouts must shrink down the call chain; equal timeouts everywhere guarantee cascading failures.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-perf** - Latency budgets that timeouts must respect

@@ -166,6 +166,10 @@ Legacy System → Facade → New Components
 - Refactoring without characterization tests on legacy code is just rewriting with extra risk.
 - Big-bang refactors stall; ship small reversible steps that each leave the build releasable.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-metrics** - Measuring smells and tracking improvement

@@ -4,81 +4,94 @@
 
 | Metric | Count |
 |--------|-------|
-| Skills | 29 |
-| Structural Tests | 203 |
-| Skillprobe Scenarios | 170 |
-| Total Tests | 373 |
+| Skills | 32 |
+| Structural Tests | 224 |
+| Skillprobe Scenarios | 185 |
+| Total Tests | 409 |
 
 ## Skills Coverage
+
+### Orchestration (1 skill)
+
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| solution-architecture-orchestrator | 3 | 3 | 7 | 5 |
 
 ### Core Architecture (5 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-doc | 7 | 11 | 7 | 12 |
-| arch-review | 5 | 1 | 7 | 8 |
-| arch-fitness | 2 | 1 | 7 | 10 |
-| arch-decision | 1 | 1 | 7 | 9 |
-| arch-governance | 1 | 1 | 7 | 5 |
+| arch-doc | 8 | 11 | 7 | 12 |
+| arch-review | 6 | 1 | 7 | 8 |
+| arch-fitness | 3 | 1 | 7 | 10 |
+| arch-decision | 2 | 1 | 7 | 9 |
+| arch-governance | 3 | 1 | 7 | 5 |
+
+### Design Fundamentals (2 skills)
+
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-principles | 3 | 1 | 7 | 5 |
+| arch-antipatterns | 3 | 1 | 7 | 5 |
 
 ### Technical Architecture (4 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-security | 2 | 1 | 7 | 5 |
-| arch-perf | 1 | 1 | 7 | 5 |
-| arch-resilience | 1 | 1 | 7 | 5 |
-| arch-test | 1 | 1 | 7 | 5 |
+| arch-security | 4 | 1 | 7 | 5 |
+| arch-perf | 3 | 1 | 7 | 5 |
+| arch-resilience | 3 | 1 | 7 | 5 |
+| arch-test | 3 | 1 | 7 | 5 |
 
 ### System Architecture (10 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-api | 2 | 1 | 7 | 5 |
-| arch-cloud | 1 | 1 | 7 | 5 |
-| arch-event | 2 | 1 | 7 | 5 |
-| arch-ddd | 2 | 1 | 7 | 5 |
-| arch-data | 1 | 1 | 7 | 5 |
-| arch-metrics | 1 | 1 | 7 | 5 |
-| arch-integration | 1 | 1 | 7 | 5 |
-| arch-microservices | 1 | 1 | 7 | 5 |
-| arch-patterns | 1 | 1 | 7 | 5 |
-| arch-refactoring | 1 | 1 | 7 | 5 |
+| arch-api | 4 | 1 | 7 | 5 |
+| arch-cloud | 3 | 1 | 7 | 5 |
+| arch-event | 4 | 1 | 7 | 5 |
+| arch-ddd | 4 | 1 | 7 | 5 |
+| arch-data | 3 | 1 | 7 | 5 |
+| arch-metrics | 3 | 1 | 7 | 5 |
+| arch-integration | 2 | 1 | 7 | 5 |
+| arch-microservices | 2 | 1 | 7 | 5 |
+| arch-patterns | 2 | 1 | 7 | 5 |
+| arch-refactoring | 2 | 1 | 7 | 5 |
 
 ### Frontend (1 skill)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-frontend | 1 | 1 | 7 | 5 |
+| arch-frontend | 3 | 1 | 7 | 5 |
 
 ### Operations (4 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-observability | 1 | 1 | 7 | 6 |
-| arch-migration | 1 | 1 | 7 | 5 |
-| arch-devops | 3 | 1 | 7 | 10 |
-| arch-cost | 1 | 1 | 7 | 5 |
+| arch-observability | 3 | 1 | 7 | 6 |
+| arch-migration | 3 | 1 | 7 | 5 |
+| arch-devops | 4 | 1 | 7 | 10 |
+| arch-cost | 2 | 1 | 7 | 5 |
 
 ### Feature Management (1 skill)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-features | 1 | 1 | 7 | 5 |
+| arch-features | 2 | 1 | 7 | 5 |
 
 ### AI (1 skill)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-ai | 1 | 1 | 7 | 5 |
+| arch-ai | 2 | 1 | 7 | 5 |
 
 ### NFR (3 skills)
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| arch-usability | 1 | 1 | 7 | 5 |
-| arch-accessibility | 1 | 1 | 7 | 5 |
-| arch-compliance | 1 | 1 | 7 | 5 |
+| arch-usability | 2 | 1 | 7 | 5 |
+| arch-accessibility | 2 | 1 | 7 | 5 |
+| arch-compliance | 3 | 1 | 7 | 5 |
 
 ## NFR Coverage Matrix
 
@@ -126,5 +139,13 @@
 │ Observability │ Usability │ Accessibility │ Compliance │ AI │
 │ Integration │ Microservices │ DevOps │ Cost │ Governance     │
 │ Patterns  │ Refactoring │ Frontend │ Features │ Fitness       │
+│ Principles │ Antipatterns │      │           │               │
 └───────────┴───────────┴───────────┴───────────┴───────────────┘
 ```
+
+## External Resources
+
+Every skill includes `references/awesome-architecture.md` with curated deep links into
+[awesome-architecture.com](https://awesome-architecture.com/). See
+[awesome-architecture-mapping.md](awesome-architecture-mapping.md) for the full taxonomy-to-skill
+analysis.

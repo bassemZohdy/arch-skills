@@ -1,6 +1,6 @@
 ---
 name: arch-cloud
-description: Guide cloud-native architecture design. Use when designing cloud architectures, implementing Well-Architected Framework principles, planning multi-cloud strategies, optimizing cloud costs, or migrating to cloud.
+description: Design cloud-native architecture. Use when designing cloud architectures, implementing Well-Architected Framework principles, planning multi-cloud strategies, optimizing cloud costs, or migrating to cloud.
 ---
 
 # Cloud-Native Architecture
@@ -16,15 +16,6 @@ Systematic approach to designing cloud-native systems.
 4. Optimize Costs → FinOps practices
 5. Implement → Use managed services
 ```
-
-## Related Skills
-
-- **Migration planning**: See `arch-migration` for legacy modernization, strangler fig, rollback strategies
-- **DevOps & deployment**: See `arch-devops` for IaC, CI/CD, Kubernetes, and deployment strategies
-- **Cost optimization**: See `arch-cost` for FinOps practices and cost governance in depth
-- **Observability**: See `arch-observability` for logging, metrics, tracing, alerting
-- **Data patterns**: See `arch-data` for data modeling, pipelines, governance
-- **Performance**: See `arch-perf` for caching, capacity planning, load testing
 
 ## Step 1: Well-Architected Framework
 
@@ -121,6 +112,19 @@ Systematic approach to designing cloud-native systems.
 - Cloud-agnostic abstractions cost real engineering effort; only pay for portability you actually need.
 - Lift-and-shift without re-architecting usually raises costs instead of lowering them.
 - Egress fees and cross-AZ traffic are the silent budget killers.
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
+## Related Skills
+
+- **Migration planning**: See `arch-migration` for legacy modernization, strangler fig, rollback strategies
+- **DevOps & deployment**: See `arch-devops` for IaC, CI/CD, Kubernetes, and deployment strategies
+- **Cost optimization**: See `arch-cost` for FinOps practices and cost governance in depth
+- **Observability**: See `arch-observability` for logging, metrics, tracing, alerting
+- **Data patterns**: See `arch-data` for data modeling, pipelines, governance
+- **Performance**: See `arch-perf` for caching, capacity planning, load testing
 
 ## Cloud Review Template
 

@@ -148,6 +148,10 @@ Systematic approach to cost management and optimization.
 - Untagged resources make allocation guesswork; enforce tags at provision time via IaC.
 - Optimizing unit cost while ignoring cost-per-transaction can hide real efficiency losses.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-cloud** - Provider services and Well-Architected cost pillar

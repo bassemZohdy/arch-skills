@@ -142,6 +142,10 @@ Systematic approach to designing system integrations.
 - Point-to-point integrations grow quadratically; mediate once pairs exceed a handful.
 - Schema changes without a registry and compatibility rules break consumers silently.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-api** - Contract design for the integrated surfaces

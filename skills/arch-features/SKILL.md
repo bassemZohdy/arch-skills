@@ -145,6 +145,10 @@ if (variant === 'control') {
 - Flags evaluated client-side leak unreleased features to anyone reading the bundle.
 - A flag guarding a schema change does not make the migration reversible by itself.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-devops** - Decoupling deploy from release

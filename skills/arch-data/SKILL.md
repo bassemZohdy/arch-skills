@@ -156,6 +156,10 @@ Source System → Ingestion → Processing → Storage → Consumption
 - One database rarely fits all access patterns; but every extra store adds operational cost.
 - Data lineage retrofitted after an audit request is painful; capture it in the pipeline from day one.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-event** - Streaming pipelines and CDC

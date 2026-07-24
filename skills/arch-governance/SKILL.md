@@ -151,6 +151,10 @@ Systematic approach to architecture governance.
 - Untracked exceptions silently become the de facto standard.
 - Manual review boards do not scale; automate repeatable checks with fitness functions.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-fitness** - Automated enforcement of standards

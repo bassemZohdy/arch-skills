@@ -198,3 +198,15 @@ While framework-agnostic, adjust recommendations based on detected stack:
 | Cloud-Native | Serverless, Containers, Managed Services | Deployment + Container |
 | Enterprise Java/.NET | Layered, DDD, CQRS | Component + Sequence |
 | Monolith | Modular, Clean Architecture | Component + Package |
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
+## Related Skills
+
+- **arch-review** - Validate and assess existing architecture documentation
+- **arch-decision** - Record decisions (ADRs) referenced from the documentation
+- **arch-governance** - Maintain documentation as part of architecture governance
+- **arch-fitness** - Encode documented decisions as automated checks
+- **solution-architecture-orchestrator** - Orchestrate end-to-end design including documentation deliverables

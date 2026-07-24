@@ -134,6 +134,10 @@ Track cost per request and per user; alert on anomalies like any other budget (s
 - Ignoring context window budgets; stuffing everything in degrades quality and cost.
 - No fallback path when the model times out, refuses, or returns malformed output.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-data** - Data pipelines feeding embeddings and training sets

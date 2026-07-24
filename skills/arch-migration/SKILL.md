@@ -132,6 +132,10 @@ Phase 4: Decommission → Remove legacy
 - A migration without a tested rollback path is a one-way door taken blind.
 - Feature parity lists always miss undocumented behavior users depend on; parallel-run to find it.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-refactoring** - Code-level restructuring within the migration

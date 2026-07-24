@@ -165,6 +165,10 @@ Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 - Absolute thresholds vary by language and domain; trends matter more than snapshots.
 - High coverage with weak assertions is still test debt; pair coverage with mutation score.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-fitness** - Turning metric thresholds into CI gates

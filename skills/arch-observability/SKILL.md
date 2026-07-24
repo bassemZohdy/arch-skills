@@ -201,6 +201,10 @@ IF disk_usage > 90% THEN alert:high
 - Logs without trace/correlation IDs make distributed debugging archaeology.
 - Unbounded label cardinality (user IDs in metric labels) melts time-series databases.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-resilience** - Failures observability must surface

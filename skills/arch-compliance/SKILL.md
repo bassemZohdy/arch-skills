@@ -153,6 +153,10 @@ Systematic approach to regulatory compliance and auditability.
 - GDPR deletion must reach backups and downstream copies, not just the primary database.
 - Compliance scope grows with data spread; minimize where regulated data lives to shrink audits.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-security** - Controls that compliance frameworks require

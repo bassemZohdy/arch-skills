@@ -1,6 +1,6 @@
 ---
 name: arch-patterns
-description: Guide architecture pattern selection and application. Use when choosing between Clean Architecture, Hexagonal Architecture, Layered Architecture, Pipes & Filters, or other architectural patterns.
+description: Guide architecture pattern selection and application. Use when choosing between Clean Architecture, Hexagonal Architecture, Layered Architecture, Vertical Slice Architecture, Modular Monolith, Pipes & Filters, or other architectural patterns.
 ---
 
 # Architecture Patterns
@@ -28,6 +28,8 @@ Systematic approach to selecting and applying architecture patterns.
 | **Hexagonal** | Ports and adapters | Testable systems |
 | **Clean Architecture** | Concentric circles with dependencies inward | Complex business logic |
 | **Onion Architecture** | Similar to Clean, emphasizes domain | Domain-centric systems |
+| **Vertical Slice** | Organize by feature; each slice owns all layers | Feature-focused teams, CQRS |
+| **Modular Monolith** | Single deployable, isolated modules with enforced boundaries | Monolith simplicity with module autonomy |
 
 ### Behavioral Patterns
 
@@ -166,6 +168,8 @@ Input → [Filter 1] → [Filter 2] → [Filter 3] → Output
 | **Event Processing** | Event-Driven, CQRS |
 | **Distributed Systems** | Service Mesh, Saga |
 | **Legacy Integration** | Hexagonal, Adapter |
+| **Independent Feature Delivery** | Vertical Slice |
+| **Monolith Simplicity, Strong Boundaries** | Modular Monolith |
 
 ## Examples
 
@@ -178,6 +182,10 @@ Input → [Filter 1] → [Filter 2] → [Filter 3] → Output
 - Patterns are trade-offs, not virtue; layers and indirection have a real cost in simple CRUD apps.
 - A pattern only half-applied (domain importing frameworks) gives the cost without the benefit.
 - Enforce the dependency rule with automated checks or it will erode (see arch-fitness).
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 
 ## Related Skills
 

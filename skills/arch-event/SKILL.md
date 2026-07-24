@@ -194,6 +194,10 @@ Event ID → Check if processed → Skip if yes
 - Event sourcing is a heavy commitment; do not adopt it just for an audit log.
 - Publishing an event and writing to the database without an outbox loses events on crashes.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-ddd** - Domain events and Event Storming

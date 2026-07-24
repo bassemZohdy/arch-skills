@@ -116,6 +116,10 @@ Systematic approach to frontend architecture.
 - Server state belongs in a query cache (React Query/SWR), not in global UI state stores.
 - Shared dependencies across micro frontends reintroduce the coupling you tried to remove.
 
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
 ## Related Skills
 
 - **arch-usability** - UX heuristics and information architecture
