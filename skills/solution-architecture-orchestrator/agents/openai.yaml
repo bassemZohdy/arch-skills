@@ -1,0 +1,4 @@
+interface:
+  display_name: "Solution Architecture Orchestrator"
+  short_description: "Coordinate specialist architecture skills into one coherent solution"
+  default_prompt: "Use solution-architecture-orchestrator to design an end-to-end solution architecture"

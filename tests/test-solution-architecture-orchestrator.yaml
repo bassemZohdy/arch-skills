@@ -1,0 +1,50 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/solution-architecture-orchestrator
+
+scenarios:
+  - name: "selects minimal skill set instead of all skills"
+    steps:
+      - prompt: "Design a small internal REST API for employee directory lookup. No events, no AI, no frontend, low traffic. Which specialist skills do you select?"
+        assert:
+          - type: contains
+            value: "arch-api"
+          - type: contains
+            value: "minimum"
+
+  - name: "classifies the request before selecting technology"
+    steps:
+      - prompt: "We want to modernize our on-prem order monolith to the cloud. Start the analysis."
+        assert:
+          - type: contains
+            value: "modernization"
+          - type: contains
+            value: "classification"
+
+  - name: "resolves conflicts by explicit priority order"
+    steps:
+      - prompt: "The security skill says all data must stay on-premises for compliance, but the cost skill recommends a managed cloud database. How do you resolve this?"
+        assert:
+          - type: contains
+            value: "regulatory"
+          - type: contains
+            value: "priority"
+
+  - name: "rejects overengineering without requirements"
+    steps:
+      - prompt: "Should we add Kafka, a service mesh, and an API gateway to our 3-person team's internal tool with 50 users?"
+        assert:
+          - type: contains
+            value: "requirement"
+          - type: contains
+            value: "simplest"
+
+  - name: "does not pretend skills executed when dynamic invocation is unsupported"
+    steps:
+      - prompt: "You cannot actually invoke other skills in this conversation. Design an architecture for a patient records system and tell me which skills should be applied."
+        assert:
+          - type: contains
+            value: "execution plan"
+          - type: contains
+            value: "not"

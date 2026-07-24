@@ -1,0 +1,48 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-antipatterns
+
+scenarios:
+  - name: "detects god object"
+    steps:
+      - prompt: "Our UserManager class has 40 methods and every feature touches it. What anti-pattern is this and how do I fix it?"
+        assert:
+          - type: contains
+            value: "God Object"
+          - type: contains
+            value: "Extract"
+
+  - name: "identifies distributed monolith"
+    steps:
+      - prompt: "Our 8 microservices share one database and must be deployed together. Is this an anti-pattern?"
+        assert:
+          - type: contains
+            value: "Distributed Monolith"
+
+  - name: "explains big ball of mud"
+    steps:
+      - prompt: "What is a Big Ball of Mud and how do I start fixing one?"
+        assert:
+          - type: contains
+            value: "Big Ball of Mud"
+          - type: contains
+            value: "boundaries"
+
+  - name: "diagnoses anemic domain model"
+    steps:
+      - prompt: "My entities are just getters and setters with all logic in services. What's wrong?"
+        assert:
+          - type: contains
+            value: "Anemic"
+          - type: contains
+            value: "behavior"
+
+  - name: "maps code smells to refactorings"
+    steps:
+      - prompt: "A method keeps reading fields from another object and computing with them. Which smell and which refactoring?"
+        assert:
+          - type: contains
+            value: "Feature Envy"
+          - type: contains
+            value: "Move Method"

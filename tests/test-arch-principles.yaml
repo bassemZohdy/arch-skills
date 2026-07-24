@@ -1,0 +1,46 @@
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-principles
+
+scenarios:
+  - name: "explains SOLID violations"
+    steps:
+      - prompt: "My OrderService does validation, pricing, email, and SQL. Which SOLID principle does this violate and how do I fix it?"
+        assert:
+          - type: contains
+            value: "Single Responsibility"
+          - type: contains
+            value: "SRP"
+
+  - name: "applies coupling and cohesion"
+    steps:
+      - prompt: "How do I reduce coupling between two modules without destroying cohesion?"
+        assert:
+          - type: contains
+            value: "Coupling"
+          - type: contains
+            value: "Cohesion"
+
+  - name: "reasons about CAP"
+    steps:
+      - prompt: "Should my product catalog reads favor consistency or availability during a network partition?"
+        assert:
+          - type: contains
+            value: "CAP"
+          - type: contains
+            value: "Availability"
+
+  - name: "applies YAGNI"
+    steps:
+      - prompt: "Should I add a plugin system now in case we need extensions later?"
+        assert:
+          - type: contains
+            value: "YAGNI"
+
+  - name: "uses GRASP for responsibility assignment"
+    steps:
+      - prompt: "Which class should be responsible for calculating an order total according to GRASP?"
+        assert:
+          - type: contains
+            value: "Information Expert"

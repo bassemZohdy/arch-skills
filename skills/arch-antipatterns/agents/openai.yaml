@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anti-Patterns & Code Smells"
+  short_description: "Big ball of mud, god object, leaky abstraction, anemic models"
+  default_prompt: "Use arch-antipatterns for anti-pattern detection"
