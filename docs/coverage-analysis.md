@@ -149,3 +149,8 @@ Every skill includes `references/awesome-architecture.md` with curated deep link
 [awesome-architecture.com](https://awesome-architecture.com/). See
 [awesome-architecture-mapping.md](awesome-architecture-mapping.md) for the full taxonomy-to-skill
 analysis.
+
+In addition, every skill cites its specialized reference files (`*-deep-dive.md`,
+`*-patterns.md`, topic references) from `## Further Reading`, so deeper guidance is
+loadable on demand. Diagrams use fenced Mermaid blocks (per the
+Mermaid > PlantUML > Draw.io priority in `AGENTS.md`).
