@@ -167,6 +167,15 @@ Create prioritized remediation plan:
 3. **Medium-term** (Medium issues): Add to backlog
 4. **Long-term** (Low issues): Consider during major refactors
 
+## Review Types
+
+| Type | Scope | Duration | Output |
+|------|-------|----------|--------|
+| **Quick Scan** | High-level patterns | 1-2 hours | Summary |
+| **Standard** | Full evaluation | 1-2 days | Complete report |
+| **Deep Dive** | Specific concern | 3-5 days | Focused analysis |
+| **Compliance** | Standards adherence | 1-2 weeks | Audit report |
+
 ## Examples
 
 - Review a monolith with high coupling, slow tests, and missing observability.
@@ -179,18 +188,10 @@ Create prioritized remediation plan:
 - Separate implementation bugs from architectural issues unless the design causes the bug.
 - Record confidence and effort so remediation can be prioritized without re-reading the full report.
 
-## Review Types
-
-| Type | Scope | Duration | Output |
-|------|-------|----------|--------|
-| **Quick Scan** | High-level patterns | 1-2 hours | Summary |
-| **Standard** | Full evaluation | 1-2 days | Complete report |
-| **Deep Dive** | Specific concern | 3-5 days | Focused analysis |
-| **Compliance** | Standards adherence | 1-2 weeks | Audit report |
-
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/review-methods.md` — Architecture Review Methods
 
 ## Related Skills
 

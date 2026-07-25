@@ -78,9 +78,14 @@ Code → Build → Test → Security → Stage → Deploy → Monitor
 
 ### Blue-Green Deployment
 
-```
-Production (Blue) → Load Balancer ← Production (Green)
-                    [Switch]
+```mermaid
+graph LR
+    LB((Load Balancer))
+    Blue["Production (Blue) - active"]
+    Green["Production (Green) - idle / next release"]
+    LB --> Blue
+    LB -. "switch traffic" .-> Green
+    Blue -. rollback .-> Green
 ```
 
 | Pros | Cons |
@@ -91,9 +96,13 @@ Production (Blue) → Load Balancer ← Production (Green)
 
 ### Canary Deployment
 
-```
-Production → 95% ← Current Version
-           → 5%  ← New Version (canary)
+```mermaid
+graph LR
+    Traffic((Traffic))
+    Current["Current Version - 95%"]
+    Canary["New Version (canary) - 5%"]
+    Traffic -->|95%| Current
+    Traffic -->|5%| Canary
 ```
 
 | Pros | Cons |
@@ -104,10 +113,18 @@ Production → 95% ← Current Version
 
 ### Rolling Deployment
 
-```
-Batch 1: [New] [New] [Old] [Old]
-Batch 2: [New] [New] [New] [Old]
-Batch 3: [New] [New] [New] [New]
+```mermaid
+graph LR
+    subgraph Batch1[Batch 1]
+        B1a[New] --> B1b[New] --> B1c[Old] --> B1d[Old]
+    end
+    subgraph Batch2[Batch 2]
+        B2a[New] --> B2b[New] --> B2c[New] --> B2d[Old]
+    end
+    subgraph Batch3[Batch 3]
+        B3a[New] --> B3b[New] --> B3c[New] --> B3d[New]
+    end
+    Batch1 --> Batch2 --> Batch3
 ```
 
 | Pros | Cons |
@@ -162,8 +179,13 @@ Simple and clean-state, but causes downtime. Acceptable only for non-critical or
 3. **Automated** — Changes applied automatically
 4. **Self-healing** — System reconciles to desired state
 
-```
-Git Push → Controller → Diff → Apply → Kubernetes
+```mermaid
+graph LR
+    Dev[Developer] -->|commit| Repo[Git Repo]
+    Repo -->|detect change| Controller[GitOps Controller]
+    Controller -->|diff| Diff[Diff desired vs live]
+    Diff -->|apply| Cluster[Kubernetes Cluster]
+    Cluster -. reconcile .-> Controller
 ```
 
 | Tool | Description |
@@ -238,6 +260,9 @@ Measure delivery performance with the four DORA metrics:
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/devops-practices.md` — CI/CD, IaC, and release-management deep dive
+- `references/deployment-strategies.md` — Blue-green, canary, and rolling comparison
+- `references/deployment-deep-dive.md` — Kubernetes, GitOps, and advanced deployment
 
 ## Related Skills
 
@@ -246,8 +271,6 @@ Measure delivery performance with the four DORA metrics:
 - **arch-features** - Feature flags for decoupling deploy from release
 - **arch-fitness** - Architecture checks enforced inside the pipeline
 - **arch-migration** - Data and legacy system migration strategies
-
-Read `references/devops-practices.md`, `references/deployment-strategies.md`, and `references/deployment-deep-dive.md` for detailed guidance.
 
 ## DevOps Review Template
 

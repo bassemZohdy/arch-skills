@@ -116,15 +116,17 @@ Systematic approach to designing cloud-native systems.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/cloud-deep-dive.md` — Cloud Architecture Deep Dive
+- `references/cloud-patterns.md` — Cloud Patterns Reference
 
 ## Related Skills
 
-- **Migration planning**: See `arch-migration` for legacy modernization, strangler fig, rollback strategies
-- **DevOps & deployment**: See `arch-devops` for IaC, CI/CD, Kubernetes, and deployment strategies
-- **Cost optimization**: See `arch-cost` for FinOps practices and cost governance in depth
-- **Observability**: See `arch-observability` for logging, metrics, tracing, alerting
-- **Data patterns**: See `arch-data` for data modeling, pipelines, governance
-- **Performance**: See `arch-perf` for caching, capacity planning, load testing
+- **arch-migration** - Legacy modernization, strangler fig, rollback strategies
+- **arch-devops** - IaC, CI/CD, Kubernetes, and deployment strategies
+- **arch-cost** - FinOps practices and cost governance in depth
+- **arch-observability** - Logging, metrics, tracing, alerting
+- **arch-data** - Data modeling, pipelines, governance
+- **arch-perf** - Caching, capacity planning, load testing
 
 ## Cloud Review Template
 

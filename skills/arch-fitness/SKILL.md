@@ -204,15 +204,24 @@ From your ADRs, extract decisions that can be automated:
 
 ## Step 3: Implement Tests
 
-Write tests that verify each decision.
+Write tests that verify each decision, keeping them deterministic and fast:
+- Name each test after the decision it guards (e.g. `ServicesMustNotReferenceInfrastructure`).
+- Prefer real dependency-analysis tools (ArchUnit, dependency-cruiser, Spring's `BeanFactory`) over ad-hoc regex.
+- Make failures self-documenting: the assertion message should state the violated rule and where to read the ADR.
 
 ## Step 4: Integrate into CI/CD
 
-Add tests to your build pipeline.
+Add tests to your build pipeline so violations are caught before merge, not in production:
+- Run atomic/static checks (dependency rules, naming, lint) on every commit and fail the build.
+- Run heavier dynamic checks (benchmarks, contract tests) on PRs or nightly to keep PR feedback fast.
+- Gate merges on the fitness-function suite, not just unit tests.
 
 ## Step 5: Monitor and Alert
 
-Set up alerts for fitness function failures.
+Surface runtime fitness signals so drift is visible even when code passes static checks:
+- Export metrics for dynamic checks (latency percentiles, error budget burn) to the observability stack.
+- Alert on threshold breaches against SLOs, not raw values; page only on user-visible impact.
+- Review the fitness-function set regularly and retire rules that no longer reflect current decisions.
 
 ## Automating Other Architecture Concerns
 
@@ -246,6 +255,7 @@ Read `references/automation-reference.md` for detailed automation guidance.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/fitness-functions.md` — Fitness Functions Reference
 
 ## Related Skills
 

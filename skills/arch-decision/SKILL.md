@@ -1,6 +1,6 @@
 ---
 name: arch-decision
-description: Guide structured architecture decision-making using Decision Analysis and Resolution (DAR) methodology. Combines ADR documentation with weighted scoring, gate criteria, sensitivity analysis, and a criteria library for common technology selections. Use when making architecture decisions, selecting technologies, evaluating build vs buy, choosing cloud services, or performing structured trade-off analysis.
+description: Drive structured architecture decision-making using Decision Analysis and Resolution (DAR) methodology. Combines ADR documentation with weighted scoring, gate criteria, sensitivity analysis, and a criteria library for common technology selections. Use when making architecture decisions, selecting technologies, evaluating build vs buy, choosing cloud services, or performing structured trade-off analysis.
 ---
 
 # Architecture Decision Analysis

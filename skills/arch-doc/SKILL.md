@@ -169,18 +169,6 @@ Checklist:
 - [ ] External dependencies identified
 - [ ] Constraints and assumptions documented
 
-## Examples
-
-- Create a C4 context diagram for a customer onboarding platform.
-- Generate an ADR for choosing PostgreSQL over MySQL.
-- Produce an arc42 overview for a microservices platform with multiple teams.
-
-## Common Gotchas
-
-- Keep each view focused; do not cram context, container, and component detail into one diagram.
-- Use references for long explanations and examples instead of expanding `SKILL.md` indefinitely.
-- Match the framework to the audience; do not force TOGAF or ISO 42010 when a simpler C4 set is enough.
-
 ## Output Formats
 
 Generate documentation as:
@@ -199,9 +187,23 @@ While framework-agnostic, adjust recommendations based on detected stack:
 | Enterprise Java/.NET | Layered, DDD, CQRS | Component + Sequence |
 | Monolith | Modular, Clean Architecture | Component + Package |
 
+## Examples
+
+- Create a C4 context diagram for a customer onboarding platform.
+- Generate an ADR for choosing PostgreSQL over MySQL.
+- Produce an arc42 overview for a microservices platform with multiple teams.
+
+## Common Gotchas
+
+- Keep each view focused; do not cram context, container, and component detail into one diagram.
+- Use references for long explanations and examples instead of expanding `SKILL.md` indefinitely.
+- Match the framework to the audience; do not force TOGAF or ISO 42010 when a simpler C4 set is enough.
+
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/documentation-automation.md` — Documentation Automation Reference
+- `references/skill-testing.md` — Skill Testing Reference
 
 ## Related Skills
 

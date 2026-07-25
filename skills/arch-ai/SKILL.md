@@ -1,6 +1,6 @@
 ---
 name: arch-ai
-description: Guide AI and LLM system architecture. Use when designing RAG pipelines, agent architectures, model serving infrastructure, prompt and context management, AI evaluation strategies, guardrails, or integrating LLMs into existing systems with cost and latency budgets.
+description: Design AI and LLM system architecture. Use when designing RAG pipelines, agent architectures, model serving infrastructure, prompt and context management, AI evaluation strategies, guardrails, or integrating LLMs into existing systems with cost and latency budgets.
 ---
 
 # AI System Architecture
@@ -137,6 +137,7 @@ Track cost per request and per user; alert on anomalies like any other budget (s
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/ai-patterns.md` — Detailed RAG, agentic, guardrail, and eval patterns
 
 ## Related Skills
 
@@ -145,8 +146,6 @@ Track cost per request and per user; alert on anomalies like any other budget (s
 - **arch-cost** - Budgeting and monitoring inference spend
 - **arch-observability** - Tracing multi-step LLM flows
 - **arch-resilience** - Timeouts, retries, and fallbacks around model calls
-
-Read `references/ai-patterns.md` for detailed pattern guidance.
 
 ## AI Architecture Review Template
 
