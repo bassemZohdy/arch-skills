@@ -1,6 +1,6 @@
 ---
 name: arch-migration
-description: Guide migration planning and legacy modernization. Use when planning database migrations, modernizing legacy systems, implementing strangler fig pattern, assessing migration risks, or creating rollback strategies.
+description: Plan migrations and legacy modernization. Use when planning database migrations, modernizing legacy systems, implementing strangler fig pattern, assessing migration risks, or creating rollback strategies.
 ---
 
 # Migration Planning
@@ -135,6 +135,8 @@ Phase 4: Decommission → Remove legacy
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/migration-deep-dive.md` — Migration Deep Dive
+- `references/migration-patterns.md` — Migration Patterns Reference
 
 ## Related Skills
 

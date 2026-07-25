@@ -1,6 +1,6 @@
 ---
 name: arch-ddd
-description: Guide Domain-Driven Design modeling. Use when modeling complex domains, defining bounded contexts, designing aggregates, implementing tactical DDD patterns, or facilitating Event Storming workshops.
+description: Model domains with Domain-Driven Design. Use when modeling complex domains, defining bounded contexts, designing aggregates, implementing tactical DDD patterns, or facilitating Event Storming workshops.
 ---
 
 # Domain-Driven Design
@@ -36,14 +36,19 @@ Create shared language between developers and domain experts.
 
 A boundary within which a particular domain model applies.
 
-```
-┌─────────────────────┐     ┌─────────────────────┐
-│   Sales Context     │     │   Shipping Context   │
-│                     │     │                     │
-│  - Order            │────▶│  - Shipment         │
-│  - Customer         │     │  - Tracking         │
-│  - Product          │     │  - Warehouse        │
-└─────────────────────┘     └─────────────────────┘
+```mermaid
+graph LR
+    subgraph Sales["Sales Context"]
+        S1[Order]
+        S2[Customer]
+        S3[Product]
+    end
+    subgraph Shipping["Shipping Context"]
+        SH1[Shipment]
+        SH2[Tracking]
+        SH3[Warehouse]
+    end
+    Sales -->|"handoff"| Shipping
 ```
 
 ### Context Mapping Patterns
@@ -59,11 +64,10 @@ A boundary within which a particular domain model applies.
 
 ### Context Map Example
 
-```
-Sales Context ──(Customer-Supplier)──▶ Shipping Context
-         │                                   │
-         │                                   
-         └──(Shared Kernel)── Finance Context
+```mermaid
+graph LR
+    Sales["Sales Context"] -->|"Customer-Supplier"| Shipping["Shipping Context"]
+    Sales -->|"Shared Kernel"| Finance["Finance Context"]
 ```
 
 ## Step 3: Tactical Design
@@ -165,6 +169,9 @@ class PricingService:
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/ddd-deep-dive.md` — Domain-Driven Design Deep Dive
+- `references/strategic-design.md` — Strategic Design Reference
+- `references/tactical-patterns.md` — Tactical Design Reference
 
 ## Related Skills
 

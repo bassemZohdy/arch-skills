@@ -1,6 +1,6 @@
 ---
 name: arch-resilience
-description: Guide resilience patterns for distributed systems. Use when designing circuit breakers, retry policies, bulkhead isolation, timeout strategies, or implementing fault tolerance in microservices.
+description: Design resilience patterns for distributed systems. Use when designing circuit breakers, retry policies, bulkhead isolation, timeout strategies, or implementing fault tolerance in microservices.
 ---
 
 # Resilience Patterns
@@ -33,12 +33,13 @@ Systematic approach to building fault-tolerant distributed systems.
 
 Prevents cascading failures by stopping calls to failing services.
 
-```
-CLOSED → (failures exceed threshold) → OPEN
-  ↑                                      ↓
-  (success)                    (timeout expires)
-  ↑                                      ↓
-  └────────── HALF-OPEN ←────────────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> Closed
+    Closed --> Open: failures exceed threshold
+    Open --> HalfOpen: timeout expires
+    HalfOpen --> Closed: probe succeeds
+    HalfOpen --> Open: probe fails
 ```
 
 **States:**
@@ -70,16 +71,16 @@ Automatically retry failed operations.
 
 ### Bulkhead
 
-Isolate failures to prevent system-wide impact.
+Isolate failures to prevent system-wide impact by partitioning resources into independent pools.
 
-```
-┌─────────────────────────────────────┐
-│           Service Pool              │
-├─────────────┬─────────────┬─────────┤
-│  Pool A     │  Pool B     │ Pool C  │
-│  (10 conns) │  (10 conns) │(10 conns)│
-│  Payment    │  Shipping   │ Notification│
-└─────────────┴─────────────┴─────────┘
+```mermaid
+graph LR
+    Client([Client]) --> PoolA[Pool A<br/>10 conns · Payment]
+    Client --> PoolB[Pool B<br/>10 conns · Shipping]
+    Client --> PoolC[Pool C<br/>10 conns · Notification]
+    style PoolA fill:#cfe,stroke:#393
+    style PoolB fill:#cef,stroke:#369
+    style PoolC fill:#fec,stroke:#c63
 ```
 
 **Benefits:**
@@ -170,6 +171,8 @@ Request → Bulkhead → Timeout → Service
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/resilience-deep-dive.md` — Resilience Engineering Deep Dive
+- `references/resilience-patterns.md` — Resilience Patterns Reference
 
 ## Related Skills
 

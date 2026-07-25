@@ -1,6 +1,6 @@
 ---
 name: arch-accessibility
-description: Guide accessibility architecture and WCAG compliance. Use when designing accessible interfaces, implementing ARIA patterns, auditing for WCAG compliance, or supporting assistive technologies.
+description: Design accessible interfaces and achieve WCAG compliance. Use when designing accessible interfaces, implementing ARIA patterns, auditing for WCAG 2.1/2.2 conformance (A/AA/AAA), supporting assistive technologies, or remediating accessibility defects.
 ---
 
 # Accessibility Architecture
@@ -205,6 +205,7 @@ function trapFocus(modal) {
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/wcag-reference.md` — WCAG 2.1 Reference
 
 ## Related Skills
 

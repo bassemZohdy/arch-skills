@@ -1,6 +1,6 @@
 ---
 name: arch-principles
-description: Guide application of software design principles. Use when evaluating or applying SOLID, GRASP, DRY, KISS, YAGNI, coupling and cohesion, CQS, CAP theorem, IoC/DI, composition over inheritance, encapsulation, or fail-fast design.
+description: Apply software design principles. Use when evaluating or applying SOLID, GRASP, DRY, KISS, YAGNI, coupling and cohesion, CQS, CAP theorem, IoC/DI, composition over inheritance, encapsulation, or fail-fast design.
 ---
 
 # Architecture Design Principles
@@ -139,6 +139,8 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/design-principles.md` — Design Principles Deep Dive
+- `references/grasp-coupling-cap.md` — GRASP, Coupling & Cohesion, CAP
 
 ## Related Skills
 

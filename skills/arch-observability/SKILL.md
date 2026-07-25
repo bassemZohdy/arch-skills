@@ -1,6 +1,6 @@
 ---
 name: arch-observability
-description: Guide observability architecture. Use when designing logging strategies, implementing distributed tracing, setting up monitoring dashboards, or establishing observability standards.
+description: Design observability architecture. Use when designing structured logging strategies, implementing distributed tracing with OpenTelemetry, applying RED/USE methods and Golden Signals, setting SLOs and monitoring dashboards, or establishing observability standards.
 ---
 
 # Observability Architecture
@@ -204,6 +204,8 @@ IF disk_usage > 90% THEN alert:high
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/observability-deep-dive.md` — Observability Deep Dive
+- `references/observability-patterns.md` — Observability Reference
 
 ## Related Skills
 

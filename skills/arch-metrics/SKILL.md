@@ -1,6 +1,6 @@
 ---
 name: arch-metrics
-description: Guide architecture metrics and complexity analysis. Use when measuring architecture health, tracking technical debt, analyzing dependencies, quantifying complexity, or setting up architecture dashboards.
+description: Measure architecture health and complexity. Use when measuring architecture health, tracking technical debt, analyzing dependencies, quantifying complexity, or setting up architecture dashboards.
 ---
 
 # Architecture Metrics
@@ -50,6 +50,17 @@ Instability = Ce / (Ca + Ce)
 
 **Zone of Pain:** High instability, low abstractness
 **Zone of Uselessness:** Low instability, high abstractness
+
+```mermaid
+quadrantChart
+    title Abstractness vs Instability
+    x-axis Low Instability --> High Instability
+    y-axis Low Abstractness --> High Abstractness
+    quadrant-1 Zone of Uselessness
+    quadrant-2 Balanced
+    quadrant-3 Zone of Pain
+    quadrant-4 Rigid
+```
 
 ## Step 2: Dependency Analysis
 
@@ -118,20 +129,13 @@ Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 
 ### Architecture Health Dashboard
 
-```
-┌─────────────────────────────────────────────────────┐
-│                Architecture Health                  │
-├─────────────────────────────────────────────────────┤
-│  Complexity    │  Dependencies  │  Debt             │
-│  ────────────  │  ────────────  │  ────────────    │
-│  CC: 7.2       │  Cycles: 0     │  Score: 45       │
-│  LOC: 12.5K    │  Depth: 4      │  Trend: ↓        │
-│  Duplication: 3%│ Width: 12     │  Critical: 2     │
-├─────────────────────────────────────────────────────┤
-│  Trends: 30-day moving averages                     │
-│  [Chart: Complexity over time]                      │
-│  [Chart: Debt score over time]                      │
-└─────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    CMPLX["Complexity<br/>CC: 7.2 · LOC: 12.5K · Dup: 3%"] --> DASH(("Architecture Health<br/>30-day moving averages"))
+    DEPS["Dependencies<br/>Cycles: 0 · Depth: 4 · Width: 12"] --> DASH
+    DEBT["Debt<br/>Score: 45 · Trend: ↓ · Critical: 2"] --> DASH
+    DASH --> T1["Chart: Complexity over time"]
+    DASH --> T2["Chart: Debt score over time"]
 ```
 
 ### Key Indicators
@@ -168,6 +172,8 @@ Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/complexity-metrics.md` — Complexity Metrics Reference
+- `references/metrics-deep-dive.md` — Metrics Deep Dive
 
 ## Related Skills
 

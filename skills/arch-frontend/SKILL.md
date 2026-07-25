@@ -1,6 +1,6 @@
 ---
 name: arch-frontend
-description: Guide frontend architecture design. Use when designing micro frontends, implementing UI patterns, selecting frontend frameworks, or establishing frontend architecture standards.
+description: Design frontend architecture. Use when designing micro frontends or module federation, implementing UI patterns and component architecture, selecting frontend frameworks, planning state management and performance budgets, or establishing frontend testing and architecture standards.
 ---
 
 # Frontend Architecture
@@ -119,6 +119,8 @@ Systematic approach to frontend architecture.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/frontend-deep-dive.md` — Frontend Architecture Deep Dive
+- `references/frontend-patterns.md` — Frontend Architecture Reference
 
 ## Related Skills
 

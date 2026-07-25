@@ -1,6 +1,6 @@
 ---
 name: arch-event
-description: Guide event-driven architecture design. Use when designing messaging systems, implementing CQRS or Event Sourcing, planning saga patterns, facilitating Event Storming, or implementing distributed transactions.
+description: Design event-driven architecture. Use when designing messaging systems, implementing CQRS or Event Sourcing, planning saga patterns, facilitating Event Storming, or implementing distributed transactions.
 ---
 
 # Event-Driven Architecture
@@ -31,9 +31,11 @@ Systematic approach to designing event-driven systems.
 
 ### Pub/Sub
 
-```
-Publisher → Topic → Subscriber A
-                   → Subscriber B
+```mermaid
+graph LR
+    Publisher --> Topic
+    Topic --> SubA["Subscriber A"]
+    Topic --> SubB["Subscriber B"]
 ```
 
 **Use when:** Multiple consumers, loose coupling.
@@ -58,10 +60,13 @@ Client → Request Queue → Service → Reply Queue → Client
 
 **Command Query Responsibility Segregation** — Separate read and write models.
 
-```
-Commands → Write Model → Write DB
-                              ↓
-Queries  ← Read Model  ← Read DB (denormalized)
+```mermaid
+graph LR
+    Commands["Commands"] --> WriteModel["Write Model"]
+    WriteModel --> WriteDB["Write DB"]
+    WriteDB -.->|"project"| ReadDB["Read DB (denormalized)"]
+    ReadDB --> ReadModel["Read Model"]
+    ReadModel --> Queries["Queries"]
 ```
 
 **When to Use:**
@@ -78,13 +83,12 @@ Queries  ← Read Model  ← Read DB (denormalized)
 
 Store state changes as events, not current state.
 
-```
-Event Store:
-1. OrderCreated {orderId: 123, items: [...]}
-2. ItemAdded {orderId: 123, item: "..."}
-3. OrderSubmitted {orderId: 123, timestamp: ...}
-
-Current State = Replay Events
+```mermaid
+graph LR
+    E1["OrderCreated<br/>{orderId: 123, items: [...]}"] --> Store[("Event Store")]
+    E2["ItemAdded<br/>{orderId: 123, item: ...}"] --> Store
+    E3["OrderSubmitted<br/>{orderId: 123, timestamp: ...}"] --> Store
+    Store -->|"replay / project"| Current["Current State"]
 ```
 
 **Benefits:**
@@ -104,10 +108,15 @@ Current State = Replay Events
 
 Each service publishes events and listens for others.
 
-```
-Order Service → OrderCreated → Payment Service
-Payment Service → PaymentProcessed → Shipping Service
-Shipping Service → ShipmentCreated → Notification Service
+```mermaid
+sequenceDiagram
+    participant OS as Order Service
+    participant PS as Payment Service
+    participant SS as Shipping Service
+    participant NS as Notification Service
+    OS->>PS: OrderCreated
+    PS->>SS: PaymentProcessed
+    SS->>NS: ShipmentCreated
 ```
 
 **Pros:** Simple, loose coupling.
@@ -117,13 +126,17 @@ Shipping Service → ShipmentCreated → Notification Service
 
 Central coordinator manages the flow.
 
-```
-Saga Orchestrator:
-1. Send CreateOrder to Order Service
-2. Wait for OrderCreated
-3. Send ProcessPayment to Payment Service
-4. Wait for PaymentProcessed
-5. Send ShipOrder to Shipping Service
+```mermaid
+sequenceDiagram
+    participant O as Saga Orchestrator
+    participant OS as Order Service
+    participant PS as Payment Service
+    participant SS as Shipping Service
+    O->>OS: CreateOrder
+    OS-->>O: OrderCreated
+    O->>PS: ProcessPayment
+    PS-->>O: PaymentProcessed
+    O->>SS: ShipOrder
 ```
 
 **Pros:** Clear flow, easier debugging.
@@ -197,6 +210,9 @@ Event ID → Check if processed → Skip if yes
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/cqrs-es.md` — CQRS & Event Sourcing Reference
+- `references/event-deep-dive.md` — Event-Driven Architecture Deep Dive
+- `references/messaging-patterns.md` — Messaging Patterns Reference
 
 ## Related Skills
 

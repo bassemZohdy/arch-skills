@@ -1,6 +1,6 @@
 ---
 name: arch-cost
-description: Guide cost optimization and FinOps architecture. Use when optimizing cloud costs, implementing FinOps practices, modeling infrastructure costs, or establishing cost governance.
+description: Optimize cloud costs and design FinOps architecture. Use when optimizing cloud costs, implementing FinOps practices, modeling infrastructure costs, right-sizing resources, or establishing cost governance and budgets.
 ---
 
 # Cost Optimization Architecture
@@ -151,6 +151,7 @@ Systematic approach to cost management and optimization.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/finops-reference.md` — FinOps Reference
 
 ## Related Skills
 

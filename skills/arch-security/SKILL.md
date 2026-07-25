@@ -131,6 +131,9 @@ For control mapping, audit trails, and evidence collection, see **arch-complianc
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/security-deep-dive.md` — Security Architecture Deep Dive
+- `references/security-patterns.md` — Security Patterns Reference
+- `references/threat-modeling.md` — Threat Modeling Reference
 
 ## Related Skills
 

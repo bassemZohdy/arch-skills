@@ -1,6 +1,6 @@
 ---
 name: arch-compliance
-description: Guide regulatory compliance and auditability architecture. Use when implementing GDPR, HIPAA, SOC 2, PCI DSS compliance, designing audit trails, or establishing compliance frameworks.
+description: Design regulatory compliance and auditability architecture. Use when implementing GDPR, HIPAA, SOC 2, PCI DSS, ISO 27001, CCPA, or SOX compliance, designing audit trails and log retention, classifying data, or establishing compliance frameworks.
 ---
 
 # Compliance Architecture
@@ -156,6 +156,8 @@ Systematic approach to regulatory compliance and auditability.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/compliance-deep-dive.md` — Compliance Deep Dive
+- `references/regulatory-compliance.md` — Regulatory Compliance Reference
 
 ## Related Skills
 

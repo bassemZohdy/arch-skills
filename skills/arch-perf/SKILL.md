@@ -1,6 +1,6 @@
 ---
 name: arch-perf
-description: Guide performance engineering and capacity planning. Use when designing for performance, analyzing bottlenecks, planning capacity, defining SLAs/SLOs, designing caching strategies, or conducting load testing.
+description: Engineer performance and plan capacity. Use when designing for performance, analyzing bottlenecks, planning capacity, defining SLAs/SLOs, designing caching strategies, or conducting load testing.
 ---
 
 # Performance Engineering
@@ -139,6 +139,8 @@ Safety Margin = 20-50% depending on criticality
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/performance-deep-dive.md` — Performance Engineering Deep Dive
+- `references/performance-patterns.md` — Performance Patterns Reference
 
 ## Related Skills
 

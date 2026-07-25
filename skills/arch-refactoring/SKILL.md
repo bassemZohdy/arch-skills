@@ -1,6 +1,6 @@
 ---
 name: arch-refactoring
-description: Guide code and architecture refactoring. Use when identifying code smells, planning refactoring strategies, implementing incremental refactoring, or improving code quality.
+description: Plan and execute code and architecture refactoring. Use when identifying code smells, planning refactoring strategies, implementing incremental refactoring, or improving code quality.
 ---
 
 # Refactoring Architecture
@@ -74,10 +74,16 @@ Systematic approach to code and architecture refactoring.
 
 ### Strangler Fig Pattern
 
-```
-Legacy System → Facade → New Components
-                    ↓
-              Gradually Replace
+```mermaid
+graph LR
+    Client["Client / Caller"]
+    Facade["Facade / Router"]
+    Legacy["Legacy System (monolith)"]
+    New["New Components (strangler)"]
+    Client --> Facade
+    Facade -- "route (migrated)" --> New
+    Facade -- "route (not yet migrated)" --> Legacy
+    New -. "gradually replaces" .-> Legacy
 ```
 
 ### Branch by Abstraction
@@ -169,6 +175,7 @@ Legacy System → Facade → New Components
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/refactoring-patterns.md` — Refactoring Patterns Reference
 
 ## Related Skills
 

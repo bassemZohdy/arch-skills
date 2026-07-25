@@ -125,6 +125,7 @@ Rules of engagement:
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/anti-patterns-catalog.md` — Anti-Patterns Catalog
 
 ## Related Skills
 

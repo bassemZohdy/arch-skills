@@ -1,6 +1,6 @@
 ---
 name: arch-features
-description: Guide feature management architecture. Use when implementing feature flags, designing feature toggles, planning feature rollouts, or establishing experimentation frameworks.
+description: Design feature management architecture. Use when implementing feature flags, designing feature toggles, planning percentage/canary/ring rollouts, running A/B testing and experimentation, or establishing progressive delivery.
 ---
 
 # Feature Management Architecture
@@ -148,6 +148,7 @@ if (variant === 'control') {
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/feature-management.md` — Feature Management Reference
 
 ## Related Skills
 

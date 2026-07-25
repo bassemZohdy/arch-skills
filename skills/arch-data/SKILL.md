@@ -1,6 +1,6 @@
 ---
 name: arch-data
-description: Guide data architecture design. Use when modeling databases, designing data pipelines, implementing data governance, planning data lakes, or establishing data architecture standards.
+description: Design data architecture. Use when modeling databases, designing data pipelines, implementing data governance, planning data lakes, or establishing data architecture standards.
 ---
 
 # Data Architecture
@@ -159,6 +159,8 @@ Source System → Ingestion → Processing → Storage → Consumption
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/data-deep-dive.md` — Data Architecture Deep Dive
+- `references/data-modeling.md` — Data Modeling Reference
 
 ## Related Skills
 

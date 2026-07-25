@@ -191,6 +191,9 @@ message User {
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/api-deep-dive.md` — API Design Deep Dive
+- `references/api-documentation.md` — API Documentation Best Practices
+- `references/rest-patterns.md` — REST Patterns Reference
 
 ## Related Skills
 

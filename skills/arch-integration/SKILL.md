@@ -1,6 +1,6 @@
 ---
 name: arch-integration
-description: Guide system integration architecture. Use when designing service mesh, API gateway patterns, ESB integration, system-to-system communication, or establishing integration standards.
+description: Design system integration architecture. Use when designing service mesh, API gateway patterns, ESB integration, system-to-system communication, or establishing integration standards.
 ---
 
 # Integration Architecture
@@ -145,6 +145,7 @@ Systematic approach to designing system integrations.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/integration-patterns.md` — Integration Patterns Reference
 
 ## Related Skills
 

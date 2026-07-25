@@ -1,6 +1,6 @@
 ---
 name: arch-microservices
-description: Guide microservices architecture design. Use when decomposing monoliths, designing service boundaries, implementing service communication, or establishing microservices patterns.
+description: Design microservices architecture. Use when decomposing monoliths, designing service boundaries, implementing service communication, or establishing microservices patterns.
 ---
 
 # Microservices Architecture
@@ -78,10 +78,12 @@ Need ordering? → Event Streaming
 
 ### API Gateway
 
-```
-Client → API Gateway → Service A
-                     → Service B
-                     → Service C
+```mermaid
+graph LR
+    Client --> Gateway[API Gateway]
+    Gateway --> SvcA[Service A]
+    Gateway --> SvcB[Service B]
+    Gateway --> SvcC[Service C]
 ```
 
 **Responsibilities:**
@@ -100,10 +102,13 @@ Client → API Gateway → Service A
 
 ### Circuit Breaker
 
-```
-CLOSED → (failures) → OPEN → (timeout) → HALF-OPEN
-  ↑                                        ↓
-  └────────── (success) ←─────────────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> CLOSED
+    CLOSED --> OPEN: failures exceed threshold
+    OPEN --> HALF_OPEN: timeout elapses
+    HALF_OPEN --> CLOSED: probe succeeds
+    HALF_OPEN --> OPEN: probe fails
 ```
 
 ## Step 4: Data Management
@@ -157,6 +162,7 @@ CLOSED → (failures) → OPEN → (timeout) → HALF-OPEN
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/microservices-patterns.md` — Microservices Patterns Reference
 
 ## Related Skills
 

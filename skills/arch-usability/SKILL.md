@@ -1,6 +1,6 @@
 ---
 name: arch-usability
-description: Guide usability and user experience architecture. Use when designing user interfaces, applying usability heuristics, planning user research, creating information architectures, or establishing UX standards.
+description: Design usability and user experience. Use when designing user interfaces, applying Nielsen usability heuristics, planning user research, running SUS or usability testing, creating journey/empathy maps, or establishing UX standards.
 ---
 
 # Usability Architecture
@@ -152,6 +152,7 @@ Systematic approach to designing usable systems.
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/usability-heuristics.md` — Usability Heuristics Reference
 
 ## Related Skills
 

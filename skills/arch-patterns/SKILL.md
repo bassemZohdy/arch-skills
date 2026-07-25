@@ -1,6 +1,6 @@
 ---
 name: arch-patterns
-description: Guide architecture pattern selection and application. Use when choosing between Clean Architecture, Hexagonal Architecture, Layered Architecture, Vertical Slice Architecture, Modular Monolith, Pipes & Filters, or other architectural patterns.
+description: Select and apply architecture patterns. Use when choosing between Clean Architecture, Hexagonal Architecture, Layered Architecture, Vertical Slice Architecture, Modular Monolith, Pipes & Filters, or other architectural patterns.
 ---
 
 # Architecture Patterns
@@ -53,19 +53,19 @@ Systematic approach to selecting and applying architecture patterns.
 
 ### Concentric Circles
 
-```
-┌─────────────────────────────────────┐
-│           Frameworks               │
-│  ┌───────────────────────────────┐  │
-│  │        Interface Adapters     │  │
-│  │  ┌───────────────────────┐    │  │
-│  │  │     Application        │    │  │
-│  │  │  ┌───────────────┐    │    │  │
-│  │  │  │   Domain       │    │    │  │
-│  │  │  └───────────────┘    │    │  │
-│  │  └───────────────────────┘    │  │
-│  └───────────────────────────────┘  │
-└─────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph Frameworks["Frameworks & Drivers"]
+        subgraph Adapters["Interface Adapters"]
+            subgraph Application["Application / Use Cases"]
+                Domain["Domain / Entities"]
+            end
+        end
+    end
+    %% Dependency rule: dependencies point inward only
+    Frameworks --> Adapters
+    Adapters --> Application
+    Application --> Domain
 ```
 
 ### Dependency Rule
@@ -89,17 +89,17 @@ Dependencies point inward only:
 
 ### Ports and Adapters
 
-```
-┌─────────────────────────────────────┐
-│            Primary Ports            │
-│  ┌───────────────────────────────┐  │
-│  │        Application Core       │  │
-│  │  ┌───────────────────────┐    │  │
-│  │  │     Domain Model       │    │  │
-│  │  └───────────────────────┘    │  │
-│  └───────────────────────────────┘  │
-│            Secondary Ports          │
-└─────────────────────────────────────┘
+```mermaid
+graph TB
+    Primary["Primary Ports (Driving)"]
+    Core["Application Core"]
+    Domain["Domain Model"]
+    Secondary["Secondary Ports (Driven)"]
+    %% Driving adapters call in through primary ports
+    Primary --> Core
+    Core --> Domain
+    %% Core calls out through secondary ports to driven adapters
+    Core --> Secondary
 ```
 
 ### Port Types
@@ -120,16 +120,15 @@ Dependencies point inward only:
 
 ### Traditional Layers
 
-```
-┌─────────────────────────┐
-│    Presentation Layer   │
-├─────────────────────────┤
-│    Business Layer       │
-├─────────────────────────┤
-│    Persistence Layer    │
-├─────────────────────────┤
-│    Database Layer       │
-└─────────────────────────┘
+```mermaid
+graph TB
+    Presentation["Presentation Layer"]
+    Business["Business Layer"]
+    Persistence["Persistence Layer"]
+    Database["Database Layer"]
+    Presentation --> Business
+    Business --> Persistence
+    Persistence --> Database
 ```
 
 ### Layer Rules
@@ -145,8 +144,12 @@ Dependencies point inward only:
 
 ### Pattern Structure
 
-```
-Input → [Filter 1] → [Filter 2] → [Filter 3] → Output
+```mermaid
+graph LR
+    Input["Input"] --> F1["Filter 1"]
+    F1 -- pipe --> F2["Filter 2"]
+    F2 -- pipe --> F3["Filter 3"]
+    F3 --> Output["Output"]
 ```
 
 ### Filter Types
@@ -186,6 +189,7 @@ Input → [Filter 1] → [Filter 2] → [Filter 3] → Output
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/architecture-patterns.md` — Architecture Patterns Reference
 
 ## Related Skills
 

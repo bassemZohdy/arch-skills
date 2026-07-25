@@ -20,15 +20,18 @@ Systematic approach to designing test strategies.
 
 ## Step 1: Test Pyramid
 
+```mermaid
+graph TB
+    Unit["Unit &mdash; many, fast, cheap"]
+    Integration["Integration &mdash; some, medium speed"]
+    E2E["E2E &mdash; few, slow, expensive"]
+    Unit --> Integration
+    Integration --> E2E
 ```
-        ┌─────────┐
-        │   E2E   │  ← Few, slow, expensive
-        ├─────────┤
-        │Integration│  ← Some, medium speed
-        ├─────────┤
-        │  Unit   │  ← Many, fast, cheap
-        └─────────┘
-```
+
+- The **Unit** layer is the wide base: most tests live here, run in milliseconds, and are cheap.
+- The **Integration** layer is the middle band: fewer tests, seconds each, medium cost.
+- The **E2E** layer is the narrow apex: few tests, minutes each, expensive.
 
 | Level | Scope | Speed | Cost | Quantity |
 |-------|-------|-------|------|----------|
@@ -196,6 +199,8 @@ Commit → Unit Tests → Build → Integration Tests → Deploy → E2E Tests
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/test-deep-dive.md` — Test Architecture Deep Dive
+- `references/test-strategy.md` — Test Pyramid Reference
 
 ## Related Skills
 
