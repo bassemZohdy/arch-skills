@@ -2,7 +2,7 @@
 
 ## What This Repo Is
 
-Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`solution-architecture-orchestrator`), and 27 more specialized skills covering all architecture concerns. Skills are Markdown + YAML + templates — no compiled code.
+Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`arch-orchestrator`), and 27 more specialized skills covering all architecture concerns. Skills are Markdown + YAML + templates — no compiled code.
 
 ## Key Commands
 

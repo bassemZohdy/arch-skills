@@ -10,7 +10,7 @@ orphaned reference files cited, descriptions strengthened, diagrams converted to
 
 | Category | Skills |
 |----------|--------|
-| Orchestration | solution-architecture-orchestrator |
+| Orchestration | arch-orchestrator |
 | Core | arch-doc, arch-review, arch-fitness, arch-decision, arch-governance |
 | Design Fundamentals | arch-principles, arch-antipatterns |
 | Technical | arch-security, arch-perf, arch-resilience, arch-test |

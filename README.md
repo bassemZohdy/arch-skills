@@ -36,7 +36,7 @@ python tests/test_skills.py
 ## Skills (32)
 
 ### Orchestration (1)
-solution-architecture-orchestrator
+arch-orchestrator
 
 ### Core (5)
 arch-doc, arch-review, arch-fitness, arch-decision, arch-governance

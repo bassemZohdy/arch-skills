@@ -1,5 +1,5 @@
 ---
-name: solution-architecture-orchestrator
+name: arch-orchestrator
 description: Orchestrate specialist architecture skills to deliver one coherent solution architecture. Use for end-to-end architecture design requests - greenfield systems, modernization, migration, integration programs, or any request spanning multiple architecture domains that requires skill selection, coordinated execution, conflict resolution, validation, and a single consolidated deliverable.
 ---
 

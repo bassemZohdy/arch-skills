@@ -199,4 +199,4 @@ Create prioritized remediation plan:
 - **arch-decision** - Capture review outcomes as architecture decision records
 - **arch-fitness** - Turn review findings into automated, continuous checks
 - **arch-governance** - Track review-driven remediation and standards adoption
-- **solution-architecture-orchestrator** - Feed review results back into coordinated redesign
+- **arch-orchestrator** - Feed review results back into coordinated redesign

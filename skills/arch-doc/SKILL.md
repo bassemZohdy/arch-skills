@@ -211,4 +211,4 @@ While framework-agnostic, adjust recommendations based on detected stack:
 - **arch-decision** - Record decisions (ADRs) referenced from the documentation
 - **arch-governance** - Maintain documentation as part of architecture governance
 - **arch-fitness** - Encode documented decisions as automated checks
-- **solution-architecture-orchestrator** - Orchestrate end-to-end design including documentation deliverables
+- **arch-orchestrator** - Orchestrate end-to-end design including documentation deliverables

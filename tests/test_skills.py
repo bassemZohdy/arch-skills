@@ -193,7 +193,7 @@ class SkillTester:
                    "arch-usability", "arch-accessibility", "arch-compliance",
                    "arch-integration", "arch-microservices", "arch-devops", "arch-cost", "arch-governance",
                    "arch-patterns", "arch-refactoring", "arch-frontend", "arch-features", "arch-ai",
-                   "arch-antipatterns", "arch-principles", "solution-architecture-orchestrator"]
+                   "arch-antipatterns", "arch-principles", "arch-orchestrator"]
         
         print("=" * 60)
         print("Architecture Skills Test Suite")

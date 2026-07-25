@@ -15,7 +15,7 @@
 
 | Skill | References | Assets | Tests | Scenarios |
 |-------|------------|--------|-------|-----------|
-| solution-architecture-orchestrator | 3 | 3 | 7 | 5 |
+| arch-orchestrator | 3 | 3 | 7 | 5 |
 
 ### Core Architecture (5 skills)
 
