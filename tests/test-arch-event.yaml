@@ -4,47 +4,82 @@ timeout: 180
 skill: ./skills/arch-event
 
 scenarios:
-  - name: "designs event-driven system"
+  - name: "designs event types"
     steps:
-      - prompt: "Design an event-driven architecture for an order processing system."
+      - prompt: "Identify the domain events for an order management system with payment and shipping."
         assert:
           - type: contains
             value: "event"
           - type: contains
-            value: "publisher"
+            value: "domain"
+          - type: not_contains
+            value: "just use REST"
 
-  - name: "implements CQRS"
+  - name: "chooses messaging pattern"
     steps:
-      - prompt: "Implement CQRS for a product catalog with different read and write patterns."
+      - prompt: "Should I use pub/sub or point-to-point messaging for a notification system?"
+        assert:
+          - type: contains
+            value: "pub/sub"
+          - type: contains
+            value: "point-to-point"
+
+  - name: "designs CQRS"
+    steps:
+      - prompt: "Design a CQRS pattern for a reporting system that needs separate read and write models."
         assert:
           - type: contains
             value: "CQRS"
           - type: contains
-            value: "command"
+            value: "read model"
 
-  - name: "designs saga pattern"
+  - name: "designs event sourcing"
     steps:
-      - prompt: "Design a saga pattern for distributed transactions in an e-commerce checkout."
+      - prompt: "How would you implement event sourcing for a banking ledger?"
+        assert:
+          - type: contains
+            value: "event store"
+          - type: contains
+            value: "replay"
+
+  - name: "designs saga orchestration"
+    steps:
+      - prompt: "Design a saga for an order fulfillment process spanning order, payment, and shipping services."
         assert:
           - type: contains
             value: "saga"
           - type: contains
             value: "compensation"
 
-  - name: "facilitates Event Storming"
+  - name: "designs event schema"
     steps:
-      - prompt: "How do I run an Event Storming workshop for domain discovery?"
+      - prompt: "Design a CloudEvents-compliant event schema for an OrderPlaced event."
         assert:
           - type: contains
-            value: "Event Storming"
-          - type: contains
-            value: "domain"
-
-  - name: "handles event schema evolution"
-    steps:
-      - prompt: "How do I handle schema evolution for domain events?"
-        assert:
-          - type: contains
-            value: "schema"
+            value: "eventType"
           - type: contains
             value: "version"
+          - type: not_contains
+            value: "just stringify JSON"
+
+  - name: "implements idempotency"
+    steps:
+      - prompt: "How do I ensure idempotent event processing for payment events?"
+        assert:
+          - type: contains
+            value: "idempotent"
+          - type: contains
+            value: "deduplication"
+
+  - name: "handles schema evolution"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "How should I handle schema evolution when adding a new field to an event that has 12 consumers?"
+        assert:
+          - type: contains
+            value: "additive"
+          - type: contains
+            value: "version"
+          - type: not_contains
+            value: "breaking change"

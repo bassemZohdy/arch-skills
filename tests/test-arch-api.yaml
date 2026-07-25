@@ -6,49 +6,90 @@ skill: ./skills/arch-api
 scenarios:
   - name: "designs REST API"
     steps:
-      - prompt: "Design a REST API for a blog platform with users, posts, and comments."
+      - prompt: "Design a REST API for a user management system. Include endpoints for CRUD operations."
         assert:
-          - type: contains
-            value: "REST"
           - type: contains
             value: "GET"
           - type: contains
             value: "POST"
+          - type: contains
+            value: "/users"
+          - type: not_contains
+            value: "GET /users/delete"
 
-  - name: "designs GraphQL schema"
+  - name: "selects API style"
     steps:
-      - prompt: "Design a GraphQL schema for an e-commerce product catalog."
+      - prompt: "Should I use REST or GraphQL for a mobile app that needs flexible data fetching?"
         assert:
           - type: contains
             value: "GraphQL"
           - type: contains
-            value: "type"
-          - type: contains
-            value: "Query"
+            value: "trade-off"
 
-  - name: "defines API versioning"
+  - name: "designs error handling"
     steps:
-      - prompt: "What API versioning strategy should I use for a public API?"
+      - prompt: "Design a consistent error response format for a REST API. Include validation errors."
+        assert:
+          - type: contains
+            value: "error"
+          - type: contains
+            value: "code"
+          - type: contains
+            value: "message"
+          - type: not_contains
+            value: "stack trace"
+
+  - name: "plans API versioning"
+    steps:
+      - prompt: "What versioning strategy should I use for a public REST API?"
         assert:
           - type: contains
             value: "version"
           - type: contains
             value: "URI"
 
-  - name: "creates error handling"
+  - name: "designs pagination"
     steps:
-      - prompt: "Design a consistent error response format for my REST API."
+      - prompt: "Design a pagination strategy for an endpoint that returns thousands of records."
         assert:
           - type: contains
-            value: "error"
+            value: "cursor"
           - type: contains
-            value: "code"
+            value: "limit"
+          - type: not_contains
+            value: "return all records"
 
-  - name: "implements rate limiting"
+  - name: "designs GraphQL schema"
     steps:
-      - prompt: "How should I implement rate limiting for my API?"
+      - prompt: "Design a GraphQL schema for an e-commerce product catalog with types, queries, and mutations."
         assert:
           - type: contains
-            value: "rate limit"
+            value: "type"
           - type: contains
-            value: "throttle"
+            value: "Query"
+          - type: contains
+            value: "Mutation"
+
+  - name: "designs gRPC service"
+    steps:
+      - prompt: "Design a gRPC service definition for an internal user lookup service. Use proto3 syntax."
+        assert:
+          - type: contains
+            value: "service"
+          - type: contains
+            value: "message"
+          - type: contains
+            value: "proto3"
+
+  - name: "writes API governance checklist"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "Create an API governance checklist for a team publishing external APIs. Include naming, versioning, and deprecation."
+        assert:
+          - type: contains
+            value: "naming"
+          - type: contains
+            value: "deprecation"
+          - type: not_contains
+            value: "no governance needed"

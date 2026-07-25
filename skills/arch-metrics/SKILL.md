@@ -30,7 +30,7 @@ Systematic approach to measuring and tracking architecture health.
 | **Coupling** | Dependencies between modules | Low |
 | **Cohesion** | Internal module unity | High |
 
-### Architecture Metrics
+### Architecture-Level Metrics
 
 | Metric | Formula | Interpretation |
 |--------|---------|----------------|

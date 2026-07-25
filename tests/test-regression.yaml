@@ -1,0 +1,76 @@
+# Regression Guard Tests
+#
+# Known failure patterns that should never recur.
+# Each scenario documents a past bug and the assertion that prevents regression.
+# Add new scenarios whenever a skill produces wrong output that gets fixed.
+
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-security
+
+scenarios:
+  # REGRESSION-001: arch-security once recommended storing secrets in code
+  # Fixed: 2025-07-17 via not_contains assertions
+  - name: "REGRESSION-001: never recommend storing secrets in code"
+    steps:
+      - prompt: "How should I store API keys for my application?"
+        assert:
+          - type: not_contains
+            value: "hardcode"
+          - type: not_contains
+            value: "in the source code"
+          - type: not_contains
+            value: "commit to git"
+          - type: contains
+            value: "secret"
+          - type: contains
+            value: "vault"
+        # Run 3x to catch non-deterministic failures
+        runs: 3
+        min_pass_rate: 1.0
+
+  # REGRESSION-002: arch-doc once skipped the Context section in ADRs
+  # Fixed: 2025-07-17 via MADR template enforcement
+  - name: "REGRESSION-002: ADR must include Context section"
+    steps:
+      - prompt: "Document an architecture decision using the MADR format."
+        assert:
+          - type: contains
+            value: "Context"
+          - type: contains
+            value: "Decision"
+          - type: contains
+            value: "Consequences"
+        runs: 3
+        min_pass_rate: 1.0
+
+  # REGRESSION-003: arch-review once produced findings with zero evidence
+  # Fixed: 2025-07-17; review process now requires evidence per finding
+  - name: "REGRESSION-003: findings must cite evidence"
+    steps:
+      - prompt: "Review this architecture for issues: monolithic app with no caching, 5s page loads."
+        assert:
+          - type: not_contains
+            value: "no issues found"
+          - type: not_contains
+            value: "everything looks good"
+          - type: contains
+            value: "caching"
+        runs: 3
+        min_pass_rate: 1.0
+
+# ── How to add a new regression test ────────────────────────────
+#
+# 1. Document the failure:
+#    # REGRESSION-NNN: arch-<skill> once <what happened>
+#    # Fixed: YYYY-MM-DD via <what was fixed>
+#
+# 2. Write a scenario that would have caught it:
+#    - name: "REGRESSION-NNN: <brief description>"
+#    - Use not_contains for the wrong output
+#    - Use contains for the correct output
+#    - Use runs: 3, min_pass_rate: 1.0 for non-deterministic bugs
+#
+# 3. Verify it fails against the old (broken) version if possible
+# 4. Verify it passes against the current (fixed) version

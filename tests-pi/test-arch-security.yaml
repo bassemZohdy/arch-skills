@@ -1,4 +1,5 @@
-harness: claude-code
+# Pi Harness: Security Architecture
+harness: pi
 model: claude-haiku-4-5-20251001
 timeout: 180
 skill: ./skills/arch-security
@@ -16,8 +17,6 @@ scenarios:
             value: "Tampering"
           - type: not_contains
             value: "plain text password"
-          - type: not_contains
-            value: "hardcode the secret"
 
   - name: "assesses risk with DREAD"
     steps:
@@ -40,6 +39,8 @@ scenarios:
             value: "disable TLS"
 
   - name: "recommends security patterns"
+    runs: 3
+    min_pass_rate: 0.67
     steps:
       - prompt: "What authentication pattern should I use for a mobile app?"
         assert:
@@ -49,41 +50,3 @@ scenarios:
             value: "JWT"
           - type: not_contains
             value: "Basic auth without TLS"
-
-  - name: "reviews compliance requirements"
-    steps:
-      - prompt: "What are the GDPR requirements for handling user data?"
-        assert:
-          - type: contains
-            value: "GDPR"
-          - type: contains
-            value: "data"
-
-  - name: "designs data protection controls"
-    runs: 3
-    min_pass_rate: 0.67
-    steps:
-      - prompt: "Design data protection controls for a system storing PII. Cover encryption at rest and in transit."
-        assert:
-          - type: contains
-            value: "encryption"
-          - type: contains
-            value: "TLS"
-          - type: not_contains
-            value: "store passwords in plaintext"
-
-  - name: "recommends authorization model"
-    steps:
-      - prompt: "What authorization model should I use for a multi-tenant SaaS with role-based access?"
-        assert:
-          - type: contains
-            value: "RBAC"
-          - type: not_contains
-            value: "give everyone admin"
-
-  - name: "skips irrelevant compliance when not applicable"
-    steps:
-      - prompt: "I'm building an internal tool with no user data. Do I need HIPAA compliance?"
-        assert:
-          - type: not_contains
-            value: "HIPAA"

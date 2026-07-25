@@ -16,6 +16,10 @@ scenarios:
             value: "Person"
           - type: contains
             value: "System"
+          - type: tool_called
+            value: "Write"
+          - type: token_usage_under
+            value: 4000
 
   - name: "generates container diagram"
     steps:
@@ -49,6 +53,10 @@ scenarios:
             value: "Decision"
           - type: contains
             value: "Consequences"
+          - type: tool_called
+            value: "Write"
+          - type: not_contains
+            value: "TODO"
 
   - name: "generates sequence diagram"
     steps:
@@ -105,11 +113,15 @@ scenarios:
             value: "subgraph"
 
   - name: "recommends diagram format"
+    runs: 3
+    min_pass_rate: 0.67
     steps:
       - prompt: "What diagram format should I use for C4 Context diagrams in markdown documentation?"
         assert:
           - type: contains
             value: "Mermaid"
+          - type: not_contains
+            value: "Draw.io"
 
   - name: "automates documentation"
     steps:

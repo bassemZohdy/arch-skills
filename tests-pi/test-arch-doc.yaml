@@ -1,0 +1,57 @@
+# Pi Harness Skillprobe Tests
+#
+# Pi uses different tool names than Claude Code:
+#   Claude Code: Bash, Write, Read, Grep
+#   Pi:          bash, write, read
+#
+# Pi assertions: contains, not_contains, regex
+# Pi does NOT support: tool_called, file_exists, token_usage_under
+#
+# Run with: skillprobe run tests-pi/test-arch-*.yaml --harness pi
+
+harness: pi
+model: claude-haiku-4-5-20251001
+timeout: 180
+skill: ./skills/arch-doc
+
+scenarios:
+  - name: "generates C4 context diagram"
+    steps:
+      - prompt: "Create architecture documentation for an e-commerce platform using the C4 model. Start with a System Context diagram."
+        assert:
+          - type: contains
+            value: "C4Context"
+          - type: contains
+            value: "System Context"
+          - type: contains
+            value: "Person"
+          - type: contains
+            value: "System"
+          - type: not_contains
+            value: "TODO"
+
+  - name: "creates ADR"
+    steps:
+      - prompt: "Document an architecture decision to use PostgreSQL as the primary database. Use the MADR format."
+        assert:
+          - type: contains
+            value: "ADR"
+          - type: contains
+            value: "Status"
+          - type: contains
+            value: "Decision"
+          - type: contains
+            value: "Consequences"
+          - type: not_contains
+            value: "TODO"
+
+  - name: "recommends diagram format"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "What diagram format should I use for C4 Context diagrams in markdown documentation?"
+        assert:
+          - type: contains
+            value: "Mermaid"
+          - type: not_contains
+            value: "Draw.io"

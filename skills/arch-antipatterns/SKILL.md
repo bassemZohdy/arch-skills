@@ -1,6 +1,6 @@
 ---
 name: arch-antipatterns
-description: Detect and remediate architecture anti-patterns and code smells. Use when identifying big ball of mud, god objects, leaky abstractions, static cling, anemic domain models, distributed monoliths, or reviewing code for structural smells and their refactoring paths.
+description: "Detect and remediate architecture anti-patterns and code smells. Use when identifying big ball of mud, god objects, leaky abstractions, static cling, anemic domain models, distributed monoliths, or reviewing code for structural smells and their refactoring paths. Trigger on anti-pattern detection, code smell review, legacy modernization assessment, or architecture health check."
 ---
 
 # Architecture Anti-Patterns

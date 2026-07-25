@@ -12,6 +12,10 @@ scenarios:
             value: "resource"
           - type: contains
             value: "aws_vpc"
+          - type: tool_called
+            value: "Write"
+          - type: not_contains
+            value: "hardcode credentials"
 
   - name: "creates Kubernetes manifest"
     steps:
@@ -21,8 +25,12 @@ scenarios:
             value: "Deployment"
           - type: contains
             value: "replicas"
+          - type: not_contains
+            value: "latest"
 
   - name: "configures CI/CD pipeline"
+    runs: 3
+    min_pass_rate: 0.67
     steps:
       - prompt: "Configure a GitHub Actions CI/CD pipeline for a Python application with testing and deployment."
         assert:

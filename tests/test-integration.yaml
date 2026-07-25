@@ -1,0 +1,73 @@
+# Cross-Skill Integration Tests
+#
+# Tests skill interactions: orchestrator → specialist, review → security, etc.
+# Run with: skillprobe run tests/test-integration.yaml --harness claude-code
+
+harness: claude-code
+model: claude-haiku-4-5-20251001
+timeout: 300
+skill: ./skills/arch-orchestrator
+
+scenarios:
+  - name: "orchestrator selects security for regulated system"
+    steps:
+      - prompt: "Design a patient records system that must comply with HIPAA. Select the minimum set of specialist skills needed."
+        assert:
+          - type: contains
+            value: "arch-security"
+          - type: contains
+            value: "arch-compliance"
+          - type: contains
+            value: "arch-data"
+          - type: not_contains
+            value: "arch-ai"
+
+  - name: "orchestrator skips irrelevant skills"
+    steps:
+      - prompt: "Design a simple internal REST API for employee directory lookup. No events, no AI, no frontend, low traffic. Select only needed skills."
+        assert:
+          - type: contains
+            value: "arch-api"
+          - type: not_contains
+            value: "arch-ai"
+          - type: not_contains
+            value: "arch-event"
+          - type: not_contains
+            value: "arch-frontend"
+
+  - name: "review delegates to security"
+    steps:
+      - prompt: "Review this architecture: a public-facing payment API handling credit card data. Identify which specialist reviews are needed."
+        assert:
+          - type: contains
+            value: "arch-security"
+          - type: contains
+            value: "arch-compliance"
+
+  - name: "resolves security vs cost conflict"
+    steps:
+      - prompt: "The security review says data must stay on-premises. The cloud architect recommends a managed database for cost savings. How to resolve?"
+        assert:
+          - type: contains
+            value: "priority"
+          - type: contains
+            value: "regulatory"
+          - type: not_contains
+            value: "ignore security"
+
+  - name: "end-to-end greenfield design"
+    runs: 2
+    min_pass_rate: 0.5
+    steps:
+      - prompt: "Design a greenfield order management platform for a retailer. Cloud, ~50k orders/day, PCI scope, needs API, needs monitoring. Produce a skill selection and execution plan."
+        assert:
+          - type: contains
+            value: "arch-patterns"
+          - type: contains
+            value: "arch-security"
+          - type: contains
+            value: "arch-api"
+          - type: contains
+            value: "arch-observability"
+          - type: contains
+            value: "execution plan"

@@ -4,47 +4,80 @@ timeout: 180
 skill: ./skills/arch-cloud
 
 scenarios:
-  - name: "designs cloud architecture"
+  - name: "selects cloud services"
     steps:
-      - prompt: "Design a cloud-native architecture for a real-time analytics platform on AWS."
+      - prompt: "I need to deploy a web application with a database, file storage, and CDN on AWS. Which services should I use?"
         assert:
           - type: contains
-            value: "AWS"
+            value: "RDS"
+          - type: contains
+            value: "S3"
+
+  - name: "applies Well-Architected Framework"
+    steps:
+      - prompt: "Review this architecture against the AWS Well-Architected Framework pillars."
+        assert:
+          - type: contains
+            value: "Security"
+          - type: contains
+            value: "Reliability"
+          - type: contains
+            value: "Cost"
+
+  - name: "chooses compute pattern"
+    steps:
+      - prompt: "Should I use serverless or containers for a spiky background job that runs 50 times per day?"
+        assert:
           - type: contains
             value: "serverless"
+          - type: not_contains
+            value: "provisioned always"
 
-  - name: "applies Well-Architected"
+  - name: "designs multi-cloud strategy"
     steps:
-      - prompt: "Review this architecture against the AWS Well-Architected Framework."
+      - prompt: "What multi-cloud strategy should I use if I need AWS for compute and GCP for BigQuery analytics?"
         assert:
           - type: contains
-            value: "Well-Architected"
-          - type: contains
-            value: "pillar"
+            value: "best-of-breed"
+          - type: not_contains
+            value: "single cloud only"
 
-  - name: "optimizes costs"
+  - name: "optimizes cloud costs"
     steps:
-      - prompt: "How can I reduce cloud costs for a staging environment running 24/7?"
+      - prompt: "How can I reduce our monthly AWS bill by 30%? We run 50 EC2 instances 24/7."
         assert:
-          - type: contains
-            value: "cost"
           - type: contains
             value: "reserved"
+          - type: contains
+            value: "right-size"
 
-  - name: "designs multi-cloud"
+  - name: "designs hybrid architecture"
     steps:
-      - prompt: "Design a multi-cloud strategy to avoid vendor lock-in."
+      - prompt: "Design a hybrid architecture where regulated data stays on-premises and the web tier runs in cloud."
         assert:
           - type: contains
-            value: "multi-cloud"
+            value: "hybrid"
           - type: contains
-            value: "Terraform"
+            value: "on-premises"
 
-  - name: "plans cloud migration"
+  - name: "reviews Azure Well-Architected"
     steps:
-      - prompt: "Plan a lift-and-shift migration from on-premise to AWS."
+      - prompt: "Apply the Azure Well-Architected Framework to a workload running on AKS with Cosmos DB."
         assert:
           - type: contains
-            value: "rehost"
+            value: "Reliability"
           - type: contains
-            value: "migration"
+            value: "Security"
+
+  - name: "identifies cloud anti-patterns"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "What are common cloud architecture anti-patterns in a lift-and-shift migration?"
+        assert:
+          - type: contains
+            value: "lift-and-shift"
+          - type: contains
+            value: "egress"
+          - type: not_contains
+            value: "no anti-patterns"

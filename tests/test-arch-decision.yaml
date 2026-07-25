@@ -90,3 +90,25 @@ scenarios:
         assert:
           - type: contains
             value: "100"
+          - type: not_contains
+            value: "110"
+
+  - name: "warns about close calls without sensitivity check"
+    steps:
+      - prompt: "PostgreSQL scored 4.05 and MongoDB scored 3.80. The gap is 0.25. Should I just pick PostgreSQL?"
+        assert:
+          - type: contains
+            value: "sensitivity"
+          - type: not_contains
+            value: "just pick"
+
+  - name: "handles expedited mode correctly"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "I need a quick decision on which logging library to use. Run an expedited DAR."
+        assert:
+          - type: contains
+            value: "Expedited"
+          - type: not_contains
+            value: "Formal"

@@ -106,7 +106,7 @@ type Mutation {
 }
 ```
 
-### Best Practices
+### GraphQL Best Practices
 
 - Use input types for mutations
 - Implement cursor-based pagination
@@ -131,7 +131,7 @@ message User {
 }
 ```
 
-### Best Practices
+### gRPC Best Practices
 
 - Use proto3 syntax
 - Define meaningful error codes

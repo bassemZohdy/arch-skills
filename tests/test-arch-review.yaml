@@ -14,8 +14,14 @@ scenarios:
             value: "anti-pattern"
           - type: contains
             value: "SOLID"
+          - type: not_contains
+            value: "rewrite everything"
+          - type: not_contains
+            value: "no issues found"
 
   - name: "evaluates quality attributes"
+    runs: 3
+    min_pass_rate: 0.67
     steps:
       - prompt: "Evaluate the quality attributes of this system: A web application handling 1000 concurrent users with 200ms response time target."
         assert:
@@ -23,6 +29,8 @@ scenarios:
             value: "performance"
           - type: contains
             value: "scalability"
+          - type: not_contains
+            value: "no concerns"
           - type: contains
             value: "availability"
 

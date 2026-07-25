@@ -7,7 +7,7 @@ description: Create architecture fitness functions, automated guardrails, and ar
 
 Automated checks that verify architectural decisions are maintained.
 
-**Source:** [Building Evolutionary Architectures](https://www.oreilly.com/library/view/building-evolutionary-architectures/9781492043447/) by Ford, Parsons, Kua
+**Source:** [Building Evolutionary Architectures](https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986368/) by Ford, Parsons, Kua
 
 ## Workflow
 
@@ -138,7 +138,7 @@ void apiResponseTimeShouldBeUnder200ms() {
 | Tool | Language | Purpose |
 |------|----------|---------|
 | [ArchUnit](https://www.archunit.org/) | Java | Architecture unit testing |
-| [ArchUnitTS](https://github.com/LukasNielsen/ArchUnitTS) | TypeScript | Architecture testing |
+| [dependency-cruiser](https://github.com/sverweij/dependency-cruiser) | JavaScript/TypeScript | Architecture testing & dependency rules |
 | [SonarQube](https://www.sonarsource.com/) | Multi | Code quality gates |
 | [Checkstyle](https://checkstyle.org/) | Java | Code style enforcement |
 | [ESLint](https://eslint.org/) | JavaScript | Code quality |

@@ -14,13 +14,21 @@ scenarios:
             value: "automated"
           - type: contains
             value: "architectural"
+          - type: not_contains
+            value: "manual review only"
 
   - name: "creates ArchUnit test"
+    runs: 3
+    min_pass_rate: 0.67
     steps:
       - prompt: "Create an ArchUnit test to enforce that service layer does not depend on infrastructure layer in a Java project."
         assert:
           - type: contains
             value: "ArchUnit"
+          - type: contains
+            value: "dependOnClassesThat"
+          - type: tool_called
+            value: "Write"
           - type: contains
             value: "noClasses"
           - type: contains

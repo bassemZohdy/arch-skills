@@ -21,6 +21,8 @@ scenarios:
             value: "aggregate"
           - type: contains
             value: "invariant"
+          - type: not_contains
+            value: "one giant aggregate"
 
   - name: "creates context map"
     steps:
@@ -30,6 +32,8 @@ scenarios:
             value: "context map"
           - type: contains
             value: "relationship"
+          - type: not_contains
+            value: "no dependencies"
 
   - name: "applies tactical patterns"
     steps:
@@ -48,3 +52,38 @@ scenarios:
             value: "anemic"
           - type: contains
             value: "rich"
+
+  - name: "explains context mapping patterns"
+    steps:
+      - prompt: "Explain the difference between Customer-Supplier and Anti-Corruption Layer patterns in DDD context mapping."
+        assert:
+          - type: contains
+            value: "Customer-Supplier"
+          - type: contains
+            value: "Anti-Corruption Layer"
+          - type: not_contains
+            value: "same thing"
+
+  - name: "facilitates Event Storming"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "Walk me through the steps of running an Event Storming workshop for a new insurance claims system."
+        assert:
+          - type: contains
+            value: "Event Storming"
+          - type: contains
+            value: "domain event"
+          - type: not_contains
+            value: "skip the modeling"
+
+  - name: "identifies DDD smells"
+    steps:
+      - prompt: "What DDD smells should I look for in a codebase that claims to follow domain-driven design?"
+        assert:
+          - type: contains
+            value: "anemic"
+          - type: contains
+            value: "god aggregate"
+          - type: not_contains
+            value: "no smells found"

@@ -1,6 +1,6 @@
 ---
 name: arch-governance
-description: Establish architecture governance. Use when establishing architecture boards, defining architecture standards and paved-road defaults, maintaining a Technology Radar, running compliance dashboards and exception management, or managing architecture debt.
+description: "Establish architecture governance, standards, and compliance. Use when establishing architecture boards, defining architecture standards and paved-road defaults, maintaining a Technology Radar, running compliance dashboards and exception management, or managing architecture debt. Trigger on governance setup, architecture board, standards definition, technology radar, or exception management."
 ---
 
 # Architecture Governance

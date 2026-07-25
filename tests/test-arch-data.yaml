@@ -4,47 +4,78 @@ timeout: 180
 skill: ./skills/arch-data
 
 scenarios:
+  - name: "selects database type"
+    steps:
+      - prompt: "I need to store user profiles, order transactions, and product catalog. What database types should I use for each?"
+        assert:
+          - type: contains
+            value: "relational"
+          - type: contains
+            value: "NoSQL"
+
   - name: "designs data model"
     steps:
-      - prompt: "Design a relational data model for an e-commerce system with users, products, and orders."
+      - prompt: "Design a relational data model for an e-commerce system with customers, orders, products, and inventory."
         assert:
           - type: contains
             value: "entity"
           - type: contains
             value: "relationship"
 
-  - name: "chooses storage"
+  - name: "designs dimensional model"
     steps:
-      - prompt: "Should I use PostgreSQL or MongoDB for a product catalog with complex queries?"
+      - prompt: "Design a dimensional model for a sales analytics data warehouse with facts and dimensions."
         assert:
           - type: contains
-            value: "PostgreSQL"
+            value: "fact"
           - type: contains
-            value: "MongoDB"
+            value: "dimension"
 
-  - name: "designs data pipeline"
+  - name: "chooses data pipeline"
     steps:
-      - prompt: "Design a real-time data pipeline for clickstream analytics."
+      - prompt: "Should I use ETL or ELT for loading data into Snowflake from multiple sources?"
         assert:
           - type: contains
-            value: "pipeline"
-          - type: contains
-            value: "streaming"
+            value: "ELT"
+          - type: not_contains
+            value: "do it manually"
 
-  - name: "implements data governance"
+  - name: "defines data governance"
     steps:
-      - prompt: "How should I implement data governance for PII data?"
+      - prompt: "Define data quality dimensions and classification levels for a healthcare data platform."
         assert:
           - type: contains
-            value: "governance"
+            value: "accuracy"
           - type: contains
             value: "classification"
 
-  - name: "designs dimensional model"
+  - name: "designs data lineage"
     steps:
-      - prompt: "Design a star schema for a sales data warehouse."
+      - prompt: "How do I track data lineage from source systems to the analytics dashboard?"
         assert:
           - type: contains
-            value: "star schema"
+            value: "lineage"
           - type: contains
-            value: "fact"
+            value: "source"
+
+  - name: "designs streaming pipeline"
+    steps:
+      - prompt: "Design a streaming data pipeline for real-time clickstream analytics."
+        assert:
+          - type: contains
+            value: "stream"
+          - type: contains
+            value: "real-time"
+
+  - name: "classifies data sensitivity"
+    runs: 3
+    min_pass_rate: 0.67
+    steps:
+      - prompt: "Classify the following data: customer names, credit card numbers, product descriptions, internal wiki pages."
+        assert:
+          - type: contains
+            value: "restricted"
+          - type: contains
+            value: "confidential"
+          - type: not_contains
+            value: "all public"

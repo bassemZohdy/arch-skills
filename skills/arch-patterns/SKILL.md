@@ -1,6 +1,6 @@
 ---
 name: arch-patterns
-description: Select and apply architecture patterns. Use when choosing between Clean Architecture, Hexagonal Architecture, Layered Architecture, Vertical Slice Architecture, Modular Monolith, Pipes & Filters, or other architectural patterns.
+description: Select and apply architecture patterns including Clean Architecture, Hexagonal Architecture, Layered Architecture, Vertical Slice Architecture, Modular Monolith, Pipes & Filters, CQRS, Event-Driven. Use when choosing between architectural styles, evaluating pattern trade-offs, migrating between patterns, or conducting pattern compliance reviews.
 ---
 
 # Architecture Patterns
