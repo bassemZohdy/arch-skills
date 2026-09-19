@@ -1,6 +1,6 @@
 ---
 name: arch-governance
-description: Guide architecture governance. Use when establishing architecture boards, defining architecture standards, implementing compliance processes, or managing architecture debt.
+description: "Establish architecture governance and decision controls. Use when defining architecture standards and paved-road defaults, setting decision authority, running architecture reviews, managing exceptions and architecture debt, or maintaining a Technology Radar. Use arch-compliance for regulatory control design and audit requirements."
 ---
 
 # Architecture Governance

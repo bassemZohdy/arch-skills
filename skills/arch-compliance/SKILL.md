@@ -1,6 +1,6 @@
 ---
 name: arch-compliance
-description: Design regulatory compliance and auditability architecture. Use when implementing GDPR, HIPAA, SOC 2, PCI DSS, ISO 27001, CCPA, or SOX compliance, designing audit trails and log retention, classifying data, or establishing compliance frameworks.
+description: "Design regulatory controls and auditability architecture. Use when implementing GDPR, HIPAA, SOC 2, PCI DSS, ISO 27001, CCPA, or SOX controls, designing audit trails and retention, classifying data, or mapping obligations to evidence. Use arch-governance for board, standards and exception processes."
 ---
 
 # Compliance Architecture

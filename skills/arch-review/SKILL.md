@@ -1,6 +1,6 @@
 ---
 name: arch-review
-description: Review software architecture across patterns, quality attributes, and technical debt. Use when performing architecture reviews, preparing board-level assessments, or evaluating system health, with specialized skills for security, performance, resilience, data, API, testing, observability, and migration.
+description: "Review architecture design fitness across patterns, quality attributes, risks and technical debt. Use for architecture reviews, board assessments and specialist review routing. Use arch-evaluate for Deterministic Architecture Process completeness and artifact evidence."
 ---
 
 # Architecture Review
