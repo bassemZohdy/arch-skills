@@ -23,7 +23,7 @@ python tests/test_skills.py
 - `skills/<name>/references/` — Detailed guides loaded on demand. Keep SKILL.md lean; move content here.
 - `skills/<name>/assets/` — Templates/files used in output, not loaded into context.
 - `skills/<name>/agents/openai.yaml` — Optional UI metadata for a host adapter. Regenerate with `generate_openai_yaml.py`.
-- `tests/` — Structural validation (`test_skills.py`) and skillprobe scenarios (`.yaml`).
+- `tests/` — Structural validation (`test_skills.py`) and optional adapter-driven scenarios (`.yaml`).
 - `scripts/` — Detection and sync scripts for multiple AI harnesses.
 - `sync-skills.ps1` — Copies skills to `~/.codex/skills/`. Run after edits.
 

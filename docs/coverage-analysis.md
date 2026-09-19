@@ -1,13 +1,15 @@
 # Test Coverage Analysis
 
+The inventory below is a historical coverage baseline, not a current pass result. Use the repository test commands and DAP implementation status for current verification evidence.
+
 ## Coverage Summary
 
 | Metric | Count |
 |--------|-------|
 | Skills | 33 |
 | Structural Tests | 224 |
-| Skillprobe Scenarios | 185 |
-| Total Tests | 409 |
+| Behavioral scenarios (historical) | 185 |
+| Total tests (historical) | 409 |
 
 ## Skills Coverage
 
