@@ -2,7 +2,7 @@
 
 Reviewed on 2026-09-19 against repository baseline `8fe7e13a04af19d9c0ffc187272ecb8f3b8dba5a`.
 
-The framework is suitable as a specification for implementation after the corrections below. This is a document review, not evidence that the process is implemented or that an architecture has passed it.
+The framework review below records the corrections made to the specification and the repository gaps that shaped the reference baseline. Current completion evidence is in [DAP implementation status](dap-implementation-status.md). This review does not certify any target architecture.
 
 The [original Google document](https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ) has been corrected in place. The [repository specification](deterministic-architecture-process.md) is its versioned implementation reference. Future semantic changes must reconcile both representations explicitly; automatic synchronisation is not currently implemented.
 
@@ -31,11 +31,11 @@ The [original Google document](https://docs.google.com/document/d/1CiBfGY_tBrFVO
 
 The original draft's broader research examples are no longer treated as verified evidence. The retained LLMREI example is explicitly limited to its study setting. No quantitative result from that study is used as a production gate.
 
-## Repository gaps requiring implementation
+## Repository implementation traceability
 
-The repository now contains the evaluator, persistent process contracts and deterministic completeness calculator. The implementation is a reference baseline; deeper host-specific orchestration and live-model scenarios remain bounded by each host's capabilities.
+The repository now contains the evaluator, persistent process contracts and deterministic completeness calculator. The findings below drove the reference baseline; deeper host-specific orchestration and live-model scenarios remain bounded by each host's capabilities.
 
-| Existing path | Observed gap | Planned resolution |
+| Existing path | Observed gap | Reference baseline resolution |
 | --- | --- | --- |
 | `skills/arch-orchestrator/SKILL.md` | Generic ten-step workflow; no auditable convergence or recovery contract | Integrate the six-stage framework and durable state while retaining specialist selection |
 | `skills/arch-orchestrator/assets/shared-context-template.md` | Broad free-text fields; orchestrator can ratify decisions without defined human authority | Add stable IDs, provenance, baseline state and explicit acceptance authority |

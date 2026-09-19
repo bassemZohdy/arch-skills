@@ -6,7 +6,7 @@
 
 Architecture teams need a repeatable way to turn incomplete needs into justified solution designs. Established methods already support this work, but applying them consistently through an AI assistant requires explicit inputs, state, decision rules and evidence. This framework defines that operating process for solution architecture without claiming that architecture methods are absent from the industry.
 
-The goal is a repeatable, auditable path from a requirement seed to a reviewed architecture baseline. Deterministic means that the same recorded facts, configuration, rubric and assessments produce the same gate results and score. It does not mean that an LLM always asks identical questions, produces identical prose or finds a uniquely correct architecture. This revised specification is framework version 1.0.0; it defines the implementation target, not a claim that the repository already implements it.
+The goal is a repeatable, auditable path from a requirement seed to a reviewed architecture baseline. Deterministic means that the same recorded facts, configuration, rubric and assessments produce the same gate results and score. It does not mean that an LLM always asks identical questions, produces identical prose or finds a uniquely correct architecture. This revised specification is framework version 1.0.0 and is implemented as the repository's reference baseline; [DAP implementation status](dap-implementation-status.md) records the delivered scope and evidence.
 
 ## Positioning Against Existing Standards
 
