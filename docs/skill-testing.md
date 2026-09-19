@@ -49,6 +49,19 @@ scenarios:
 
 Exercise orchestration with a selected set of specialist skills. Assert selection reasons, preserved constraints, conflict handling, traceability and final artifacts. Run the same scenario with more than one adapter when portability is a release requirement.
 
+### 5. DAP adapter scenarios
+
+The optional DAP behavioral scenarios are defined in
+tests/dap-adapter-scenarios.json and validated without a live model:
+
+    python scripts/dap_adapter.py validate-scenarios tests/dap-adapter-scenarios.json
+
+An external adapter may execute those scenarios in an isolated workspace. It
+must return the versioned result shape described in
+docs/dap-adapter-contract.md, including adapter/model versions and observable
+evidence. Missing credentials or an unavailable host is reported as
+unavailable, not as a passing or failing skill result.
+
 ## Reliability and reproducibility
 
 - Pin adapter and model versions in the external test configuration.

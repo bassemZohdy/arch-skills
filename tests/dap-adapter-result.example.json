@@ -1,0 +1,13 @@
+{
+  "protocol_version": "1.0.0",
+  "scenario_id": "DAP-BEH-001",
+  "status": "unavailable",
+  "run_id": "example-not-executed",
+  "adapter": {"id": "unconfigured", "version": "0.0.0"},
+  "model": {"id": "unconfigured", "version": "0.0.0"},
+  "started_at": "2026-09-19T00:00:00Z",
+  "finished_at": "2026-09-19T00:00:00Z",
+  "assertions": [],
+  "evidence": [],
+  "reason": "No live adapter was configured. This file documents the unavailable-result shape and is not execution evidence."
+}

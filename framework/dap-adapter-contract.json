@@ -1,0 +1,55 @@
+{
+  "contract_version": "1.0.0",
+  "protocol": "dap-adapter",
+  "purpose": "Host-neutral interchange contract for optional live DAP behavioral scenarios.",
+  "request": {
+    "required": [
+      "protocol_version",
+      "scenario_id",
+      "skill_root",
+      "prompt",
+      "workspace"
+    ],
+    "workspace": "An isolated writable workspace. The adapter must preserve durable DAP records and return their evidence locations."
+  },
+  "result": {
+    "required": [
+      "protocol_version",
+      "scenario_id",
+      "status",
+      "run_id",
+      "adapter",
+      "model",
+      "started_at",
+      "finished_at",
+      "assertions",
+      "evidence"
+    ],
+    "status_values": [
+      "passed",
+      "failed",
+      "unavailable"
+    ],
+    "version_requirements": {
+      "adapter": [
+        "id",
+        "version"
+      ],
+      "model": [
+        "id",
+        "version"
+      ]
+    },
+    "evidence_rule": "A passed or failed execution must return at least one observable evidence record. An unavailable execution must return a non-empty reason and must not be counted as a skill failure."
+  },
+  "assertion_types": [
+    "file_exists",
+    "file_contains",
+    "json_path_equals",
+    "response_contains",
+    "response_not_contains",
+    "gate_ready",
+    "evidence_present"
+  ],
+  "host_boundary": "Harness commands, model identifiers, credentials, tool APIs and durable-state integrations belong to an external adapter. They must not be added to canonical SKILL.md files."
+}

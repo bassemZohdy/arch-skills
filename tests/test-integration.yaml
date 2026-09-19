@@ -1,10 +1,8 @@
 # Cross-Skill Integration Tests
 #
 # Tests skill interactions: orchestrator → specialist, review → security, etc.
-# Run with: skillprobe run tests/test-integration.yaml --harness claude-code
+# Run through a selected adapter configured outside this scenario file.
 
-harness: claude-code
-model: claude-haiku-4-5-20251001
 timeout: 300
 skill: ./skills/arch-orchestrator
 

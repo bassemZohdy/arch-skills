@@ -65,6 +65,7 @@ limitation when relying on it.
 | arch-migration | Strangler fig, modernization sequencing | Modernization/migration initiatives | Current state, target state, constraints | Migration roadmap, increment plan | arch-patterns, arch-antipatterns |
 | arch-refactoring | Safe code-level restructuring toward target design | Modernization with existing codebase | Current structure, target pattern | Refactoring sequence | arch-migration |
 | arch-decision | Structured trade-off analysis, ADRs | Significant or contested decisions (always on conflict) | Decision statement, options, criteria | ADRs, decision rationale | Any specialist output |
+| arch-evaluate | Deterministic Architecture Process completeness and artifact-evidence assessment | A frozen DAP baseline must be evaluated independently of design authoring | Frozen architecture baseline, versioned configuration, evidence records | Read-only findings, Q/D/F/B/T/A/S scores, readiness gate and report | DAP contracts and structural validators |
 | arch-doc | C4, arc42, ISO 42010, documentation automation | Documentation deliverable required (default: yes) | Synthesized architecture | Architecture documentation set | Synthesis complete |
 | arch-review | Independent architecture review, quality-attribute evaluation | Validation gate; QA prioritization support | Draft architecture | Review findings, risks | Draft architecture |
 | arch-fitness | Fitness functions, architecture rules in CI | Evolutionary governance requested | Validated architecture | Executable architecture rules | Final architecture |

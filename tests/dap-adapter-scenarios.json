@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "adapter_protocol_version": "1.0.0",
+  "description": "Optional, host-neutral DAP behavioral scenarios. The selected adapter supplies the harness, model, credentials and invocation protocol.",
+  "scenarios": [
+    {
+      "id": "DAP-BEH-001",
+      "name": "greenfield baseline produces traceable records",
+      "skill": "./skills/arch-orchestrator",
+      "fixture": "examples/greenfield/architecture",
+      "prompt": "Run the DAP process for this greenfield architecture request. Establish the requirement baseline, preserve evidence, produce the architecture and decisions, and report the readiness gate.",
+      "assertions": [
+        {"type": "file_exists", "path": "architecture/requirements.json"},
+        {"type": "file_exists", "path": "architecture/traceability.json"},
+        {"type": "file_exists", "path": "architecture/process/state.json"},
+        {"type": "evidence_present", "field": "readiness_gate"}
+      ]
+    },
+    {
+      "id": "DAP-BEH-002",
+      "name": "brownfield preparation preserves known gaps",
+      "skill": "./skills/arch-orchestrator",
+      "fixture": "examples/brownfield/architecture",
+      "prompt": "Resume DAP preparation for this brownfield architecture. Preserve existing evidence, distinguish confirmed facts from assumptions, record gaps and avoid silently replacing the current baseline.",
+      "assertions": [
+        {"type": "file_exists", "path": "architecture/process/assessment.json"},
+        {"type": "file_contains", "path": "architecture/process/state.json", "value": "brownfield"},
+        {"type": "evidence_present", "field": "assumptions_or_gaps"}
+      ]
+    },
+    {
+      "id": "DAP-BEH-003",
+      "name": "interrupted run resumes from checkpoint",
+      "skill": "./skills/arch-orchestrator",
+      "fixture": "examples/interrupted/architecture",
+      "prompt": "Continue the interrupted DAP run from its checkpoint. Do not reset prior accepted records; reconcile the checkpoint revision and report what remains incomplete.",
+      "assertions": [
+        {"type": "file_exists", "path": "architecture/process/checkpoint.json"},
+        {"type": "file_contains", "path": "architecture/process/state.json", "value": "interview"},
+        {"type": "evidence_present", "field": "checkpoint_revision"}
+      ]
+    },
+    {
+      "id": "DAP-BEH-004",
+      "name": "blocking review prevents readiness",
+      "skill": "./skills/arch-evaluate",
+      "fixture": "examples/blocking-review/architecture",
+      "prompt": "Evaluate this frozen architecture baseline. Report the score and readiness independently, and keep the baseline blocked because the required security review is not approved.",
+      "assertions": [
+        {"type": "gate_ready", "expected": false},
+        {"type": "response_contains", "value": "security review"},
+        {"type": "evidence_present", "field": "blocking_findings"}
+      ]
+    },
+    {
+      "id": "DAP-BEH-005",
+      "name": "evaluation reports versions and freshness",
+      "skill": "./skills/arch-evaluate",
+      "fixture": "examples/greenfield/architecture",
+      "prompt": "Evaluate the frozen greenfield baseline and publish an evidence-linked report. Include framework, schema, rubric, configuration, evaluator and input-manifest versions, then state whether the report is current.",
+      "assertions": [
+        {"type": "file_exists", "path": "architecture/evaluations/latest.json"},
+        {"type": "evidence_present", "field": "input_manifest_hash"},
+        {"type": "evidence_present", "field": "versions"}
+      ]
+    }
+  ]
+}

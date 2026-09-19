@@ -14,6 +14,7 @@ The [framework specification](docs/deterministic-architecture-process.md) define
 | [Review](docs/framework-review.md) | Corrections and repository gaps |
 | [Implementation reference](docs/framework-implementation-plan.md) | Delivered integration boundaries, artifact layout and arc42 mapping |
 | [DAP implementation status](docs/dap-implementation-status.md) | Completed tasks, DAP explanation and verification evidence |
+| [DAP adapter contract](docs/dap-adapter-contract.md) | Optional host-neutral behavioral scenarios and versioned evidence results |
 | [Skill boundaries](docs/skill-boundaries.md) | Redundancy review and responsibility boundaries |
 | [TODO.md](TODO.md) | Open follow-up work only |
 

@@ -66,3 +66,12 @@ passed
 ~~~
 
 Live-model adapter scenarios remain opt-in. They are separate from the deterministic DAP checks and do not change the score or gate result.
+
+## Adapter coverage
+
+The repository now includes five host-neutral DAP behavioral scenarios covering
+greenfield preparation, brownfield gaps, interrupted-session recovery,
+blocking-review behavior and versioned/freshness-safe evaluation reports.
+scripts/dap_adapter.py validates the scenario manifest and result contract.
+Live execution remains opt-in; an unavailable adapter is reported separately
+and is not presented as execution evidence.

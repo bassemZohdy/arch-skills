@@ -82,4 +82,4 @@ Use behavioural tests for asking meaningful questions, preserving authority, sel
 
 Completion requires a greenfield example, a brownfield change example and an interrupted-session example whose resulting artifacts pass the deterministic checks. Include one failing example with a high score and a blocking review so the score cannot be mistaken for approval. Re-run existing skill validation when skills change and verify packaging from an isolated installation, not just from the repository root.
 
-Do not install skills globally as a side effect of tests. Use an isolated sync destination. The reference baseline is available; host-specific adapters and additional live-model coverage remain optional follow-up work.
+Do not install skills globally as a side effect of tests. Use an isolated sync destination. The reference baseline and host-neutral adapter scenario contract are available. Host-specific adapters remain external adoption work because this repository does not select a harness, model provider or review integration.
