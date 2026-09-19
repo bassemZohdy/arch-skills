@@ -65,6 +65,31 @@ python -m compileall -q scripts tests/test_dap.py
 passed
 ~~~
 
+Post-baseline repository validation:
+
+~~~text
+python tests/test_skills.py
+365 structural checks passed across 33 skills
+
+python -m unittest discover -s tests -p 'test_dap*.py'
+12 tests passed
+
+python tests/test_activation.py
+33 descriptions scored Good or better
+
+python scripts/dap_adapter.py validate-scenarios tests/dap-adapter-scenarios.json
+5 scenarios validated
+
+python scripts/dap_adapter.py validate-result tests/dap-adapter-result.example.json --scenario-id DAP-BEH-001
+unavailable result shape validated; no live execution claimed
+
+python scripts/check_dap_mirrors.py
+mirrors: ok
+
+python -m compileall -q scripts tests
+passed
+~~~
+
 Live-model adapter scenarios remain opt-in. They are separate from the deterministic DAP checks and do not change the score or gate result.
 
 ## Adapter coverage
