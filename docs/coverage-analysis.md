@@ -4,12 +4,19 @@
 
 | Metric | Count |
 |--------|-------|
-| Skills | 32 |
+| Skills | 33 |
 | Structural Tests | 224 |
 | Skillprobe Scenarios | 185 |
 | Total Tests | 409 |
 
 ## Skills Coverage
+
+### Process (1 skill)
+
+| Skill | References | Assets | Tests | Scenarios |
+|-------|------------|--------|-------|-----------|
+| arch-evaluate | 1 | 1 | 7 | 0 |
+
 
 ### Orchestration (1 skill)
 
@@ -92,6 +99,8 @@
 | arch-usability | 2 | 1 | 7 | 5 |
 | arch-accessibility | 2 | 1 | 7 | 5 |
 | arch-compliance | 3 | 1 | 7 | 5 |
+
+The evaluator is covered by the deterministic DAP checks; it is not represented as a model scenario because it operates on frozen artifacts and repository scripts.
 
 ## NFR Coverage Matrix
 

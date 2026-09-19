@@ -1,6 +1,6 @@
 # Architecture Skills
 
-A collection of 32 portable Agent Skills for software architecture design, documentation, review and governance. Skills are Markdown instructions, references and reusable templates; host adapters and installation mappings are kept outside the skill content.
+A collection of 33 portable Agent Skills for software architecture design, documentation, review and governance. Skills are Markdown instructions, references and reusable templates; host adapters and installation mappings are kept outside the skill content.
 
 ## Deterministic architecture framework
 

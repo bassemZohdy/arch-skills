@@ -1,6 +1,6 @@
 # Skill boundaries and consolidation review
 
-Reviewed against all 32 canonical skills in skills/*/SKILL.md.
+Reviewed against all 33 canonical skills in skills/*/SKILL.md.
 
 ## Review result
 
