@@ -1,6 +1,6 @@
 ---
 name: arch-frontend
-description: Design frontend architecture. Use when designing micro frontends or module federation, implementing UI patterns and component architecture, selecting frontend frameworks, planning state management and performance budgets, or establishing frontend testing and architecture standards.
+description: Design frontend architecture. Use when designing micro frontends or module federation, implementing component and design-system architecture, selecting frameworks, separating server and UI state, planning Core Web Vitals budgets, or establishing frontend testing and accessibility standards.
 ---
 
 # Frontend Architecture
@@ -95,6 +95,10 @@ Systematic approach to frontend architecture.
 | **Image Optimization** | Lazy load, compress, format |
 | **Caching** | Browser, CDN, service worker |
 
+Define budgets from real user journeys and device/network classes. Track Core Web
+Vitals and JavaScript, image and interaction cost separately; a fast synthetic
+score does not prove an accessible or usable experience.
+
 ## Step 6: Testing Strategies
 
 | Level | Focus | Tools |
@@ -115,6 +119,7 @@ Systematic approach to frontend architecture.
 - Micro frontends solve an organizational problem; below several teams they only add complexity.
 - Server state belongs in a query cache (React Query/SWR), not in global UI state stores.
 - Shared dependencies across micro frontends reintroduce the coupling you tried to remove.
+- A micro frontend boundary without independent ownership, deployment or failure isolation is only an integration boundary.
 
 ## Further Reading
 

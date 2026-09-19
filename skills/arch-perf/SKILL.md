@@ -80,6 +80,10 @@ Required Capacity = Peak Load × (1 + Safety Margin)
 Safety Margin = 20-50% depending on criticality
 ```
 
+Replace the illustrative margin with a workload model that includes peak shape,
+arrival rate, service time, concurrency, saturation, dependency limits, failure
+headroom and cost. Validate it with production-like load and tail-latency data.
+
 ### Scaling Strategies
 
 | Strategy | When | Pros | Cons |
@@ -123,6 +127,9 @@ Safety Margin = 20-50% depending on criticality
 | **API Response** | < 200ms p95 | APM |
 | **Database Query** | < 50ms | Query analyzer |
 | **Bundle Size** | < 200KB | Webpack |
+
+Budgets are hypotheses until tied to a user journey, device/network class and
+business SLO. Keep p50, p95 and p99 visible and record the measurement method.
 
 ## Examples
 

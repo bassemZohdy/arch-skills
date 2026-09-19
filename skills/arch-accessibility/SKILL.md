@@ -1,6 +1,6 @@
 ---
 name: arch-accessibility
-description: Design accessible interfaces and achieve WCAG compliance. Use when designing accessible interfaces, implementing ARIA patterns, auditing for WCAG 2.1/2.2 conformance (A/AA/AAA), supporting assistive technologies, or remediating accessibility defects.
+description: Design accessible interfaces and achieve WCAG conformance. Use when designing accessible interfaces, implementing semantic HTML and ARIA patterns, auditing WCAG 2.2 A/AA/AAA conformance, testing assistive-technology interoperability, or remediating accessibility defects.
 ---
 
 # Accessibility Architecture
@@ -17,6 +17,12 @@ Systematic approach to designing accessible systems.
 5. Document → Accessibility statement
 6. Maintain → Regression testing
 ```
+
+Use WCAG 2.2 as the current baseline unless a contract or jurisdiction names a
+different version. Map each claim to the exact success criterion and test
+condition. Combine automated rules with keyboard, screen-reader, zoom/reflow and
+representative disabled-user evaluation; automation alone cannot establish
+conformance.
 
 ## Step 1: WCAG Overview
 
@@ -35,7 +41,7 @@ Systematic approach to designing accessible systems.
 |-------|-------------|-------------|
 | **A** | Minimum | Must meet for basic accessibility |
 | **AA** | Acceptable | Most common legal requirement |
-| **AAA** | Optimal | Highest level (often impractical) |
+| **AAA** | Optional | Apply to named content or user needs; do not assume whole-site AAA |
 
 ## Step 2: Semantic HTML
 
@@ -206,6 +212,9 @@ function trapFocus(modal) {
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/wcag-reference.md` — WCAG 2.1 Reference
+
+The normative baseline is [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/); use
+the repository reference for routing and implementation notes.
 
 ## Related Skills
 

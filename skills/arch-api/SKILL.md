@@ -18,6 +18,10 @@ Systematic approach to designing and governing APIs.
 6. Govern → Linting, review, deprecation
 ```
 
+Classify each operation as synchronous or asynchronous and make its reliability,
+latency, consistency, authorization, idempotency and data-sensitivity needs
+explicit before choosing an API style.
+
 ## Step 1: API Style Selection
 
 | Style | Best For | Trade-offs |
@@ -82,6 +86,10 @@ Response:
   }
 }
 ```
+
+For retried writes, define an idempotency-key policy and retention window. For
+concurrent updates, choose an explicit conflict strategy such as ETags with
+conditional requests or version fields; do not rely on clients guessing.
 
 ## Step 3: GraphQL Design
 
@@ -175,6 +183,9 @@ message User {
 - [ ] Documentation generated (OpenAPI)
 - [ ] Linting rules configured
 - [ ] Deprecation policy defined
+- [ ] Contract compatibility and consumer testing automated
+- [ ] Idempotency, concurrency and retry semantics documented
+- [ ] Sensitive fields classified and redacted from logs and examples
 
 ## Examples
 

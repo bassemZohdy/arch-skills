@@ -1,6 +1,6 @@
 ---
 name: arch-test
-description: Design test strategy, test pyramids, and verification standards. Use when planning unit, integration, contract, or end-to-end tests, or when reducing flakiness and setting quality gates for a system.
+description: Design test strategy, test architecture, contract testing and verification standards. Use when planning unit, integration, contract, or end-to-end tests, reducing flakiness, testing distributed workflows, or setting evidence-based quality gates for a system.
 ---
 
 # Test Architecture
@@ -35,9 +35,9 @@ graph TB
 
 | Level | Scope | Speed | Cost | Quantity |
 |-------|-------|-------|------|----------|
-| **Unit** | Single function/class | Milliseconds | Low | 70% |
-| **Integration** | Multiple components | Seconds | Medium | 20% |
-| **E2E** | Full system | Minutes | High | 10% |
+| **Unit** | Single function/class | Milliseconds | Low | Many, risk-based |
+| **Integration** | Multiple components | Seconds | Medium | Targeted boundaries |
+| **E2E** | Full system | Minutes | High | Few, critical journeys |
 
 ## Step 2: Test Types
 
@@ -121,7 +121,7 @@ def test_purchase_flow():
 - Test critical paths only
 - Use page object model
 - Parallelize when possible
-- Retry flaky tests
+- Quarantine a flaky test only with an owner, defect link and expiry; retries may reduce noise but must not hide the defect
 
 ## Step 3: Testing Patterns
 
@@ -174,6 +174,11 @@ Commit → Unit Tests → Build → Integration Tests → Deploy → E2E Tests
 | **Mutation** | Mutation score | > 70% |
 | **Performance** | Test duration | < 10 min |
 | **Flakiness** | Flaky test rate | < 1% |
+
+Choose thresholds from a baseline and the risk of the system; do not treat the
+sample values above as universal architecture rules. Track test duration,
+flakiness, escaped defects, mutation or property-based results where useful, and
+the coverage of critical requirements and failure modes.
 
 ## Step 5: Anti-patterns
 

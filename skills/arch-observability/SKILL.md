@@ -1,6 +1,6 @@
 ---
 name: arch-observability
-description: Design observability architecture. Use when designing structured logging strategies, implementing distributed tracing with OpenTelemetry, applying RED/USE methods and Golden Signals, setting SLOs and monitoring dashboards, or establishing observability standards.
+description: Design observability architecture. Use when designing structured logging, metrics, distributed tracing or continuous profiling with OpenTelemetry, applying RED/USE and Golden Signals, defining SLOs and burn-rate alerts, or establishing telemetry standards.
 ---
 
 # Observability Architecture
@@ -25,6 +25,15 @@ Systematic approach to making systems observable.
 | **Logs** | Discrete events | Application logs |
 | **Metrics** | Aggregated measurements | Counters, gauges |
 | **Traces** | Request flow | Distributed traces |
+| **Profiles** | Code and resource hotspots | CPU, memory and runtime profiles; use when the signal is mature enough for the workload |
+
+### Telemetry contract
+
+Define service name, version, environment, deployment and ownership attributes;
+pin the OpenTelemetry semantic-convention version; correlate logs, metrics and
+traces with trace/span context; and set cardinality, retention, sampling and
+privacy budgets. Never put secrets, raw tokens or unbounded user identifiers in
+telemetry labels or attributes.
 
 ## Step 2: Logging Architecture
 
@@ -139,6 +148,10 @@ with tracer.start_as_current_span("process_order") as span:
     # Process order
 ```
 
+Prefer a collector-based pipeline when routing, redaction, sampling or backend
+fan-out is required. Treat OpenTelemetry profiles as an optional emerging signal,
+not a replacement for the core logs/metrics/traces contract.
+
 ## Step 5: Alerting
 
 ### Alert Design
@@ -153,10 +166,13 @@ with tracer.start_as_current_span("process_order") as span:
 ### Alert Rules
 
 ```
-IF error_rate > 5% FOR 5 minutes THEN alert:high
-IF latency_p95 > 500ms FOR 10 minutes THEN alert:medium
-IF disk_usage > 90% THEN alert:high
+IF error_budget_burn_rate breaches the service policy THEN page
+IF user-facing latency SLO burn persists beyond the policy window THEN alert
+IF saturation threatens the service's recovery target THEN alert
 ```
+
+Thresholds are examples only. Derive them from user-facing SLIs, SLOs, error
+budgets and recovery objectives; pair every page with a runbook and owner.
 
 ### On-Call Best Practices
 
@@ -200,12 +216,18 @@ IF disk_usage > 90% THEN alert:high
 - Alert on symptoms users feel (SLO burn), not on every internal metric - alert fatigue kills response.
 - Logs without trace/correlation IDs make distributed debugging archaeology.
 - Unbounded label cardinality (user IDs in metric labels) melts time-series databases.
+- A dashboard with no SLO, owner or runbook is a report, not an operational control.
 
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/observability-deep-dive.md` — Observability Deep Dive
 - `references/observability-patterns.md` — Observability Reference
+
+Use the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/)
+with a pinned version. Treat [OpenTelemetry profiles](https://opentelemetry.io/docs/concepts/signals/profiles/)
+as an emerging optional signal whose maturity and backend support must be
+verified for the workload.
 
 ## Related Skills
 

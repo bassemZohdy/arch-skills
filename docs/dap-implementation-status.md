@@ -2,7 +2,7 @@
 
 Framework version: 1.0.0  
 Repository: arch-skills  
-Implementation commit: 5932c3185d94b84d686354c4fc25f19f059a83a1
+Implementation baseline: 51176ba98cac296034c93c3b09d8acbca91f540d
 
 ## What DAP means
 
@@ -32,10 +32,10 @@ It has six stages:
 | DAP-007 | Fail-closed review authority and exception rules for security, privacy, compliance, cost and cross-team impact |
 | DAP-008 | Requirement/design/review change routing, dependency impact and supersession guidance |
 | DAP-009 | Deterministic validator and Q/D/F/B/T/A/S score calculation |
-| DAP-010 | arch-evaluate skill, evaluation contract and GitHub mirror |
+| DAP-010 | arch-evaluate skill and evaluation contract |
 | DAP-011 | Input manifests, report publishing and stale-report detection |
 | DAP-012 | Greenfield, brownfield, interrupted and blocking-review lifecycle fixtures |
-| DAP-013 | Mirror validation and isolated packaging guidance |
+| DAP-013 | Portable packaging and isolated validation guidance |
 | DAP-014 | Deterministic tests, usage documentation and verification commands |
 
 ## Verification evidence
@@ -58,9 +58,6 @@ blocking finding: security review is not approved
 python scripts/dap_rtm.py examples/greenfield/architecture
 generated the requirements traceability matrix
 
-python scripts/check_dap_mirrors.py
-mirrors: ok
-
 python -m compileall -q scripts tests/test_dap.py
 passed
 ~~~
@@ -69,7 +66,7 @@ Post-baseline repository validation:
 
 ~~~text
 python tests/test_skills.py
-365 structural checks passed across 33 skills
+371 structural checks passed across 33 skills
 
 python -m unittest discover -s tests -p 'test_dap*.py'
 12 tests passed
@@ -83,9 +80,6 @@ python scripts/dap_adapter.py validate-scenarios tests/dap-adapter-scenarios.jso
 python scripts/dap_adapter.py validate-result tests/dap-adapter-result.example.json --scenario-id DAP-BEH-001
 unavailable result shape validated; no live execution claimed
 
-python scripts/check_dap_mirrors.py
-mirrors: ok
-
 python -m compileall -q scripts tests
 passed
 ~~~
@@ -94,7 +88,7 @@ Live-model adapter scenarios remain opt-in. They are separate from the determini
 
 ## Adapter coverage
 
-The repository now includes five host-neutral DAP behavioral scenarios covering
+The repository includes five host-neutral DAP behavioral scenarios covering
 greenfield preparation, brownfield gaps, interrupted-session recovery,
 blocking-review behavior and versioned/freshness-safe evaluation reports.
 scripts/dap_adapter.py validates the scenario manifest and result contract.

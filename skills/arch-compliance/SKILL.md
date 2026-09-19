@@ -1,6 +1,6 @@
 ---
 name: arch-compliance
-description: "Design regulatory controls and auditability architecture. Use when implementing GDPR, HIPAA, SOC 2, PCI DSS, ISO 27001, CCPA, or SOX controls, designing audit trails and retention, classifying data, or mapping obligations to evidence. Use arch-governance for board, standards and exception processes."
+description: "Design regulatory controls and auditability architecture. Use when implementing GDPR, HIPAA, SOC 2, PCI DSS, ISO 27001, CCPA or SOX controls, designing audit trails and retention, classifying data, or mapping versioned obligations to evidence. Use arch-governance for board, standards and exception processes."
 ---
 
 # Compliance Architecture
@@ -29,6 +29,12 @@ Systematic approach to regulatory compliance and auditability.
 | **ISO 27001** | Information security | ISMS implementation |
 | **CCPA** | California consumers | Privacy rights |
 | **SOX** | Financial reporting | Internal controls |
+
+Confirm the jurisdiction, effective date, scope, contractual obligations and
+authoritative version before treating a regulation or framework as applicable.
+Translate obligations into control objectives, owners, evidence sources,
+frequency, retention and exception handling; do not treat a checklist as legal
+advice or as proof of compliance.
 
 ## Step 2: GDPR Requirements
 
@@ -131,6 +137,10 @@ Systematic approach to regulatory compliance and auditability.
 | HIPAA | 6 years |
 | PCI DSS | 1 year |
 | SOX | 7 years |
+
+Retention periods are examples, not universal minima. Resolve the applicable
+law, regulator, contract, litigation hold, deletion requirement and business
+need for each record class, then document the conflict-resolution authority.
 
 ## Step 6: Data Classification
 

@@ -106,6 +106,11 @@ implementation verification remain separate reports.
 4. **Document** - Record decision and rationale
 5. **Monitor** - Track exception status
 
+Every exception needs an owner, affected control or standard, compensating
+control, expiry/review date, risk rationale and explicit approving authority.
+Expired, unauthorized or materially changed exceptions block the affected gate
+until renewed or remediated.
+
 ### Exception Categories
 
 | Category | Description | Approval |
@@ -144,6 +149,10 @@ implementation verification remain separate reports.
 | **Exception Rate** | < 10% |
 | **Debt Trend** | Decreasing |
 
+Targets are organization-specific signals, not universal compliance thresholds.
+Set them from risk appetite and baseline, and publish the definition, sampling
+window, owner and action for every metric.
+
 ### Monitoring Tools
 
 | Tool | Purpose |
@@ -164,6 +173,7 @@ implementation verification remain separate reports.
 - Governance that only says no becomes a bottleneck; pair standards with paved-road defaults.
 - Untracked exceptions silently become the de facto standard.
 - Manual review boards do not scale; automate repeatable checks with fitness functions.
+- A paved road needs an escape path: make exceptions visible, time-boxed and cheaper to govern than untracked divergence.
 
 ## Further Reading
 

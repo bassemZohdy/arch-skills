@@ -39,9 +39,8 @@ class DAPTests(unittest.TestCase):
             self.assertEqual(load_checkpoint(path)["revision"],2)
             with self.assertRaises(ConcurrentRevisionError):
                 save_checkpoint(path,{"stage":"bad"},first["revision"])
-    def test_rtm_and_mirror_scripts_have_inputs(self):
+    def test_rtm_script_has_inputs(self):
         self.assertTrue((ROOT/"scripts/dap_rtm.py").exists())
-        self.assertTrue((ROOT/"scripts/check_dap_mirrors.py").exists())
     def test_report_becomes_stale_after_assessed_input_changes(self):
         project=FIX/"greenfield"/"architecture"
         report=evaluate_project(project)

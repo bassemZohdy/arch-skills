@@ -1,6 +1,6 @@
 ---
 name: arch-devops
-description: Design DevOps, deployment, and release engineering architecture. Use when designing CI/CD pipelines, choosing deployment strategies (blue-green, canary, rolling), writing Infrastructure as Code, setting up Kubernetes, implementing GitOps, planning environments, or establishing release management and rollback processes.
+description: Design DevOps, deployment, and release engineering architecture. Use when designing CI/CD pipelines, choosing deployment strategies (blue-green, canary, rolling), writing Infrastructure as Code, setting up Kubernetes, implementing GitOps, securing software supply chains with SBOMs and provenance, or establishing release management and rollback processes.
 ---
 
 # DevOps & Deployment Architecture
@@ -73,6 +73,7 @@ Code → Build → Test → Security → Stage → Deploy → Monitor
 - **Parallel execution**: Run independent stages in parallel
 - **Artifact immutability**: Same artifact promoted across environments
 - **Environment parity**: Staging ≈ Production
+- **Traceable supply chain**: Build outputs carry dependency, SBOM and provenance evidence
 
 ## Step 3: Deployment Strategies
 
@@ -227,12 +228,16 @@ graph LR
 
 Measure delivery performance with the four DORA metrics:
 
-| Metric | Elite Performance |
+| Metric | What to measure |
 |--------|-------------------|
-| **Deployment frequency** | On-demand (multiple per day) |
-| **Lead time for changes** | Less than one day |
-| **Change failure rate** | 0-15% |
-| **Time to restore service** | Less than one hour |
+| **Deployment frequency** | How often value reaches production |
+| **Lead time for changes** | Commit or approval to production |
+| **Change failure rate** | Deployments requiring remediation or rollback |
+| **Time to restore service** | Detection or failure to restored service |
+
+Use a stable definition, baseline and trend for each metric. Do not turn published
+performance bands into universal targets or optimize delivery speed at the cost
+of reliability and security.
 
 ## Step 8: Infrastructure Security
 
@@ -243,6 +248,10 @@ Measure delivery performance with the four DORA metrics:
 | **Image Scanning** | Trivy, Clair, Snyk |
 | **Runtime Security** | Falco, Sysdig |
 | **Policy as Code** | Open Policy Agent, Kyverno |
+| **SBOM / Provenance** | Generate, sign and verify artifact inventory and build attestations |
+
+Verify release inputs and provenance at promotion time; a scan result alone does
+not prove that the deployed artifact is the one that was reviewed.
 
 ## Examples
 
@@ -256,6 +265,8 @@ Measure delivery performance with the four DORA metrics:
 - Blue-green doubles infrastructure cost and does not solve stateful cutover by itself.
 - Staging that diverges from production hides deployment bugs; enforce parity through IaC.
 - A canary without automated health-based rollback is just a slow big-bang release.
+- A retry-heavy pipeline can conceal flaky tests or infrastructure faults; keep failure ownership and evidence visible.
+- An SBOM without provenance or verification does not establish supply-chain integrity.
 
 ## Further Reading
 
@@ -263,6 +274,10 @@ Measure delivery performance with the four DORA metrics:
 - `references/devops-practices.md` — CI/CD, IaC, and release-management deep dive
 - `references/deployment-strategies.md` — Blue-green, canary, and rolling comparison
 - `references/deployment-deep-dive.md` — Kubernetes, GitOps, and advanced deployment
+
+For release provenance, use the [SLSA v1.2 specification](https://slsa.dev/spec/v1.2/)
+and record which build/source track properties are verified. SBOM generation and
+provenance verification are complementary controls.
 
 ## Related Skills
 

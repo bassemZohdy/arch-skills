@@ -57,6 +57,13 @@ Systematic approach to designing data systems.
 | **Column-Family** | Wide columns | Time-series, IoT |
 | **Graph** | Nodes + edges | Social, recommendations |
 
+### Ownership and Data Contracts
+
+Assign a data owner and steward for each domain. Define schema, quality
+expectations, freshness, compatibility, classification, retention, deletion and
+lineage at the producer/consumer boundary. A data mesh is an organizational and
+governance choice, not a reason to distribute storage without ownership.
+
 ## Step 3: Storage Selection
 
 | Need | Solution | Examples |
@@ -144,6 +151,10 @@ Source System → Ingestion → Processing → Storage → Consumption
 | **Data masking** | Hide sensitive values |
 | **Audit logging** | Track access |
 
+Also model backup, restore, regional failure, deletion propagation and recovery
+verification. For analytical or replicated data, distinguish the source of truth
+from derived copies and state the maximum acceptable staleness.
+
 ## Examples
 
 - Choose storage per data domain for an analytics-heavy SaaS product.
@@ -155,6 +166,7 @@ Source System → Ingestion → Processing → Storage → Consumption
 - Schema-on-read defers, not removes, the modeling work; someone still pays it at query time.
 - One database rarely fits all access patterns; but every extra store adds operational cost.
 - Data lineage retrofitted after an audit request is painful; capture it in the pipeline from day one.
+- A schema registry or catalog does not make data quality true; publish executable checks and owner-visible failures.
 
 ## Further Reading
 

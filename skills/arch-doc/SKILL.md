@@ -65,6 +65,11 @@ Key information to extract:
 - Technology choices and constraints
 - Quality attributes (performance, security, scalability)
 
+Label information as confirmed, inferred or unresolved and record its source and
+freshness. A diagram is a view of a baseline, not proof that the deployed system
+still matches it; include owners and a review trigger for documentation that can
+drift.
+
 ## Step 4: Generate Views with Diagrams
 
 ### Diagram Format Selection
@@ -168,6 +173,8 @@ Checklist:
 - [ ] Quality attributes addressed
 - [ ] External dependencies identified
 - [ ] Constraints and assumptions documented
+- [ ] Source locators, freshness and unresolved questions recorded
+- [ ] Views are consistent with the same named baseline and audience
 
 ## Output Formats
 

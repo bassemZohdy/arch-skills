@@ -4,15 +4,10 @@ Architecture Skills Test Suite
 Validates skill structure, content, completeness, and spec compliance.
 """
 
-import os
 import re
 import sys
 import yaml
 from pathlib import Path
-
-# Add skill-creator scripts to path
-SKILL_CREATOR_PATH = Path.home() / ".codex" / "skills" / ".system" / "skill-creator" / "scripts"
-sys.path.insert(0, str(SKILL_CREATOR_PATH))
 
 
 def discover_skills(skills_dir):
@@ -191,48 +186,28 @@ class SkillTester:
             self.results[-1]["error"] = f"Empty asset files: {empty_files}"
         return passed
 
-    def test_openai_yaml(self, skill_name):
-        """Test that agents/openai.yaml exists and has required fields."""
-        yaml_path = self.skills_dir / skill_name / "agents" / "openai.yaml"
-        if not yaml_path.exists():
-            self.results.append({
-                "test": f"{skill_name} agents/openai.yaml",
-                "passed": False,
-                "error": "File not found"
-            })
-            return False
+    def test_host_specific_metadata_absent(self, skill_name):
+        """Canonical skills must not require metadata for a named host."""
+        skill_path = self.skills_dir / skill_name
+        metadata_path = skill_path / "agents"
+        host_files = sorted(
+            str(path.relative_to(skill_path))
+            for path in metadata_path.rglob("*")
+            if path.is_file()
+        ) if metadata_path.exists() else []
 
-        try:
-            data = yaml.safe_load(yaml_path.read_text(encoding='utf-8'))
-            if not data:
-                self.results.append({
-                    "test": f"{skill_name} agents/openai.yaml",
-                    "passed": False,
-                    "error": "Empty or null YAML"
-                })
-                return False
-
-            interface = data.get("interface", {})
-            has_display = bool(interface.get("display_name"))
-            has_short = bool(interface.get("short_description"))
-            passed = has_display and has_short
-
-            self.results.append({
-                "test": f"{skill_name} agents/openai.yaml",
-                "passed": passed,
-                "details": {
-                    "has_display_name": has_display,
-                    "has_short_description": has_short,
-                }
-            })
-            return passed
-        except Exception as e:
-            self.results.append({
-                "test": f"{skill_name} agents/openai.yaml",
-                "passed": False,
-                "error": f"Invalid YAML: {e}"
-            })
-            return False
+        passed = not host_files
+        self.results.append({
+            "test": f"{skill_name} has no host-specific metadata",
+            "passed": passed,
+            "details": {"files": host_files},
+        })
+        if host_files:
+            self.results[-1]["error"] = (
+                "Move host-specific metadata to an external adapter: "
+                f"{host_files}"
+            )
+        return passed
 
     def test_skill_content_quality(self, skill_name):
         """Test that SKILL.md has substantial content and is under 500 lines."""
@@ -486,7 +461,7 @@ class SkillTester:
             self.test_frontmatter(skill)
             self.test_references_dir(skill)
             self.test_assets_dir(skill)
-            self.test_openai_yaml(skill)
+            self.test_host_specific_metadata_absent(skill)
             self.test_skill_content_quality(skill)
             # New tests
             self.test_broken_internal_links(skill)

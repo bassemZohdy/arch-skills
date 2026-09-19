@@ -1,5 +1,0 @@
-interface:
-  display_name: "Architecture Process Evaluator"
-  short_description: "Audit DAP completeness, traceability and readiness"
-  default_prompt: "Evaluate the current architecture baseline against the Deterministic Architecture Process and report evidence, gaps and gate status."
-

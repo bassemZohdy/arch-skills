@@ -1,6 +1,6 @@
 ---
 name: arch-security
-description: Design and review secure architectures with threat modeling, OWASP, authentication, authorization, and compliance. Use when assessing security posture, hardening APIs and systems, or reviewing SOC 2, GDPR, HIPAA, or PCI DSS requirements.
+description: Design and review secure architectures with threat modeling, zero-trust controls, identity, supply-chain security, OWASP verification and compliance. Use when assessing security posture, hardening APIs and systems, protecting secrets, or reviewing SOC 2, GDPR, HIPAA or PCI DSS requirements.
 ---
 
 # Security Architecture
@@ -12,7 +12,7 @@ Systematic approach to designing and reviewing secure architectures.
 ```
 1. Identify Assets → What are we protecting?
 2. Threat Model → What can go wrong? (STRIDE)
-3. Assess Risk → How likely and impactful? (DREAD)
+3. Assess Risk → How likely, impactful and evidenced?
 4. Design Controls → How to mitigate?
 5. Review Implementation → Are controls effective?
 6. Document → Security architecture record
@@ -46,24 +46,19 @@ Categorize what needs protection:
 2. Apply STRIDE to each entry point
 3. Document threats with severity
 
-## Step 3: Risk Assessment (DREAD)
+## Step 3: Risk Register
 
-| Factor | Question | Scale |
-|--------|----------|-------|
-| **D**amage | How bad if exploited? | 1-10 |
-| **R**eproducibility | How easy to reproduce? | 1-10 |
-| **E**xploitability | How easy to exploit? | 1-10 |
-| **A**ffected users | How many impacted? | 1-10 |
-| **D**iscoverability | How easy to find? | 1-10 |
+Use a documented, scenario-specific likelihood × impact rubric. Include
+preconditions, affected assets, attack paths, existing controls, residual risk,
+confidence and owner. Do not present a numeric score as objective truth or as a
+substitute for a security decision.
 
-**Risk Score:** (D + R + E + A + D) / 5
-
-| Score | Severity | Action |
-|-------|----------|--------|
-| 8-10 | Critical | Fix immediately |
-| 6-7 | High | Fix before release |
-| 4-5 | Medium | Plan fix |
-| 1-3 | Low | Accept or monitor |
+| Likelihood | Impact | Disposition |
+|------------|--------|-------------|
+| High | High | Block or require explicit risk acceptance |
+| High | Low / Medium | Mitigate, monitor and time-box residual risk |
+| Low / Medium | High | Add defense-in-depth and verify recovery |
+| Low | Low | Record rationale and monitor for change |
 
 ## Step 4: Security Patterns
 
@@ -91,18 +86,24 @@ Categorize what needs protection:
 - OAuth 2.0 flows
 - Input validation and sanitization
 
-## Step 5: OWASP Top 10 Checklist
+### Supply Chain and Platform Security
+- Pin and verify dependencies, base images, actions and model artifacts.
+- Produce and verify SBOMs and build provenance for release artifacts.
+- Keep secrets out of source, logs, prompts and telemetry; rotate and revoke them.
+- Apply least privilege at workload, service-account and deployment boundaries.
 
-- [ ] A01: Broken Access Control
-- [ ] A02: Cryptographic Failures
-- [ ] A03: Injection (SQL, XSS, LDAP)
-- [ ] A04: Insecure Design
-- [ ] A05: Security Misconfiguration
-- [ ] A06: Vulnerable Components
-- [ ] A07: Authentication Failures
-- [ ] A08: Data Integrity Failures
-- [ ] A09: Logging and Monitoring Failures
-- [ ] A10: Server-Side Request Forgery
+## Step 5: OWASP Top 10:2025 Checklist
+
+- [ ] A01:2025 Broken Access Control
+- [ ] A02:2025 Security Misconfiguration
+- [ ] A03:2025 Software Supply Chain Failures
+- [ ] A04:2025 Cryptographic Failures
+- [ ] A05:2025 Injection
+- [ ] A06:2025 Insecure Design
+- [ ] A07:2025 Authentication Failures
+- [ ] A08:2025 Software or Data Integrity Failures
+- [ ] A09:2025 Security Logging and Alerting Failures
+- [ ] A10:2025 Mishandling of Exceptional Conditions
 
 ## Step 6: Compliance Requirements
 
@@ -116,6 +117,10 @@ Categorize what needs protection:
 
 For control mapping, audit trails, and evidence collection, see **arch-compliance**.
 
+For web-application verification, map controls to a pinned OWASP ASVS version;
+for AI systems, add the current OWASP GenAI risk set to the threat model rather
+than treating the general web Top 10 as sufficient.
+
 ## Examples
 
 - Threat model a new public API using STRIDE and the OWASP Top 10.
@@ -127,6 +132,7 @@ For control mapping, audit trails, and evidence collection, see **arch-complianc
 - Do not write generic "best practice" advice without naming the threat and the control.
 - Separate authentication from authorization when analyzing failures.
 - Treat logging and monitoring as security controls, not just operational concerns.
+- Do not use DREAD or another universal score without documenting its scale, evidence and decision authority.
 
 ## Further Reading
 
@@ -142,6 +148,9 @@ For control mapping, audit trails, and evidence collection, see **arch-complianc
 - **arch-ai** - Prompt injection and AI-specific threats
 - **arch-devops** - Secrets management and pipeline security
 
+- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) — Versioned application verification requirements
+- [OWASP Top 10:2025](https://owasp.org/www-project-top-ten/) — Current web application risk categories
+
 ## Security Review Template
 
 ```markdown
@@ -151,7 +160,7 @@ For control mapping, audit trails, and evidence collection, see **arch-complianc
 - [List assets]
 
 ### Threats Identified
-| ID | Threat | STRIDE | Risk (DREAD) | Mitigation |
+| ID | Threat | STRIDE | Likelihood × impact | Mitigation |
 |----|--------|--------|--------------|------------|
 
 ### Controls Implemented

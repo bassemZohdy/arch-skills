@@ -95,6 +95,10 @@ total_score = Σ weighted_scores [max = 5.00]
 
 Proactively draft proposed scores. Present full matrix for user review.
 
+Keep hard constraints out of the weighted score: a mandatory requirement is a
+gate, not a preference. Record the evidence, confidence, assessor and date for
+each score, and separate measured facts from assumptions and vendor claims.
+
 ## Stage 6: Sensitivity Check
 
 1. Identify two highest-weight criteria (W1, W2)
@@ -157,6 +161,7 @@ See `references/criteria-library.md` for reusable evaluation bundles:
 - Do not let one stakeholder's preferred option drive the criteria weights; set weights before scoring.
 - Overlapping criteria double-count the same concern and skew totals.
 - A close call (gap < 0.5) without a sensitivity check is a coin flip dressed as analysis.
+- A precise-looking score does not create certainty; preserve dissent, evidence gaps and the trigger for revisiting the decision.
 
 ## Further Reading
 

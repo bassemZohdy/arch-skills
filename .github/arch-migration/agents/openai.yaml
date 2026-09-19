@@ -1,4 +1,0 @@
-interface:
-  display_name: "Migration Planning"
-  short_description: "Legacy modernization, migration patterns"
-  default_prompt: "Use -migration for migration planning"

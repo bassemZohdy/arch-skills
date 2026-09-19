@@ -38,6 +38,11 @@ Systematic approach to designing microservices systems.
 | **Deployment** | Independent deployment |
 | **Database** | Database per service |
 
+These are heuristics, not entry criteria. Before creating a service, name its
+bounded context, owning team, independent change reason, operational budget,
+failure boundary and data ownership. Account for the platform, deployment and
+observability tax of every additional service.
+
 ### Anti-Patterns
 
 | Anti-Pattern | Problem | Solution |
@@ -158,6 +163,7 @@ stateDiagram-v2
 - Services that must deploy together are a distributed monolith - the worst of both worlds.
 - Start with a modular monolith unless team scale demands independent deployment.
 - Synchronous call chains across services multiply latency and failure probability.
+- A team or database boundary alone is not a service boundary; verify independent lifecycle and clear ownership.
 
 ## Further Reading
 

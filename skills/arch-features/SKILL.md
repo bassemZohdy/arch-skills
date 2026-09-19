@@ -112,6 +112,9 @@ if (variant === 'control') {
 - [ ] Monitoring configured
 - [ ] Rollback plan ready
 - [ ] Cleanup date scheduled
+- [ ] Owner, expiry and kill-switch behavior recorded
+- [ ] Authorization, tenant isolation and exposure logging verified
+- [ ] Success and guardrail metrics defined for automatic pause or rollback
 
 ## Step 6: Feature Flag Hygiene
 
@@ -144,6 +147,7 @@ if (variant === 'control') {
 - Stale flags are technical debt with combinatorial test cost; schedule cleanup at creation time.
 - Flags evaluated client-side leak unreleased features to anyone reading the bundle.
 - A flag guarding a schema change does not make the migration reversible by itself.
+- Permission flags are not a replacement for server-side authorization; treat the client as untrusted.
 
 ## Further Reading
 

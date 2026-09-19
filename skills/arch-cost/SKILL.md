@@ -1,6 +1,6 @@
 ---
 name: arch-cost
-description: Optimize cloud costs and design FinOps architecture. Use when optimizing cloud costs, implementing FinOps practices, modeling infrastructure costs, right-sizing resources, or establishing cost governance and budgets.
+description: Optimize cloud costs and design FinOps architecture. Use when modeling workload cost, measuring unit economics, implementing FinOps practices, right-sizing resources, managing commitments and anomalies, or establishing cost governance and budgets.
 ---
 
 # Cost Optimization Architecture
@@ -27,15 +27,16 @@ Systematic approach to cost management and optimization.
 3. **A centralized team drives FinOps** - Coordinated approach
 4. **Reports should be accessible** - Real-time cost data
 5. **Decisions are data-driven** - Cost/quality trade-offs
-6. **Varies by cloud provider** - Leverage provider tools
+6. **Use the cloud's variable-cost model deliberately** - Automate visibility and optimization where it is safe
 
 ### FinOps Phases
 
 | Phase | Activities |
 |-------|------------|
-| **Inform** | Visibility, allocation, benchmarking |
-| **Optimize** | Right-sizing, reservations, savings plans |
-| **Operate** | Continuous improvement, automation |
+| **Understand usage and cost** | Visibility, allocation, forecasting and benchmarking |
+| **Quantify business value** | Unit economics, value metrics and trade-offs |
+| **Optimize usage and cost** | Right-sizing, commitments, architecture and waste reduction |
+| **Manage practice** | Policies, accountability, automation and continuous improvement |
 
 ## Step 2: Cost Allocation
 
@@ -86,6 +87,11 @@ Systematic approach to cost management and optimization.
 | **Read Replicas** | Performance | Medium |
 | **Caching** | 30-50% | Medium |
 
+Treat savings percentages as illustrative, not promises. Measure before/after cost
+and service impact using provider-specific rates, workload shape, utilization,
+commitment risk and egress. Prefer cost per business outcome (for example,
+transaction, tenant or inference request) over spend alone.
+
 ## Step 4: Cost Monitoring
 
 ### Key Metrics
@@ -106,6 +112,9 @@ Systematic approach to cost management and optimization.
 | **Gradual increase** | Review optimization |
 | **Seasonal pattern** | Plan for peaks |
 | **New resource** | Verify necessity |
+
+Track forecast error, commitment utilization, idle spend, egress and cost
+anomalies. Make ownership and remediation time explicit for every alert.
 
 ## Step 5: Cost Governance
 
@@ -147,11 +156,16 @@ Systematic approach to cost management and optimization.
 - Reserved capacity bought before right-sizing locks in the waste.
 - Untagged resources make allocation guesswork; enforce tags at provision time via IaC.
 - Optimizing unit cost while ignoring cost-per-transaction can hide real efficiency losses.
+- Buying a commitment before workload and utilization are stable can turn a saving into stranded capacity.
 
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/finops-reference.md` — FinOps Reference
+
+The [FinOps Framework](https://www.finops.org/framework/) is a living reference;
+pin the version used by the organization and record the business-value metric
+that justifies each optimization.
 
 ## Related Skills
 

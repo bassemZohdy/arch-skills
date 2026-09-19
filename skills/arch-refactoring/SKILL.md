@@ -86,6 +86,10 @@ graph LR
     New -. "gradually replaces" .-> Legacy
 ```
 
+For legacy behavior, add characterization tests and observability before changing
+structure. Preserve a releasable state at each step and define the rollback or
+revert boundary before moving data or public contracts.
+
 ### Branch by Abstraction
 
 1. Create abstraction layer
@@ -171,6 +175,7 @@ graph LR
 - Never refactor and change behavior in the same commit; tests must stay green throughout.
 - Refactoring without characterization tests on legacy code is just rewriting with extra risk.
 - Big-bang refactors stall; ship small reversible steps that each leave the build releasable.
+- A green test suite that omits important behavior is not evidence of equivalence; compare key outputs and production signals.
 
 ## Further Reading
 

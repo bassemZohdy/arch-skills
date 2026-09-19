@@ -1,6 +1,6 @@
 ---
 name: arch-usability
-description: "Design usability, UX, and user experience architecture. Use when designing user interfaces, applying Nielsen usability heuristics, planning user research, running SUS or usability testing, creating journey/empathy maps, or establishing UX standards. Trigger on usability review, heuristic evaluation, user research, SUS testing, or UX design."
+description: "Design usability, UX and user-experience architecture. Use when planning user research, evaluating journeys and information architecture, applying Nielsen heuristics, running SUS or usability testing, designing inclusive interactions, or establishing UX standards. Trigger on usability reviews, heuristic evaluations, research plans, SUS testing, or UX design."
 ---
 
 # Usability Architecture

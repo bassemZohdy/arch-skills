@@ -1,6 +1,6 @@
 ---
 name: arch-resilience
-description: Design resilience patterns for distributed systems. Use when designing circuit breakers, retry policies, bulkhead isolation, timeout strategies, or implementing fault tolerance in microservices.
+description: Design resilience engineering for fault-tolerant distributed systems and microservices. Use when you plan or design service reliability, failure budgets, circuit breakers, bounded retries, bulkhead isolation, timeouts, load shedding, graceful degradation, chaos testing, disaster recovery, SLOs or RTO/RPO strategies for services and dependencies.
 ---
 
 # Resilience Patterns
@@ -69,6 +69,11 @@ Automatically retry failed operations.
 - Max delay: 5s
 - Backoff multiplier: 2
 
+Treat these values as placeholders. Derive retry count and total deadline from
+the caller's latency budget, downstream capacity, operation idempotency and an
+explicit retry budget. Propagate cancellation and stop retrying when the caller
+has no useful time left.
+
 ### Bulkhead
 
 Isolate failures to prevent system-wide impact by partitioning resources into independent pools.
@@ -109,6 +114,11 @@ Primary Call → Failure → Fallback
                          ├── Alternative service
                          └── Degraded functionality
 ```
+
+Also design load shedding, admission control and graceful degradation for overload
+and dependency failure. A fallback must state its correctness, freshness and
+user-visible limits; returning stale or partial data silently can be worse than a
+clear failure.
 
 ## Step 3: Composition Patterns
 
@@ -167,6 +177,7 @@ Request → Bulkhead → Timeout → Service
 - Retries without idempotency create duplicate side effects (double charges, double emails).
 - Retry storms amplify outages; combine retries with circuit breakers and jitter.
 - Timeouts must shrink down the call chain; equal timeouts everywhere guarantee cascading failures.
+- Chaos experiments need a steady-state hypothesis, blast-radius limit, abort condition and owner for remediation.
 
 ## Further Reading
 

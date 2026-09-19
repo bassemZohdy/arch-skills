@@ -27,6 +27,11 @@ Fitness functions are objective, automated checks that evaluate architectural ch
 - Provide pass/fail feedback
 - Scale governance without bottlenecks
 
+Each function should name the ADR or requirement it protects, its owner, scope,
+measurement definition, tolerated variance, failure action, evidence output and
+expiry/review trigger. A rule that is noisy, unactionable or disconnected from a
+decision becomes ignored policy.
+
 ## Types of Fitness Functions
 
 ### Atomic vs Holistic
@@ -222,6 +227,7 @@ Surface runtime fitness signals so drift is visible even when code passes static
 - Export metrics for dynamic checks (latency percentiles, error budget burn) to the observability stack.
 - Alert on threshold breaches against SLOs, not raw values; page only on user-visible impact.
 - Review the fitness-function set regularly and retire rules that no longer reflect current decisions.
+- Make suppressions explicit, time-limited and attributable; never turn a failing guardrail into a silent warning.
 
 ## Automating Other Architecture Concerns
 

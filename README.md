@@ -1,6 +1,6 @@
 # Architecture Skills
 
-A collection of 33 portable Agent Skills for software architecture design, documentation, review and governance. Skills are Markdown instructions, references and reusable templates; host adapters and installation mappings are kept outside the skill content.
+A collection of 33 portable Agent Skills for software architecture design, documentation, review and governance. Skills are Markdown instructions, references and reusable templates. The `skills/` tree is the complete, host-neutral source package; each AI tool supplies its own discovery and installation adapter.
 
 ## Deterministic architecture framework
 
@@ -28,13 +28,7 @@ Run structural validation from the repository root:
 python tests/test_skills.py
 ```
 
-The existing setup script creates links to `skills/` at its configured harness locations:
-
-```bash
-python scripts/setup_unified.py
-```
-
-Review those destinations before setup; `--force` can replace existing destinations. Host mappings are configuration targets, not proof that every host has been tested with every skill. See [compatibility](docs/harness-compatibility.md) and [testing guidance](docs/skill-testing.md).
+Install a selected `skills/<name>/` directory using the host's native skill-package mechanism. This repository intentionally does not detect hosts, create global links, select a model, or install provider-specific metadata. See [compatibility](docs/harness-compatibility.md) and [testing guidance](docs/skill-testing.md).
 
 ## Existing skills
 
@@ -65,9 +59,9 @@ Use arch-orchestrator to coordinate a solution architecture design.
 
 | Path | Purpose |
 | --- | --- |
-| `skills/` | Canonical skill definitions, references, templates and UI metadata |
-| `tests/` | Structural and optional adapter-driven scenarios |
-| `scripts/` | Harness detection and setup helpers |
+| `skills/` | Canonical skill definitions, references and reusable templates |
+| `tests/` | Structural checks and host-neutral scenario manifests |
+| `scripts/` | Deterministic framework validators and artifact helpers |
 | `docs/` | Framework specification, planning and project guides |
 | `TODO.md` | Open follow-up work |
 | `AGENTS.md` | Contribution instructions |

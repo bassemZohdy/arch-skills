@@ -18,7 +18,7 @@ Extend `arch-orchestrator` as the execution entry point and add `arch-evaluate` 
 | `arch-review` | Design-quality and trade-off review | Remains distinct from process completeness evaluation |
 | Shared contracts and scripts | Schemas, ID/link validation, state transitions, hashing and arithmetic | Works without an LLM for structural checks and score calculation |
 
-Store source skills in `skills/`. Shared process assets must remain accessible when an individual skill is installed outside the repository: define one canonical source and package versioned copies or an explicit dependency through existing sync tooling. Do not assume a `../../docs` link will exist inside every user's installed skill directory. Update the checked-in Copilot mirrors through a deliberate sync step; do not hand-maintain competing definitions.
+Store source skills in `skills/`. Shared process assets must remain accessible when an individual skill is installed outside the repository: define one canonical source and package versioned copies or an explicit dependency through the target host's packaging mechanism. Do not assume a `../../docs` link will exist inside every user's installed skill directory. Do not maintain competing host-specific mirrors in this repository.
 
 ## Proposed target-project artifacts
 

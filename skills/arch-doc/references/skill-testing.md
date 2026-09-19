@@ -1,277 +1,100 @@
 # Skill Testing Reference
 
-Structured approaches for testing AI agent skills.
+Use this reference when validating an architecture-documentation skill across
+different AI tools. Keep the skill contract separate from the host adapter: the
+scenario describes the requested behavior and observable evidence, while the
+adapter supplies discovery, model selection, credentials, tool mapping and
+invocation details.
 
-## Testing Tools
+## Testing levels
 
-### 1. skillprobe (Recommended)
+### 1. Structural validation
 
-**Source:** [github.com/Anyesh/skillprobe](https://github.com/Anyesh/skillprobe)
+Run deterministic checks before spending model or integration resources. Verify:
 
-End-to-end testing for LLM skills. Launches Claude Code/Cursor as subprocesses, runs scenarios in isolated workspaces, and asserts outcomes.
+- `SKILL.md` frontmatter and naming;
+- references and assets resolve from the installed skill root;
+- diagrams use the repository's declared format priority;
+- generated templates are complete and non-empty;
+- no provider-specific metadata or installation path is required.
 
-**Installation:**
-```bash
-pip install skillprobe
-# or
-uv tool install skillprobe
-```
+### 2. Activation validation
 
-**YAML Test Format:**
-```yaml
-harness: claude-code
-model: claude-haiku-4-5-20251001
-timeout: 120
-skill: ./skills/my-skill
+Check that the description contains discriminating architecture-documentation
+triggers such as C4, arc42, ADRs, architecture views, diagrams and decision
+records. Test both positive requests and nearby requests that should route to a
+more specialized skill.
 
-scenarios:
-  - name: "skill activates on request"
-    workspace: fixtures/dirty-repo
-    setup:
-      - run: "echo 'change' >> file.txt && git add ."
-    steps:
-      - prompt: "commit my changes"
-        assert:
-          - type: contains
-            value: "commit"
-          - type: tool_called
-            value: "Bash"
-    after:
-      - type: file_exists
-        value: ".git/COMMIT_EDITMSG"
-```
+### 3. Behavioral validation
 
-**Assertion Types:**
-- `contains` / `not_contains` - Response text
-- `regex` - Pattern matching
-- `tool_called` - Tool usage
-- `skill_activated` - Skill loading
-- `file_exists` / `file_contains` - Workspace state
+Run scenarios through one or more compatible external adapters in isolated,
+disposable workspaces. Prefer assertions about durable artifacts and structure
+over exact wording:
 
-**Multi-run for Reliability:**
-```yaml
-steps:
-  - prompt: "Write a function with type hints"
-    runs: 5
-    min_pass_rate: 0.8
-    assert:
-      - type: regex
-        value: "\-> "
-```
+- expected files or directories exist;
+- generated documents contain required sections and stable identifiers;
+- diagrams contain the requested elements and relationships;
+- ADRs contain context, decision and consequences;
+- unresolved assumptions and missing evidence remain visible;
+- no placeholder or unfinished output is published as complete.
 
-**Commands:**
-```bash
-skillprobe run tests/my-skill.yaml      # Run tests
-skillprobe measure tests/my-skill.yaml  # Measure variance
-skillprobe activation tests/my-skill.yaml  # Test activation
-```
+Record the adapter, model, prompt, skill version, fixture revision, timestamps,
+assertions and evidence locations in the external test report. Do not place
+those values in `SKILL.md` or portable scenario manifests.
 
-### 2. skill-eval-runner (ser)
+### 4. Integration validation
 
-**Source:** [github.com/balyakin/skill-eval-runner](https://github.com/balyakin/skill-eval-runner)
+Exercise documentation with decision, review and governance skills when the
+request spans those concerns. Assert that:
 
-CLI test runner with sandboxed workspaces and deterministic assertions.
+- the selected specialist skills have explicit reasons;
+- constraints and authority boundaries are preserved;
+- requirements, views, ADRs and verification records remain traceable;
+- design-quality review is not presented as execution evidence;
+- draft, reviewed and accepted states remain distinct.
 
-**Installation:**
-```bash
-npm install -g skill-eval-runner
-ser doctor
-```
+## Portable scenario shape
 
-**YAML Test Format:**
-```yaml
-schema_version: '1.0'
-name: migration-skill
-skill: ./SKILL.md
-adapter: claude
-
-tests:
-  - name: creates-user-migration
-    prompt: 'Create a user table migration in {{WORKSPACE}}.'
-    assertions:
-      - type: exit_code
-        expected: 0
-      - type: stderr_empty
-      - type: file_exists
-        path: db/migrations/001_create_users.sql
-      - type: file_contains
-        path: db/migrations/001_create_users.sql
-        contains: CREATE TABLE users
-```
-
-**Assertion Groups:**
-
-| Group | Assertions |
-|-------|------------|
-| Files | `file_exists`, `file_not_exists`, `file_contains`, `file_matches_regex`, `dir_structure` |
-| Process | `exit_code`, `stdout_contains`, `stderr_empty`, `command_ran`, `duration_under` |
-| JSON | `json_schema`, `json_path_equals` |
-| Response | `response_contains`, `response_not_contains`, `token_usage_under`, `semantic` |
-
-**Commands:**
-```bash
-ser run . --adapter claude --report console,junit
-ser validate .
-ser list .
-ser report .skilleval-reports/run.json --format html
-```
-
-### 3. skill-test-skill (Meta-testing)
-
-**Source:** [github.com/youngfreeFJS/skill-test-skill](https://github.com/youngfreeFJS/skill-test-skill)
-
-An Agent Skill that tests and scores other skills against the Agent Skills specification.
-
-**Scoring Dimensions (100 points):**
-
-| # | Dimension | Max Points |
-|---|-----------|------------|
-| 1 | Directory Structure | 10 |
-| 2 | Frontmatter Compliance | 30 |
-| 3 | Body Content Quality | 25 |
-| 4 | Progressive Disclosure Design | 15 |
-| 5 | Optional Directory Quality | 10 |
-| 6 | Description Trigger Optimization | 10 |
-
-**Grade Scale:**
-
-| Score | Grade |
-|-------|-------|
-| 90-100 | Excellent - production-ready |
-| 75-89 | Good - minor improvements |
-| 60-74 | Acceptable - needs improvement |
-| 40-59 | Poor - significant rework |
-| 0-39 | Critical - major rewrite |
-
-## Testing Strategy
-
-### Level 1: Structural Validation
-
-Use `quick_validate.py` (built-in):
-```bash
-python scripts/quick_validate.py path/to/skill
-```
-
-Checks:
-- SKILL.md exists
-- YAML frontmatter valid
-- Naming conventions
-
-### Level 2: Spec Compliance
-
-Use `skill-test-skill` to score against specification:
-- Frontmatter completeness
-- Body quality
-- Progressive disclosure
-- Trigger optimization
-
-### Level 3: Behavioral Testing
-
-Use `skillprobe` or `skill-eval-runner`:
-- Test skill activation
-- Test skill execution
-- Test output quality
-- Measure reliability
-
-### Level 4: Integration Testing
-
-Test in real workflows:
-- CI/CD integration
-- Model update resilience
-- Combination testing (multiple skills)
-
-## Test Scenario Template
+Use a host-neutral scenario format. The external adapter may extend it, but the
+portable portion should remain understandable without a named host or model:
 
 ```yaml
-# test-arch-doc.yaml
-harness: claude-code
-model: claude-haiku-4-5-20251001
-timeout: 180
 skill: ./skills/arch-doc
-
 scenarios:
-  - name: "generates C4 context diagram"
-    steps:
-      - prompt: "Create architecture documentation for an e-commerce system using C4 model"
-        assert:
-          - type: contains
-            value: "C4Context"
-          - type: contains
-            value: "System Context"
-          - type: tool_called
-            value: "Write"
-
-  - name: "selects appropriate framework"
-    steps:
-      - prompt: "Document a microservices platform with compliance requirements"
-        assert:
-          - type: contains
-            value: "TOGAF"
-          - type: contains
-            value: "arc42"
-
-  - name: "generates ADR for decisions"
-    steps:
-      - prompt: "Document architecture decisions for this system"
-        assert:
-          - type: contains
-            value: "ADR"
-          - type: contains
-            value: "Context"
-          - type: contains
-            value: "Decision"
-          - type: contains
-            value: "Consequences"
+  - id: creates-c4-context
+    prompt: "Create a C4 system-context view for an e-commerce platform."
+    assertions:
+      - type: file_exists
+        path: architecture/context.md
+      - type: file_contains
+        path: architecture/context.md
+        value: "System Context"
+      - type: evidence_present
+        field: assumptions
 ```
 
-## CI Integration
+Use stable scenario identifiers, versioned fixtures and explicit evidence paths.
+If the adapter or model is unavailable, report the scenario as unavailable;
+never convert an unexecuted scenario into a pass or failure.
 
-### GitHub Actions with skillprobe
+## Reliability and safety
 
-```yaml
-name: Skill Tests
+- Use an isolated workspace for every run and remove secrets from fixtures.
+- Prefer file, directory, JSON and exit-status assertions over prose matching.
+- Repeat only scenarios whose behavior is expected to vary, and publish the
+  observed pass rate with the report.
+- Treat tool-call assertions as adapter-specific evidence, not as portable
+  skill requirements.
+- Keep live-model tests opt-in; structural checks remain the release gate.
+- Review generated diagrams and documents for semantic correctness, not only
+  string presence.
 
-on: [push, pull_request]
+## Release checklist
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: npm install -g @anthropic-ai/claude-code
-      - uses: astral-sh/setup-uv@v4
-      - run: uv tool install skillprobe
-      - run: skillprobe run tests/*.yaml --harness claude-code
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-```
+Before publishing a documentation skill, confirm that:
 
-### GitHub Actions with ser
-
-```yaml
-name: Skill Evals
-
-on: [push, pull_request]
-
-jobs:
-  eval:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm install -g skill-eval-runner
-      - run: ser run . --adapter claude --report console,junit
-        env:
-          SER_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-```
-
-## Best Practices
-
-1. **Start with dry-run** - Validate structure before spending tokens
-2. **Test deterministically** - Prefer file/command assertions over response text
-3. **Measure variance** - Use `skillprobe measure` before setting thresholds
-4. **Test combinations** - Skills can interact unexpectedly
-5. **CI integration** - Catch regressions on model updates
-6. **Version pinning** - Pin tool versions in CI for reproducibility
+1. the installed skill works without repository-relative documentation paths;
+2. every scenario has a reproducible fixture and observable evidence;
+3. outputs preserve requested format, terminology and authority boundaries;
+4. unsupported tools are reported rather than silently simulated;
+5. adapter and model details are stored only in external test configuration.

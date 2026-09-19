@@ -1,4 +1,0 @@
-interface:
-  display_name: "AI Architecture"
-  short_description: "RAG, agents, model serving, evals, guardrails"
-  default_prompt: "Use arch-ai for AI/LLM system architecture"

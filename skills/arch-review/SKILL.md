@@ -1,6 +1,6 @@
 ---
 name: arch-review
-description: "Review architecture design fitness across patterns, quality attributes, risks and technical debt. Use for architecture reviews, board assessments and specialist review routing. Use arch-evaluate for Deterministic Architecture Process completeness and artifact evidence."
+description: "Review architecture design fitness across patterns, quality attributes, trade-offs, risks and technical debt. Use for architecture reviews, design reviews, board assessments, quality-attribute analysis and specialist review routing. Use arch-evaluate for Deterministic Architecture Process completeness and artifact evidence."
 ---
 
 # Architecture Review
@@ -73,6 +73,10 @@ Analyze the codebase and documentation:
    - Existing architecture docs
    - ADRs and decision logs
    - API specifications
+
+Classify each observation as confirmed evidence, an assumption, or an evidence
+gap. Record the source locator and the consequence of leaving the gap unresolved;
+do not turn a polished diagram or an author's confidence into proof.
 
 ## Step 4: Evaluate Dimensions
 
@@ -166,6 +170,13 @@ Create prioritized remediation plan:
 2. **Short-term** (High issues): Plan for next quarter
 3. **Medium-term** (Medium issues): Add to backlog
 4. **Long-term** (Low issues): Consider during major refactors
+
+## Review output contract
+
+For every finding, include the evidence locator, affected quality attribute or
+requirement, impact, likelihood or confidence, recommended action, owner or
+decision authority, and a verification signal. Separate blockers from risks and
+opportunities, and state which findings require a new ADR or human disposition.
 
 ## Review Types
 

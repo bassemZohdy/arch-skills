@@ -1,4 +1,0 @@
-interface:
-  display_name: "Security Architecture"
-  short_description: "Threat modeling, OWASP, security patterns"
-  default_prompt: "Use -security for security review"

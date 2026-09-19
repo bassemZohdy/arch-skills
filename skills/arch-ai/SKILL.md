@@ -1,6 +1,6 @@
 ---
 name: arch-ai
-description: Design AI and LLM system architecture. Use when designing RAG pipelines, agent architectures, model serving infrastructure, prompt and context management, AI evaluation strategies, guardrails, or integrating LLMs into existing systems with cost and latency budgets.
+description: Design AI and LLM system architecture. Use when designing RAG pipelines, agent and tool architectures, model serving, prompt and context management, AI evaluation, guardrails, model/data supply chains, or integrating LLMs into systems with cost, latency and safety budgets.
 ---
 
 # AI System Architecture
@@ -88,6 +88,14 @@ Query → Embed → Retrieve (top-k) → Rerank → Prompt Assembly → LLM → 
 
 **Prompt injection rule:** any text from untrusted sources (user uploads, web content, retrieved documents) is data, not instructions. Never let retrieved content trigger privileged actions without validation.
 
+### Agent and model supply chain
+
+- Scope every tool to the minimum action, resource and tenant; enforce authorization outside the model.
+- Treat prompts, tool descriptions, retrieved content, memory, models, embeddings and datasets as untrusted or changeable inputs.
+- Pin versions and provenance for models, prompts, evaluation data, retrieval indexes and tool schemas; review changes like code.
+- Require human approval for destructive, irreversible, high-impact or materially costly actions, with a kill switch and spend limit.
+- Record tool-call intent, authorization result, inputs and outputs without storing secrets or unnecessary personal data.
+
 ## Step 6: Evaluation
 
 | Type | When | Method |
@@ -100,6 +108,8 @@ Query → Embed → Retrieve (top-k) → Rerank → Prompt Assembly → LLM → 
 - Build the eval set before building the feature; expand it from production failures
 - Version prompts like code; every prompt change runs the eval suite
 - LLM-as-judge needs periodic human calibration
+- Test prompt injection, sensitive-data leakage, unsafe tool use, hallucination/grounding, refusal behavior and slice-specific regressions
+- Report quality, safety, latency and cost separately; include uncertainty and the human-review path
 
 ## Step 7: Serving, Cost & Latency
 
@@ -133,11 +143,17 @@ Track cost per request and per user; alert on anomalies like any other budget (s
 - Reaching for agents or fine-tuning when direct prompting with good context suffices.
 - Ignoring context window budgets; stuffing everything in degrades quality and cost.
 - No fallback path when the model times out, refuses, or returns malformed output.
+- Treating a guardrail or LLM-as-judge score as proof of safety without adversarial and human evaluation.
 
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/ai-patterns.md` — Detailed RAG, agentic, guardrail, and eval patterns
+
+Use the [NIST AI RMF Generative AI Profile](https://www.nist.gov/itl/ai-risk-management-framework)
+and the [OWASP GenAI Security Project](https://genai.owasp.org/llm-top-10/) when
+the system has material safety, privacy or security impact. For MCP-based tool
+integration, also check the [OWASP MCP Top 10](https://owasp.org/projects/mcp-top-10).
 
 ## Related Skills
 

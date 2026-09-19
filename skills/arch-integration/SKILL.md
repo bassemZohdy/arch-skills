@@ -111,6 +111,11 @@ Systematic approach to designing system integrations.
 | **Schema Evolution** | Backward/forward compatibility |
 | **Contract Testing** | Verify schema compliance |
 
+For every integration, document ownership, idempotency, retry and timeout
+semantics, ordering, replay or deduplication behavior, and the path for poison
+messages or partial failure. Put translation at a boundary rather than leaking a
+partner's schema into the domain model.
+
 ## Step 5: Integration Security
 
 | Concern | Solution |
@@ -141,6 +146,7 @@ Systematic approach to designing system integrations.
 - A service mesh adds real operational complexity; below ~10 services, libraries usually suffice.
 - Point-to-point integrations grow quadratically; mediate once pairs exceed a handful.
 - Schema changes without a registry and compatibility rules break consumers silently.
+- A gateway or mesh cannot make an unsafe retry safe; preserve operation semantics at the contract boundary.
 
 ## Further Reading
 

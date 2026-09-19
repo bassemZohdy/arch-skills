@@ -1,6 +1,6 @@
 ---
 name: arch-evaluate
-description: Evaluate whether a solution architecture followed the Deterministic Architecture Process and whether its recorded artifacts are complete, traceable and current. Use for DAP completeness audits, brownfield baseline assessment, requirements-to-design traceability, gate validation, score calculation and stale evaluation detection. Do not use it as a substitute for architecture design-quality review.
+description: Evaluate whether a solution architecture followed the Deterministic Architecture Process and whether its recorded artifacts are complete, traceable and current. Use for DAP completeness audits, brownfield baseline assessment, requirements-to-design traceability, gate validation, score calculation, evidence-linked report publication and stale evaluation detection. Do not use it as a substitute for architecture design-quality review.
 ---
 
 # Deterministic Architecture Process Evaluator
@@ -44,6 +44,14 @@ Report the input manifest hash, versions, all metric numerators and denominators
 forward/backward uncovered IDs, gate status, blocking findings, stale status,
 evidence gaps and the next action. Do not report an overall score when a required
 dimension is not assessable.
+
+## Evidence and boundaries
+
+Treat the evaluator as an independent, read-only assessor of a frozen baseline.
+Every pass, fail, unknown and approved not-applicable result needs a locator and
+rationale. A generated report is a new artifact, not evidence that was present in
+the assessed baseline. Never repair inputs, infer stakeholder intent, or convert a
+score into approval.
 ## Assessment inputs
 
 Treat the architecture directory as a frozen evidence set. Include the requirements, constraints, design elements, ADRs, traceability graph, verification plans, process state, review dispositions, exceptions, configuration and rubric identified by the manifest. Do not add generated reports, appendices or evaluator commentary to the assessed input set. If an expected artifact is absent, record the absence as unknown evidence and explain the resulting gate or score effect.
@@ -67,3 +75,15 @@ If a gate fails, report the blocking finding and the next evidence or human disp
 Include framework, schema, rubric and configuration versions, the UTC assessment time, evaluator identity, input manifest hash, metric details, uncovered identifiers, evidence locators, applicability decisions, blocking findings, gate status and stale status. State the next action in operational terms. Preserve prior reports as immutable records and create a new report for every changed baseline.
 
 Use arch-review for design quality and trade-off assessment, arch-governance for authority and exception policy, arch-decision for option analysis, and arch-doc for the architecture description. This skill evaluates recorded process evidence; it does not replace those responsibilities.
+
+## Further Reading
+
+- `references/evaluation-contract.md` — Versioned score, gate and freshness contract
+- `assets/evaluation-report-template.json` — Structured report shape for publishing
+
+## Related Skills
+
+- **arch-orchestrator** — Runs the process and preserves the shared baseline
+- **arch-review** — Reviews design fitness and trade-offs
+- **arch-governance** — Defines decision authority and exception policy
+- **arch-decision** — Records significant choices and rejected alternatives

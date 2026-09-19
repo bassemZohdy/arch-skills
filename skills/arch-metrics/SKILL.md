@@ -30,6 +30,10 @@ Systematic approach to measuring and tracking architecture health.
 | **Coupling** | Dependencies between modules | Low |
 | **Cohesion** | Internal module unity | High |
 
+The values in this table are starting signals, not universal quality gates. Set a
+baseline for the language and system, then use trend, outliers and coupling
+hotspots to choose interventions.
+
 ### Architecture-Level Metrics
 
 | Metric | Formula | Interpretation |
@@ -146,6 +150,10 @@ graph LR
 | Test Coverage | > 80% | 60-80% | < 60% |
 | Debt Score | < 50 | 50-100 | > 100 |
 | Dependency Cycles | 0 | 1-2 | > 2 |
+
+Use green/yellow/red bands only after recording the measurement definition,
+sampling window and decision owner. Avoid collapsing unlike metrics into a single
+health score unless the weighting and loss of information are explicit.
 
 ## Step 6: Tools
 

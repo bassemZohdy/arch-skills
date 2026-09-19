@@ -78,6 +78,11 @@ Phase 4: Decommission → Remove legacy
 | **CDC** | Change Data Capture |
 | **ETL** | Extract, Transform, Load |
 
+Prefer expand-and-contract for live schema changes: add a compatible shape,
+deploy readers/writers, backfill and reconcile, switch consumers, then remove the
+old shape only after an observed deprecation window. Rehearse the migration and
+rollback with production-like volume and failure injection.
+
 ## Step 3: Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
@@ -131,6 +136,7 @@ Phase 4: Decommission → Remove legacy
 - Long-lived dual-write setups drift; add continuous reconciliation and a firm cutover date.
 - A migration without a tested rollback path is a one-way door taken blind.
 - Feature parity lists always miss undocumented behavior users depend on; parallel-run to find it.
+- Dual-write cutovers need ownership, reconciliation metrics and a stop condition; "both writes succeeded" is not proof of equal state.
 
 ## Further Reading
 

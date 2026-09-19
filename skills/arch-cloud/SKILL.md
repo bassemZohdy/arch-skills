@@ -1,6 +1,6 @@
 ---
 name: arch-cloud
-description: Design cloud-native architecture. Use when designing cloud architectures, implementing Well-Architected Framework principles, planning multi-cloud strategies, optimizing cloud costs, or migrating to cloud.
+description: Design cloud-native architecture. Use when designing cloud architectures, applying Well-Architected reviews, planning landing zones and workload identity, evaluating multi-cloud or hybrid strategies, optimizing cloud costs and egress, or migrating to cloud.
 ---
 
 # Cloud-Native Architecture
@@ -41,6 +41,12 @@ Systematic approach to designing cloud-native systems.
 | **Performance Efficiency** | Scale effectively |
 
 ## Step 2: Cloud Patterns
+
+Before selecting a managed service, record its workload fit, regional and quota
+dependencies, identity model, failure and recovery behavior, data residency,
+egress/data-gravity cost, operational ownership and exit implications. Prefer a
+managed service when its operational reduction outweighs lock-in and platform
+coupling for the stated requirements.
 
 ### Compute Patterns
 
@@ -101,6 +107,9 @@ Systematic approach to designing cloud-native systems.
 | Auto-scaling | 10-30% | Medium |
 | Storage tiering | 30-50% | Low |
 
+Savings percentages are illustrative only. Validate them against current provider
+rates, utilization, workload shape, commitments, egress and reliability impact.
+
 ## Examples
 
 - Run a Well-Architected review of an AWS workload before a compliance audit.
@@ -112,6 +121,7 @@ Systematic approach to designing cloud-native systems.
 - Cloud-agnostic abstractions cost real engineering effort; only pay for portability you actually need.
 - Lift-and-shift without re-architecting usually raises costs instead of lowering them.
 - Egress fees and cross-AZ traffic are the silent budget killers.
+- A landing zone is not secure by default; verify identity boundaries, policy enforcement, logging, recovery and break-glass access.
 
 ## Further Reading
 

@@ -191,9 +191,13 @@ Event ID → Check if processed → Skip if yes
 
 ### Exactly-Once Semantics
 
-- Idempotent producers
-- Transactional outbox
-- Consumer deduplication
+Design for at-least-once delivery by default. A transactional outbox, producer
+idempotence and consumer deduplication reduce loss and duplication; they do not
+make a multi-system workflow exactly once unless the broker, storage and
+transaction boundaries prove that guarantee.
+
+Make ordering scope, replay behavior, retention, back-pressure, consumer lag,
+poison-message handling and schema compatibility explicit for every stream.
 
 ## Examples
 
@@ -206,6 +210,7 @@ Event ID → Check if processed → Skip if yes
 - Consumers must be idempotent; at-least-once delivery is the realistic default everywhere.
 - Event sourcing is a heavy commitment; do not adopt it just for an audit log.
 - Publishing an event and writing to the database without an outbox loses events on crashes.
+- A dead-letter queue without replay ownership, retention and redaction becomes a silent data cemetery.
 
 ## Further Reading
 
