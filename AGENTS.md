@@ -7,7 +7,7 @@ Codex skills for software architecture: documentation generation (`arch-doc`), r
 ## Key Commands
 
 ```powershell
-# Validate skill structure (224 tests, fast, no LLM needed)
+# Validate skill structure (discovered checks, no LLM needed)
 python tests/test_skills.py
 
 # Sync skills to Codex install location
@@ -38,7 +38,7 @@ skillprobe run tests/test-arch-doc.yaml --harness claude-code
 ## Validation
 
 After editing any skill:
-1. `python tests/test_skills.py` — must pass all 224 checks
+1. `python tests/test_skills.py` — must pass all applicable checks
 2. `.\sync-skills.ps1` — sync to Codex
 
 For end-to-end testing (optional, needs Claude Code CLI):
@@ -47,6 +47,11 @@ skillprobe run tests/test-arch-<skill>.yaml --harness claude-code
 ```
 
 ## Gotchas
+
+- Framework implementation is planned in `TODO.md`. Read `docs/deterministic-architecture-process.md` and `docs/framework-implementation-plan.md` before implementing those tasks.
+- Extend `arch-orchestrator` for execution; add `arch-evaluate` only for process assessment. Keep design-quality review in `arch-review`.
+- Do not describe planned framework behavior as available. Shared contracts must work from an isolated skill installation, not only from the repository root.
+- During validation, sync into an isolated test destination rather than modifying global skill installations.
 
 - `skillprobe` only supports `claude-code` and `cursor` harnesses — no dry-run mode.
 - Windows symlinks require admin privileges or Developer Mode. Repo uses copy+sync instead.

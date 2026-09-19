@@ -1,92 +1,77 @@
 # Architecture Skills
 
-[![Tests](https://img.shields.io/badge/tests-224%20passing-brightgreen)]()
-[![Skills](https://img.shields.io/badge/skills-32-blue)]()
-[![Scenarios](https://img.shields.io/badge/scenarios-185-orange)]()
+A collection of 32 skills for software architecture design, documentation, review and governance, with setup mappings for 12 AI agent harnesses. Skills are Markdown instructions, references and reusable templates supported by Python validation tools.
 
-A comprehensive collection of 32 Codex skills for software architecture documentation, review, validation, and governance. Works with 12 AI agent harnesses.
+## Deterministic architecture framework
 
-## Quick Start
+The [framework specification](docs/deterministic-architecture-process.md) defines the next implementation: a repeatable path from incomplete requirements to a reviewed, traceable architecture baseline. Determinism applies to recorded gates and score calculation; LLM reasoning does not imply a unique design.
+
+**Current status:** the framework is reviewed and documented. The evaluator, durable interview state and completeness scoring are planned, not implemented. Existing specialist skills remain available.
+
+| Read | Purpose |
+| --- | --- |
+| [Framework](docs/deterministic-architecture-process.md) | Stages, gates, records, review policy and scoring |
+| [Review](docs/framework-review.md) | Corrections and repository gaps |
+| [Implementation plan](docs/framework-implementation-plan.md) | Integration boundaries, artifact layout and arc42 migration |
+| [TODO.md](TODO.md) | Tasks, dependencies and acceptance criteria |
+
+The planned execution entry point is the existing `arch-orchestrator`. A new `arch-evaluate` skill will assess process evidence; `arch-review` remains responsible for design-quality review. The framework reuses `arch-doc`, `arch-decision` and `arch-governance` without a separate agent platform.
+
+## Quick start
+
+Run structural validation from the repository root:
 
 ```bash
-# Set up unified skills (single source of truth)
-python scripts/setup_unified.py
-
-# Run validation tests
 python tests/test_skills.py
 ```
 
-## Supported Harnesses
+The existing setup script creates links to `skills/` at its configured harness locations:
 
-| Harness | Path |
-|---------|------|
-| Claude Code | `~/.claude/skills/` |
-| OpenAI Codex | `~/.codex/skills/` |
-| Cursor | `.cursor/rules/` |
-| GitHub Copilot | `.github/copilot-instructions.md` |
-| Gemini CLI | `.gemini/skills/` |
-| Junie | `.agents/skills/` |
-| OpenHands | `.agents/skills/` |
-| OpenCode | `.config/opencode/skills/` |
-| Pi | `.pi/skills/` |
-| Cline | `.cline/skills/` |
-| Kilo Code | `.kilo/skills/` |
-| MiMoCode | `.mimocode/skills/` |
-
-## Skills (32)
-
-### Orchestration (1)
-arch-orchestrator
-
-### Core (5)
-arch-doc, arch-review, arch-fitness, arch-decision, arch-governance
-
-### Design Fundamentals (2)
-arch-principles, arch-antipatterns
-
-### Technical (4)
-arch-security, arch-perf, arch-resilience, arch-test
-
-### Architecture (10)
-arch-api, arch-cloud, arch-event, arch-ddd, arch-data, arch-metrics, arch-integration, arch-microservices, arch-patterns, arch-refactoring
-
-### Frontend (1)
-arch-frontend
-
-### Operations (4)
-arch-observability, arch-migration, arch-devops, arch-cost
-
-### Features (1)
-arch-features
-
-### AI (1)
-arch-ai
-
-### NFR (3)
-arch-usability, arch-accessibility, arch-compliance
-
-## Usage
-
-```
-Use arch-doc to create C4 diagrams
-Use arch-review to evaluate architecture
-Use arch-decision to choose between technologies
-Use arch-security for threat modeling
-Use arch-perf for performance analysis
+```bash
+python scripts/setup_unified.py
 ```
 
-## Project Structure
+Review those destinations before setup; `--force` can replace existing destinations. Host mappings are configuration targets, not proof that every host has been tested with every skill. See [compatibility](docs/harness-compatibility.md) and [testing guidance](docs/skill-testing.md).
 
+## Existing skills
+
+| Area | Skills |
+| --- | --- |
+| Orchestration | `arch-orchestrator` |
+| Core | `arch-doc`, `arch-review`, `arch-fitness`, `arch-decision`, `arch-governance` |
+| Design fundamentals | `arch-principles`, `arch-antipatterns` |
+| Technical quality | `arch-security`, `arch-perf`, `arch-resilience`, `arch-test` |
+| Architecture | `arch-api`, `arch-cloud`, `arch-event`, `arch-ddd`, `arch-data`, `arch-metrics`, `arch-integration`, `arch-microservices`, `arch-patterns`, `arch-refactoring` |
+| Frontend | `arch-frontend` |
+| Operations | `arch-observability`, `arch-migration`, `arch-devops`, `arch-cost` |
+| Features and AI | `arch-features`, `arch-ai` |
+| Additional quality concerns | `arch-usability`, `arch-accessibility`, `arch-compliance` |
+
+Example requests:
+
+```text
+Use arch-doc to create C4 diagrams.
+Use arch-review to review architecture trade-offs.
+Use arch-decision to compare technologies against explicit requirements.
+Use arch-orchestrator to coordinate a solution architecture design.
 ```
-arch-skills/
-├── skills/          # 32 skills (source of truth)
-├── tests/           # 409 total checks (224 structural, 185 scenarios)
-├── scripts/         # Detection and sync scripts
-├── docs/            # Documentation
-├── README.md
-└── AGENTS.md
-```
+
+`arch-evaluate` is not yet available; implementation is DAP-010.
+
+## Repository structure
+
+| Path | Purpose |
+| --- | --- |
+| `skills/` | Canonical skill definitions, references, templates and UI metadata |
+| `tests/` | Structural validation and behavioural scenarios |
+| `tests-pi/` | Pi-specific scenario definitions |
+| `scripts/` | Harness detection and setup helpers |
+| `docs/` | Framework specification, planning and project guides |
+| `TODO.md` | Open implementation work |
+| `AGENTS.md` | Contribution instructions |
+
+Defined scenarios and historical counts are not a current passing test result. [Completed work](docs/completed-work.md) preserves the prior progress record.
 
 ## License
 
-MIT
+MIT, as declared by the existing project documentation. The reviewed repository snapshot does not contain a root `LICENSE` file.
