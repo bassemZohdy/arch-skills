@@ -2,7 +2,7 @@
 
 ## What This Repo Is
 
-Codex skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`arch-orchestrator`), and 27 more specialized skills covering all architecture concerns. Skills are Markdown + YAML + templates — no compiled code.
+Portable Agent Skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`arch-orchestrator`), and 27 more specialized skills covering architecture concerns. Skills are Markdown + YAML + templates; host adapters are kept in scripts and test configuration, not in skill instructions.
 
 ## Key Commands
 
@@ -13,8 +13,8 @@ python tests/test_skills.py
 # Sync skills to Codex install location
 .\sync-skills.ps1
 
-# Run skillprobe tests (requires Claude Code CLI + API key)
-skillprobe run tests/test-arch-doc.yaml --harness claude-code
+ # Run an optional behavioral scenario through a selected host adapter
+<adapter-runner> run tests/test-arch-doc.yaml --skill-root ./skills/arch-doc
 ```
 
 ## Repo Structure
@@ -22,7 +22,7 @@ skillprobe run tests/test-arch-doc.yaml --harness claude-code
 - `skills/<name>/SKILL.md` — Skill entry point. Must have YAML frontmatter with `name` and `description`.
 - `skills/<name>/references/` — Detailed guides loaded on demand. Keep SKILL.md lean; move content here.
 - `skills/<name>/assets/` — Templates/files used in output, not loaded into context.
-- `skills/<name>/agents/openai.yaml` — UI metadata. Regenerate with `generate_openai_yaml.py`.
+- `skills/<name>/agents/openai.yaml` — Optional UI metadata for a host adapter. Regenerate with `generate_openai_yaml.py`.
 - `tests/` — Structural validation (`test_skills.py`) and skillprobe scenarios (`.yaml`).
 - `scripts/` — Detection and sync scripts for multiple AI harnesses.
 - `sync-skills.ps1` — Copies skills to `~/.codex/skills/`. Run after edits.
@@ -41,10 +41,10 @@ After editing any skill:
 1. `python tests/test_skills.py` — must pass all applicable checks
 2. `.\sync-skills.ps1` — sync to Codex
 
-For end-to-end testing (optional, needs Claude Code CLI):
-```bash
-skillprobe run tests/test-arch-<skill>.yaml --harness claude-code
-```
+For end-to-end testing, use the adapter runner available in your environment:
+~~~text
+<adapter-runner> run tests/test-arch-<skill>.yaml --skill-root ./skills/arch-<skill>
+~~~
 
 ## Gotchas
 
@@ -53,8 +53,8 @@ skillprobe run tests/test-arch-<skill>.yaml --harness claude-code
 - Do not describe planned framework behavior as available. Shared contracts must work from an isolated skill installation, not only from the repository root.
 - During validation, sync into an isolated test destination rather than modifying global skill installations.
 
-- `skillprobe` only supports `claude-code` and `cursor` harnesses — no dry-run mode.
+- Behavioral runners are optional adapters; do not encode their commands, model names or tool APIs in SKILL.md.
 - Windows symlinks require admin privileges or Developer Mode. Repo uses copy+sync instead.
 - `quick_validate.py` lives at `~/.codex/skills/.system/skill-creator/scripts/`.
 - Skills are generic (framework/language agnostic) by design.
-- 12 AI harnesses supported: Claude Code, Codex, Cursor, Copilot, Gemini, Junie, OpenHands, OpenCode, Pi, Cline, Kilo Code, MiMoCode.
+- Host-specific installation paths are adapter configuration, not part of the skill contract.

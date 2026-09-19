@@ -5,5 +5,5 @@ There are no open DAP implementation tasks. Completed task history and verificat
 ## Optional follow-up work
 
 - [ ] Run the complete repository structural suite from a full checkout after future skill changes.
-- [ ] Add more live-model skillprobe scenarios for DAP behavior; keep them opt-in and report harness/model versions.
+- [ ] Add more adapter-driven scenario coverage for DAP behavior; keep it opt-in and record the adapter and model versions.
 - [ ] Add host-specific adapters when a target harness provides durable state and review integrations.

@@ -1,8 +1,8 @@
-# Framework implementation plan
+# Framework implementation reference
 
 Status: implemented reference baseline. Framework target: 1.0.0. The repository now contains executable contracts, persistence, scoring, evaluation, reporting and fixtures; future work is limited to deeper host-specific integration and live-model scenario coverage.
 
-Use the [corrected framework](deterministic-architecture-process.md) as the normative implementation reference and [the review](framework-review.md) for the rationale. Track completed delivery in [DAP implementation status](dap-implementation-status.md); keep [TODO.md](../TODO.md) for open follow-up work.
+Use the [corrected framework](deterministic-architecture-process.md) as the normative reference and [the review](framework-review.md) for the rationale. Current delivery and verification are recorded in [DAP implementation status](dap-implementation-status.md); keep [TODO.md](../TODO.md) for open follow-up work.
 
 ## Integration boundaries
 
@@ -65,16 +65,16 @@ Preserve the useful content of the existing 22-section template while making arc
 | Terminology across all sections | 12 Glossary |
 | 21 Roadmap; 22 Validation; skill-selection appendix | Focused appendices with links to evidence and evaluation |
 
-## Delivery slices delivered
+## Delivered implementation map
 
 1. **Contracts and records — DAP-001 to DAP-003.** Freeze the record, configuration and criterion definitions; provide templates; make interruption recovery reliable.
 2. **Execution — DAP-004 to DAP-008.** Integrate preparation, interviews, design, review and change routing into existing skills.
 3. **Assessment — DAP-009 to DAP-011.** Implement deterministic checks and arithmetic, the evaluator skill, and freshness-safe report publishing.
 4. **Adoption — DAP-012 to DAP-014.** Exercise brownfield migration, package shared assets for supported hosts, and validate representative scenarios.
 
-The backlog gives exact dependencies; numbering alone does not authorise execution out of order. DAP-004 can initially gather gaps structurally, then gains the external assessment when DAP-010 is complete. It must never pretend an unavailable evaluator ran.
+Task-level completion and verification are recorded in [DAP implementation status](dap-implementation-status.md). This reference describes the stable boundaries and artifact contracts; it does not preserve an obsolete implementation backlog.
 
-## Verification and completion
+## Verification reference
 
 Use deterministic fixtures for malformed records, broken links, circular trace chains, empty populations, unknown evidence, invalid weights, stale approvals, expiry, concurrency and score arithmetic. Check the documented example: Q=80, D=75, F=90, B=60, A=100 and explicitly adopted weights 0.25/0.20/0.35/0.20 yield 76.0%.
 
@@ -82,4 +82,4 @@ Use behavioural tests for asking meaningful questions, preserving authority, sel
 
 Completion requires a greenfield example, a brownfield change example and an interrupted-session example whose resulting artifacts pass the deterministic checks. Include one failing example with a high score and a blocking review so the score cannot be mistaken for approval. Re-run existing skill validation when skills change and verify packaging from an isolated installation, not just from the repository root.
 
-Do not install skills globally as a side effect of tests. Use an isolated sync destination. Update user documentation with actual supported commands after implementation, and only then describe `arch-evaluate` as available.
+Do not install skills globally as a side effect of tests. Use an isolated sync destination. The reference baseline is available; host-specific adapters and additional live-model coverage remain optional follow-up work.

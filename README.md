@@ -1,6 +1,6 @@
 # Architecture Skills
 
-A collection of 32 skills for software architecture design, documentation, review and governance, with setup mappings for 12 AI agent harnesses. Skills are Markdown instructions, references and reusable templates supported by Python validation tools.
+A collection of 32 portable Agent Skills for software architecture design, documentation, review and governance. Skills are Markdown instructions, references and reusable templates; host adapters and installation mappings are kept outside the skill content.
 
 ## Deterministic architecture framework
 
@@ -12,8 +12,9 @@ The [framework specification](docs/deterministic-architecture-process.md) define
 | --- | --- |
 | [Framework](docs/deterministic-architecture-process.md) | Stages, gates, records, review policy and scoring |
 | [Review](docs/framework-review.md) | Corrections and repository gaps |
-| [Implementation plan](docs/framework-implementation-plan.md) | Integration boundaries, artifact layout and arc42 migration |
+| [Implementation reference](docs/framework-implementation-plan.md) | Delivered integration boundaries, artifact layout and arc42 mapping |
 | [DAP implementation status](docs/dap-implementation-status.md) | Completed tasks, DAP explanation and verification evidence |
+| [Skill boundaries](docs/skill-boundaries.md) | Redundancy review and responsibility boundaries |
 | [TODO.md](TODO.md) | Open follow-up work only |
 
 The execution entry point is the existing `arch-orchestrator`. `arch-evaluate` assesses process evidence; `arch-review` remains responsible for design-quality review. The framework reuses `arch-doc`, `arch-decision` and `arch-governance` without a separate agent platform.
@@ -65,13 +66,13 @@ Use arch-orchestrator to coordinate a solution architecture design.
 | --- | --- |
 | `skills/` | Canonical skill definitions, references, templates and UI metadata |
 | `tests/` | Structural validation and behavioural scenarios |
-| `tests-pi/` | Pi-specific scenario definitions |
+| `tests/` | Structural and optional adapter-driven scenarios |
 | `scripts/` | Harness detection and setup helpers |
 | `docs/` | Framework specification, planning and project guides |
 | `TODO.md` | Open follow-up work |
 | `AGENTS.md` | Contribution instructions |
 
-Defined scenarios and historical counts are not a current passing test result. [Completed work](docs/completed-work.md) preserves the prior progress record; [DAP implementation status](docs/dap-implementation-status.md) records the current implementation and verification evidence.
+Defined scenarios and historical counts are not a current passing test result. [Skill boundaries](docs/skill-boundaries.md) records the responsibility review; [DAP implementation status](docs/dap-implementation-status.md) records the current implementation and verification evidence.
 
 ## License
 
