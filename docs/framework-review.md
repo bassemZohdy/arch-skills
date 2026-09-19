@@ -64,4 +64,4 @@ Primary references used for factual corrections:
 
 The scoring formula, criterion catalogue, checkpoint contract and approval policy are project-defined. Organisational thresholds, reviewer identities and weights remain adoption-time configuration. The example weights in the framework are not an approved configuration.
 
-The reference implementation is complete for the contract and fixture scope. [TODO.md](../TODO.md) records completion evidence; [the implementation plan](framework-implementation-plan.md) describes the implemented boundaries and future host-specific extensions.
+The reference implementation is complete for the contract and fixture scope. [DAP implementation status](dap-implementation-status.md) records completion evidence; [TODO.md](../TODO.md) contains only open follow-up work; [the implementation plan](framework-implementation-plan.md) describes the implemented boundaries and future host-specific extensions.

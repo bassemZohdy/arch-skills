@@ -2,7 +2,7 @@
 
 Status: implemented reference baseline. Framework target: 1.0.0. The repository now contains executable contracts, persistence, scoring, evaluation, reporting and fixtures; future work is limited to deeper host-specific integration and live-model scenario coverage.
 
-Use the [corrected framework](deterministic-architecture-process.md) as the normative implementation reference and [the review](framework-review.md) for the rationale. Track delivery only in [TODO.md](../TODO.md).
+Use the [corrected framework](deterministic-architecture-process.md) as the normative implementation reference and [the review](framework-review.md) for the rationale. Track completed delivery in [DAP implementation status](dap-implementation-status.md); keep [TODO.md](../TODO.md) for open follow-up work.
 
 ## Integration boundaries
 

@@ -238,7 +238,7 @@ Write checkpoints atomically and use revision checks to avoid overwriting concur
 
 ### Two skills, not one
 
-Separate execution from process evaluation. In arch-skills, extend arch-orchestrator as the execution entry point and add arch-evaluate as the process evaluator. Reuse arch-decision, arch-doc and arch-governance; retain arch-review for design-quality assessment. This is the planned integration, not current implementation status.
+Separate execution from process evaluation. In arch-skills, extend arch-orchestrator as the execution entry point and add arch-evaluate as the process evaluator. Reuse arch-decision, arch-doc and arch-governance; retain arch-review for design-quality assessment. This is the implemented reference integration; host-specific extensions remain separate.
 
 - Execution skill - prepares the run, conducts the interview, coordinates only relevant specialists, maintains state, routes reviews and produces the primary artifacts. Existing standalone specialist requests remain available without imposing the entire workflow.
 
@@ -322,7 +322,7 @@ Validate configuration and version compatibility before use. Record unconfigured
 
 ## Implementation Contract
 
-This contract is normative for framework version 1.0.0. Repository implementation follows the dependency-ordered backlog in TODO.md. No new agent service or cloud infrastructure is required.
+This contract is normative for framework version 1.0.0. Repository implementation is recorded in docs/dap-implementation-status.md. No new agent service or cloud infrastructure is required.
 
 ### Durable records and identifiers
 

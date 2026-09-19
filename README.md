@@ -13,7 +13,8 @@ The [framework specification](docs/deterministic-architecture-process.md) define
 | [Framework](docs/deterministic-architecture-process.md) | Stages, gates, records, review policy and scoring |
 | [Review](docs/framework-review.md) | Corrections and repository gaps |
 | [Implementation plan](docs/framework-implementation-plan.md) | Integration boundaries, artifact layout and arc42 migration |
-| [TODO.md](TODO.md) | Tasks, dependencies and acceptance criteria |
+| [DAP implementation status](docs/dap-implementation-status.md) | Completed tasks, DAP explanation and verification evidence |
+| [TODO.md](TODO.md) | Open follow-up work only |
 
 The execution entry point is the existing `arch-orchestrator`. `arch-evaluate` assesses process evidence; `arch-review` remains responsible for design-quality review. The framework reuses `arch-doc`, `arch-decision` and `arch-governance` without a separate agent platform.
 
@@ -67,10 +68,10 @@ Use arch-orchestrator to coordinate a solution architecture design.
 | `tests-pi/` | Pi-specific scenario definitions |
 | `scripts/` | Harness detection and setup helpers |
 | `docs/` | Framework specification, planning and project guides |
-| `TODO.md` | Open implementation work |
+| `TODO.md` | Open follow-up work |
 | `AGENTS.md` | Contribution instructions |
 
-Defined scenarios and historical counts are not a current passing test result. [Completed work](docs/completed-work.md) preserves the prior progress record.
+Defined scenarios and historical counts are not a current passing test result. [Completed work](docs/completed-work.md) preserves the prior progress record; [DAP implementation status](docs/dap-implementation-status.md) records the current implementation and verification evidence.
 
 ## License
 
