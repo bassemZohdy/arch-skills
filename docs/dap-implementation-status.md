@@ -65,4 +65,4 @@ python -m compileall -q scripts tests/test_dap.py
 passed
 ~~~
 
-The existing live-model skillprobe scenarios remain opt-in. They are separate from the deterministic DAP checks and do not change the score or gate result.
+Live-model adapter scenarios remain opt-in. They are separate from the deterministic DAP checks and do not change the score or gate result.

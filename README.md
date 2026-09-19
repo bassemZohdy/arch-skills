@@ -4,7 +4,7 @@ A collection of 33 portable Agent Skills for software architecture design, docum
 
 ## Deterministic architecture framework
 
-The [framework specification](docs/deterministic-architecture-process.md) defines the next implementation: a repeatable path from incomplete requirements to a reviewed, traceable architecture baseline. Determinism applies to recorded gates and score calculation; LLM reasoning does not imply a unique design.
+The [framework specification](docs/deterministic-architecture-process.md) defines the implemented reference process: a repeatable path from incomplete requirements to a reviewed, traceable architecture baseline. Determinism applies to recorded gates and score calculation; LLM reasoning does not imply a unique design.
 
 **Current status:** the reference implementation is available. It includes versioned contracts, durable checkpoint helpers, deterministic score calculation, the `arch-evaluate` skill, report/RTM tooling and lifecycle fixtures. Host integrations remain constrained by each host's persistence and skill-loading capabilities.
 
@@ -65,7 +65,6 @@ Use arch-orchestrator to coordinate a solution architecture design.
 | Path | Purpose |
 | --- | --- |
 | `skills/` | Canonical skill definitions, references, templates and UI metadata |
-| `tests/` | Structural validation and behavioural scenarios |
 | `tests/` | Structural and optional adapter-driven scenarios |
 | `scripts/` | Harness detection and setup helpers |
 | `docs/` | Framework specification, planning and project guides |
