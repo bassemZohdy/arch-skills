@@ -59,6 +59,20 @@ not applicable; never delete open questions.
 | Selected skills | |
 | Skill execution status (skill → pending/running/done/failed) | |
 
+## Deterministic Process State
+
+| Field | Value |
+|-------|-------|
+| Framework / schema / rubric versions | |
+| Artifact root and baseline revision | |
+| Stable record IDs (REQ, DES, ADR, VER, Q, ASM, EXC) | |
+| Interview round and elapsed budget | |
+| Convergence gate results and evidence | |
+| Review authority and pending dispositions | |
+| Candidate manifest hash | |
+| Evaluation report and stale status | |
+| Next action and blocking owner | |
+
 ## Update Rules
 
 - Merge only confirmed findings and ratified decisions after each skill completes.
@@ -66,3 +80,6 @@ not applicable; never delete open questions.
   ratifies it, and the change is recorded with its rationale.
 - Every decision entry links back to the requirement(s) or quality attribute(s)
   that motivated it.
+- Never store credentials or unnecessary sensitive interview content in process
+  state. Save a checkpoint after each round and substantive change, and reject a
+  concurrent revision instead of overwriting it.

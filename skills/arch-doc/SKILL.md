@@ -104,7 +104,7 @@ For each significant architectural decision, create an ADR. Use the MADR templat
 - Each ADR covers ONE decision
 - Use present tense imperative verb phrases for naming
 - Include rationale, context, and consequences
-- Immutable: don't alter, amend or supersede with new ADR
+- Accepted or rejected ADRs preserve their decision history. Editorial corrections are annotated; substantive changes use a new reviewed ADR that supersedes the prior record.
 
 **Simple MADR Template:**
 ```markdown

@@ -48,7 +48,7 @@ skillprobe run tests/test-arch-<skill>.yaml --harness claude-code
 
 ## Gotchas
 
-- Framework implementation is planned in `TODO.md`. Read `docs/deterministic-architecture-process.md` and `docs/framework-implementation-plan.md` before implementing those tasks.
+- Framework implementation is defined in `docs/deterministic-architecture-process.md`. Read it and `docs/framework-implementation-plan.md` before changing the DAP contracts.
 - Extend `arch-orchestrator` for execution; add `arch-evaluate` only for process assessment. Keep design-quality review in `arch-review`.
 - Do not describe planned framework behavior as available. Shared contracts must work from an isolated skill installation, not only from the repository root.
 - During validation, sync into an isolated test destination rather than modifying global skill installations.

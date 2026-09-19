@@ -1,0 +1,83 @@
+[
+  {
+    "id": "REQ-001",
+    "statement": "Capability requirement 1",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "must",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-002",
+    "statement": "Capability requirement 2",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "must",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-003",
+    "statement": "Capability requirement 3",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "must",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-004",
+    "statement": "Capability requirement 4",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-005",
+    "statement": "Capability requirement 5",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-006",
+    "statement": "Capability requirement 6",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-007",
+    "statement": "Capability requirement 7",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-008",
+    "statement": "Capability requirement 8",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-009",
+    "statement": "Capability requirement 9",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  },
+  {
+    "id": "REQ-010",
+    "statement": "Capability requirement 10",
+    "status": "active",
+    "source": "stakeholder-interview",
+    "priority": "should",
+    "scope": "release-1"
+  }
+]
+

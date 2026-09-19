@@ -1,0 +1,8 @@
+{
+  "security": {
+    "status": "not_applicable",
+    "reason": "no security-affecting change",
+    "authorized_by": "architecture-owner"
+  }
+}
+

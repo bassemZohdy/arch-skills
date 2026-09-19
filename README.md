@@ -6,7 +6,7 @@ A collection of 32 skills for software architecture design, documentation, revie
 
 The [framework specification](docs/deterministic-architecture-process.md) defines the next implementation: a repeatable path from incomplete requirements to a reviewed, traceable architecture baseline. Determinism applies to recorded gates and score calculation; LLM reasoning does not imply a unique design.
 
-**Current status:** the framework is reviewed and documented. The evaluator, durable interview state and completeness scoring are planned, not implemented. Existing specialist skills remain available.
+**Current status:** the reference implementation is available. It includes versioned contracts, durable checkpoint helpers, deterministic score calculation, the `arch-evaluate` skill, report/RTM tooling and lifecycle fixtures. Host integrations remain constrained by each host's persistence and skill-loading capabilities.
 
 | Read | Purpose |
 | --- | --- |
@@ -15,7 +15,7 @@ The [framework specification](docs/deterministic-architecture-process.md) define
 | [Implementation plan](docs/framework-implementation-plan.md) | Integration boundaries, artifact layout and arc42 migration |
 | [TODO.md](TODO.md) | Tasks, dependencies and acceptance criteria |
 
-The planned execution entry point is the existing `arch-orchestrator`. A new `arch-evaluate` skill will assess process evidence; `arch-review` remains responsible for design-quality review. The framework reuses `arch-doc`, `arch-decision` and `arch-governance` without a separate agent platform.
+The execution entry point is the existing `arch-orchestrator`. `arch-evaluate` assesses process evidence; `arch-review` remains responsible for design-quality review. The framework reuses `arch-doc`, `arch-decision` and `arch-governance` without a separate agent platform.
 
 ## Quick start
 
@@ -56,7 +56,7 @@ Use arch-decision to compare technologies against explicit requirements.
 Use arch-orchestrator to coordinate a solution architecture design.
 ```
 
-`arch-evaluate` is not yet available; implementation is DAP-010.
+`arch-evaluate` is available for frozen-baseline assessment. Run `python scripts/dap_validate.py examples/greenfield/architecture` for the deterministic example.
 
 ## Repository structure
 

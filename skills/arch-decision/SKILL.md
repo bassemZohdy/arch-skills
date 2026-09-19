@@ -46,9 +46,9 @@ Capture before anything else:
 
 Binary pass/fail requirements. Any alternative failing ANY gate is eliminated.
 
-- 0-4 gate criteria (0 is valid)
+- Any number of gate criteria is allowed, including zero when no knockout constraint applies
 - Must be strictly binary: "Must X" or "Must not X"
-- "Do Nothing" alternative is exempt from technology-specific gates
+- Apply every relevant gate to every alternative. Mark a gate not applicable only with a reason and authority.
 
 ## Stage 3: List Alternatives
 
@@ -98,10 +98,8 @@ Proactively draft proposed scores. Present full matrix for user review.
 ## Stage 6: Sensitivity Check
 
 1. Identify two highest-weight criteria (W1, W2)
-2. Run two perturbations:
-   - Scenario A: W1 -10, W2 +10
-   - Scenario B: W1 +10, W2 -10
-3. Recompute totals, check ranking stability
+2. Run two bounded perturbations. Transfer weight only within the [0, 1] interval and renormalize all weights; never create negative weights or weights above 1.
+3. Recompute totals using the same eligible alternatives and check ranking stability
 4. Flag if gap < 0.5 → Close call
 
 ## Stage 7: Recommendation

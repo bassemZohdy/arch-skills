@@ -1,0 +1,11 @@
+{
+  "revision": 1,
+  "state": {
+    "run_id": "RUN-001",
+    "stage": "interview",
+    "round": 2,
+    "answered_questions": ["Q-001", "Q-002"],
+    "pending_questions": ["Q-003"],
+    "next_action": "resume interview and confirm baseline"
+  }
+}

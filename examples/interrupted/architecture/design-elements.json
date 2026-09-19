@@ -1,0 +1,33 @@
+[
+  {
+    "id": "DES-001",
+    "name": "Design element 1",
+    "significance": "significant",
+    "status": "active"
+  },
+  {
+    "id": "DES-002",
+    "name": "Design element 2",
+    "significance": "significant",
+    "status": "active"
+  },
+  {
+    "id": "DES-003",
+    "name": "Design element 3",
+    "significance": "significant",
+    "status": "active"
+  },
+  {
+    "id": "DES-004",
+    "name": "Design element 4",
+    "significance": "significant",
+    "status": "active"
+  },
+  {
+    "id": "DES-005",
+    "name": "Design element 5",
+    "significance": "significant",
+    "status": "active"
+  }
+]
+

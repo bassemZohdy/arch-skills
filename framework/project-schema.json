@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deterministic Architecture Process project records",
+  "type": "object",
+  "required": ["requirements", "design_elements", "decisions", "traceability", "process"],
+  "properties": {
+    "requirements": {"type": "array", "items": {"$ref": "#/$defs/requirement"}},
+    "design_elements": {"type": "array", "items": {"$ref": "#/$defs/designElement"}},
+    "decisions": {"type": "array", "items": {"$ref": "#/$defs/decision"}},
+    "traceability": {"type": "array", "items": {"$ref": "#/$defs/link"}},
+    "process": {"type": "object"}
+  },
+  "$defs": {
+    "requirement": {
+      "type": "object",
+      "required": ["id", "statement", "status", "source", "priority", "scope"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^REQ-[0-9]{3,}$"},
+        "statement": {"type": "string", "minLength": 1},
+        "status": {"enum": ["active", "superseded", "rejected", "proposed"]},
+        "source": {"type": "string", "minLength": 1},
+        "priority": {"enum": ["must", "should", "could", "wont"]},
+        "scope": {"type": "string", "minLength": 1}
+      }
+    },
+    "designElement": {
+      "type": "object",
+      "required": ["id", "name", "significance", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^DES-[0-9]{3,}$"},
+        "name": {"type": "string", "minLength": 1},
+        "significance": {"enum": ["significant", "supporting"]},
+        "status": {"enum": ["active", "deprecated", "superseded"]}
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": ["id", "status", "owner"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^ADR-[0-9]{3,}$"},
+        "status": {"enum": ["proposed", "accepted", "rejected", "deprecated", "superseded"]},
+        "owner": {"type": "string", "minLength": 1}
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": ["from", "to", "type"],
+      "properties": {
+        "from": {"type": "string", "minLength": 1},
+        "to": {"type": "string", "minLength": 1},
+        "type": {"enum": ["source_to_requirement", "requirement_to_design", "requirement_to_decision", "design_to_requirement", "decision_to_requirement", "design_to_verification"]}
+      }
+    }
+  }
+}
+

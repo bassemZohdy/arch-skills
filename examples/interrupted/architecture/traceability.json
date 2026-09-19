@@ -1,0 +1,63 @@
+[
+  {
+    "from": "REQ-001",
+    "to": "DES-001",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-002",
+    "to": "DES-002",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-003",
+    "to": "DES-003",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-004",
+    "to": "DES-004",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-005",
+    "to": "DES-005",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-006",
+    "to": "DES-001",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-007",
+    "to": "DES-002",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-008",
+    "to": "DES-003",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "REQ-009",
+    "to": "DES-004",
+    "type": "requirement_to_design"
+  },
+  {
+    "from": "DES-001",
+    "to": "REQ-001",
+    "type": "design_to_requirement"
+  },
+  {
+    "from": "DES-002",
+    "to": "REQ-001",
+    "type": "design_to_requirement"
+  },
+  {
+    "from": "DES-003",
+    "to": "REQ-001",
+    "type": "design_to_requirement"
+  }
+]
+

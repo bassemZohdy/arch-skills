@@ -1,0 +1,14 @@
+{
+  "id": "REQ-001",
+  "statement": "",
+  "type": "functional",
+  "source": "",
+  "source_revision": "",
+  "owner": "",
+  "priority": "must",
+  "scope": "release-1",
+  "acceptance_criteria": [],
+  "verification": {"id": "VER-001", "method": "", "owner": "", "evidence": ""},
+  "dependencies": [],
+  "status": "proposed"
+}

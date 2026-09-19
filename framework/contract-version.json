@@ -1,0 +1,12 @@
+{
+  "framework_version": "1.0.0",
+  "schema_version": "1.0.0",
+  "rubric_version": "1.0.0",
+  "status": "stable",
+  "compatibility": {
+    "major_must_match": true,
+    "minor_may_read_older": true,
+    "patch_is_backward_compatible": true
+  }
+}
+

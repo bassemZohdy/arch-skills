@@ -1,0 +1,10 @@
+{
+  "convergence_status": "blocked",
+  "security_implication": false,
+  "blocking_findings": [
+    "historical approval evidence unavailable"
+  ],
+  "mode": "brownfield",
+  "reentry_stage": "interview"
+}
+

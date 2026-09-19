@@ -1,0 +1,17 @@
+{
+  "revision": 0,
+  "state": {
+    "run_id": "RUN-001",
+    "stage": "preparation",
+    "mode": "greenfield",
+    "framework_version": "1.0.0",
+    "schema_version": "1.0.0",
+    "rubric_version": "1.0.0",
+    "round": 0,
+    "answered_questions": [],
+    "pending_questions": [],
+    "gate_results": {},
+    "pending_reviews": [],
+    "next_action": ""
+  }
+}

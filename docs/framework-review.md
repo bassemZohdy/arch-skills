@@ -33,7 +33,7 @@ The original draft's broader research examples are no longer treated as verified
 
 ## Repository gaps requiring implementation
 
-The repository contains 32 existing skills. It already has relevant orchestration, documentation, decision and governance capabilities; it does not yet have the new evaluator, persistent process contracts or deterministic completeness calculator.
+The repository now contains the evaluator, persistent process contracts and deterministic completeness calculator. The implementation is a reference baseline; deeper host-specific orchestration and live-model scenarios remain bounded by each host's capabilities.
 
 | Existing path | Observed gap | Planned resolution |
 | --- | --- | --- |
@@ -46,7 +46,7 @@ The repository contains 32 existing skills. It already has relevant orchestratio
 | `skills/arch-orchestrator/SKILL.md` | Conflict precedence could let a preference appear to override a binding obligation | Make binding constraints eligibility rules and escalate conflicts rather than silently rank them away |
 | `skills/arch-governance/` | General guidance without this framework's executable configuration contract | Define scoped fail-closed review policy and recorded exceptions |
 | `tests/` | Structural and behavioural scenarios do not establish the new framework's behavior | Add targeted deterministic and behavioural fixtures tied to backlog acceptance criteria |
-| `README.md` and `TODO.md` | Stale test counts and a completed-only backlog | Clarify current versus planned capabilities and publish the new open backlog |
+| `README.md` and `TODO.md` | Status needed to reflect the implemented reference baseline | Document available commands, evidence and remaining host-specific limits |
 
 ## Evidence and limits
 
@@ -64,4 +64,4 @@ Primary references used for factual corrections:
 
 The scoring formula, criterion catalogue, checkpoint contract and approval policy are project-defined. Organisational thresholds, reviewer identities and weights remain adoption-time configuration. The example weights in the framework are not an approved configuration.
 
-The implementation is intentionally pending. [TODO.md](../TODO.md) defines the work and its completion criteria; [the implementation plan](framework-implementation-plan.md) explains the integration boundaries.
+The reference implementation is complete for the contract and fixture scope. [TODO.md](../TODO.md) records completion evidence; [the implementation plan](framework-implementation-plan.md) describes the implemented boundaries and future host-specific extensions.

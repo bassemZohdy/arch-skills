@@ -1,0 +1,11 @@
+{
+  "convergence_status": "blocked",
+  "security_implication": false,
+  "blocking_findings": [
+    "checkpoint recovered after interruption"
+  ],
+  "mode": "brownfield",
+  "reentry_stage": "interview",
+  "checkpoint_revision": 1
+}
+

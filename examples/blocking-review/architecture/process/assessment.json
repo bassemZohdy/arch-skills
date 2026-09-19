@@ -1,0 +1,66 @@
+{
+  "requirements_quality": [
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "fail"
+    },
+    {
+      "result": "fail"
+    }
+  ],
+  "decision_coverage": [
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "fail"
+    }
+  ],
+  "artifact_completeness": [
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    },
+    {
+      "result": "pass"
+    }
+  ]
+}
+

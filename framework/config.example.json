@@ -1,0 +1,27 @@
+{
+  "versions": {
+    "framework": "1.0.0",
+    "schema": "1.0.0",
+    "rubric": "1.0.0"
+  },
+  "weights": {
+    "requirements_quality": 0.25,
+    "decision_coverage": 0.20,
+    "traceability": 0.35,
+    "artifact_completeness": 0.20
+  },
+  "governance": {
+    "decision_authority": "architecture-review-board",
+    "reviewers": ["security-owner", "architecture-owner"],
+    "security_review_required": true,
+    "cost_threshold": {"amount": 10000, "currency": "AED", "horizon": "annual"},
+    "cross_team_impact_requires_review": true,
+    "async_review_due_hours": 72
+  },
+  "limits": {
+    "max_interview_rounds": 8,
+    "max_interview_minutes": 120,
+    "periodic_review_days": 90
+  }
+}
+

@@ -7,6 +7,20 @@ description: "Establish architecture governance, standards, and compliance. Use 
 
 Systematic approach to architecture governance.
 
+## Deterministic process governance
+
+For a DAP run, record framework, schema, rubric and configuration versions with the
+baseline. Name the decision authority and reviewers; never infer approval from
+silence or model confidence. Security, privacy, compliance, irreversible,
+material-cost and cross-team impacts require the configured human disposition.
+Unset relevant policy escalates and expired or unauthorized exceptions block the
+affected decision.
+
+Keep a frozen input manifest for evaluation. Generated reports are outside that
+manifest and become stale when assessed requirements, design elements, ADRs,
+reviews or configuration change. Process completeness, architecture fitness and
+implementation verification remain separate reports.
+
 ## Workflow
 
 ```

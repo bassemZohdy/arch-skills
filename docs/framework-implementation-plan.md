@@ -1,6 +1,6 @@
 # Framework implementation plan
 
-Status: planned. Framework target: 1.0.0. The current change finalises the specification and backlog; it does not change skill behavior or introduce an executable evaluator.
+Status: implemented reference baseline. Framework target: 1.0.0. The repository now contains executable contracts, persistence, scoring, evaluation, reporting and fixtures; future work is limited to deeper host-specific integration and live-model scenario coverage.
 
 Use the [corrected framework](deterministic-architecture-process.md) as the normative implementation reference and [the review](framework-review.md) for the rationale. Track delivery only in [TODO.md](../TODO.md).
 
@@ -11,12 +11,12 @@ Extend `arch-orchestrator` as the execution entry point and add `arch-evaluate` 
 | Component | Responsibility | Boundary |
 | --- | --- | --- |
 | `arch-orchestrator` | Preparation, interview, checkpoints, specialist selection, stage transitions | Does not invent stakeholder approval or replace specialist reasoning |
-| `arch-evaluate` planned | Frozen-baseline process assessment, evidence-linked findings and scores | Does not repair assessed artifacts or certify design fitness |
+| `arch-evaluate` | Frozen-baseline process assessment, evidence-linked findings and scores | Does not repair assessed artifacts or certify design fitness |
 | `arch-decision` | Alternatives, decision-specific DAR and ADR lifecycle | DAR option scores are not process completeness scores |
 | `arch-doc` | arc42 views, diagrams and generated evaluation appendix | Does not convert planned verification into execution evidence |
 | `arch-governance` | Review rules, owners, exceptions and configured authority | Does not treat silence or a confidence score as approval |
 | `arch-review` | Design-quality and trade-off review | Remains distinct from process completeness evaluation |
-| Shared contracts and scripts planned | Schemas, ID/link validation, state transitions, hashing and arithmetic | Must work without an LLM for structural checks and score calculation |
+| Shared contracts and scripts | Schemas, ID/link validation, state transitions, hashing and arithmetic | Works without an LLM for structural checks and score calculation |
 
 Store source skills in `skills/`. Shared process assets must remain accessible when an individual skill is installed outside the repository: define one canonical source and package versioned copies or an explicit dependency through existing sync tooling. Do not assume a `../../docs` link will exist inside every user's installed skill directory. Update the checked-in Copilot mirrors through a deliberate sync step; do not hand-maintain competing definitions.
 
@@ -65,7 +65,7 @@ Preserve the useful content of the existing 22-section template while making arc
 | Terminology across all sections | 12 Glossary |
 | 21 Roadmap; 22 Validation; skill-selection appendix | Focused appendices with links to evidence and evaluation |
 
-## Delivery slices
+## Delivery slices delivered
 
 1. **Contracts and records — DAP-001 to DAP-003.** Freeze the record, configuration and criterion definitions; provide templates; make interruption recovery reliable.
 2. **Execution — DAP-004 to DAP-008.** Integrate preparation, interviews, design, review and change routing into existing skills.

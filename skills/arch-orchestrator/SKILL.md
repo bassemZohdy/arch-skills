@@ -26,6 +26,7 @@ decision sequencing, validation, and final synthesis.
 8. Reconcile    → Normalize outputs; detect and resolve conflicts explicitly
 9. Validate     → Run the validation gates; loop back on failure
 10. Synthesize  → One unified architecture document + decision record
+11. Baseline    → Persist checkpoint, freeze manifest, evaluate gates and publish only when authorized
 ```
 
 ## Step 1: Understand the Request
@@ -142,6 +143,42 @@ Produce ONE unified document using `assets/solution-architecture-template.md`
 single coherent architecture — not pasted-together specialist reports. Record
 decisions, rejected alternatives, risks, follow-ups. Verify the result addresses
 every original requirement.
+
+## Deterministic Architecture Process mode
+
+For end-to-end design, changes to an existing architecture, or explicit process
+evaluation, use the versioned contract under framework/ and helpers under
+scripts/dap. The host needs a writable project artifact root or the run remains a
+non-resumable draft.
+
+Preparation classifies greenfield, brownfield or mixed scope and records missing
+evidence. Brownfield analysis includes dependency closure, prior requirements,
+architecture views, ADRs, traceability, reviews and configuration. Missing history
+is unknown evidence; never infer approval from silence or model confidence.
+
+Persist a checkpoint after each interview round and substantive change. Keep stable
+REQ, DES, ADR, VER, Q, ASM and EXC identifiers. Separate mutable drafts, frozen
+candidate manifests and publication receipts. Detect concurrent revisions and resume
+from the last valid checkpoint.
+
+Ask functional and architecture-driving quality questions together as dependencies
+appear. Convergence requires individual checks, set-level checks and explicit
+stakeholder confirmation of a stable baseline. Silence, exhausted budgets and an
+LLM-only summary cannot pass the stability gate.
+
+Develop views and ADRs together. Mandatory constraints are eligibility rules and
+cannot be outweighed by a weighted score. Accepted ADR reasoning is preserved and
+substantive changes use a new superseding ADR. MoSCoW is scoped to a named timeframe
+and does not waive security, legal, compliance or quality obligations.
+
+Route security, privacy, compliance, irreversible, materially costly and cross-team
+decisions through configured human authority. Unset policy escalates; timeouts and
+confidence scores never approve.
+
+Run arch-evaluate against frozen inputs when available. Report requirements quality,
+decision coverage, forward/backward traceability, artifact completeness and overall
+score separately from design fitness and delivered behavior. Never publish an
+overall score for an unassessable dimension or claim readiness with a pending gate.
 
 ## Failure and Fallback
 

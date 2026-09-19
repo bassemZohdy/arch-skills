@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ADR-001",
+    "status": "accepted",
+    "owner": "architecture-owner"
+  },
+  {
+    "id": "ADR-002",
+    "status": "accepted",
+    "owner": "architecture-owner"
+  },
+  {
+    "id": "ADR-003",
+    "status": "accepted",
+    "owner": "architecture-owner"
+  },
+  {
+    "id": "ADR-004",
+    "status": "accepted",
+    "owner": "architecture-owner"
+  }
+]
+
