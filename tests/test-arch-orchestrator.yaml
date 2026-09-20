@@ -4,7 +4,7 @@ skill: ./skills/arch-orchestrator
 scenarios:
   - name: "prepares and starts the interview on an initial request"
     steps:
-      - prompt: "We need a customer order platform. Use the architecture orchestrator to help us begin."
+      - prompt: "Interview me for a customer order platform."
         assert:
           - type: contains
             value: "preparation"
@@ -17,7 +17,7 @@ scenarios:
 
   - name: "asks conversational prioritized choices with a custom fallback"
     steps:
-      - prompt: "Interview me one question at a time for a customer order platform. Include prioritized best-practice and industry-reference choices, with custom answer last."
+      - prompt: "We need a customer order platform."
         assert:
           - type: contains
             value: "recommended"

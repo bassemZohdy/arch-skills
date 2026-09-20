@@ -14,6 +14,9 @@ Do not confer human approval, infer consent, or broaden an interview into design
 Treat an invocation without an explicit `interview`, `create from confirmed
 requirements`, or `update` outcome as a preparation request. Do not select
 technology, specialists or a target architecture on the first turn.
+The user only needs to state the architecture goal; infer the conversational
+interview format, choice ordering and host-control fallback from this contract
+instead of requiring those instructions to be repeated in every prompt.
 
 1. Parse the initial requirement seed into a short intake summary: desired
    outcome, known scope, likely greenfield/brownfield/mixed classification,
