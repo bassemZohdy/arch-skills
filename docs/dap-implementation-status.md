@@ -1,6 +1,6 @@
 # DAP implementation status
 
-Reviewed: 2026-09-20. Framework 1.0.0; schema 2.0.0; rubric 1.0.0; evaluator 2.0.0.
+Reviewed: 2026-09-20. Framework 1.0.0; schema 2.0.0; rubric 1.0.0; evaluator 2.0.1.
 
 The earlier schema-1 implementation passed limited tests but did not implement all
 readiness, traceability, authority or freshness requirements. Its completion claims

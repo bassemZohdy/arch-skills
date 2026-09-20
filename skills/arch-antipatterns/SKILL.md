@@ -14,9 +14,11 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/antipattern-review-template.md` and record observed location and cost of change, refactor/contain/accept disposition, accepted-debt authority, revisit date and prevention checks.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
+
+For diagnosis or review, stop at evidenced findings and proposed remedies.
+Execute remediation only when the user's request authorizes changes; a smell
+is a hypothesis until its impact is demonstrated in the actual context.
 
 ```
 1. Detect → Find anti-pattern signals
@@ -141,8 +143,7 @@ Rules of engagement:
 Use arch-metrics evidence about change coupling, churn and defects to confirm a
 suspected smell. Distinguish a deliberate transaction script or shared kernel from
 accidental coupling. Give arch-refactoring the observed dependency, preserved behavior
-and smallest safe change; send accepted debt, owner and revisit trigger to arch-
-governance.
+and smallest safe change; send accepted debt, owner and revisit trigger to arch-governance.
 
 ## Related Skills
 

@@ -3,6 +3,7 @@ from copy import deepcopy
 import io
 import json
 import os
+import shlex
 from pathlib import Path
 import subprocess
 import sys
@@ -26,6 +27,25 @@ def observation(text='API'):
 
 
 class BehavioralTests(unittest.TestCase):
+    def test_manual_smoke_workflow_fits_its_declared_call_budget(self):
+        workflow = yaml.safe_load((ROOT / '.github/workflows/behavioral.yml').read_text())
+        command = next(step['run'] for step in workflow['jobs']['smoke']['steps']
+                       if 'scripts/behavioral.py run' in step.get('run', ''))
+        argv = shlex.split(command)[2:]
+        paths = [ROOT / argv[i + 1] for i, arg in enumerate(argv) if arg == '--manifest']
+        cases = load_cases(paths)
+        budget = int(argv[argv.index('--max-calls') + 1])
+        planned = sum(c['runs'] * len(c['steps']) for c in cases)
+        self.assertLessEqual(planned, budget, 'scenario changes must update the bounded smoke selection')
+
+    def test_plan_checks_budget_without_packages_outputs_or_model_calls(self):
+        manifest = str(ROOT / 'tests/test-arch-evaluate.yaml')
+        with patch('behavioral.invoke') as adapter, patch('sys.stdout', new_callable=io.StringIO) as output:
+            self.assertEqual(main(['plan', '--manifest', manifest, '--limit', '0', '--max-calls', '7']), 0)
+            self.assertEqual(json.loads(output.getvalue())['planned_calls'], 7)
+            self.assertEqual(main(['plan', '--manifest', manifest, '--limit', '0', '--max-calls', '6']), 1)
+            adapter.assert_not_called()
+
     def test_every_skill_has_valid_scenarios(self):
         cases = load_cases(sorted((ROOT / 'tests').glob('test-*.yaml')))
         self.assertEqual({c['skill'] for c in cases if c['mode'] == 'explicit'},
@@ -168,6 +188,27 @@ class BehavioralTests(unittest.TestCase):
             expected_cases = load_cases([ROOT / 'tests/test-arch-evaluate.yaml'])
             self.assertEqual(report['omitted_scenarios'], len(expected_cases) - 1)
             self.assertEqual(report['counts'], {'unavailable': 1})
+
+    def test_malformed_provider_responses_are_structured_errors(self):
+        with tempfile.TemporaryDirectory() as temp:
+            (Path(temp) / 'SKILL.md').write_text('Test instructions', encoding='utf-8')
+            request = {'skill_root': temp, 'messages': [], 'timeout': 20}
+            good = {'choices': [{'finish_reason': 'stop', 'message': {'content': 'Answer'}}]}
+            bad = [[], {}, {'choices': []}, {'choices': [None]},
+                   {'choices': [{'finish_reason': 'stop', 'message': None}]},
+                   dict(good, usage=[]), dict(good, usage={'total_tokens': True})]
+            env = {'ARCH_TEST_API_BASE': 'https://provider.example/v1', 'ARCH_TEST_MODEL': 'test'}
+            with patch.dict(os.environ, env, clear=True), patch('adapters.chat_completion.build_opener') as network:
+                for body in bad:
+                    with self.subTest(body=body):
+                        network.return_value.open.return_value = io.BytesIO(json.dumps(body).encode())
+                        self.assertEqual(complete(request)['status'], 'error')
+                network.return_value.open.return_value = io.BytesIO(b'not-json')
+                self.assertEqual(complete(request)['status'], 'error')
+                network.return_value.open.return_value = io.BytesIO(json.dumps(dict(good, usage=None)).encode())
+                result = complete(request)
+                self.assertEqual(result['status'], 'ok')
+                self.assertIsNone(result['total_tokens'])
 
 
 if __name__ == '__main__':

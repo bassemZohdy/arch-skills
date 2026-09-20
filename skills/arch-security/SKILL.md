@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record threat/control IDs and selected standard edition, trust boundaries, residual risk, verification evidence and human security disposition.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -52,7 +50,8 @@ Categorize what needs protection:
 
 **Process:**
 1. List all entry points (APIs, UI, files)
-2. Apply STRIDE to each entry point
+2. Trace assets through processes, stores, data flows and trust boundaries;
+   apply relevant STRIDE threats beyond the entry points
 3. Document threats with severity
 
 ## Step 3: Risk Register
@@ -82,6 +81,8 @@ substitute for a security decision.
 - Attribute-Based Access Control (ABAC)
 - Policy-Based Access Control (PBAC)
 - Principle of least privilege
+- Deny by default and recheck resource/tenant permission on every access path,
+  including background jobs, exports and support/admin operations.
 
 ### Data Protection
 - Encryption at rest (AES-256)
@@ -152,11 +153,9 @@ than treating the general web Top 10 as sufficient.
 
 ## Cross-skill handoff
 
-Consume data flows, actors and trust boundaries from arch-data, arch-api and arch-
-integration. Distinguish user identity, workload identity and delegated authority;
+Consume data flows, actors and trust boundaries from arch-data, arch-api and arch-integration. Distinguish user identity, workload identity and delegated authority;
 validate issuer, audience, token purpose and tenant/resource authorization at each
-boundary. Give arch-test negative authorization and revocation cases and arch-
-observability redacted security signals. OAuth authorization alone is not user
+boundary. Give arch-test negative authorization and revocation cases and arch-observability redacted security signals. OAuth authorization alone is not user
 authentication; use an identity protocol such as OpenID Connect when needed.
 
 ## Related Skills

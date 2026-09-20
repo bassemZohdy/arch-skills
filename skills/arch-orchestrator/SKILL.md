@@ -1,6 +1,6 @@
 ---
 name: arch-orchestrator
-description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a conversational requirements interview that defaults to one question at a time but may use bounded groups of related questions. Batch related answers for one reconciliation pass instead of reasoning after every answer, while using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Prefer an advertised native user-input or elicitation control; use text choices only as a host fallback. Use for end-to-end or multi-domain architecture work, including modernization and migration. Route diagram-first deliverables to arch-diagrams, use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
+description: "Interview stakeholders, create solution architectures, or update existing baselines. Use for end-to-end or multi-domain architecture, modernization and migration. Unspecified architecture goals start with a requirements interview; focused artifact requests route to the relevant specialist, including arch-diagrams for diagram-first work. Route process audits to arch-evaluate and design-quality reviews to arch-review."
 ---
 
 # Architecture authoring
@@ -11,7 +11,13 @@ Do not confer human approval, infer consent, or broaden an interview into design
 
 ## Default entry contract
 
-Treat an invocation without an explicit `interview`, `create from confirmed
+First resolve the requested outcome. Route process audits to arch-evaluate and
+design-quality reviews to arch-review, preserving read-only scope. Route a bounded
+artifact or specialist request directly through the catalog; diagram creation uses
+arch-diagrams. These routes take precedence over interview preparation and do not
+require full DAP. Ask only for information necessary for the requested task.
+
+For end-to-end authoring, treat an invocation without an explicit `interview`, `create from confirmed
 requirements`, or `update` outcome as a preparation request. Do not select
 technology, specialists or a target architecture on the first turn.
 The user only needs to state the architecture goal; infer the conversational
@@ -92,8 +98,9 @@ instead of requiring those instructions to be repeated in every prompt.
 
 ### Diagram routing
 
-- If the requested primary artifact is a diagram, diagram-as-code source or a
-  focused cross-view consistency review, select `arch-diagrams` and keep the
+- If the requested primary artifact is a diagram or diagram-as-code source,
+  select `arch-diagrams`; route focused reviews through arch-review with that
+  specialist in read-only mode. Keep the
   diagram scope, baseline, source and validation status explicit.
 - If diagrams support a broader create/update deliverable, keep the orchestrator
   as the owner of the coherent architecture, use `arch-diagrams` for the focused

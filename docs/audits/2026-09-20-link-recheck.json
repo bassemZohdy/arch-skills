@@ -1,0 +1,280 @@
+{
+  "checked_at": "2026-09-20T15:58:09.551023+00:00",
+  "probed_urls": 347,
+  "counts": {
+    "unverified": 54,
+    "reachable": 293
+  },
+  "unverified": [
+    {
+      "url": "https://adr.github.io/madr/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://agentskills.io/specification",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://alistair.cockburn.us/hexagonal-architecture",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://arc42.org/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://arc42.org/overview/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://arxiv.org/html/2507.02564v1",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-a2a",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-acp",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-agent",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-agents-coding",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-ai",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-ml.net",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-models",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-ollama",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-prompt-engineering",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-rag",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-semantic-kernel",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-skills-subagents-plugins",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/ai-vllm",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-aks",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-api-management",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-app-service",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-arc",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-data-model-notations",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-domain-stroytelling",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-er-diagrams",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-event-modeling",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-event-storming",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-logical-modeling",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-modeling",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-physical-modeling",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-relationship",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-tools",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-modeling-use-case-diagram",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://awesome-architecture.com/topics/foundations-object-oriented-design",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://c4model.com/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://c4model.com/diagrams",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/app-mesh/latest/userguide/what-is-app-mesh.html",
+      "status": "unverified",
+      "error": "The read operation timed out"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html",
+      "status": "unverified",
+      "http_status": 502
+    },
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ",
+      "status": "unverified",
+      "http_status": 401
+    },
+    {
+      "url": "https://github.com/DecispherHQ/decision-guardian",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://github.com/LukasNiessen/ArchUnitTS",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://github.com/OWASP/ASVS",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://github.com/TheoV823/mneme",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://owasp.org/projects/mcp-top-10",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://owasp.org/www-project-top-ten/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.archunit.org/",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.iso.org/standard/72089.html",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.iso.org/standard/73436.html",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.iso.org/standard/78176.html",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "status": "unverified",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986368/",
+      "status": "unverified",
+      "http_status": 403
+    }
+  ]
+}

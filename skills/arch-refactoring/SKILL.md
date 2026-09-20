@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record before/after structure IDs, preserved behavior and characterization evidence, affected contracts, rollback boundary and validation owner.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -65,7 +63,7 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 |-------|-------------|-------------|
 | **Big Ball of Mud** | No discernible structure | Extract modules incrementally |
 | **God Package** | Package with too many classes | Extract modules |
-| **Circular Dependencies** | A depends on B, B depends on A | Introduce interface |
+| **Circular Dependencies** | A depends on B, B depends on A | Reassign ownership or invert an edge through a contract owned by the stable boundary |
 | **Tangled Dependencies** | Spaghetti of dependencies | Apply Dependency Inversion |
 | **Stale Layer** | Layer that's never used | Remove or restructure |
 
@@ -103,6 +101,7 @@ revert boundary before moving data or public contracts.
 
 1. Create abstraction layer
 2. Implement new behavior behind abstraction
+   while preserving the existing externally observed contract
 3. Switch between old and new
 4. Remove old implementation
 
@@ -185,6 +184,8 @@ revert boundary before moving data or public contracts.
 - Refactoring without characterization tests on legacy code is just rewriting with extra risk.
 - Big-bang refactors stall; ship small reversible steps that each leave the build releasable.
 - A green test suite that omits important behavior is not evidence of equivalence; compare key outputs and production signals.
+- Introducing an interface in the wrong package can preserve the cycle. Verify
+  the resulting dependency graph, not merely that a new interface exists.
 
 ## Further Reading
 

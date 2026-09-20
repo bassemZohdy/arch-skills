@@ -4,18 +4,24 @@ Reviewed: 2026-09-20. This page is the current repository status reference. Hist
 counts and findings remain in the dated audit documents; open adoption work remains
 in [TODO.md](../TODO.md).
 
+Latest: [skill-by-skill and E2E review](audits/2026-09-20-skill-e2e-review.md).
+The local suite passed 114 unit/integration tests; live model/host and diagram
+renderer validation remain separate open work.
+
 ## Delivered repository capabilities
 
 | Area | Current state | Evidence or command |
 | --- | --- | --- |
 | Skill library | 34 canonical skills; default profile exposes 3 entry points and expert exposes all 34 | `python scripts/build_packages.py --profile default ...` or `--profile expert ...` |
-| DAP contracts | Framework 1.0.0, schema 2.0.0, rubric 1.0.0 and evaluator 2.0.0 are implemented and version-checked | [implementation status](dap-implementation-status.md), [records](../framework/records.md) |
+| DAP contracts | Framework 1.0.0, schema 2.0.0, rubric 1.0.0 and evaluator 2.0.1 are implemented and version-checked | [implementation status](dap-implementation-status.md), [records](../framework/records.md) |
 | Deterministic validation | Structural, link, contract, lifecycle, publication and package-isolation checks run offline | `bash run-tests.sh` or `./run-tests.ps1` |
+| Review regressions | Packaged CLI lifecycle, evidence-path validation, archive protection, model-budget drift and current documentation inventory/version checks | `python -m unittest discover -s tests -p 'test_*.py'` |
 | Public routing | The three public entry points can load `arch-diagrams` as a bundled specialist for diagram-first work | [harness compatibility](harness-compatibility.md), [skill boundaries](skill-boundaries.md) |
-| Behavioral scenarios | 233 validated scenarios across 37 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
+| Behavioral scenarios | 272 validated scenarios across 38 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
 | DAP adapter checks | Result envelopes can be validated for assertion identity and workspace evidence paths | `python scripts/dap_adapter.py validate-execution ...` |
 | Baseline comparison | Compatible behavioral reports can be compared for selection drift and regressions | `python scripts/compare_behavioral.py baseline/report.json candidate/report.json ...` |
-| Public links | Latest recorded audit: 0 confirmed broken, 36 unverified because of access or transport limits | `python scripts/check_links.py --external --output .cache/link-audit.json` |
+| Call-budget preflight | Preview scenario/repetition counts without model access or filesystem writes | `python scripts/behavioral.py plan --manifest tests/test-arch-evaluate.yaml --limit 0 --max-calls 7` |
+| Public links | Latest recheck: 347 probed; 293 reachable, 0 confirmed broken, 54 unverified | [Recheck evidence](audits/2026-09-20-link-recheck.json) |
 | CI automation | Four offline matrix jobs run on pushes and pull requests; public-link auditing is weekly; model smoke tests are manual | [.github/workflows](../.github/workflows/) |
 
 A passing offline check establishes repository and fixture invariants. It does not
@@ -48,7 +54,7 @@ consuming host's activation and tool traces.
      --manifest tests/test-regression.yaml \
      --manifest tests/test-arch-evaluate.yaml \
      --packages .cache/expert --output .cache/behavioral-results \
-     --limit 0 --max-calls 15
+     --limit 0 --max-calls 16
    ```
 
 4. For DAP adapter executions, validate the returned result against its manifest

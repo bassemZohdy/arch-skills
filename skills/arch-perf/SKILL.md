@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record stimulus/environment/response/threshold scenarios, workload and dataset revisions, measured percentiles, uncertainty and benchmark owner.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -43,7 +41,10 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 |------|------------|---------|
 | **SLA** | Contractual commitment | 99.9% uptime |
 | **SLO** | Internal target | 99.95% uptime |
-| **Error Budget** | Allowed failures | 0.05% = 22 min/month |
+| **Error Budget** | Allowed bad events or time in a stated window | 0.05% = 21.6 minutes in a 30-day time-based window |
+
+For a request-based SLO, use failed/eligible requests; do not convert its budget
+to downtime minutes without a justified traffic model.
 
 ## Step 2: Performance Patterns
 
@@ -98,7 +99,7 @@ headroom and cost. Validate it with production-like load and tail-latency data.
 | Strategy | When | Pros | Cons |
 |----------|------|------|------|
 | **Vertical** | Single resource bound | Simple | Limited, downtime |
-| **Horizontal** | Stateless services | Linear scale | Complexity |
+| **Horizontal** | Partitionable work | More capacity if bottlenecks permit | Coordination and shared limits prevent guaranteed linear scaling |
 | **Auto-scaling** | Variable load | Cost-efficient | Cold start latency |
 
 ## Step 4: Load Testing
@@ -162,8 +163,7 @@ business SLO. Keep p50, p95 and p99 visible and record the measurement method.
 
 Consume journey-level latency and throughput goals with data sizes, tenant skew and
 arrival patterns. Separate active requests from registered users; use concurrency =
-throughput × mean time only for a stable system and consistent boundaries. Give arch-
-resilience saturation/failure headroom and arch-cost a measured capacity curve. Report
+throughput × mean time only for a stable system and consistent boundaries. Give arch-resilience saturation/failure headroom and arch-cost a measured capacity curve. Report
 offered versus achieved load, tail latency and errors; avoid coordinated omission in
 load generation.
 

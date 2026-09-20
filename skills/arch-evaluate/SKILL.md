@@ -18,6 +18,8 @@ disagreements rather than inferring undocumented interviews or approvals.
    Install the declared Python dependencies only when authorized.
 3. Run the package's scripts/dap_validate.py against the project. Exit 0 means
    ready, 1 means assessed but blocked/unassessable, and 2 means CLI failure.
+   Retain the actual structured report and exit code. Report a malformed response
+   or failed invocation as an execution error, not as a computed failing score.
 4. Review semantic assessments against their cited evidence. Structural validity
    alone cannot prove a stakeholder's intent or a human's authority. When a
    baseline contains diagrams, check that editable source, stable IDs, baseline
@@ -81,8 +83,7 @@ authority; it does not authenticate human identities or replace human adjudicati
 ## Cross-skill handoff
 
 Consume a frozen, version-compatible DAP baseline and its declared evidence. Return each
-failed gate with affected IDs, evidence gaps and a responsible next action to arch-
-orchestrator; return design concerns to arch-review separately. A missing runtime or
+failed gate with affected IDs, evidence gaps and a responsible next action to arch-orchestrator; return design concerns to arch-review separately. A missing runtime or
 dependency produces an unavailable deterministic assessment, not a fabricated numeric
 result; qualitative observations may still be reported with that limitation.
 

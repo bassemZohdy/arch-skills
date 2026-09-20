@@ -28,8 +28,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record policy provenance and version, review type and authority, baseline-bound disposition, delegation limits, exception expiry and handoff/cadence owners.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -67,6 +65,10 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 ## Step 2: Architecture Board
 
 ### Board Structure
+
+The roles below are illustrative. Apply the organization's recorded decision
+rights, quorum and conflict-of-interest rules; a chair title does not itself
+grant unilateral authority. Never let an author self-approve a required review.
 
 | Role | Responsibility |
 |------|----------------|

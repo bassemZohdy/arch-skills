@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/dashboard-template.md` and record measurement definition and units, source revision, sampling window, baseline, uncertainty and explicitly adopted thresholds.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -130,7 +128,7 @@ Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 |-----------|--------|----------------|
 | **SRP** | Class responsibility count | Manual review |
 | **OCP** | Open for extension points | Pattern analysis |
-| **LSP** | Subtype substitutability | Test coverage |
+| **LSP** | Subtype substitutability | Behavioral contract tests, including pre/postconditions |
 | **ISP** | Interface size | Method count |
 | **DIP** | Dependency direction | Dependency graph |
 

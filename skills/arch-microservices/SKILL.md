@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record service DES IDs, domain/data ownership, independent lifecycle evidence, consistency/failure scenarios and modular-monolith alternative.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -58,8 +56,12 @@ observability tax of every additional service.
 |--------------|---------|----------|
 | **Distributed Monolith** | Services coupled | Loosen coupling |
 | **Nano Services** | Too many tiny services | Merge related services |
-| **Data Duplication** | Same data in multiple services | Accept eventual consistency |
-| **Shared Database** | Multiple services share DB | Separate databases |
+| **Unowned replicated data** | Copies diverge without an authority | Name source of truth, freshness and reconciliation |
+| **Shared writable schema** | Services bypass each other's ownership | Enforce logical ownership and restricted access |
+
+Database-per-service means exclusive data ownership, not necessarily a separate
+database server. Derived read models can be intentional; define their authority
+and consistency rather than treating all duplication as an anti-pattern.
 
 ## Step 2: Service Communication
 
@@ -150,7 +152,7 @@ stateDiagram-v2
 | **Containerization** | Docker, Kubernetes |
 | **Service Mesh** | Istio, Linkerd |
 | **GitOps** | ArgoCD, Flux |
-| **Blue-Green** | Zero-downtime deploys |
+| **Blue-Green** | Traffic switching between validated, state-compatible releases |
 
 ## Step 6: Monitoring & Observability
 

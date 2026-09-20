@@ -33,6 +33,9 @@ Legacy System → Facade → New Components
 3. Gradually shift traffic
 4. Remove old system
 
+Suppress candidate production side effects in shadow runs. Only the authoritative
+writer may charge, notify or mutate real accounts.
+
 ## Migration Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
@@ -73,13 +76,16 @@ Legacy System → Facade → New Components
 | **Backup/Restore** | Small databases | High |
 | **Dump/Load** | Schema changes | Medium |
 | **CDC** | Large databases | Low |
-| **Dual Write** | Zero-downtime | None |
+| **Dual Write** | Phased transition with reconciliation | Depends on compatibility and cutover evidence |
 
 ## Rollback Strategies
 
 | Trigger | Action |
 |---------|--------|
-| Data integrity issues | Restore from backup |
-| Performance degradation | Route traffic to legacy |
-| Critical bugs | Toggle feature flag |
-| Complete failure | Full rollback |
+| Data integrity issues | Stop affected writes; reconcile before tested restore/replay or forward repair |
+| Performance degradation | Route back only if legacy data and contracts remain compatible |
+| Critical bugs | Disable the path if its fallback is safe |
+| Complete failure | Use the rehearsed recovery plan and approved data-loss limits |
+
+Account for valid writes after cutover. Restoring an old backup alone can lose
+them; rehearse replay/reconciliation and irreversible-step approval.

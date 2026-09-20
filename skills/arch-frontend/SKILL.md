@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record journey IDs, rendering/state and trust boundaries, team ownership, architecture alternatives and accessibility/performance/security verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -35,6 +33,10 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 | **Micro Frontends** | Independent deployable units | Large teams, complex apps |
 | **Module Federation** | Shared modules across apps | Shared dependencies |
 | **Server Components** | Server-rendered components | Performance, SEO |
+
+These are different design axes, not mutually exclusive alternatives: deployment
+boundaries, composition mechanisms and rendering choices can coexist. Compare
+like-for-like options and their trust, failure and release boundaries.
 
 ## Step 2: Micro Frontends
 
@@ -138,8 +140,7 @@ score does not prove an accessible or usable experience.
 
 ## Cross-skill handoff
 
-Consume journeys from arch-usability, inclusive interaction requirements from arch-
-accessibility and contracts from arch-api. Document rendering, routing, session
+Consume journeys from arch-usability, inclusive interaction requirements from arch-accessibility and contracts from arch-api. Document rendering, routing, session
 ownership, cache partitioning, design-system versions and remote-module failure
 behavior. Web Components and module federation do not provide a security sandbox;
 involve arch-security for untrusted content and cross-origin messaging.

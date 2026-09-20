@@ -14,9 +14,12 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record obligation source/version, jurisdiction and applicability authority, data scope, control mappings, retention basis and exception expiry.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
+
+Distinguish legal obligations, contractual controls, certification standards and
+attestation frameworks. Record applicability and the adopted edition with the
+accountable reviewer; a mapped checklist does not establish certification or
+an auditor's opinion, and evidence absence is not proof a control never operated.
 
 ```
 1. Identify Regulations → What applies?

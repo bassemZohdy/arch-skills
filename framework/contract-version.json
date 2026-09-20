@@ -2,7 +2,7 @@
   "framework_version": "1.0.0",
   "schema_version": "2.0.0",
   "rubric_version": "1.0.0",
-  "evaluator_version": "2.0.0",
+  "evaluator_version": "2.0.1",
   "status": "reference",
   "compatibility": {
     "supported_exact": {
@@ -13,4 +13,3 @@
     "historical": "schema 1.0.0 evaluation unavailable; explicit migration and renewed assessment required"
   }
 }
-

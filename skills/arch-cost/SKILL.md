@@ -14,9 +14,11 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record currency and time horizon, dated rate sources, demand/commitment assumptions, unit economics, forecast uncertainty and approval threshold.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
+
+Compare alternatives over the same workload, service level, currency and horizon.
+Include migration, operations and exit costs. Do not add overlapping savings
+percentages or mistake a budget alert for an enforced spending cap.
 
 ```
 1. Understand Costs → Where is money spent?
@@ -182,8 +184,7 @@ that justifies each optimization.
 
 ## Cross-skill handoff
 
-Consume demand ranges, failure headroom and deployment topology from arch-perf, arch-
-resilience and arch-cloud. Model low/base/high demand, idle capacity, replication,
+Consume demand ranges, failure headroom and deployment topology from arch-perf, arch-resilience and arch-cloud. Model low/base/high demand, idle capacity, replication,
 egress, licensing, support, observability and staff effort over one stated horizon.
 Return unit economics and sensitivity to arch-decision; do not approve savings that
 invalidate recovery or latency targets.

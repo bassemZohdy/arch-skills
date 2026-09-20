@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record failure-model IDs, SLO/RTO/RPO constraints, policy rationale, recovery ownership, experiment blast radius and abort authority.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -170,6 +168,7 @@ Request → Bulkhead → Timeout → Service
 ### Game Day Checklist
 
 - [ ] Define steady state hypothesis
+- [ ] Obtain explicit environment/experiment authorization, blast-radius limits and abort authority
 - [ ] Inject realistic failures
 - [ ] Observe system behavior
 - [ ] Verify recovery
@@ -184,6 +183,8 @@ Request → Bulkhead → Timeout → Service
 ## Common Gotchas
 
 - Retries without idempotency create duplicate side effects (double charges, double emails).
+- A timeout is an unknown outcome, not proof the write failed. Query/reconcile
+  operation status before retrying; never bypass authorization in a fallback.
 - Retry storms amplify outages; combine retries with circuit breakers and jitter.
 - Propagate the remaining deadline and cancellation; nested timeout and retry policies must fit inside the caller budget.
 - Chaos experiments need a steady-state hypothesis, blast-radius limit, abort condition and owner for remediation.
@@ -198,8 +199,7 @@ Request → Bulkhead → Timeout → Service
 
 Consume operation semantics and deadlines from arch-api/arch-event plus dependency
 capacity from arch-perf. Assign one retry owner per boundary and cap total attempts
-across layers. Give arch-observability failure, recovery and freshness signals and arch-
-test bounded fault scenarios. Distinguish high availability from disaster recovery;
+across layers. Give arch-observability failure, recovery and freshness signals and arch-test bounded fault scenarios. Distinguish high availability from disaster recovery;
 verify RTO/RPO with restore and failover exercises including identity, keys, DNS and
 external dependencies.
 

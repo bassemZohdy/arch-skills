@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record signal definition and semantic-convention version, REQ/SLO mapping, cardinality/privacy/retention budgets, alert owner and runbook verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -65,8 +63,7 @@ telemetry labels or attributes.
   "service": "order-service",
   "traceId": "abc123",
   "message": "Order created",
-  "orderId": "456",
-  "customerId": "789"
+  "outcome": "success"
 }
 ```
 
@@ -92,6 +89,10 @@ Services → Agent → Pipeline → Storage → Query
 | **Gauge** | Can go up/down | Temperature |
 | **Histogram** | Distribution of values | Response time |
 | **Summary** | Pre-calculated quantiles | p95 latency |
+
+Instrument the telemetry pipeline itself: queue saturation, dropped signals,
+export failures and stale/no-data alerts. Define bounded buffering and shedding
+so telemetry backpressure cannot exhaust the application or silently erase evidence.
 
 ### RED Method
 

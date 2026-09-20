@@ -1,7 +1,9 @@
 # Specialist Skill Catalog
 
 Stage-1 discovery metadata for the specialist skills in this repository. Read this
-catalog during skill discovery; load a specialist's SKILL.md only after selecting it.
+catalog during skill discovery; load a specialist only after selecting it.
+In a built public package, use package-catalog.json to locate instructions.md
+and its resource root; SKILL.md is the standalone expert/source entry.
 
 For each entry: purpose, triggers (when to select), inputs it needs, outputs it
 produces, and supporting inputs. "Partial" marks overlap-only coverage — document the

@@ -5,7 +5,9 @@ description: Create software architecture documentation and ADRs for systems and
 
 # Architecture Documentation Generator
 
-Generate complete architecture documentation with diagrams using established frameworks and best practices. For diagram-first requests, route to `arch-diagrams` and keep this skill focused on document structure, framework mapping and ADR composition.
+Generate scoped architecture documentation with diagrams. Do not label missing
+or inferred sections complete. For diagram-first requests, route to `arch-diagrams`
+when available; otherwise provide a bounded view and disclose missing validation.
 
 ## Workflow
 
@@ -116,7 +118,9 @@ C4Context
 
 ## Step 5: Document Decisions (ADRs)
 
-For each significant architectural decision, create an ADR. Use the MADR template (Markdown Architectural Decision Records) recommended by Thoughtworks Technology Radar.
+For each significant architectural decision, reuse an existing ADR or draft a
+new one using MADR. A request to document an existing system does not authorize
+inventing its historical rationale or acceptance; mark these unknown.
 
 **ADR Best Practices:**
 - Store in source control (not wiki)

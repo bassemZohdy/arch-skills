@@ -44,7 +44,7 @@
 |----------|-------------|
 | **Resource Limits** | Set CPU/memory requests and limits |
 | **Health Checks** | Liveness, readiness, startup probes |
-| **Rolling Updates** | Zero-downtime deployments |
+| **Rolling Updates** | Validate capacity, readiness, draining and mixed-version compatibility before claiming no downtime |
 | **Horizontal Scaling** | HPA based on metrics |
 | **Network Policies** | Restrict pod communication |
 | **Pod Security Standards** | Enforce security policies |

@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record artifact identity and provenance, environment ownership, promotion approvals, rollout/rollback thresholds and verification evidence.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -95,13 +93,13 @@ graph LR
     Green["Production (Green) - idle / next release"]
     LB --> Blue
     LB -. "switch traffic" .-> Green
-    Blue -. rollback .-> Green
+    Green -. "rollback after switch" .-> Blue
 ```
 
 | Pros | Cons |
 |------|------|
-| Zero downtime | Double infrastructure |
-| Easy rollback | Cost |
+| Low-downtime traffic switch when validated | Parallel capacity cost |
+| Rapid application rollback when state-compatible | Data recovery is separate |
 | Full testing before switch | Stateful data cutover |
 
 ### Canary Deployment
@@ -149,13 +147,14 @@ graph LR
 [Old] → [Stop] → [Start] → [New]
 ```
 
-Simple and clean-state, but causes downtime. Acceptable only for non-critical or internal systems.
+Simple and clean-state, but causes downtime. Use only with an explicitly accepted
+outage window and recovery plan, regardless of whether the system is internal.
 
 ### Strategy Selection
 
 | Requirement | Strategy |
 |-------------|----------|
-| Zero downtime, instant rollback | Blue-green |
+| Low-downtime traffic switch with compatible state | Blue-green, after cutover/rollback rehearsal |
 | Risk mitigation on user-facing change | Canary |
 | Resource-constrained, tolerate skew | Rolling |
 | Downtime acceptable | Recreate |
@@ -231,7 +230,10 @@ graph LR
 | Error rate exceeds threshold | Automated rollback or traffic shift |
 | Performance degradation | Route traffic to previous version |
 | Critical bug | Toggle feature flag or code rollback |
-| Schema issue | Database rollback (slow — design migrations to be backward compatible) |
+| Schema issue | Stop promotion; use a rehearsed forward repair or data-safe recovery plan |
+
+Use expand-and-contract migrations. Before restoring state, account for writes
+since cutover and validate replay/reconciliation; a code rollback cannot undo them.
 
 ## Step 7: DORA Metrics
 
@@ -294,8 +296,7 @@ provenance verification are complementary controls.
 
 ## Cross-skill handoff
 
-Consume the deployment topology and recovery objectives from arch-cloud and arch-
-resilience. Reconcile rollout capacity, readiness/startup probes, traffic draining and
+Consume the deployment topology and recovery objectives from arch-cloud and arch-resilience. Reconcile rollout capacity, readiness/startup probes, traffic draining and
 mixed-version compatibility before claiming zero downtime. Give arch-observability
 explicit promotion/abort signals and arch-migration the data compatibility window; an
 application rollback does not undo database writes.

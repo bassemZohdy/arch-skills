@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record WCAG edition/level, scoped journeys, criterion IDs, browser/assistive-technology context, manual evidence and remaining barriers.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -57,13 +55,14 @@ conformance.
 ### Landmark Regions
 
 ```html
-<header>    <!-- Banner landmark -->
-<nav>       <!-- Navigation landmark -->
-<main>      <!-- Main content landmark -->
-<aside>     <!-- Complementary landmark -->
-<footer>    <!-- Content information landmark -->
-<section>   <!-- Region landmark with label -->
-<article>   <!-- Article landmark -->
+<!-- Independent examples, not a nested page template. -->
+<header>Site heading</header> <!-- Banner only in body context -->
+<nav aria-label="Primary">Navigation</nav>
+<main>Main content</main>
+<aside>Related content</aside> <!-- Complementary -->
+<footer>Site information</footer> <!-- Contentinfo only in body context -->
+<section aria-label="Results">Results</section> <!-- Named region -->
+<article>Article content</article> <!-- Article role, not a landmark -->
 ```
 
 ### Heading Hierarchy
@@ -174,17 +173,13 @@ inertness and a no-focusable-content fallback; a two-element Tab trap is incompl
 
 | Tool | Type |
 |------|------|
-| axe-core | Browser extension |
+| axe-core | Rules engine for automated accessibility checks |
 | Lighthouse | Chrome DevTools |
 | Pa11y | CLI tool |
 
-### Screen Reader Commands
-
-| Screen Reader | Navigate | Read | Form |
-|---------------|----------|------|------|
-| NVDA | H (headings) | Insert+F7 | F (form fields) |
-| VoiceOver | VO+Command+H | VO+A | VO+Command+Space |
-| JAWS | H (headings) | Insert+F5 | Tab |
+Record browser, screen reader, version and interaction mode with reproduction
+steps. Navigation shortcuts vary by platform, keyboard layout and mode; verify
+the task on the supported combination instead of treating a shortcut list as a test.
 
 ## Examples
 

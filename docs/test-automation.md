@@ -35,7 +35,7 @@ HTTP servers. Nothing downloads or starts a local model automatically.
 
 ~~~sh
 python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml \
-  --packages .cache/expert --output .cache/evaluate-results --limit 0 --max-calls 6
+  --packages .cache/expert --output .cache/evaluate-results --limit 0 --max-calls 7
 ~~~
 
 The same protocol is supported by services such as
@@ -46,11 +46,13 @@ adapter. Configure a custom command for other APIs or hosts.
 
 Defaults select at most 10 scenarios with a 30-call ceiling. `--limit 0` selects
 all scenarios in the supplied manifests; omit `--manifest` to select from all
-37 YAML manifests. The runner rejects a selection exceeding `--max-calls`
+38 YAML manifests. The runner rejects a selection exceeding `--max-calls`
 before making calls. These are call/output limits, not monetary spending caps.
 `ARCH_TEST_MAX_TOKENS` defaults to 2048, with a hard adapter range of 1..16384.
 Truncated answers are errors, not successful short responses. There are no hidden
 retries. Scenario `runs` means independent observations, not retries until success.
+Malformed provider envelopes return structured errors; omitted/null usage remains
+unknown rather than being reported as zero tokens.
 
 Reports and per-step request/observation records are written under the fresh
 output directory, including package and manifest hashes, timestamps, adapter and
@@ -65,9 +67,26 @@ more tests were unavailable. Unavailable attempts never improve the pass rate.
 
 ## GitHub setup
 
+Preview the exact selection and call budget without packages, credentials, writes
+or model access:
+
+~~~sh
+python scripts/behavioral.py plan --manifest tests/test-regression.yaml \
+  --manifest tests/test-arch-evaluate.yaml --limit 0 --max-calls 16
+python scripts/behavioral.py plan --manifest tests/test-skill-boundaries.yaml \
+  --limit 0 --max-calls 39
+~~~
+
+The 39 boundary scenarios include one targeted case per skill plus five positive
+controls. They use typed JSON assertions and remain unexecuted live candidates
+until run against a configured model. Passing them would not establish general
+skill reliability. Offline CI also checks the manual smoke workflow's declared
+budget against its actual manifest selection, so scenario growth cannot silently
+break that command again.
+
 Set repository variables `ARCH_TEST_API_BASE` and `ARCH_TEST_MODEL`; add repository
 secret `ARCH_TEST_API_KEY` if required. Run **Optional model response tests** on
-`main`. It executes seven scenarios with 15 total calls, a 2048-token output
+`main`. It executes eight scenarios with 16 total calls, a 2048-token output
 limit per call and a 15-minute job timeout. It uploads reports for 14 days even
 when tests fail. Missing configuration produces an unavailable report and a
 non-success exit. No paid model calls run automatically on PRs or scheduled jobs.
@@ -159,7 +178,8 @@ fails when a previously passing case regresses. Use
 
 ## Open coverage boundaries
 
-The repository automation is complete for deterministic checks, fixture validation,
-result-envelope checks and compatible report comparison. Live model quality,
+Repository automation covers deterministic checks, fixture validation,
+result-envelope checks and compatible report comparison; it is not exhaustive.
+Live model quality,
 host-observed activation, DAP lifecycle execution and assertion calibration require
 an external adapter and remain tracked in [TODO.md](../TODO.md).

@@ -22,6 +22,8 @@ def main():
         root = args.project.resolve()
         if output.resolve().parent != root / "evaluations" or output.suffix != ".md":
             raise ValueError("generated RTM must be a Markdown file directly under evaluations/")
+        if output.is_symlink() or (output.exists() and output.name != 'traceability.md'):
+            raise ValueError('custom RTM output must be fresh; archived evaluation summaries are immutable')
         output.parent.mkdir(exist_ok=True)
         text = ["# Requirements Traceability Matrix", "",
                 "| Requirement | Source confirmed | Design | ADR | Verification plan | Complete |",
@@ -42,4 +44,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

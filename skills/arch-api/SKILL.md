@@ -14,9 +14,12 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/api-template.md` and record contract version, producer/consumer owners, auth boundaries, compatibility policy, idempotency and negative/contract verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
+
+For each operation, specify resource/field authorization, stable pagination,
+request limits and compatibility. A gateway login check does not authorize
+access to every object. Bound GraphQL depth/batching and propagate deadlines
+and cancellation across RPC calls; retries must respect operation semantics.
 
 ```
 1. Define Consumers → Who will use this API?
@@ -217,8 +220,7 @@ Choose versioning from consumer tooling, caching, routing and compatibility need
 
 ## Cross-skill handoff
 
-Consume operation invariants and consumer requirements from arch-ddd and arch-
-integration. Return versioned contracts, object/tenant authorization rules, pagination
+Consume operation invariants and consumer requirements from arch-ddd and arch-integration. Return versioned contracts, object/tenant authorization rules, pagination
 consistency, retry semantics and deprecation windows. Give arch-test positive, negative
 and mixed-version compatibility cases; give arch-event the completion/status contract
 for asynchronous operations.

@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record domain-expert confirmation, context/invariant IDs, owning teams, cross-context dependencies and invariant verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -106,6 +104,10 @@ class Order:  # Aggregate Root
 
 ### Entity vs Value Object
 
+An in-memory aggregate check does not protect against concurrent writers.
+Specify atomic persistence, concurrency/version checks and conflict behavior
+with arch-data; test the invariant under competing commands.
+
 | Aspect | Entity | Value Object |
 |--------|--------|--------------|
 | **Identity** | Has unique ID | Compared by attributes |
@@ -119,9 +121,11 @@ class Order:  # Aggregate Root
 class OrderRepository:
     def find_by_id(self, order_id) -> Order:
         # Load aggregate from store
+        raise NotImplementedError
     
     def save(self, order: Order):
         # Persist aggregate changes
+        raise NotImplementedError
 ```
 
 ### Domain Services
@@ -185,8 +189,7 @@ class PricingService:
 ## Cross-skill handoff
 
 Obtain business vocabulary and disputed invariants from domain experts. Return context
-relationships, aggregate consistency boundaries and ownership to arch-patterns, arch-
-data and arch-microservices. A bounded context is a modeling boundary, not a mandatory
+relationships, aggregate consistency boundaries and ownership to arch-patterns, arch-data and arch-microservices. A bounded context is a modeling boundary, not a mandatory
 network service; separate internal domain events from versioned integration events with
 arch-event.
 

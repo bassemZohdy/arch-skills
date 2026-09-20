@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/principles-checklist.md` and record applicability, evidence, justified seams and exceptions, cost-of-change reasoning and protected boundary verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -117,10 +115,10 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 | Question | If No |
 |----------|-------|
 | Can I name this unit's single responsibility? | Split it (SRP) |
-| Does a change require edits in many modules? | Indirection or expert violation |
-| Does an abstraction lack a present seam or change scenario? | Consider removing speculative indirection |
-| Does business logic import frameworks/infrastructure? | DIP violation |
-| Is the same rule encoded in two places? | DRY violation |
+| Can this change remain local to its owning boundary? | Investigate coupling and responsibility placement |
+| Does this abstraction protect a present seam or change scenario? | Consider removing speculative indirection |
+| Does business logic isolate infrastructure at appropriate boundaries? | Investigate dependency inversion |
+| Does each shared business rule have one authoritative definition? | Investigate knowledge duplication |
 
 ### Principle Conflict Resolution
 
@@ -153,8 +151,7 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 
 ## Cross-skill handoff
 
-Consume a concrete change scenario and the existing boundary design. Give arch-
-refactoring evidence of a costly dependency or invariant violation, not a checklist of
+Consume a concrete change scenario and the existing boundary design. Give arch-refactoring evidence of a costly dependency or invariant violation, not a checklist of
 missing interfaces. A one-implementation abstraction can still isolate a volatile
 dependency or support testing; retain it when the seam has a present purpose. Record
 intentional exceptions and their quality trade-offs with arch-decision.

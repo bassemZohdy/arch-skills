@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record research/source IDs, participant/task context, consent/privacy boundaries, success criteria, uncertainty and observed versus heuristic findings.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -106,11 +104,11 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 | **Progressive Disclosure** | Show details on demand |
 | **Infinite Scroll** | Content browsing |
 | **Lazy Loading** | Performance optimization |
-| **Optimistic UI** | Assume success |
+| **Optimistic UI** | Show provisional success only with pending state, rollback and error recovery |
 
 ### Form Design
 
-- Label positions (above, left, placeholder)
+- Persistent visible labels (above or beside fields); placeholders are hints, not labels
 - Input types and validation
 - Error handling and messages
 - Progress indicators
@@ -124,6 +122,9 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 | **Time on Task** | Context-dependent | Stopwatch |
 | **Error Rate** | < 5% | Observation |
 | **Satisfaction (SUS)** | > 80 | Survey |
+
+These targets need a task/population baseline. SUS is a 0–100 questionnaire
+score, not a percentage of satisfied users; report sample size and uncertainty.
 
 ## Step 6: Usability Testing
 
@@ -167,8 +168,7 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 
 Consume real user goals, context and supported languages/devices. Distinguish observed
 participant evidence from heuristic findings and synthetic personas. Give arch-frontend
-complete loading, empty, error, permission and recovery journeys; give arch-
-accessibility interaction requirements and arch-test observable acceptance criteria. For
+complete loading, empty, error, permission and recovery journeys; give arch-accessibility interaction requirements and arch-test observable acceptance criteria. For
 RTL/localized interfaces, check navigation, input, dates/numbers and text expansion with
 representative users.
 

@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record data authority, lineage/source revisions, classification, schema/lifecycle decisions, retention, quality/freshness and restore criteria.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -111,6 +109,10 @@ Source → Stream → Process → Sink
 
 **Use when:** Real-time processing needed.
 
+Define event time versus processing time, late-data handling, checkpoints and
+restartable backfills. Replay must reconcile sink writes without duplicating
+business effects; a successful job exit alone does not prove data completeness.
+
 ### Batch
 
 ```
@@ -125,7 +127,8 @@ Source → Schedule → Process → Destination
 
 | Dimension | Description | Measurement |
 |-----------|-------------|-------------|
-| **Accuracy** | Correct values | Validation rules |
+| **Accuracy** | Values reflect reality | Compare against a trusted source or observed outcome |
+| **Validity** | Values follow agreed rules | Type, range and schema checks |
 | **Completeness** | No missing data | Null checks |
 | **Consistency** | Same across systems | Cross-reference |
 | **Timeliness** | Up-to-date | Freshness metrics |

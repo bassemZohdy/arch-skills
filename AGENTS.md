@@ -45,7 +45,7 @@ After editing any skill:
 For optional automated response or host tests, use the repository runner:
 ~~~sh
 python scripts/behavioral.py validate
-python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml --packages .cache/expert --output .cache/behavioral-results --limit 0 --max-calls 6
+python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml --packages .cache/expert --output .cache/behavioral-results --limit 0 --max-calls 7
 ~~~
 Configure the model or custom host adapter as described in `docs/test-automation.md`.
 Response-only results do not prove host discovery, tool use or DAP lifecycle behavior.

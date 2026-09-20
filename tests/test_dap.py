@@ -12,11 +12,50 @@ from dap.contracts import ContractError, validate_config, validate_records
 from dap.persistence import ConcurrentRevisionError, content_hash, load_checkpoint, save_checkpoint
 from dap.publishing import publish_report
 from dap.scoring import evaluate_project, expected_checks
-from dap.snapshot import Snapshot, report_is_stale
+from dap.snapshot import Snapshot, local_path, report_is_stale
 from dap.workflow import route, plan_change, interview_status
 
 
 class DAPTests(unittest.TestCase):
+    def test_manifest_rejects_noncanonical_and_generated_path_aliases(self):
+        for name in ('./evaluations/report.json', 'evaluations//report.json',
+                     'process//config.json', './requirements.json', 'requirements.json/'):
+            with self.subTest(name=name), self.assertRaises(ContractError):
+                local_path(self.project, name)
+
+    def test_evidence_json_pointer_rejects_negative_and_noncanonical_indices(self):
+        snapshot = Snapshot(self.project)
+        self.assertTrue(snapshot.evidence('requirements.json#/0/id'))
+        for index in ('-1', '00', '+0', ' 0', '0~2'):
+            self.assertFalse(snapshot.evidence(f'requirements.json#/{index}/id'), index)
+
+    def test_rtm_cannot_overwrite_an_archived_evaluation_summary(self):
+        report = publish_report(self.project)
+        summary = report.with_suffix('.md')
+        before = summary.read_bytes()
+        run = subprocess.run([sys.executable, str(ROOT / 'scripts/dap_rtm.py'), str(self.project),
+                              '--output', str(summary)], capture_output=True, text=True)
+        self.assertEqual(run.returncode, 2, run.stdout + run.stderr)
+        self.assertEqual(summary.read_bytes(), before)
+
+    def test_generated_evidence_and_rtm_symlink_aliases_are_rejected(self):
+        report = publish_report(self.project)
+        summary = report.with_suffix('.md')
+        evidence_alias = self.project / 'alias.md'
+        rtm_alias = self.project / 'evaluations/traceability.md'
+        try:
+            evidence_alias.symlink_to(summary)
+            rtm_alias.symlink_to(summary)
+        except OSError:
+            self.skipTest('host does not permit symlink creation')
+        with self.assertRaises(ContractError):
+            local_path(self.project, 'alias.md')
+        before = summary.read_bytes()
+        run = subprocess.run([sys.executable, str(ROOT / 'scripts/dap_rtm.py'), str(self.project)],
+                             capture_output=True, text=True)
+        self.assertEqual(run.returncode, 2, run.stdout + run.stderr)
+        self.assertEqual(summary.read_bytes(), before)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="dap-tests-")
         self.addCleanup(self.temp.cleanup)

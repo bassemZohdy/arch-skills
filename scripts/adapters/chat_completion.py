@@ -45,15 +45,31 @@ def complete(request):
                 'reason': f'Provider HTTP {exc.code}; no response body or credential retained.'}
     except (URLError, TimeoutError, OSError):
         return {'status': 'unavailable', 'reason': 'Provider unreachable; no model result available.'}
+    except ValueError:
+        return {'status': 'error', 'reason': 'Provider returned invalid JSON.'}
+    if (not isinstance(result, dict) or not isinstance(result.get('choices'), list)
+            or not result['choices'] or not isinstance(result['choices'][0], dict)):
+        return {'status': 'error', 'reason': 'Provider returned an invalid choices envelope.'}
     choice = result['choices'][0]
     if choice.get('finish_reason') != 'stop':
         return {'status': 'error', 'reason': 'Provider did not return a complete text answer.'}
+    message = choice.get('message')
+    if not isinstance(message, dict) or not isinstance(message.get('content'), str) or not message['content'].strip():
+        return {'status': 'error', 'reason': 'Provider returned no nonempty text answer.'}
+    usage = result.get('usage')
+    if usage is None:
+        usage = {}
+    if not isinstance(usage, dict):
+        return {'status': 'error', 'reason': 'Provider returned invalid token usage.'}
+    tokens = usage.get('total_tokens')
+    if tokens is not None and (type(tokens) is not int or tokens < 0):
+        return {'status': 'error', 'reason': 'Provider returned invalid token usage.'}
     return {'status': 'ok', 'response': choice['message']['content'], 'execution_mode': 'response-only',
-            'adapter': {'id': 'chat-completion', 'version': '1.0.0'},
+            'adapter': {'id': 'chat-completion', 'version': '1.0.1'},
             'model': {'id': model, 'version': result.get('model') or model},
             'model_version_note': 'Provider-reported ID; an alias does not prove an immutable revision.',
             'generation': {'max_tokens': token_limit, 'stream': False},
-            'total_tokens': result.get('usage', {}).get('total_tokens'), 'capabilities_used': None}
+            'total_tokens': tokens, 'capabilities_used': None}
 
 
 if __name__ == '__main__':

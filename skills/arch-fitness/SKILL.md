@@ -139,7 +139,7 @@ profile, warm-up, sample count, error reporting and a declared environment.
 
 ### 5. Dependency Health
 
-**Goal:** Ensure dependencies are up-to-date
+**Goal:** Detect reported dependency vulnerabilities, not prove freshness or safety
 
 ```yaml
 # .github/workflows/dependency-check.yml
@@ -239,6 +239,9 @@ Surface runtime fitness signals so drift is visible even when code passes static
 - Alert on threshold breaches against SLOs, not raw values; page only on user-visible impact.
 - Review the fitness-function set regularly and retire rules that no longer reflect current decisions.
 - Make suppressions explicit, time-limited and attributable; never turn a failing guardrail into a silent warning.
+- Distinguish a violated rule from a broken checker, missing input or skipped run.
+  Keep required gates blocked for either failure, but assign the correct owner;
+  an advisory scan with unavailable data is not a clean security result.
 
 ## Automating Other Architecture Concerns
 
@@ -276,8 +279,7 @@ Read `references/automation-reference.md` for detailed automation guidance.
 
 ## Cross-skill handoff
 
-Consume accepted constraints from arch-decision and measurement definitions from arch-
-metrics. Return an executable check or an explicitly manual assessment, owner, evidence
+Consume accepted constraints from arch-decision and measurement definitions from arch-metrics. Return an executable check or an explicitly manual assessment, owner, evidence
 output and failure disposition to arch-devops and arch-governance. Validate each
 automated rule with a known violating fixture; a passing check with no matching files or
 samples is unassessable, not proof of fitness.

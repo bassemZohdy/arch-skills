@@ -5,7 +5,11 @@ reference adds modes to arch-orchestrator; it is not another execution engine.
 
 ## Preparation before the first interview round
 
-Every new orchestrator invocation starts with preparation unless the user
+Resolve bounded specialist/artifact tasks and read-only audits before this
+authoring workflow. Route those directly as described in SKILL.md; do not turn
+a diagram request into an interview or an evaluation into a repair.
+
+Every new end-to-end authoring invocation starts with preparation unless the user
 explicitly supplies a mode and a confirmed, traceable requirements baseline.
 The first response must summarize the requirement seed, classify the scope as
 greenfield, brownfield or mixed, list known constraints and evidence, identify

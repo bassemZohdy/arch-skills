@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/plan-template.md` and record old/new baseline revisions, phase dependencies, owners, reconciliation evidence, quantitative cutover/rollback criteria and irreversible-step approval.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -77,6 +75,10 @@ Phase 4: Decommission → Remove legacy
 3. Gradually shift traffic
 4. Remove old system
 
+Shadow execution must not charge, notify or mutate production twice. Suppress
+candidate side effects or isolate them in a test sink; reconcile outputs with
+privacy-safe data and a named authoritative writer.
+
 ### Database Migration Patterns
 
 | Pattern | Use Case |
@@ -129,10 +131,10 @@ rollback with production-like volume and failure injection.
 
 | Trigger | Action |
 |---------|--------|
-| Data integrity issues | Restore from backup |
-| Performance degradation | Route traffic to legacy |
-| Critical bugs | Toggle feature flag |
-| Complete failure | Full rollback |
+| Data integrity issues | Stop affected writes; reconcile before a tested restore/replay or forward repair |
+| Performance degradation | Route to legacy only while its data and contracts remain compatible |
+| Critical bugs | Disable the affected path if its fallback is safe |
+| Complete failure | Invoke the rehearsed recovery plan within approved data-loss limits |
 
 ## Examples
 

@@ -60,7 +60,9 @@ Apply gate checks and eliminate failing alternatives.
 
 **Rules:**
 - Weights must sum to exactly 100
-- Each criterion defines what 5 (best) and 1 (worst) looks like
+- Each criterion defines its 0 (not met) through 5 (best) anchors
+- Missing evidence is unknown, not an observed zero; keep provisional scores
+  and uncertainty separate and resolve decision-critical gaps before acceptance
 - Check for overlapping criteria
 
 **Scoring Scale:**
@@ -124,7 +126,7 @@ Generate complete DAR/ADR document using templates:
 ## Pre-Document Validation
 
 - [ ] Weights sum to exactly 100
-- [ ] All alternatives passed gates
+- [ ] Scored alternatives passed gates; excluded and provisional options remain documented
 - [ ] Matrix completeness and arithmetic validated; calculate totals before display rounding
 - [ ] Recommendation matches highest score (or override documented)
 - [ ] Low-confidence + high-weight scores flagged
@@ -180,8 +182,7 @@ For uncertainty, use `references/decision-deep-dive.md`.
 Consume comparable alternatives and dated evidence from the relevant specialists.
 Preserve the requested greenfield/brownfield scope and candidate families; score only
 the evaluated edition and deployment model. When phased adoption matters, assess initial
-sufficiency, upgrade compatibility and continued-use consequences separately. Give arch-
-doc the proposed decision and evidence, arch-governance the required disposition, and
+sufficiency, upgrade compatibility and continued-use consequences separately. Give arch-doc the proposed decision and evidence, arch-governance the required disposition, and
 arch-fitness only accepted measurable constraints.
 
 ## Related Skills

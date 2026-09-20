@@ -59,6 +59,10 @@ Select review dimensions based on context:
 | **DevOps & Deployment** | arch-devops | CI/CD and release health |
 | **AI Systems** | arch-ai | Systems embedding LLMs or agents |
 
+This is a starting set, not the complete catalog. Add arch-accessibility,
+arch-usability, arch-frontend, arch-compliance, arch-cost, arch-features,
+arch-event or arch-integration when their concerns affect the scoped journeys.
+
 ## Step 3: Collect Evidence
 
 Analyze the codebase and documentation:
@@ -102,7 +106,8 @@ do not turn a polished diagram or an author's confidence into proof.
 - Tight coupling between unrelated components
 - Circular dependencies
 - Magic numbers and hardcoded values
-- Anemic domain models
+- Anemic domain models where complex invariants call for domain behavior;
+  simple transaction scripts and CRUD records are not automatically defects
 
 Read `references/design-patterns.md` for detailed guidance.
 

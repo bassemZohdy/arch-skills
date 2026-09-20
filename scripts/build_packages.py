@@ -30,11 +30,25 @@ def copy_skill(source, destination, module=False):
 
 def build(destination, profile="default", selected=None):
     destination = Path(destination).resolve()
+    source_roots = [ROOT / folder for folder in ('skills', 'framework', 'scripts')]
+    if any(destination.is_relative_to(source.resolve()) for source in source_roots):
+        raise ValueError('destination must be outside canonical source directories')
     if destination.exists():
         raise ValueError("destination must not exist; choose a fresh directory (no implicit deletion/overwrite)")
     if profile not in {"default", "expert"}:
         raise ValueError("profile must be default or expert")
     skills = {p.name: p for p in (ROOT / "skills").glob("arch-*") if p.is_dir()}
+    if profile == 'default' and not set(PUBLIC).issubset(skills):
+        raise ValueError('default profile requires all public source SKILL.md entries')
+    for name, source in skills.items():
+        if not (source / 'SKILL.md').is_file():
+            raise ValueError(f'{name}: missing SKILL.md')
+    for source in source_roots:
+        if source.is_symlink() or any(path.is_symlink() for path in source.rglob('*')):
+            raise ValueError(f'symlink not allowed in canonical source: {source}')
+    for required in ('LICENSE', 'requirements.txt'):
+        if not (ROOT / required).is_file() or (ROOT / required).is_symlink():
+            raise ValueError(f'canonical {required} must be a regular source file')
     names = list(PUBLIC) if profile == "default" else sorted(skills)
     if selected:
         if profile != "expert" or any(n not in skills for n in selected):
@@ -60,6 +74,7 @@ def build(destination, profile="default", selected=None):
         for script in (ROOT / "scripts").glob("dap_*.py"):
             shutil.copyfile(script, package / "scripts" / script.name)
         shutil.copyfile(ROOT / "requirements.txt", package / "requirements.txt")
+        shutil.copyfile(ROOT / "LICENSE", package / "LICENSE")
         files = {p.relative_to(package).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                  for p in sorted(package.rglob("*")) if p.is_file()}
         (package / "package-manifest.json").write_text(json.dumps({"profile": profile, "name": name,

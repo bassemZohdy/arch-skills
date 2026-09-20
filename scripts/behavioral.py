@@ -284,7 +284,7 @@ def run_cases(cases, packages, output, command, max_calls):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['validate', 'run'])
+    parser.add_argument('command', choices=['validate', 'plan', 'run'])
     parser.add_argument('--manifest', type=Path, action='append')
     parser.add_argument('--packages', type=Path)
     parser.add_argument('--output', type=Path)
@@ -302,13 +302,19 @@ def main(argv=None):
                 require(covered == expected, f'scenario coverage missing: {sorted(expected - covered)}')
             print(json.dumps({'manifests': len(paths), 'scenarios': len(cases), 'skills': len(covered)}))
             return 0
-        require(args.packages is not None and args.output is not None, 'run requires --packages and --output')
         require(args.limit >= 0 and args.max_calls > 0, 'invalid limit/call budget')
+        selected = cases[:args.limit] if args.limit else cases
+        planned = sum(c['runs'] * len(c['steps']) for c in selected)
+        require(planned <= args.max_calls, f'selection needs {planned} calls, above max-calls={args.max_calls}')
+        if args.command == 'plan':
+            print(json.dumps({'selected_scenarios': len(selected), 'omitted_scenarios': len(cases) - len(selected),
+                              'planned_calls': planned, 'max_calls': args.max_calls, 'model_invoked': False}))
+            return 0
+        require(args.packages is not None and args.output is not None, 'run requires --packages and --output')
         command = json.loads(args.adapter_command) if args.adapter_command else [
             sys.executable, str(ROOT / 'scripts/adapters/chat_completion.py')]
         require(isinstance(command, list) and command and
                 all(isinstance(v, str) and v for v in command), 'adapter command must be nonempty JSON argv')
-        selected = cases[:args.limit] if args.limit else cases
         report = run_cases(selected, args.packages.resolve(), args.output.resolve(), command, args.max_calls)
         report.update(available_scenarios=len(cases), selected_scenarios=len(selected),
                       omitted_scenarios=len(cases) - len(selected))

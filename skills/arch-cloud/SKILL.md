@@ -14,9 +14,11 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/architecture-template.md` and record workload constraints, dated regional/quota/rate evidence, identity boundaries, data residency, recovery and exit decisions.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
+
+Separate architecture/IaC proposals from provisioning. Confirm target account,
+region, environment, permissions and cost exposure before an authorized apply;
+a design request alone does not authorize creating or changing cloud resources.
 
 ```
 1. Define Requirements → What do we need?

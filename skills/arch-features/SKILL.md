@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record flag/experiment IDs, exposure and privacy policy, owner/expiry, guardrail thresholds, approval, kill-switch checks and removal criteria.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -137,6 +135,10 @@ if (variant === 'control') {
 6. **Cleanup** - Remove flag when stable
 
 ### Cleanup Checklist
+
+Retire temporary release/experiment flags after their purpose ends. Operational
+kill switches and entitlement policies may be permanent; review ownership and
+test them periodically instead of deleting every flag after a rollout.
 
 - [ ] Flag enabled for all users
 - [ ] No references to old code path

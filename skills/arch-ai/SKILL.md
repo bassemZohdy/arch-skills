@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record model/prompt/corpus/evaluation-set revisions, permitted tool actions, risk-specific thresholds, human gates, fallback and spend limits.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -78,11 +76,13 @@ Evaluate retrieval recall, ranking, context assembly and generation separately; 
 | **Tools** | Typed, permission-scoped functions the model can call |
 | **Memory** | Conversation history, summaries, external state |
 | **Context Management** | Fit relevant state into the context window |
-| **Stop Conditions** | Max steps, budget caps, confidence thresholds |
+| **Stop Conditions** | Max steps, budget caps, verified completion or escalation |
 
 **Design rules:**
 - Give agents the fewest tools that accomplish the task
 - Make tools idempotent where possible; require confirmation for destructive actions
+- Validate tool results outside the model. A write timeout leaves its outcome
+  unknown; reconcile by operation ID before retrying a potentially completed action.
 - Log every tool call for audit and debugging
 - Prefer one capable agent over multi-agent topologies until proven insufficient
 
@@ -134,10 +134,11 @@ Evaluate retrieval recall, ranking, context assembly and generation separately; 
 ### Cost Model
 
 ```
-Monthly cost ≈ requests × (input_tokens × input_price_per_token + output_tokens × output_price_per_token)
+Monthly token cost ≈ requests × (input_tokens × input_price_per_token + output_tokens × output_price_per_token)
 ```
 
-Track cost per request and per user; alert on anomalies like any other budget (see arch-cost).
+Add retrieval, embeddings, tool calls, hosting, retries and human review for total
+cost. Track cost per successful task and alert on anomalies (see arch-cost).
 
 ## Examples
 

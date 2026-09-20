@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record quality scenarios, eligible alternatives, disqualifying constraints, operational cost, DES/ADR mapping and fitness criteria.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -178,10 +176,14 @@ graph LR
 | **Complex Business Logic** | Clean Architecture |
 | **Simple CRUD** | Layered |
 | **Event Processing** | Event-Driven, CQRS |
-| **Distributed Systems** | Service Mesh, Saga |
+| **Distributed Systems** | Select communication/failure patterns from operation semantics, not distribution alone |
 | **Legacy Integration** | Hexagonal, Adapter |
 | **Independent Feature Delivery** | Vertical Slice |
 | **Monolith Simplicity, Strong Boundaries** | Modular Monolith |
+
+This matrix suggests candidates, not prescriptions. Patterns can coexist at
+different scopes; vertical slices do not guarantee independently deployable
+features, and neither a mesh nor a saga is required for every distributed system.
 
 ## Examples
 

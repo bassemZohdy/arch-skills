@@ -19,7 +19,7 @@
 ## Parallel Run
 
 1. **Replicate data** — Keep both systems in sync
-2. **Run both** — Process through both
+2. **Run both** — Suppress candidate production side effects; retain one authoritative writer
 3. **Compare** — Validate outputs match
 4. **Shift traffic** — Gradually move to new
 5. **Decommission** — Remove old system
@@ -31,4 +31,4 @@
 | **Backup/Restore** | High | Low | Small databases |
 | **Dump/Load** | Medium | Low | Schema changes |
 | **CDC** | Low | High | Large databases |
-| **Dual Write** | None | High | Zero-downtime |
+| **Dual Write** | Depends on validated cutover | High | Phased transition with reconciliation |

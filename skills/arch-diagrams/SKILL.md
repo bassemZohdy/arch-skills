@@ -36,9 +36,14 @@ evidence.
 6. **Cross-check and validate.** Compare names, boundaries, flows and decisions
    with the baseline, related views and linked records. Check syntax/renderability,
    readability, accessibility, sensitive-data exposure and freshness metadata.
-7. **Publish the source and evidence.** Return the diagram source, render only when
+7. **Return the source and evidence.** Return the diagram source, render only when
    requested or required by the consumer, a short interpretation, assumptions,
    validation findings and the next review trigger.
+
+For review-only requests, return findings or a proposed diff without changing
+the baseline. Write or publish source/exports only within authorized targets.
+If no compatible renderer is available, label syntax/render validation unexecuted;
+visual inspection and plausible syntax do not establish renderability.
 
 ## View selection
 

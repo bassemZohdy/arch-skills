@@ -31,8 +31,10 @@ Messages that fail repeatedly go to DLQ for investigation.
 
 ## Idempotency
 
-Process same event multiple times without side effects:
+Process repeated deliveries without repeating business effects. Couple the
+deduplication record and state update atomically; external effects need their
+own idempotency or reconciliation contract:
 
 ```
-Event ID → Check if processed → Skip if yes
+Transaction: claim unique event ID + business update → commit → acknowledge
 ```

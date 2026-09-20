@@ -55,6 +55,9 @@ Queries  ← Read Model  ← Read DB (denormalized)
 - Eventual consistency
 - Increased complexity
 
+These apply to separated stores; CQRS can share one database and does not
+require event sourcing or eventual consistency.
+
 ## Event Sourcing
 
 Store state changes as events:
@@ -133,10 +136,14 @@ Messages that fail repeatedly go to DLQ for investigation.
 Process same event multiple times without side effects:
 
 ```
-Event ID → Check if processed → Skip if yes
+Transaction: claim unique event ID + business update → commit → acknowledge
 ```
 
 ### Exactly-Once Semantics
+
+The techniques below do not establish global exactly-once business effects.
+Prove the storage/broker transaction boundary, deduplication scope and retention;
+use idempotency keys or reconciliation for external side effects.
 
 - Idempotent producers
 - Transactional outbox

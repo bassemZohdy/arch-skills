@@ -41,7 +41,7 @@ of all 34 skills. A custom host adapter can supply actual tool observations.
 ~~~sh
 python scripts/behavioral.py validate
 python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml \
-  --packages .cache/expert --output .cache/evaluate-results --limit 0 --max-calls 6
+  --packages .cache/expert --output .cache/evaluate-results --limit 0 --max-calls 7
 ~~~
 
 Prefer typed JSON assertions for discrete decisions. Response keywords remain

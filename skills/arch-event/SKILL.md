@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/design-template.md` and record event versus command intent, schema version, producer/consumer ownership, delivery/ordering scope, replay/idempotency and compensation verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -87,6 +85,9 @@ graph LR
 - Eventual consistency
 - Increased complexity
 - More infrastructure
+
+These trade-offs apply when models/stores are separated. CQRS can use one
+database and does not require event sourcing, a broker or eventual consistency.
 
 ## Step 4: Event Sourcing
 
@@ -173,7 +174,7 @@ Business compensation on failure. Compensation is a new action that can fail or 
   "data": {
     "orderId": "123",
     "customerId": "456",
-    "items": [...]
+    "items": [{"productId": "example-product", "quantity": 1}]
   }
 }
 ```
@@ -195,10 +196,14 @@ Messages that fail repeatedly go to DLQ for investigation.
 Process same event multiple times without side effects.
 
 ```
-Event ID → Check if processed → Skip if yes
+Transaction: claim unique event ID + apply business change → commit → acknowledge
 ```
 
 ### Exactly-Once Semantics
+
+A separate check-then-write races under concurrent delivery. Atomically couple
+deduplication and the business update; external effects need their own idempotency
+key or reconciliation protocol. Define deduplication scope and retention.
 
 Design for at-least-once delivery by default. A transactional outbox, producer
 idempotence and consumer deduplication reduce loss and duplication; they do not
@@ -218,7 +223,8 @@ poison-message handling and schema compatibility explicit for every stream.
 
 - Consumers must be idempotent; at-least-once delivery is the realistic default everywhere.
 - Event sourcing is a heavy commitment; do not adopt it just for an audit log.
-- Publishing an event and writing to the database without an outbox loses events on crashes.
+- Uncoordinated database writes and event publication can diverge on crashes;
+  use an outbox, transactional CDC or another proven atomicity boundary.
 - A dead-letter queue without replay ownership, retention and redaction becomes a silent data cemetery.
 
 ## Further Reading
@@ -233,8 +239,7 @@ poison-message handling and schema compatibility explicit for every stream.
 Consume domain facts, integration consumers and transaction boundaries from arch-ddd,
 arch-integration and arch-data. Return event/command schemas, ordering keys, delivery
 scope, deduplication retention and replay ownership. Give arch-test duplicate, out-of-
-order, crash-between-write-and-ack, poison-message and replay scenarios; give arch-
-observability lag/age and DLQ signals.
+order, crash-between-write-and-ack, poison-message and replay scenarios; give arch-observability lag/age and DLQ signals.
 
 ## Related Skills
 

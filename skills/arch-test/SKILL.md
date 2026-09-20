@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/strategy-template.md` and record VER register with requirement/constraint/design mappings, method, acceptance threshold, environment, owner and planned versus executed evidence.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -130,6 +128,8 @@ def test_purchase_flow():
 - Test critical paths only
 - Use page object model
 - Parallelize when possible
+- Isolate accounts/data per run and suppress real payments, emails and other
+  external side effects. Production test execution needs explicit authorization.
 - Quarantine a flaky test only with an owner, defect link and expiry; retries may reduce noise but must not hide the defect
 
 ## Step 3: Testing Patterns

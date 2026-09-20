@@ -5,7 +5,7 @@ and repository capabilities are documented in [docs/project-status.md](docs/proj
 
 ## Live model and host integration
 
-- Configure the endpoint/model and run the 15-call smoke workflow; record the first
+- Configure the endpoint/model and run the 16-call smoke workflow; record the first
   real baseline. Synthetic adapters and mocked HTTP are not live skill-quality evidence.
 - Implement one actual host adapter and execute the seven DAP lifecycle scenarios,
   including fixture setup, artifact verification, preserved history and baseline
@@ -32,5 +32,11 @@ and repository capabilities are documented in [docs/project-status.md](docs/proj
 
 ## External verification
 
-- Recheck the 36 external URLs that remain unverified from an unrestricted network;
+- Recheck the 54 [unverified URLs](docs/audits/2026-09-20-link-recheck.json) from an unrestricted network;
   do not treat blocked, rate-limited or timed-out probes as broken links.
+
+## Diagram rendering coverage
+
+- Add a pinned, opt-in renderer check for the shipped diagram formats. Current
+  package/resource checks and model scenarios do not parse or render every
+  Mermaid, PlantUML and Draw.io artifact.

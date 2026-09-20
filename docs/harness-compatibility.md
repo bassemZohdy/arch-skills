@@ -15,7 +15,7 @@ scheduler, a subagent API, credentials or durable storage by itself.
   entry points.
 - Expert: all 34 entry points, or selected specialists using --skill. Narrow
   expert requests do not require the entire DAP workflow.
-- Both: framework contracts, Python runtime/dependencies and content hashes are
+- Both: the repository license, framework contracts, Python runtime/dependencies and content hashes are
   copied from one canonical source. There are no manually maintained host mirrors.
 
 The default interface presents interview/create/update/evaluate workflows. It
@@ -27,6 +27,8 @@ see three in the default output, including recursive discovery.
 
 Run scripts/build_packages.py with a fresh --output and default/expert --profile.
 The builder refuses an existing destination rather than deleting user data.
+It also rejects outputs nested in canonical source directories, missing skill
+entry points and source symlinks before writing packages.
 Install each complete generated directory with the selected host's native mechanism.
 The builder does not perform installation or modify global skill locations.
 
@@ -71,7 +73,9 @@ that integration belongs to the host adapter, not to the canonical skill.
 ## Verified boundaries
 
 Automated tests verify default/expert discovery counts, resource resolution,
-bundle hashes, no-overwrite behavior and isolated evaluator execution. These are
+bundle hashes, license inclusion, safe destinations and isolated evaluator execution.
+A packaged CLI lifecycle test resumes a checkpoint, evaluates a fixture, generates
+RTM, publishes twice, preserves history and detects changed baseline evidence. These are
 filesystem/runtime compatibility tests, not proof that every AI host follows the
 instructions correctly. Host-specific behavioral trials remain external,
 optional and explicitly labelled with real execution evidence.

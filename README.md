@@ -109,12 +109,12 @@ facts. Live-model scenarios remain optional and are not implied by passing tests
 
 ## Automated behavioral testing
 
-The scenario runner validates 233 scenarios across all 34 skills without a model.
+The scenario runner validates 272 scenarios across all 34 skills without a model.
 For live response tests, build the expert packages and configure a compatible
 model endpoint; see [test automation](docs/test-automation.md) for commands,
 adapter integration, repeat counts, evidence and limits.
 
-GitHub Actions includes a manually triggered, 15-call model smoke suite and a
+GitHub Actions includes a manually triggered, 16-call model smoke suite and a
 weekly external-link audit. Model tests require endpoint/model variables and an
 API-key secret when the provider requires one. They do not run on pull requests.
 Offline checks remain the required CI gate; missing model access never counts as
@@ -131,7 +131,8 @@ reachability, plus decision arithmetic and isolated package execution. For an
 explicit online link audit, run `python scripts/check_links.py --external
 --output .cache/link-audit.json` on one line. HTTP 404/410 are reported as broken;
 403/429/timeouts remain unverified. A reachable URL does not prove its claims.
-See the [full project review](docs/audits/2026-09-20-full-project-review.md).
+See the latest [skill-by-skill and E2E review](docs/audits/2026-09-20-skill-e2e-review.md)
+for corrected concerns, executed tests and remaining coverage boundaries.
 
 ## Repository layout
 

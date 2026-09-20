@@ -14,8 +14,6 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record system/contract revisions, producer/consumer ownership, data authority, failure/ordering semantics and cross-team review.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
-For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
-
 ## Workflow
 
 ```
@@ -44,8 +42,8 @@ For DAP work, populate its scope and evidence fields; keep missing measurements 
 |---------|-------------|----------|
 | **Message Queue** | Point-to-point messaging | Task distribution |
 | **Pub/Sub** | Topic-based messaging | Event broadcasting |
-| **Event Streaming** | Ordered event log | Event sourcing |
-| **Saga** | Distributed transaction | Multi-service operations |
+| **Event Streaming** | Event log ordered within a declared key/partition | Replayable event processing |
+| **Saga** | Local transactions with compensation | Multi-service operations without global atomicity |
 
 ### Mediation Patterns
 
@@ -153,7 +151,9 @@ partner's schema into the domain model.
 ## Common Gotchas
 
 - Select a mesh from workload identity, traffic-policy and operational needs; no universal service-count threshold justifies it.
-- Point-to-point integrations grow quadratically; mediate once pairs exceed a handful.
+- Potential all-to-all connections grow quadratically, but actual topology may
+  be sparse. Add mediation for evidenced ownership, translation or policy needs,
+  not an arbitrary connection count.
 - Schema changes without a registry and compatibility rules break consumers silently.
 - A gateway or mesh cannot make an unsafe retry safe; preserve operation semantics at the contract boundary.
 

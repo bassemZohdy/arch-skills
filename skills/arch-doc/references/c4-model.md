@@ -17,7 +17,7 @@ The C4 Model provides a hierarchical way to visualize software architecture at d
 
 **Audience:** Everybody, both technical and non-technical.
 
-**When to Use:** Always. This is the recommended starting point for all software development teams.
+**When to Use:** Start here for an unfamiliar system; a focused lower-level request can use an existing context baseline.
 
 **Diagram:** `assets/mermaid-templates/c4-context.mmd`
 
@@ -159,13 +159,13 @@ Use this checklist when reviewing or creating C4 diagrams:
 
 ## C4 Diagram Best Practices
 
-1. **Start with Context** - Always begin at Level 1
-2. **One Level at a Time** - Don't skip levels; each adds clarity
+1. **Establish Context** - Reuse a known baseline for a focused lower-level request
+2. **One Level at a Time** - Keep each view at its declared abstraction level
 3. **Use Consistent Notation** - Same colors/shapes across diagrams
 4. **Name Elements Clearly** - Use business-meaningful names
 5. **Show Data Flow** - Include direction and protocol
 6. **Add Legend** - Include element types and colors
-7. **Limit Elements** - Aim for 5-7 max per diagram
+7. **Control Density** - Split views when labels or relationships become hard to follow; no universal node-count cap
 8. **Be Explicit** - Don't assume knowledge; explain everything
 
 ## Complementary Diagrams
@@ -181,7 +181,7 @@ C4 diagrams pair well with:
 
 ## Common Mistakes
 
-- **Too many elements** per diagram (aim for 5-7 max)
+- **Unreadable density** that hides relationships or forces tiny labels
 - **Inconsistent naming** across diagrams
 - **Missing data flow** direction
 - **Mixing abstraction levels** in one diagram

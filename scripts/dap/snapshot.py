@@ -31,10 +31,13 @@ def normalized(path, data):
 def local_path(root, name):
     if not isinstance(name, str) or not name or "\\" in name or Path(name).is_absolute() or ".." in Path(name).parts:
         raise ContractError(f"unsafe relative artifact path: {name}")
+    if Path(name).as_posix() != name or name == '.':
+        raise ContractError(f'noncanonical artifact path: {name}')
     path = (root / name).resolve()
     if not path.is_relative_to(root.resolve()):
         raise ContractError(f"artifact escapes root: {name}")
-    if name.startswith("evaluations/") or name.endswith(".lock"):
+    resolved = path.relative_to(root.resolve())
+    if not resolved.parts or resolved.parts[0] == 'evaluations' or resolved.name.endswith('.lock'):
         raise ContractError(f"generated/lock artifact cannot be assessed: {name}")
     return path
 
@@ -91,8 +94,15 @@ class Snapshot:
             try:
                 item = json.loads(body)
                 for part in fragment[1:].split("/"):
+                    if re.search(r'~(?![01])', part):
+                        return False
                     part = part.replace("~1", "/").replace("~0", "~")
-                    item = item[int(part)] if isinstance(item, list) else item[part]
+                    if isinstance(item, list):
+                        if not re.fullmatch(r'0|[1-9][0-9]*', part):
+                            return False
+                        item = item[int(part)]
+                    else:
+                        item = item[part]
                 return item is not None and item != ""
             except (ValueError, KeyError, TypeError, IndexError):
                 return False
