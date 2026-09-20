@@ -83,13 +83,14 @@ where no evidenced correction was selected in this pass.
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Offline wrapper | 114 unit/integration tests passed locally | Deterministic implementation and regression behavior |
+| Offline wrapper | 119 unit/integration tests passed locally | Deterministic implementation and regression behavior |
 | Skill structure/resource reachability | 34 skills, zero errors | Metadata, local resources, catalogs and line limits |
 | Scenario validation | 272 definitions across 38 manifests | Valid manifests, typed assertions and known skill coverage |
 | Budget preflight | 8 smoke scenarios / 16 calls; 39 boundary scenarios / 39 calls | Selection fits stated limits; no model invoked |
 | Default/expert builds | 3 / 34 discoverable entry points | Portable contents, hashes and selectively loaded modules |
 | Packaged CLI lifecycle | Passed from an unrelated working directory | Checkpoint resume, read-only evaluation, RTM, two publications, preserved history, freshness and stale-baseline rejection |
-| External recheck | 347 URLs: 293 reachable, zero confirmed broken, 54 unverified | Reachability at the recorded probe time, not source truth |
+| External recheck | Latest inventory: 351 URLs; 301 reachable, zero confirmed broken, 50 unverified | Reachability at the recorded probe time, not source truth |
+| Diagram inventory | 33 Mermaid files/fences pass static header/hash checks; manual pinned renderer workflow added | Source validity is not rendered-output evidence |
 | Patch whitespace | Clean | No whitespace errors |
 
 The packaged CLI lifecycle executes real Python commands against synthetic
@@ -97,11 +98,10 @@ schema-2 evidence. Existing tests also exercise blocking review, incomplete
 interview, concurrent/interrupted checkpoint, missing source/verification and
 other failed gates. Synthetic approval identities are not authenticated humans.
 
-[External recheck evidence](2026-09-20-link-recheck.json) retains the unresolved
-URLs and timestamp. The count applies to the URL inventory before this review
-document added its supporting source links. New citation pages were read directly.
-Transient failures increased the unresolved list from the prior 36 to 54; this is
-not evidence that 18 links became broken.
+[Latest external recheck evidence](2026-09-20-link-recheck-latest.json) retains
+the unresolved URLs and timestamp. The previous 347-URL report remains historical;
+the current inventory includes this review's supporting source links. None of the
+50 unverified responses is classified as a confirmed broken link.
 
 ## Remaining boundaries
 
@@ -110,13 +110,15 @@ actual host activation or human-review integration was exercised. Content edits
 and a shorter discovery description are not measured improvements in task success,
 latency or token consumption. Live comparison/calibration remains required.
 
-There is no configured diagram renderer in this review environment. Resource
-existence and source review do not establish that every Mermaid, PlantUML or
-Draw.io artifact renders. Optional pinned renderer coverage remains open, along
-with host adapters, real-project adoption and unverified URL follow-up in
-[TODO](../../TODO.md). No substantive runtime scoring formula or record schema
-changed; the evaluator patch tightens integrity checks on previously accepted
-invalid inputs.
+There is no configured diagram renderer in this review environment. The new
+static inventory covers 33 Mermaid files/fences and the manual workflow provides
+pinned Mermaid rendering when GitHub can download its headless browser; its
+successful SVG/report artifact is still required before claiming rendered
+evidence. PlantUML/Draw.io jobs remain optional if those formats become release
+requirements. Host adapters, real-project adoption and unverified URL follow-up
+remain in [TODO](../../TODO.md). No substantive runtime scoring formula or
+record schema changed; the evaluator patch tightens integrity checks on
+previously accepted invalid inputs.
 
 ## Primary-source checks
 

@@ -1,0 +1,33 @@
+name: Optional diagram renderer checks
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mermaid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Install pinned Mermaid CLI
+        run: npm install --prefix .cache/diagram-renderer --no-save --ignore-scripts @mermaid-js/mermaid-cli@11.17.0
+      - name: Install pinned headless browser
+        run: npx --prefix .cache/diagram-renderer puppeteer browsers install chrome-headless-shell
+      - name: Validate and render Mermaid sources
+        run: >-
+          python scripts/check_diagrams.py
+          --output .cache/diagram-results
+          --renderer-command '[".cache/diagram-renderer/node_modules/.bin/mmdc"]'
+      - name: Retain diagram evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: diagram-render-results
+          path: .cache/diagram-results
+          if-no-files-found: error
+          retention-days: 14

@@ -11,6 +11,7 @@ Current counts and operating commands are in [project status](project-status.md)
 | Public external links | Weekly Monday 06:23 UTC and manual dispatch | Reachability at probe time; 404/410 fail; blocked/rate-limited/timeouts remain unverified |
 | Model response smoke tests | Manual `Optional model response tests` workflow | Selected explicit-skill responses satisfy their assertions |
 | Real host tools, automatic activation and DAP lifecycle | Requires a configured host adapter | Actual observed host behavior, only for executed scenarios |
+| Diagram source inventory | Offline suite and manual command | Every Mermaid file/fence has a known header and stable source hash; rendering is available only through the manual pinned workflow |
 
 The weekly workflow follows GitHub's scheduling semantics: default-branch
 execution, possible delays and possible disabling after prolonged public-repo
@@ -95,6 +96,16 @@ non-success exit. No paid model calls run automatically on PRs or scheduled jobs
 conditions do not block offline validation. It retains evidence for 30 days.
 No issues or messages are posted automatically. A successful audit means no
 confirmed broken links, not that all requests were verified.
+
+## Diagram checks
+
+The repository includes 33 Mermaid files or fenced blocks. Run the deterministic
+inventory locally with `python scripts/check_diagrams.py --output
+.cache/diagram-static`; it validates headers and records source hashes without
+requiring a renderer. For release evidence, manually trigger the pinned Mermaid
+workflow at [`.github/workflows/diagrams.yml`](../.github/workflows/diagrams.yml).
+The workflow installs its browser and uploads SVGs plus the JSON report; a local
+static pass must not be described as rendered output.
 
 ## Custom host adapter protocol
 

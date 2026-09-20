@@ -5,8 +5,8 @@ counts and findings remain in the dated audit documents; open adoption work rema
 in [TODO.md](../TODO.md).
 
 Latest: [skill-by-skill and E2E review](audits/2026-09-20-skill-e2e-review.md).
-The local suite passed 114 unit/integration tests; live model/host and diagram
-renderer validation remain separate open work.
+The local suite and static diagram inventory pass; live model/host and rendered
+diagram evidence remain separate adoption work.
 
 ## Delivered repository capabilities
 
@@ -19,9 +19,10 @@ renderer validation remain separate open work.
 | Public routing | The three public entry points can load `arch-diagrams` as a bundled specialist for diagram-first work | [harness compatibility](harness-compatibility.md), [skill boundaries](skill-boundaries.md) |
 | Behavioral scenarios | 272 validated scenarios across 38 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
 | DAP adapter checks | Result envelopes can be validated for assertion identity and workspace evidence paths | `python scripts/dap_adapter.py validate-execution ...` |
+| Diagram source checks | 33 Mermaid files/fenced blocks are inventoried and syntax headers are validated offline; rendering is opt-in | `python scripts/check_diagrams.py --output .cache/diagram-static`; manually trigger [diagram workflow](../.github/workflows/diagrams.yml) |
 | Baseline comparison | Compatible behavioral reports can be compared for selection drift and regressions | `python scripts/compare_behavioral.py baseline/report.json candidate/report.json ...` |
 | Call-budget preflight | Preview scenario/repetition counts without model access or filesystem writes | `python scripts/behavioral.py plan --manifest tests/test-arch-evaluate.yaml --limit 0 --max-calls 7` |
-| Public links | Latest recheck: 347 probed; 293 reachable, 0 confirmed broken, 54 unverified | [Recheck evidence](audits/2026-09-20-link-recheck.json) |
+| Public links | Latest recheck: 351 probed; 301 reachable, 0 confirmed broken, 50 unverified | [Latest evidence](audits/2026-09-20-link-recheck-latest.json) |
 | CI automation | Four offline matrix jobs run on pushes and pull requests; public-link auditing is weekly; model smoke tests are manual | [.github/workflows](../.github/workflows/) |
 
 A passing offline check establishes repository and fixture invariants. It does not

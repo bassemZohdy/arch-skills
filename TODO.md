@@ -32,11 +32,14 @@ and repository capabilities are documented in [docs/project-status.md](docs/proj
 
 ## External verification
 
-- Recheck the 54 [unverified URLs](docs/audits/2026-09-20-link-recheck.json) from an unrestricted network;
+- Recheck the 50 [currently unverified URLs](docs/audits/2026-09-20-link-recheck-latest.json)
+  from an unrestricted network;
   do not treat blocked, rate-limited or timed-out probes as broken links.
 
 ## Diagram rendering coverage
 
-- Add a pinned, opt-in renderer check for the shipped diagram formats. Current
-  package/resource checks and model scenarios do not parse or render every
-  Mermaid, PlantUML and Draw.io artifact.
+- Run the manually triggered Mermaid renderer workflow and retain successful
+  SVG/report evidence when GitHub can download its headless browser.
+- Add equivalent pinned PlantUML and Draw.io renderer jobs only if those formats
+  become required release evidence; the current static inventory covers all
+  Mermaid sources.

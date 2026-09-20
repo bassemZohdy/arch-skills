@@ -120,6 +120,11 @@ API-key secret when the provider requires one. They do not run on pull requests.
 Offline checks remain the required CI gate; missing model access never counts as
 a successful behavioral run.
 
+Diagram sources have a deterministic offline inventory (`python
+scripts/check_diagrams.py --output .cache/diagram-static`). A separate manual
+workflow installs a pinned Mermaid CLI/browser and uploads rendered SVGs and a
+JSON report; static source validation is not rendered-output evidence.
+
 ## Skill connections and maintenance
 
 Each skill includes a domain-specific handoff: required context, evidence to

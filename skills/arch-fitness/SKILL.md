@@ -7,7 +7,7 @@ description: Create architecture fitness functions, automated guardrails, and ar
 
 Automated checks that verify architectural decisions are maintained.
 
-**Source:** [Building Evolutionary Architectures](https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986368/) by Ford, Parsons, Kua
+**Source:** [Building Evolutionary Architectures](https://nealford.com/books/buildingevolutionaryarchitectures.html) by Ford, Parsons, Kua
 
 ## DAP contribution
 
