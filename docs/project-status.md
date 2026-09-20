@@ -11,6 +11,7 @@ in [TODO.md](../TODO.md).
 | Skill library | 34 canonical skills; default profile exposes 3 entry points and expert exposes all 34 | `python scripts/build_packages.py --profile default ...` or `--profile expert ...` |
 | DAP contracts | Framework 1.0.0, schema 2.0.0, rubric 1.0.0 and evaluator 2.0.0 are implemented and version-checked | [implementation status](dap-implementation-status.md), [records](../framework/records.md) |
 | Deterministic validation | Structural, link, contract, lifecycle, publication and package-isolation checks run offline | `bash run-tests.sh` or `./run-tests.ps1` |
+| Public routing | The three public entry points can load `arch-diagrams` as a bundled specialist for diagram-first work | [harness compatibility](harness-compatibility.md), [skill boundaries](skill-boundaries.md) |
 | Behavioral scenarios | 233 validated scenarios across 37 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
 | DAP adapter checks | Result envelopes can be validated for assertion identity and workspace evidence paths | `python scripts/dap_adapter.py validate-execution ...` |
 | Baseline comparison | Compatible behavioral reports can be compared for selection drift and regressions | `python scripts/compare_behavioral.py baseline/report.json candidate/report.json ...` |

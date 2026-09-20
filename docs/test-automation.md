@@ -1,6 +1,6 @@
 # Test automation and coverage boundaries
 
-Current counts and operating commands are in [project status](project-status.md); open host/model adoption work is tracked in [TODO.md](../TODO.md).
+Current counts and operating commands are in [project status](project-status.md); validation levels and authoring boundaries are in [skill testing](skill-testing.md); open host/model adoption work is tracked in [TODO.md](../TODO.md).
 
 ## What runs automatically
 

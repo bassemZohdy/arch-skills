@@ -52,8 +52,8 @@ it contains no prescriptive guidance of its own. Its value to this repo is twofo
 | `reverse-proxy-lb/*` (NGINX, HAProxy, Traefik, Envoy, YARP...) | 9 | arch-devops |
 | `azure/*` | 30 | arch-cloud, arch-security |
 | `cloud-native`, `cloud-best-practices`, `serverless`, `paas/*` | 7 | arch-cloud, arch-cost |
-| `modeling/*` (event storming, event modeling, ER/UML diagrams, tools) | 16 | arch-doc, arch-ddd |
-| `architecture-documententation` | 1 | arch-doc, arch-decision, arch-review |
+| `modeling/*` (event storming, event modeling, ER/UML diagrams, tools) | 16 | arch-diagrams, arch-doc, arch-ddd |
+| `architecture-documententation` | 1 | arch-diagrams, arch-doc, arch-decision, arch-review |
 | `anti-patterns/*` (big ball of mud, god object, code smells...) | 7 | arch-antipatterns, arch-refactoring, arch-migration |
 | `refactoring`, `clean-code`, `code-review` | 3 | arch-refactoring, arch-principles, arch-review, arch-test |
 | `ai/*` (agents, RAG, MCP, A2A/ACP, evaluation, memory, prompt engineering, self-hosting, tools) | 27 | arch-ai, arch-security |

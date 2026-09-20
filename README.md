@@ -96,6 +96,17 @@ Validator exit codes: 0 ready, 1 blocked/unassessable, 2 CLI error. Semantic
 assessments and human identities are supplied evidence, not automatically proven
 facts. Live-model scenarios remain optional and are not implied by passing tests.
 
+## Documentation map
+
+| Need | Start here |
+| --- | --- |
+| Current capabilities, counts and release status | [Project status](docs/project-status.md) |
+| DAP stages, records and authority rules | [DAP specification](docs/deterministic-architecture-process.md) and [records](framework/records.md) |
+| Package profiles and specialist loading | [Harness compatibility](docs/harness-compatibility.md) |
+| Validation levels and host-neutral scenarios | [Skill testing](docs/skill-testing.md) and [test automation](docs/test-automation.md) |
+| Skill ownership and routing boundaries | [Skill boundaries](docs/skill-boundaries.md) |
+| Only unfinished repository work | [TODO](TODO.md) |
+
 ## Automated behavioral testing
 
 The scenario runner validates 233 scenarios across all 34 skills without a model.

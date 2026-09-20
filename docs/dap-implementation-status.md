@@ -13,6 +13,8 @@ Current counts, operating commands and status-label rules are maintained in the 
 
 - Three public entry points with interview/create/update authoring modes and
   separate process/design evaluation; default and expert package generation.
+  Diagram-first work is routed through the bundled `arch-diagrams` specialist
+  without adding a fourth discoverable public entry point.
 - Typed record schema, semantic endpoints, version compatibility, full criterion
   population expansion and missing significant ADR inventory.
 - Required source/design/verification chains and backward justification through
@@ -27,8 +29,9 @@ Current counts, operating commands and status-label rules are maintained in the 
   authorized applicability and no anonymous score summaries.
 - Immutable report history with generated summaries, safe output destinations,
   source-preserving audit and derived RTM publication.
-- All 34 skill entry points reviewed; 29 specialist contribution routes and output
-  sets aligned, plus core doc/decision/review routes and templates.
+- All 34 skill entry points reviewed; the default package exposes 31 non-public
+  specialist skills through its three public route catalogues, with documentation,
+  decision, diagram and review handoffs aligned.
 - Duplicate inline templates removed and demonstrated standards/reference drift
   corrected. Current source validation is offline and checks actual resource paths.
 - Seven generated current-schema fixtures back the optional scenario manifest;
@@ -44,6 +47,7 @@ executed test counts and limitations. Reproduce with:
 
 ~~~sh
 python tests/test_skills.py
+python scripts/behavioral.py validate
 python -m unittest discover -s tests -p "test_*.py" -v
 python tests/test_activation.py
 ~~~

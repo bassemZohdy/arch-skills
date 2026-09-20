@@ -2,6 +2,11 @@
 
 Reviewed on 2026-09-19 against repository baseline `8fe7e13a04af19d9c0ffc187272ecb8f3b8dba5a`.
 
+This is a historical rationale and correction record, not the current implementation
+status. Use [DAP implementation status](dap-implementation-status.md),
+[project status](project-status.md) and [skill boundaries](skill-boundaries.md) for
+current capabilities and routing.
+
 The framework review below records the corrections made to the specification and the repository gaps that shaped the reference baseline. Current completion evidence is in [DAP implementation status](dap-implementation-status.md). This review does not certify any target architecture.
 
 The [original Google document](https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ) has been corrected in place. The [repository specification](deterministic-architecture-process.md) is its versioned implementation reference. Future semantic changes must reconcile both representations explicitly; automatic synchronisation is not currently implemented.

@@ -4,6 +4,9 @@ The repository provides optional live behavioral scenarios without coupling the
 canonical skills to a particular assistant, model provider, command-line
 client, or tool API.
 
+Use [test automation](test-automation.md) for the response-runner and host-adapter
+protocol; this document is limited to the DAP lifecycle scenario contract.
+
 ## Contract
 
 The versioned contract is framework/dap-adapter-contract.json. The scenario
