@@ -67,6 +67,15 @@ scenarios:
           - type: contains
             value: "Remediation"
 
+  - name: "routes diagram consistency review to the diagram specialist"
+    steps:
+      - prompt: "Review these Mermaid C4 and deployment diagrams for inconsistent boundaries, stale source revisions, and missing relationship semantics. Which specialist should perform the focused diagram review?"
+        assert:
+          - type: contains
+            value: "arch-diagrams"
+          - type: contains
+            value: "baseline"
+
   - name: "assesses fitness functions"
     steps:
       - prompt: "Does this architecture have fitness functions set up? Check for automated architecture validation."

@@ -1,6 +1,6 @@
 ---
 name: arch-evaluate
-description: "Evaluate Deterministic Architecture Process completeness, traceability, evidence freshness and readiness for a frozen architecture baseline. Use for process audits, brownfield evidence-gap assessment and readiness checks. Use arch-review for design quality; do not author or repair architecture during evaluation."
+description: "Evaluate Deterministic Architecture Process completeness, traceability, evidence freshness and readiness for a frozen architecture baseline. Use for process audits, brownfield evidence-gap assessment and readiness checks, including diagram source and baseline evidence. Use arch-review for design quality; do not author or repair architecture during evaluation."
 ---
 
 # Architecture process evaluation
@@ -19,7 +19,10 @@ disagreements rather than inferring undocumented interviews or approvals.
 3. Run the package's scripts/dap_validate.py against the project. Exit 0 means
    ready, 1 means assessed but blocked/unassessable, and 2 means CLI failure.
 4. Review semantic assessments against their cited evidence. Structural validity
-   alone cannot prove a stakeholder's intent or a human's authority.
+   alone cannot prove a stakeholder's intent or a human's authority. When a
+   baseline contains diagrams, check that editable source, stable IDs, baseline
+   or source revisions, linked records and freshness evidence are present; do
+   not treat a rendered diagram as proof of deployed behavior.
 5. Report Q/D/F/B/T/A/S with counts, exclusions, unknowns, uncovered IDs, input
    hash, versions, evaluator identity and readiness gates. Never renormalize
    missing dimensions or equate a high score with readiness.
@@ -83,8 +86,13 @@ orchestrator; return design concerns to arch-review separately. A missing runtim
 dependency produces an unavailable deterministic assessment, not a fabricated numeric
 result; qualitative observations may still be reported with that limitation.
 
+Diagram evidence gaps remain findings against the assessed baseline. Do not invoke
+`arch-diagrams` to repair or rewrite inputs during evaluation; route authorized design
+changes through arch-orchestrator and use `arch-diagrams` after the new baseline is
+prepared.
+
 ## Related skills
 
 - **arch-review** — independent design-quality assessment
 - **arch-orchestrator** — authorized create/update work after findings
-- **arch-governance**, **arch-decision**, **arch-doc** — policy, ADRs and documentation
+- **arch-governance**, **arch-decision**, **arch-doc**, **arch-diagrams** — policy, ADRs, documentation and diagram evidence

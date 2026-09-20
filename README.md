@@ -16,6 +16,8 @@ The default distribution exposes only those three skills. It bundles the remaini
 capabilities as selectively loaded resources, not additional discoverable SKILL.md
 entry points. The expert profile exposes all 34 canonical skills, or just selected
 specialists. There is one orchestration engine and one canonical source per skill.
+The default public entry points can therefore route diagram-first requests to the
+bundled `arch-diagrams` specialist without exposing a fourth public entry point.
 
 ## Build and install
 
@@ -47,6 +49,9 @@ Example requests:
 - Create a solution architecture from this brief.
 - Update the architecture for this changed residency requirement.
 - Evaluate process readiness and design quality, without changing source artifacts.
+- Ask the public orchestrator to create a diagram-first C4 or runtime view; it routes
+  the focused work to the bundled arch-diagrams specialist and can pass the source to
+  arch-doc when the diagram belongs in a broader document.
 - Expert installation: use arch-api for a focused contract review.
 - Expert installation: use arch-diagrams when the diagram itself is the primary deliverable.
 
@@ -93,7 +98,7 @@ facts. Live-model scenarios remain optional and are not implied by passing tests
 
 ## Automated behavioral testing
 
-The scenario runner validates 230 scenarios across all 34 skills without a model.
+The scenario runner validates 233 scenarios across all 34 skills without a model.
 For live response tests, build the expert packages and configure a compatible
 model endpoint; see [test automation](docs/test-automation.md) for commands,
 adapter integration, repeat counts, evidence and limits.

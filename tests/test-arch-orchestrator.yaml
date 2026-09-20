@@ -41,6 +41,15 @@ scenarios:
           - type: contains
             value: "minimum"
 
+  - name: "routes a diagram-first request to the diagram specialist"
+    steps:
+      - prompt: "The primary deliverable is a Mermaid deployment diagram for an existing order platform. Which specialist should own the diagram source and cross-view validation?"
+        assert:
+          - type: contains
+            value: "arch-diagrams"
+          - type: contains
+            value: "diagram"
+
   - name: "classifies the request before selecting technology"
     steps:
       - prompt: "We want to modernize our on-prem order monolith to the cloud. Start the analysis."

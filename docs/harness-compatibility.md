@@ -10,6 +10,9 @@ scheduler, a subagent API, credentials or durable storage by itself.
 - Default: arch-orchestrator, arch-evaluate and arch-review are the only SKILL.md
   entry points. Other capabilities are instructions.md resources under
   references/specialists, located through package-catalog.json.
+- The default public entry points may load `arch-diagrams` through that catalogue
+  for diagram-first creation or review; hosts still discover only the three public
+  entry points.
 - Expert: all 34 entry points, or selected specialists using --skill. Narrow
   expert requests do not require the entire DAP workflow.
 - Both: framework contracts, Python runtime/dependencies and content hashes are

@@ -31,3 +31,13 @@ scenarios:
           - type: json_equals
             pointer: /old_report_certifies_new_baseline
             value: false
+  - name: "checks diagram source evidence without repairing the baseline"
+    steps:
+      - prompt: 'A frozen baseline contains a rendered deployment diagram but no editable source, stable diagram ID, source revision or freshness record. Return only JSON with boolean "diagram_evidence_complete" and "repair_during_evaluation" plus a "reason".'
+        assert:
+          - type: json_equals
+            pointer: /diagram_evidence_complete
+            value: false
+          - type: json_equals
+            pointer: /repair_during_evaluation
+            value: false

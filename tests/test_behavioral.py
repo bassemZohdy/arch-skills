@@ -165,7 +165,8 @@ class BehavioralTests(unittest.TestCase):
                              '--limit', '1'])
             self.assertEqual(code, 2)
             report = json.loads((root / 'reports/report.json').read_text())
-            self.assertEqual(report['omitted_scenarios'], 3)
+            expected_cases = load_cases([ROOT / 'tests/test-arch-evaluate.yaml'])
+            self.assertEqual(report['omitted_scenarios'], len(expected_cases) - 1)
             self.assertEqual(report['counts'], {'unavailable': 1})
 
 

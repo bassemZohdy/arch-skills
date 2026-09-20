@@ -34,6 +34,8 @@ class PackageTests(unittest.TestCase):
             package = self.output / name
             catalog = json.loads((package / "package-catalog.json").read_text())
             self.assertEqual(len(catalog), len(discover_skills(ROOT / "skills")) - 1)
+            self.assertIn("arch-diagrams", catalog)
+            self.assertTrue((package / catalog["arch-diagrams"]["instructions"]).is_file())
             for other, entry in catalog.items():
                 self.assertTrue((package / entry["instructions"]).is_file(), other)
                 self.assertFalse((package / entry["resource_root"] / "SKILL.md").exists())

@@ -1,6 +1,6 @@
 ---
 name: arch-review
-description: "Review architecture design fitness across patterns, quality attributes, trade-offs, risks and technical debt. Use for architecture reviews, design reviews, board assessments, quality-attribute analysis and specialist review routing. Use arch-evaluate for Deterministic Architecture Process completeness and artifact evidence."
+description: "Review architecture design fitness across patterns, quality attributes, trade-offs, risks and technical debt. Use for architecture reviews, design reviews, board assessments, quality-attribute analysis and specialist review routing, including focused diagram consistency reviews through arch-diagrams. Use arch-evaluate for Deterministic Architecture Process completeness and artifact evidence."
 ---
 
 # Architecture Review
@@ -43,6 +43,7 @@ Select review dimensions based on context:
 | Dimension | Skill | When to Review |
 |-----------|-------|----------------|
 | **Design Patterns** | arch-patterns, arch-principles, arch-antipatterns | Structural choices or coupling concerns |
+| **Architecture Diagrams** | arch-diagrams | A diagram is under review, is the primary artifact, or views may disagree |
 | **Security** | arch-security | Trust boundaries, sensitive data or security scope |
 | **Performance** | arch-perf | User-facing systems |
 | **Resilience** | arch-resilience | Distributed systems |
@@ -218,9 +219,15 @@ versus deletion. Return prioritized findings with an owner and verification acti
 request for fixes may proceed through separately authorized authoring after preserving
 the reviewed baseline.
 
+When reviewing diagrams, use `arch-diagrams` to check viewpoint, abstraction level,
+stable IDs, relationship semantics, source/baseline revisions, accessibility and
+cross-view consistency. Keep diagram findings separate from process completeness and
+do not treat a rendered view as proof of deployed behavior.
+
 ## Related Skills
 
 - **arch-doc** - Generate or update the documentation a review assesses against
+- **arch-diagrams** - Review focused diagram views and diagram-as-code consistency
 - **arch-decision** - Capture review outcomes as architecture decision records
 - **arch-fitness** - Turn review findings into automated, continuous checks
 - **arch-governance** - Track review-driven remediation and standards adoption

@@ -1,6 +1,6 @@
 ---
 name: arch-orchestrator
-description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a conversational requirements interview that defaults to one question at a time but may use bounded groups of related questions. Batch related answers for one reconciliation pass instead of reasoning after every answer, while using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Prefer an advertised native user-input or elicitation control; use text choices only as a host fallback. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
+description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a conversational requirements interview that defaults to one question at a time but may use bounded groups of related questions. Batch related answers for one reconciliation pass instead of reasoning after every answer, while using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Prefer an advertised native user-input or elicitation control; use text choices only as a host fallback. Use for end-to-end or multi-domain architecture work, including modernization and migration. Route diagram-first deliverables to arch-diagrams, use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
 ---
 
 # Architecture authoring
@@ -88,7 +88,19 @@ instead of requiring those instructions to be repeated in every prompt.
    22-section template is only an optional standalone presentation format.
 10. Freeze a candidate, run arch-evaluate read-only, and distinguish design
     quality, process completeness and executed verification. Publish generated
-    reports only when authorized. An incomplete candidate remains a draft.
+   reports only when authorized. An incomplete candidate remains a draft.
+
+### Diagram routing
+
+- If the requested primary artifact is a diagram, diagram-as-code source or a
+  focused cross-view consistency review, select `arch-diagrams` and keep the
+  diagram scope, baseline, source and validation status explicit.
+- If diagrams support a broader create/update deliverable, keep the orchestrator
+  as the owner of the coherent architecture, use `arch-diagrams` for the focused
+  views, and pass its sources and evidence to `arch-doc` for document assembly.
+- A diagram is not deployment or verification evidence by itself. Add the
+  relevant domain specialist when the view depends on security, data, events,
+  cloud placement or operational behavior.
 
 ## Shared state and authority
 
