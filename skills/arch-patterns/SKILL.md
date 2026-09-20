@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record quality scenarios, eligible alternatives, disqualifying constraints, operational cost, DES/ADR mapping and fitness criteria.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -211,8 +213,3 @@ the trade-off through arch-test rather than awarding points for pattern count.
 - **arch-ddd** - Domain model at the center of these patterns
 - **arch-fitness** - Enforcing pattern rules in CI
 - **arch-refactoring** - Migrating toward a target pattern
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

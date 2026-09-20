@@ -1,46 +1,54 @@
 # Follow-up work
 
-The 2026-09-20 structural/DAP remediation is documented in
-[the review](docs/audits/2026-09-20-remediation-review.md), including executed tests.
-Do not reinterpret deterministic fixture results as live-model evidence.
+The repository-side implementation is complete for its deterministic contracts,
+fixture scope and offline automation. Current counts, operating commands and
+status labels are in the [project status guide](docs/project-status.md). Historical
+findings and test batches remain in the dated audit documents; do not reinterpret
+synthetic fixture results as live-model evidence.
 
-The repository-side completion pass also replaced stale behavioral fixture links,
-added seven generated schema-2 scenarios, tightened adapter-result checks and
-provided a packaged [migration guide](framework/schema-2-migration.md). Those are
-implemented; the items below depend on an actual consuming project or host choice.
+The repository now provides:
 
-The full skills/link review is documented in
-[the latest audit](docs/audits/2026-09-20-full-project-review.md). Repository fixes
-and regression checks are complete; external requests blocked by network/access
-controls remain explicitly unverified in its evidence.
+- Schema-2 DAP records, migration guidance and seven generated lifecycle fixtures.
+- Offline validation for all 33 skills and 222 behavioral scenarios across 36 manifests.
+- Strict host-result checks for assertion identity, status consistency and workspace
+  evidence paths.
+- Activation scenarios using host-observed `skills_used` traces.
+- Compatible baseline/candidate comparison through `scripts/compare_behavioral.py`.
+- Weekly public-link auditing with retained evidence; inaccessible responses remain
+  unverified rather than being treated as broken.
 
-Test automation is implemented in [the runner and workflow guide](docs/test-automation.md).
-Offline CI validates all 222 behavioral scenarios; the model-response workflow is
-opt-in and requires configuration. Scheduled public-link audits retain evidence.
+## Open adoption work
 
-Remaining test improvements:
+These items require a real consuming host, model, project or organizational authority
+and therefore cannot be completed by repository-only automation.
+
+### Live quality and host integration
 
 - Configure the endpoint/model and run the 15-call smoke workflow; record the first
-  real baseline. Synthetic adapter tests are not live skill-quality evidence.
-- Implement one actual host adapter, then execute the seven DAP lifecycle scenarios
-  with fixture setup and preserved-baseline verification. The repository now
-  enforces assertion identity and evidence-file completeness for returned results.
-- Configure an actual host adapter for the activation manifest; the runner now
-  accepts host-observed `skills_used` traces and has positive/negative scenarios.
-- Calibrate remaining keyword assertions on real outputs; move priority cases to
-  typed decisions, artifact checks or reviewed semantic rubrics.
-- Compare baseline/candidate versions with identical model/host settings before
-  making behavioral pass rates a release gate; `scripts/compare_behavioral.py`
-  now automates the comparison and rejects drift.
+  real baseline. Synthetic adapters and mocked HTTP are not live skill-quality evidence.
+- Implement one actual host adapter and execute the seven DAP lifecycle scenarios,
+  including fixture setup, artifact verification, preserved history and baseline
+  immutability.
+- Configure a host adapter for the activation manifest and retain observed routing
+  traces from the host.
 
-Project adoption work:
+### Calibration and release evidence
 
-- Run the host-neutral behavioral scenarios on each intended consuming host and
-  record actual model/adapter versions, observed routing and artifacts.
-- For real schema-1 projects, plan an explicit migration with owners; capture
-  missing evidence and renew affected assessments instead of inventing history.
-- Adopt project-specific review identities, thresholds, cadence and retention;
-  the configuration example deliberately contains unapproved placeholders.
+- Calibrate keyword assertions on real outputs; move priority cases to typed
+  decisions, artifact checks or reviewed semantic rubrics.
+- Compare repeated baseline/candidate runs with identical pinned model and host
+  settings before introducing a live-quality release threshold. Two or three samples
+  are smoke tests, not a reliability estimate.
 
-No global installation, host adapter, scheduler or live-model run is performed by
-the package builder. Consuming-host adoption remains external to the repository.
+### Consuming-project adoption
+
+- Run the host-neutral scenarios on each intended host and record actual model,
+  adapter, routing and artifact versions.
+- For real schema-1 projects, plan an explicit migration with owners; capture missing
+  evidence and renew affected assessments instead of transferring approvals.
+- Adopt project-specific review identities, thresholds, cadence and retention. The
+  configuration example deliberately contains unapproved placeholders.
+
+The package builder performs no global installation, host setup, scheduler
+provisioning or live-model run. Those boundaries are intentional and remain outside
+this repository until a consuming project supplies the required integration.

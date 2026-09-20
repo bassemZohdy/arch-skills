@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record WCAG edition/level, scoped journeys, criterion IDs, browser/assistive-technology context, manual evidence and remaining barriers.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -217,8 +219,3 @@ supported devices, not only a static page.
 - **arch-usability** - Overall UX quality
 - **arch-frontend** - Component architecture where semantics live
 - **arch-compliance** - Legal requirements (ADA, EAA, Section 508)
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

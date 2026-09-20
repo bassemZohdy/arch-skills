@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record data authority, lineage/source revisions, classification, schema/lifecycle decisions, retention, quality/freshness and restore criteria.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -194,8 +196,3 @@ integrity, availability and controlled writes.
 - **arch-event** - Streaming pipelines and CDC
 - **arch-compliance** - Retention, classification, and audit requirements
 - **arch-ai** - Embedding pipelines and training data
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

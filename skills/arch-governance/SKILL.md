@@ -28,6 +28,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record policy provenance and version, review type and authority, baseline-bound disposition, delegation limits, exception expiry and handoff/cadence owners.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -201,8 +203,3 @@ policy adoption separate from demonstrated compliance through arch-compliance.
 - **arch-fitness** - Automated enforcement of standards
 - **arch-decision** - Structured decision-making the board can ratify
 - **arch-review** - Review process the board consumes
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

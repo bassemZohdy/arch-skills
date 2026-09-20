@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/dashboard-template.md` and record measurement definition and units, source revision, sampling window, baseline, uncertainty and explicitly adopted thresholds.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -207,8 +209,3 @@ proxies, not direct proofs of design quality.
 - **arch-fitness** - Turning metric thresholds into CI gates
 - **arch-refactoring** - Acting on what the metrics reveal
 - **arch-review** - Metrics as evidence in reviews
-
-## Output template
-
-Use `assets/dashboard-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

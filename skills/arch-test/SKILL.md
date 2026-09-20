@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/strategy-template.md` and record VER register with requirement/constraint/design mappings, method, acceptance threshold, environment, owner and planned versus executed evidence.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -227,8 +229,3 @@ invariants to arch-fitness and execution/promotion gates to arch-devops.
 - **arch-fitness** - Architecture tests as part of the suite
 - **arch-refactoring** - The safety net tests provide
 - **arch-devops** - Where the tests run in the pipeline
-
-## Output template
-
-Use `assets/strategy-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record signal definition and semantic-convention version, REQ/SLO mapping, cardinality/privacy/retention budgets, alert owner and runbook verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -249,8 +251,3 @@ application failure from missing telemetry.
 - **arch-resilience** - Failures observability must surface
 - **arch-perf** - SLOs the dashboards track
 - **arch-devops** - Deployment health and pipeline integration
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

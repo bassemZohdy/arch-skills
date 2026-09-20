@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/api-template.md` and record contract version, producer/consumer owners, auth boundaries, compatibility policy, idempotency and negative/contract verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -226,8 +228,3 @@ for asynchronous operations.
 - **arch-integration** - Gateways and cross-system contracts
 - **arch-security** - AuthN/AuthZ and rate limiting for APIs
 - **arch-event** - AsyncAPI and event contracts
-
-## Output template
-
-Use `assets/api-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

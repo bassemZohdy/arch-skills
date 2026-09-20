@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record currency and time horizon, dated rate sources, demand/commitment assumptions, unit economics, forecast uncertainty and approval threshold.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -191,8 +193,3 @@ invalidate recovery or latency targets.
 - **arch-cloud** - Provider services and Well-Architected cost pillar
 - **arch-devops** - IaC enforcement of tagging and budgets
 - **arch-ai** - Inference spend budgeting
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/antipattern-review-template.md` and record observed location and cost of change, refactor/contain/accept disposition, accepted-debt authority, revisit date and prevention checks.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -149,8 +151,3 @@ governance.
 - **arch-refactoring** - Safe execution of the remediation
 - **arch-fitness** - Automated prevention in CI
 - **arch-ddd** - Rich vs anemic domain models
-
-## Output template
-
-Use `assets/antipattern-review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

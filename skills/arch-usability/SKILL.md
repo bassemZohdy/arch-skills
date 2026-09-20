@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record research/source IDs, participant/task context, consent/privacy boundaries, success criteria, uncertainty and observed versus heuristic findings.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -174,8 +176,3 @@ representative users.
 
 - **arch-accessibility** - Usable for people with disabilities
 - **arch-frontend** - Component and interaction implementation
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

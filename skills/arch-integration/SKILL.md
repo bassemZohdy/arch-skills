@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record system/contract revisions, producer/consumer ownership, data authority, failure/ordering semantics and cross-team review.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -173,8 +175,3 @@ the owning service as well as at the edge.
 - **arch-api** - Contract design for the integrated surfaces
 - **arch-event** - Async messaging patterns
 - **arch-microservices** - Service-to-service communication
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

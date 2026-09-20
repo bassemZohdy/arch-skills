@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/principles-checklist.md` and record applicability, evidence, justified seams and exceptions, cost-of-change reasoning and protected boundary verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -164,8 +166,3 @@ intentional exceptions and their quality trade-offs with arch-decision.
 - **arch-review** - Where principle evaluation gets applied
 - **arch-refactoring** - Fixing violations safely
 - **arch-ddd** - Persistence ignorance and rich domain models
-
-## Output template
-
-Use `assets/principles-checklist.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

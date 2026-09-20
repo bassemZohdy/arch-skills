@@ -7,6 +7,8 @@ readiness, traceability, authority or freshness requirements. Its completion cla
 are superseded by the [audit](audits/2026-09-20-dap-skill-audit.md) and this status.
 Do not use its 76% arithmetic fixture as proof of readiness.
 
+Current counts, operating commands and status-label rules are maintained in the [project status and operating guide](project-status.md). This document remains the normative DAP implementation evidence; its deterministic results do not claim live-model or consuming-host behavior.
+
 ## Implemented and tested
 
 - Three public entry points with interview/create/update authoring modes and

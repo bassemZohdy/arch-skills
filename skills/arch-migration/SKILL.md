@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/plan-template.md` and record old/new baseline revisions, phase dependencies, owners, reconciliation evidence, quantitative cutover/rollback criteria and irreversible-step approval.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -164,8 +166,3 @@ lose valid transactions; plan replay, reconciliation or forward repair.
 - **arch-refactoring** - Code-level restructuring within the migration
 - **arch-devops** - Deployment strategies for cutover
 - **arch-data** - Data movement and validation
-
-## Output template
-
-Use `assets/plan-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

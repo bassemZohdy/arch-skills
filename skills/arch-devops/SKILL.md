@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record artifact identity and provenance, environment ownership, promotion approvals, rollout/rollback thresholds and verification evidence.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -305,8 +307,3 @@ application rollback does not undo database writes.
 - **arch-features** - Feature flags for decoupling deploy from release
 - **arch-fitness** - Architecture checks enforced inside the pipeline
 - **arch-migration** - Data and legacy system migration strategies
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

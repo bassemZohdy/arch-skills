@@ -48,6 +48,10 @@ def validate_skill(directory, shared_root=None):
         errors.append(f"frontmatter: {exc}")
     if len(text.splitlines()) > 500:
         errors.append("entry point exceeds 500 lines")
+    # Keep DAP asset routing in one place; a second output-template section
+    # repeats the same instruction and makes the entrypoint harder to scan.
+    if re.search(r"^## DAP contribution$", text, re.M) and re.search(r"^## Output template$", text, re.M):
+        errors.append("duplicate output-template routing; keep it in DAP contribution")
     body = prose(text)
     headings = re.findall(r"^#{1,4}\s+(.+)$", body, re.M)
     lowered = [h.strip().lower() for h in headings]

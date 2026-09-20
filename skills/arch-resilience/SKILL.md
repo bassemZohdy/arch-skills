@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record failure-model IDs, SLO/RTO/RPO constraints, policy rationale, recovery ownership, experiment blast radius and abort authority.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -206,8 +208,3 @@ external dependencies.
 - **arch-perf** - Latency budgets that timeouts must respect
 - **arch-observability** - Detecting failures the patterns must handle
 - **arch-event** - Dead letter queues and idempotent consumers
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/design-template.md` and record event versus command intent, schema version, producer/consumer ownership, delivery/ordering scope, replay/idempotency and compensation verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -239,8 +241,3 @@ observability lag/age and DLQ signals.
 - **arch-ddd** - Domain events and Event Storming
 - **arch-microservices** - Service boundaries that events cross
 - **arch-resilience** - DLQs, retries, and failure isolation
-
-## Output template
-
-Use `assets/design-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

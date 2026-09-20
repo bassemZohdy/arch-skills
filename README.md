@@ -56,6 +56,7 @@ defines the stages, authority rules and evidence requirements. The runtime suppo
 framework 1.0.0, corrected record schema 2.0.0 and rubric 1.0.0. Prior schema-1
 examples are historical fixtures, not ready baselines or transferable approvals.
 See [records](framework/records.md) and [current implementation status](docs/dap-implementation-status.md).
+For current counts, operating commands, boundaries and status labels, see [project status](docs/project-status.md).
 
 ~~~sh
 python scripts/check_links.py

@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/architecture-template.md` and record workload constraints, dated regional/quota/rate evidence, identity boundaries, data residency, recovery and exit decisions.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -152,8 +154,3 @@ with arch-cost. Include control-plane dependencies and testable exit/export assu
 - **arch-observability** - Logging, metrics, tracing, alerting
 - **arch-data** - Data modeling, pipelines, governance
 - **arch-perf** - Caching, capacity planning, load testing
-
-## Output template
-
-Use `assets/architecture-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

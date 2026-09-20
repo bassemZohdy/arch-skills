@@ -1,4 +1,6 @@
-# Test automation and remaining coverage
+# Test automation and coverage boundaries
+
+Current counts and operating commands are in [project status](project-status.md); open host/model adoption work is tracked in [TODO.md](../TODO.md).
 
 ## What runs automatically
 
@@ -155,29 +157,9 @@ The comparator rejects case-selection, manifest, package or adapter/model drift 
 fails when a previously passing case regresses. Use
 `--allow-configuration-change` only to start an intentional new baseline.
 
-## Improvement priorities
+## Open coverage boundaries
 
-1. Configure a model and record a first real baseline. Current harness tests use
-   synthetic adapters/mocked HTTP; they are not live skill-quality evidence.
-2. Add one real host adapter and execute the seven DAP lifecycle fixtures. Verify
-   artifacts, preserved history and input immutability; the repository now checks
-   assertion identity and evidence-file completeness for returned DAP results.
-3. Configure an actual host adapter for the activation manifest. The runner now
-   accepts host-observed `skills_used` traces and includes positive/negative cases.
-4. Replace remaining keyword-only assertions with typed decisions, artifacts or
-   calibrated semantic rubrics. Keep human review of sampled results. Promptfoo's
-   [deterministic and model-assisted assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/)
-   are an optional established integration if richer grading is needed; do not
-   treat an LLM judge as ground truth or add another mandatory release dependency.
-5. Compare baseline/candidate runs on the same pinned host/model settings and
-   repeat count before introducing a live-quality release threshold. The comparator
-   now automates drift and regression detection; two or three samples are smoke
-   tests, not a reliable reliability estimate.
-
-Corrections in this pass: added missing arch-evaluate coverage; repaired misplaced
-repeat settings and incorrect regression skill routing; replaced host-specific
-Write assertions with observed capabilities; corrected rounded pass thresholds;
-removed selected false negatives around HIPAA mentions, secret-storage cautions,
-API-version choices and security identity guidance; added bounded execution,
-strict scenario validation and persistent CI reports. Remaining keyword tests
-are explicitly limited smoke checks and still need calibration on real outputs.
+The repository automation is complete for deterministic checks, fixture validation,
+result-envelope checks and compatible report comparison. Live model quality,
+host-observed activation, DAP lifecycle execution and assertion calibration require
+an external adapter and remain tracked in [TODO.md](../TODO.md).

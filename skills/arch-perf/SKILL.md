@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record stimulus/environment/response/threshold scenarios, workload and dataset revisions, measured percentiles, uncertainty and benchmark owner.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -170,8 +172,3 @@ load generation.
 - **arch-resilience** - Timeouts and circuit breakers that bound latency
 - **arch-observability** - Measuring latency, throughput, and saturation
 - **arch-cost** - Trading performance headroom against spend
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

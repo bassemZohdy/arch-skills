@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record model/prompt/corpus/evaluation-set revisions, permitted tool actions, risk-specific thresholds, human gates, fallback and spend limits.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -177,8 +179,3 @@ arch-observability token/tool budgets, latency breakdowns and fallback signals.
 - **arch-cost** - Budgeting and monitoring inference spend
 - **arch-observability** - Tracing multi-step LLM flows
 - **arch-resilience** - Timeouts, retries, and fallbacks around model calls
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

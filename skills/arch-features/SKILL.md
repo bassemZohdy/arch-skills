@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record flag/experiment IDs, exposure and privacy policy, owner/expiry, guardrail thresholds, approval, kill-switch checks and removal criteria.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -175,8 +177,3 @@ result.
 - **arch-devops** - Decoupling deploy from release
 - **arch-observability** - Measuring rollout health
 - **arch-test** - Testing both flag states
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

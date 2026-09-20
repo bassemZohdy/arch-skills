@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record threat/control IDs and selected standard edition, trust boundaries, residual risk, verification evidence and human security disposition.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -166,8 +168,3 @@ authentication; use an identity protocol such as OpenID Connect when needed.
 
 - [OWASP ASVS](https://github.com/OWASP/ASVS) — Versioned application verification requirements
 - [OWASP Top 10:2025](https://owasp.org/www-project-top-ten/) — Current web application risk categories
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.

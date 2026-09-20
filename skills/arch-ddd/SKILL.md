@@ -14,6 +14,8 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record domain-expert confirmation, context/invariant IDs, owning teams, cross-context dependencies and invariant verification.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+For DAP work, populate its scope and evidence fields; keep missing measurements and approvals explicit.
+
 ## Workflow
 
 ```
@@ -193,8 +195,3 @@ arch-event.
 - **arch-microservices** - Bounded contexts as service boundaries
 - **arch-event** - Domain events and eventual consistency
 - **arch-patterns** - Clean/Hexagonal architectures that host the domain model
-
-## Output template
-
-Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
-keep missing measurements and approvals explicit.
