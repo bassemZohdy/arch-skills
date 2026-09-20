@@ -3,6 +3,23 @@
 Use one shared checkpoint and record contract for all authoring modes. This
 reference adds modes to arch-orchestrator; it is not another execution engine.
 
+## Preparation before the first interview round
+
+Every new orchestrator invocation starts with preparation unless the user
+explicitly supplies a mode and a confirmed, traceable requirements baseline.
+The first response must summarize the requirement seed, classify the scope as
+greenfield, brownfield or mixed, list known constraints and evidence, identify
+the decision owner and expose the important gaps. It then prepares a small,
+prioritized batch of `Q` records covering functional goals, scope, quality
+attributes, mandatory constraints, stakeholders, evidence and verification.
+
+Present the prepared questions and ask the user to answer them in the same
+response. This marks the interview active; it is not a design response and it
+must not select technologies, specialists or ADRs. Reconcile each answer batch
+into the checkpoint before asking the next batch. Once the requirements handoff
+has explicit stakeholder confirmation, honor the requested stopping boundary or
+continue into create/update when the user asked for it.
+
 ## Interview
 
 Capture the seed, participants, scope, evidence access and human decision owner.

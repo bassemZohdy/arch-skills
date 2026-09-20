@@ -2,6 +2,19 @@ timeout: 180
 skill: ./skills/arch-orchestrator
 
 scenarios:
+  - name: "prepares and starts the interview on an initial request"
+    steps:
+      - prompt: "We need a customer order platform. Use the architecture orchestrator to help us begin."
+        assert:
+          - type: contains
+            value: "preparation"
+          - type: contains
+            value: "interview"
+          - type: contains
+            value: "question"
+          - type: contains
+            value: "requirements"
+
   - name: "selects minimal skill set instead of all skills"
     steps:
       - prompt: "Design a small internal REST API for employee directory lookup. No events, no AI, no frontend, low traffic. Which specialist skills do you select?"
