@@ -2,7 +2,7 @@
 
 ## What This Repo Is
 
-Portable Agent Skills for software architecture: documentation generation (`arch-doc`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`arch-orchestrator`), and 28 more specialized skills covering architecture concerns. Skills are Markdown + YAML + templates; host discovery, installation and invocation remain external to the canonical package.
+Portable Agent Skills for software architecture: documentation generation (`arch-doc`), diagram-first modeling (`arch-diagrams`), review/validation (`arch-review`), fitness functions (`arch-fitness`), decision analysis (`arch-decision`), orchestration of end-to-end design (`arch-orchestrator`), and specialized skills covering architecture concerns. Skills are Markdown + YAML + templates; host discovery, installation and invocation remain external to the canonical package.
 
 ## Key Commands
 

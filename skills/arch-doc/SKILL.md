@@ -1,11 +1,11 @@
 ---
 name: arch-doc
-description: Create software architecture documentation, diagrams, and ADRs for systems and features. Use when documenting an existing system or new design, generating C4, arc42, TOGAF, or ISO 42010 views, or producing Mermaid, PlantUML, or Draw.io diagrams for reviews and stakeholder communication.
+description: Create software architecture documentation and ADRs for systems and features. Use when documenting an existing system or new design, generating C4, arc42, TOGAF, or ISO 42010 views, or assembling diagrams into stakeholder documentation. Use arch-diagrams when the diagram itself is the primary deliverable.
 ---
 
 # Architecture Documentation Generator
 
-Generate complete architecture documentation with diagrams using established frameworks and best practices.
+Generate complete architecture documentation with diagrams using established frameworks and best practices. For diagram-first requests, route to `arch-diagrams` and keep this skill focused on document structure, framework mapping and ADR composition.
 
 ## Workflow
 
@@ -49,6 +49,9 @@ Ask or infer:
 - **arc42**: Use for comprehensive documentation of a system. Includes requirements, constraints, risks, and cross-cutting concerns.
 - **TOGAF**: Use for enterprise-level architecture or when organizational compliance is required.
 - **ISO 42010**: Use when formal architecture description standards are needed.
+
+When the user needs only a diagram or diagram-as-code review, use `arch-diagrams`
+instead of loading this full documentation workflow.
 
 Read the appropriate reference file for detailed guidance:
 - `references/c4-model.md` - C4 Model with official review checklist
@@ -234,6 +237,7 @@ arc42 sections; these approaches are complementary, not mutually exclusive.
 ## Related Skills
 
 - **arch-review** - Validate and assess existing architecture documentation
+- **arch-diagrams** - Diagram-first viewpoints, diagram-as-code and cross-view consistency
 - **arch-decision** - Record decisions (ADRs) referenced from the documentation
 - **arch-governance** - Maintain documentation as part of architecture governance
 - **arch-fitness** - Encode documented decisions as automated checks

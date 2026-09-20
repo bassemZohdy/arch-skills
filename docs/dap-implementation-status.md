@@ -27,7 +27,7 @@ Current counts, operating commands and status-label rules are maintained in the 
   authorized applicability and no anonymous score summaries.
 - Immutable report history with generated summaries, safe output destinations,
   source-preserving audit and derived RTM publication.
-- All 33 skill entry points reviewed; 28 specialist contribution routes and output
+- All 34 skill entry points reviewed; 29 specialist contribution routes and output
   sets aligned, plus core doc/decision/review routes and templates.
 - Duplicate inline templates removed and demonstrated standards/reference drift
   corrected. Current source validation is offline and checks actual resource paths.

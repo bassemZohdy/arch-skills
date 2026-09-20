@@ -13,7 +13,8 @@ Extend `arch-orchestrator` as the execution entry point and add `arch-evaluate` 
 | `arch-orchestrator` | Preparation, interview, checkpoints, specialist selection, stage transitions | Does not invent stakeholder approval or replace specialist reasoning |
 | `arch-evaluate` | Frozen-baseline process assessment, evidence-linked findings and scores | Does not repair assessed artifacts or certify design fitness |
 | `arch-decision` | Alternatives, decision-specific DAR and ADR lifecycle | DAR option scores are not process completeness scores |
-| `arch-doc` | arc42 views, diagrams and generated evaluation appendix | Does not convert planned verification into execution evidence |
+| `arch-doc` | arc42 composition, ADRs and generated evaluation appendix | Does not convert planned verification into execution evidence; diagram-first work routes to `arch-diagrams` |
+| `arch-diagrams` | Diagram-first C4, runtime, deployment, data and trust-boundary views | Does not certify deployed topology or replace the architecture document and decision record |
 | `arch-governance` | Review rules, owners, exceptions and configured authority | Does not treat silence or a confidence score as approval |
 | `arch-review` | Design-quality and trade-off review | Remains distinct from process completeness evaluation |
 | Shared contracts and scripts | Schemas, ID/link validation, state transitions, hashing and arithmetic | Works without an LLM for structural checks and score calculation |

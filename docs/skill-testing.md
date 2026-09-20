@@ -36,7 +36,7 @@ independent of a particular host or model and measure real activation separately
 The executable YAML runner and a response-only HTTP adapter are now provided.
 See [test automation](test-automation.md) for exact commands and the JSON adapter
 protocol. Scenario validation is part of every offline CI run and checks coverage
-of all 33 skills. A custom host adapter can supply actual tool observations.
+of all 34 skills. A custom host adapter can supply actual tool observations.
 
 ~~~sh
 python scripts/behavioral.py validate

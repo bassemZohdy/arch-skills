@@ -24,6 +24,7 @@ Comprehensive best practices compiled from industry standards and research.
 | Skill | Key Best Practices | Standards |
 |-------|-------------------|-----------|
 | arch-doc | C4 checklist, arc42 structure, diagram clarity | C4, arc42, TOGAF |
+| arch-diagrams | Viewpoint selection, diagram-as-code, cross-view consistency | C4, ISO 42010 |
 | arch-review | Multi-dimensional evaluation, severity scoring | ISO 25010 |
 | arch-fitness | Automated validation, CI/CD integration | ArchUnit |
 | arch-decision | Weighted scoring, sensitivity analysis | DAR methodology |

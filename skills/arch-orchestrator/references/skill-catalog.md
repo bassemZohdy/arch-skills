@@ -64,6 +64,12 @@ package catalog, or report a missing optional specialist in a selected expert in
 |-------|---------|-------------|-------|----------|--------------|
 | arch-ai | LLM/agent architecture, RAG, MCP, evaluation, AI safety | AI/LLM features in scope | AI requirements, data context | AI architecture, model/integration choices | arch-data, arch-security |
 
+## Documentation & Modeling
+
+| Skill | Purpose | Select When | Needs | Produces | Dependencies |
+|-------|---------|-------------|-------|----------|--------------|
+| arch-diagrams | Diagram-first architecture views and diagram-as-code | A diagram is the primary deliverable or cross-view consistency needs review | Named baseline, viewpoint, audience, source evidence | Editable diagram source, rendered view when requested, assumptions and validation findings | arch-doc for broader documents; relevant domain specialists for semantics |
+
 ## Lifecycle & Governance
 
 | Skill | Purpose | Select When | Needs | Produces | Dependencies |
@@ -106,4 +112,6 @@ Use this when a request names capabilities rather than repo skills:
 - ai-llm-architecture → arch-ai
 - architecture-decision-records → arch-decision
 - architecture-documentation → arch-doc
+- architecture-diagrams → arch-diagrams
+- diagram-as-code → arch-diagrams
 - architecture-review → arch-review

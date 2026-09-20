@@ -1,6 +1,6 @@
 # Skill boundaries and consolidation review
 
-Reviewed against all 33 canonical skills in skills/*/SKILL.md.
+Reviewed against all 34 canonical skills in skills/*/SKILL.md.
 
 ## Review result
 
@@ -28,6 +28,7 @@ The cleanup is therefore boundary-focused:
 | arch-orchestrator / arch-review / arch-evaluate | Orchestration coordinates work; review assesses design fitness; evaluation assesses DAP process evidence and artifact completeness. |
 | arch-decision / arch-governance / arch-compliance | Decision analysis compares options; governance defines authority and exceptions; compliance designs regulatory controls and auditability. |
 | arch-doc / arch-decision | Documentation publishes views and ADRs; decision analysis supplies structured trade-offs and recommendation evidence. |
+| arch-diagrams / arch-doc | Diagram-first modeling owns focused views and diagram-as-code; documentation owns framework composition, arc42 mapping and ADR publication. |
 | arch-principles / arch-antipatterns / arch-refactoring | Principles define desired properties; anti-patterns identify violations; refactoring plans safe change. |
 | arch-cloud / arch-cost / arch-devops | Cloud architecture, financial controls and delivery operations have different decisions and evidence. |
 | arch-api / arch-integration / arch-event / arch-microservices | API contracts, system integration, asynchronous event flows and service topology are related but not interchangeable. |

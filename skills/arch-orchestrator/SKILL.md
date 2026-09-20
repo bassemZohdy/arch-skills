@@ -150,4 +150,4 @@ community links do not replace primary evidence for a design decision.
 
 - **arch-evaluate** — process evidence and readiness, read-only
 - **arch-review** — design fitness and trade-offs
-- **arch-doc**, **arch-decision**, **arch-governance** — artifact, decision and authority support
+- **arch-doc**, **arch-diagrams**, **arch-decision**, **arch-governance** — artifact, diagram, decision and authority support

@@ -1,0 +1,103 @@
+timeout: 180
+skill: ./skills/arch-diagrams
+
+scenarios:
+  - name: "creates a focused C4 context view"
+    steps:
+      - prompt: "Create a diagram-first C4 system-context view for an order platform. Keep the view at context level and use Mermaid source."
+        assert:
+          - type: contains
+            value: "C4Context"
+          - type: contains
+            value: "Person"
+          - type: contains
+            value: "System"
+          - type: contains
+            value: "Mermaid"
+
+  - name: "keeps container detail inside the system boundary"
+    steps:
+      - prompt: "Create a C4 container view for the order platform showing the web app, API, order service, database, technology and protocols."
+        assert:
+          - type: contains
+            value: "C4Container"
+          - type: contains
+            value: "container"
+          - type: contains_any
+            value: ["protocol", "HTTP", "REST", "gRPC"]
+
+  - name: "models runtime reliability semantics"
+    steps:
+      - prompt: "Create a sequence diagram for payment authorization. Show synchronous calls, an asynchronous event, correlation, timeout, retry ownership and compensation."
+        assert:
+          - type: contains
+            value: "sequence"
+          - type: contains_any
+            value: ["correlation", "correlation ID", "trace"]
+          - type: contains_any
+            value: ["timeout", "deadline"]
+          - type: contains_any
+            value: ["retry", "compensation"]
+
+  - name: "separates deployment from runtime behavior"
+    steps:
+      - prompt: "Review a deployment diagram for a Kubernetes platform. Identify nodes, zones, ingress, placement and managed dependencies, and explain which runtime behavior belongs in a separate sequence view."
+        assert:
+          - type: contains
+            value: "deployment"
+          - type: contains_any
+            value: ["zone", "node", "placement"]
+          - type: contains
+            value: "sequence"
+
+  - name: "documents data ownership and classification"
+    steps:
+      - prompt: "Create a data-flow view for customer orders that distinguishes authoritative data, derived data, classification, transformations and retention."
+        assert:
+          - type: contains_any
+            value: ["data flow", "data-flow"]
+          - type: contains
+            value: "authoritative"
+          - type: contains
+            value: "classification"
+          - type: contains
+            value: "retention"
+
+  - name: "shows trust boundaries without secrets"
+    steps:
+      - prompt: "Create a trust-boundary diagram for a public API with user and workload identities. Show allowed and denied paths, data classification and controls without including real tokens or secrets."
+        assert:
+          - type: contains
+            value: "trust boundary"
+          - type: contains
+            value: "denied"
+          - type: contains
+            value: "classification"
+          - type: not_contains
+            value: "secret-value"
+
+  - name: "chooses repository-compatible diagram source"
+    runs: 3
+    min_passes: 2
+    steps:
+      - prompt: "For a diagram embedded in Markdown with no existing renderer, choose a format and explain the source-of-truth and accessibility trade-offs."
+        assert:
+          - type: contains
+            value: "Mermaid"
+          - type: contains_any
+            value: ["source", "source of truth"]
+          - type: contains_any
+            value: ["legend", "alternative text", "alt text"]
+
+  - name: "reviews baseline and cross-view consistency"
+    steps:
+      - prompt: "Review these architecture views as one baseline. Check stable IDs, names, boundaries, linked ADRs, source revisions, assumptions and freshness triggers before approving the diagram set."
+        assert:
+          - type: contains
+            value: "baseline"
+          - type: contains_any
+            value: ["source revision", "revision"]
+          - type: contains_any
+            value: ["assumption", "unresolved"]
+          - type: contains_any
+            value: ["freshness", "review trigger"]

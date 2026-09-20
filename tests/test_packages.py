@@ -33,7 +33,7 @@ class PackageTests(unittest.TestCase):
         for name in PUBLIC:
             package = self.output / name
             catalog = json.loads((package / "package-catalog.json").read_text())
-            self.assertEqual(len(catalog), 32)
+            self.assertEqual(len(catalog), len(discover_skills(ROOT / "skills")) - 1)
             for other, entry in catalog.items():
                 self.assertTrue((package / entry["instructions"]).is_file(), other)
                 self.assertFalse((package / entry["resource_root"] / "SKILL.md").exists())
@@ -71,8 +71,9 @@ class PackageTests(unittest.TestCase):
 
     def test_expert_profile_and_selected_specialist(self):
         destination = self.root / "expert"
-        self.assertEqual(len(build(destination, "expert")), 33)
-        self.assertEqual(len(list(destination.rglob("SKILL.md"))), 33)
+        skill_count = len(discover_skills(ROOT / "skills"))
+        self.assertEqual(len(build(destination, "expert")), skill_count)
+        self.assertEqual(len(list(destination.rglob("SKILL.md"))), skill_count)
         single = self.root / "single"
         self.assertEqual(build(single, "expert", ["arch-api"]), ["arch-api"])
         self.assertEqual(validate_skill(single / "arch-api"), [])
