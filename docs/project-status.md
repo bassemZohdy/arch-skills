@@ -43,8 +43,11 @@ consuming host's activation and tool traces.
 
    ```sh
    python scripts/behavioral.py validate
-   python scripts/behavioral.py run --packages .cache/expert \
-     --output .cache/behavioral-results --limit 0 --max-calls 15
+   python scripts/behavioral.py run \
+     --manifest tests/test-regression.yaml \
+     --manifest tests/test-arch-evaluate.yaml \
+     --packages .cache/expert --output .cache/behavioral-results \
+     --limit 0 --max-calls 15
    ```
 
 4. For DAP adapter executions, validate the returned result against its manifest
