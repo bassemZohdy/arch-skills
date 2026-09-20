@@ -102,7 +102,7 @@ scenarios:
 
   - name: "handles expedited mode correctly"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "I need a quick decision on which logging library to use. Run an expedited DAR."
         assert:

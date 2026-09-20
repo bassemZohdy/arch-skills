@@ -39,12 +39,12 @@ scenarios:
 
   - name: "recommends security patterns"
     steps:
-      - prompt: "What authentication pattern should I use for a mobile app?"
+      - prompt: "What authentication pattern should I use for a mobile app? Explain OAuth authorization versus OpenID Connect identity."
         assert:
           - type: contains
             value: "OAuth"
           - type: contains
-            value: "JWT"
+            value: "OpenID"
           - type: not_contains
             value: "Basic auth without TLS"
 
@@ -59,7 +59,7 @@ scenarios:
 
   - name: "designs data protection controls"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "Design data protection controls for a system storing PII. Cover encryption at rest and in transit."
         assert:
@@ -81,7 +81,8 @@ scenarios:
 
   - name: "skips irrelevant compliance when not applicable"
     steps:
-      - prompt: "I'm building an internal tool with no user data. Do I need HIPAA compliance?"
+      - prompt: 'An internal tool processes no health information and has no covered-entity or business-associate role. Does HIPAA apply solely because it is an internal tool? Return only JSON with boolean "hipaa_required_on_these_facts".'
         assert:
-          - type: not_contains
-            value: "HIPAA"
+          - type: json_equals
+            pointer: /hipaa_required_on_these_facts
+            value: false

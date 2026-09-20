@@ -34,8 +34,8 @@ scenarios:
             value: "code"
           - type: contains
             value: "message"
-          - type: not_contains
-            value: "stack trace"
+          - type: contains_any
+            value: ["redact", "sensitive", "internal", "disclos", "sanitiz"]
 
   - name: "plans API versioning"
     steps:
@@ -43,8 +43,8 @@ scenarios:
         assert:
           - type: contains
             value: "version"
-          - type: contains
-            value: "URI"
+          - type: contains_any
+            value: ["URI", "header", "media type", "path"]
 
   - name: "designs pagination"
     steps:
@@ -81,7 +81,7 @@ scenarios:
 
   - name: "writes API governance checklist"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "Create an API governance checklist for a team publishing external APIs. Include naming, versioning, and deprecation."
         assert:

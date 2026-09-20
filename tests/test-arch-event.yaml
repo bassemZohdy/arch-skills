@@ -71,7 +71,7 @@ scenarios:
 
   - name: "handles schema evolution"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "How should I handle schema evolution when adding a new field to an event that has 12 consumers?"
         assert:

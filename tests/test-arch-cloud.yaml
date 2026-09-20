@@ -69,7 +69,7 @@ scenarios:
 
   - name: "identifies cloud anti-patterns"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "What are common cloud architecture anti-patterns in a lift-and-shift migration?"
         assert:

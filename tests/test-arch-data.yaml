@@ -67,7 +67,7 @@ scenarios:
 
   - name: "classifies data sensitivity"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "Classify the following data: customer names, credit card numbers, product descriptions, internal wiki pages."
         assert:

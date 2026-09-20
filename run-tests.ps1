@@ -6,6 +6,9 @@ try {
     python scripts/check_links.py
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+    python scripts/behavioral.py validate
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
     python tests/test_skills.py
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 

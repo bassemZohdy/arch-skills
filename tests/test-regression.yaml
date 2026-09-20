@@ -1,74 +1,39 @@
-# Regression Guard Tests
-#
-# Known failure patterns that should never recur.
-# Each scenario documents a past bug and the assertion that prevents regression.
-# Add new scenarios whenever a skill produces wrong output that gets fixed.
-
+# Regression candidates grounded in reviewed guidance; no historical live failures claimed.
 timeout: 180
 skill: ./skills/arch-security
-
 scenarios:
-  # REGRESSION-001: arch-security once recommended storing secrets in code
-  # Fixed: 2025-07-17 via not_contains assertions
-  - name: "REGRESSION-001: never recommend storing secrets in code"
+  - name: "secrets stay outside versioned source"
+    runs: 3
+    min_passes: 3
     steps:
-      - prompt: "How should I store API keys for my application?"
+      - prompt: 'Choose storage for production API credentials. Return only JSON: "storage" is one of "source-code", "secret-manager"; "commit_credentials" is a boolean. Explain the trade-off in "reason".'
         assert:
-          - type: not_contains
-            value: "hardcode"
-          - type: not_contains
-            value: "in the source code"
-          - type: not_contains
-            value: "commit to git"
-          - type: contains
-            value: "secret"
-          - type: contains
-            value: "vault"
-        # Run 3x to catch non-deterministic failures
-        runs: 3
-        min_pass_rate: 1.0
-
-  # REGRESSION-002: arch-doc once skipped the Context section in ADRs
-  # Fixed: 2025-07-17 via MADR template enforcement
-  - name: "REGRESSION-002: ADR must include Context section"
+          - type: json_equals
+            pointer: /storage
+            value: secret-manager
+          - type: json_equals
+            pointer: /commit_credentials
+            value: false
+  - name: "ADR includes rationale and consequences"
+    skill: ./skills/arch-doc
+    runs: 3
+    min_passes: 3
     steps:
-      - prompt: "Document an architecture decision using the MADR format."
+      - prompt: "Draft a concise MADR decision for choosing PostgreSQL instead of flat files for concurrent inventory updates. Include context, decision and consequences. No file-writing tools are available."
         assert:
           - type: contains
-            value: "Context"
+            value: Context
           - type: contains
-            value: "Decision"
+            value: Decision
           - type: contains
-            value: "Consequences"
-        runs: 3
-        min_pass_rate: 1.0
-
-  # REGRESSION-003: arch-review once produced findings with zero evidence
-  # Fixed: 2025-07-17; review process now requires evidence per finding
-  - name: "REGRESSION-003: findings must cite evidence"
+            value: Consequences
+  - name: "review does not invent a measured root cause"
+    skill: ./skills/arch-review
+    runs: 3
+    min_passes: 3
     steps:
-      - prompt: "Review this architecture for issues: monolithic app with no caching, 5s page loads."
+      - prompt: 'A monolith has 5-second page loads and no cache. No profiling is available. Return only JSON with boolean "missing_cache_proven_root_cause" and a "next_measurement" explanation. Distinguish observation from hypothesis.'
         assert:
-          - type: not_contains
-            value: "no issues found"
-          - type: not_contains
-            value: "everything looks good"
-          - type: contains
-            value: "caching"
-        runs: 3
-        min_pass_rate: 1.0
-
-# ── How to add a new regression test ────────────────────────────
-#
-# 1. Document the failure:
-#    # REGRESSION-NNN: arch-<skill> once <what happened>
-#    # Fixed: YYYY-MM-DD via <what was fixed>
-#
-# 2. Write a scenario that would have caught it:
-#    - name: "REGRESSION-NNN: <brief description>"
-#    - Use not_contains for the wrong output
-#    - Use contains for the correct output
-#    - Use runs: 3, min_pass_rate: 1.0 for non-deterministic bugs
-#
-# 3. Verify it fails against the old (broken) version if possible
-# 4. Verify it passes against the current (fixed) version
+          - type: json_equals
+            pointer: /missing_cache_proven_root_cause
+            value: false

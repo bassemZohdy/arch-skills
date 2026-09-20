@@ -14,7 +14,23 @@ The full skills/link review is documented in
 and regression checks are complete; external requests blocked by network/access
 controls remain explicitly unverified in its evidence.
 
-Optional adoption/release work:
+Test automation is implemented in [the runner and workflow guide](docs/test-automation.md).
+Offline CI validates all 219 behavioral scenarios; the model-response workflow is
+opt-in and requires configuration. Scheduled public-link audits retain evidence.
+
+Remaining test improvements:
+
+- Configure the endpoint/model and run the 15-call smoke workflow; record the first
+  real baseline. Synthetic adapter tests are not live skill-quality evidence.
+- Implement one actual host adapter, then execute the seven DAP lifecycle scenarios
+  with artifact/assertion completeness checks and preserved-baseline verification.
+- Add automatic-activation tests with ambiguous prompts and negative controls.
+- Calibrate remaining keyword assertions on real outputs; move priority cases to
+  typed decisions, artifact checks or reviewed semantic rubrics.
+- Compare baseline/candidate versions with identical model/host settings before
+  making behavioral pass rates a release gate.
+
+Project adoption work:
 
 - Run the host-neutral behavioral scenarios on each intended consuming host and
   record actual model/adapter versions, observed routing and artifacts.

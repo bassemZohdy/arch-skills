@@ -9,31 +9,40 @@ skill: ./skills/arch-orchestrator
 scenarios:
   - name: "orchestrator selects security for regulated system"
     steps:
-      - prompt: "Design a patient records system that must comply with HIPAA. Select the minimum set of specialist skills needed."
+      - prompt: 'For a patient records system handling regulated health data, return only a JSON mapping from skill names to booleans indicating whether each is needed: arch-security, arch-compliance, arch-data, arch-ai. No AI features are requested.'
         assert:
-          - type: contains
-            value: "arch-security"
-          - type: contains
-            value: "arch-compliance"
-          - type: contains
-            value: "arch-data"
-          - type: not_contains
-            value: "arch-ai"
+          - type: json_equals
+            pointer: /arch-security
+            value: true
+          - type: json_equals
+            pointer: /arch-compliance
+            value: true
+          - type: json_equals
+            pointer: /arch-data
+            value: true
+          - type: json_equals
+            pointer: /arch-ai
+            value: false
 
   - name: "orchestrator skips irrelevant skills"
     steps:
-      - prompt: "Design a simple internal REST API for employee directory lookup. No events, no AI, no frontend, low traffic. Select only needed skills."
+      - prompt: 'For a simple employee-directory REST API with no events, AI or frontend, return only a JSON mapping of needed skills: arch-api, arch-ai, arch-event, arch-frontend.'
         assert:
-          - type: contains
-            value: "arch-api"
-          - type: not_contains
-            value: "arch-ai"
-          - type: not_contains
-            value: "arch-event"
-          - type: not_contains
-            value: "arch-frontend"
+          - type: json_equals
+            pointer: /arch-api
+            value: true
+          - type: json_equals
+            pointer: /arch-ai
+            value: false
+          - type: json_equals
+            pointer: /arch-event
+            value: false
+          - type: json_equals
+            pointer: /arch-frontend
+            value: false
 
   - name: "review delegates to security"
+    skill: ./skills/arch-review
     steps:
       - prompt: "Review this architecture: a public-facing payment API handling credit card data. Identify which specialist reviews are needed."
         assert:
@@ -55,7 +64,7 @@ scenarios:
 
   - name: "end-to-end greenfield design"
     runs: 2
-    min_pass_rate: 0.5
+    min_passes: 1
     steps:
       - prompt: "Design a greenfield order management platform for a retailer. Cloud, ~50k orders/day, PCI scope, needs API, needs monitoring. Produce a skill selection and execution plan."
         assert:

@@ -33,30 +33,36 @@ independent of a particular host or model and measure real activation separately
 
 ### 3. Behavioral adapter tests
 
-Run a scenario through any compatible adapter. The scenario file should contain prompts, workspace setup and observable assertions; the adapter supplies the model, timeout, credentials and invocation protocol.
+The executable YAML runner and a response-only HTTP adapter are now provided.
+See [test automation](test-automation.md) for exact commands and the JSON adapter
+protocol. Scenario validation is part of every offline CI run and checks coverage
+of all 33 skills. A custom host adapter can supply actual tool observations.
 
-Generic invocation shape:
-~~~text
-<adapter-runner> run tests/test-arch-doc.yaml \
-  --skill-root <built-expert-package>/arch-doc \
-  --model <model-id> \
-  --report <output>
+~~~sh
+python scripts/behavioral.py validate
+python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml \
+  --packages .cache/expert --output .cache/evaluate-results --limit 0 --max-calls 6
 ~~~
 
-Prefer file, directory, JSON and exit-status assertions over exact prose. Record the adapter and model version in the test report, not in the skill instructions.
+Prefer typed JSON assertions for discrete decisions. Response keywords remain
+smoke checks, not proof of architectural quality. Record adapter/model versions
+in reports, not skill instructions. File/traceability assertions belong to the
+separate DAP adapter suite, which still needs an actual host adapter.
 
 A generic scenario shape is:
 ~~~yaml
-skill: ./skills/example
+timeout: 180
+skill: ./skills/arch-evaluate
 scenarios:
-  - name: creates-an-architecture-record
+  - name: missing-approval-remains-pending
+    runs: 3
+    min_passes: 3
     steps:
-      - prompt: "Document the architecture decision for this system."
+      - prompt: 'A mandatory review is unapproved. Return only JSON with boolean "ready".'
         assert:
-          - type: file_exists
-            value: architecture/decisions/001-example.md
-          - type: file_contains
-            value: "## Decision"
+          - type: json_equals
+            pointer: /ready
+            value: false
 ~~~
 
 ### 4. Integration checks

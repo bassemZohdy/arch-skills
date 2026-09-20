@@ -1,0 +1,45 @@
+name: Optional model response tests
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: behavioral-smoke
+  cancel-in-progress: false
+jobs:
+  smoke:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ARCH_TEST_API_BASE: ${{ vars.ARCH_TEST_API_BASE }}
+      ARCH_TEST_MODEL: ${{ vars.ARCH_TEST_MODEL }}
+      ARCH_TEST_API_KEY: ${{ secrets.ARCH_TEST_API_KEY }}
+      ARCH_TEST_MAX_TOKENS: '2048'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Build isolated skill packages
+        run: python scripts/build_packages.py --profile expert --output .cache/behavioral-packages
+      - name: Run 15 bounded model calls (unavailable is not a pass)
+        run: >-
+          python scripts/behavioral.py run
+          --manifest tests/test-regression.yaml
+          --manifest tests/test-arch-evaluate.yaml
+          --packages .cache/behavioral-packages
+          --output .cache/behavioral-results
+          --limit 0 --max-calls 15
+      - name: Retain transcripts and assertion results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: behavioral-smoke
+          path: .cache/behavioral-results
+          if-no-files-found: error
+          retention-days: 14

@@ -59,6 +59,7 @@ See [records](framework/records.md) and [current implementation status](docs/dap
 
 ~~~sh
 python scripts/check_links.py
+python scripts/behavioral.py validate
 python tests/test_skills.py
 python -m unittest discover -s tests -p "test_*.py" -v
 python tests/test_activation.py
@@ -87,6 +88,19 @@ tests, not live-model execution evidence. See the
 Validator exit codes: 0 ready, 1 blocked/unassessable, 2 CLI error. Semantic
 assessments and human identities are supplied evidence, not automatically proven
 facts. Live-model scenarios remain optional and are not implied by passing tests.
+
+## Automated behavioral testing
+
+The scenario runner validates 219 scenarios across all 33 skills without a model.
+For live response tests, build the expert packages and configure a compatible
+model endpoint; see [test automation](docs/test-automation.md) for commands,
+adapter integration, repeat counts, evidence and limits.
+
+GitHub Actions includes a manually triggered, 15-call model smoke suite and a
+weekly external-link audit. Model tests require endpoint/model variables and an
+API-key secret when the provider requires one. They do not run on pull requests.
+Offline checks remain the required CI gate; missing model access never counts as
+a successful behavioral run.
 
 ## Skill connections and maintenance
 

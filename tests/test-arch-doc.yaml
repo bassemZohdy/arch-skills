@@ -14,8 +14,8 @@ scenarios:
             value: "Person"
           - type: contains
             value: "System"
-          - type: tool_called
-            value: "Write"
+          - type: capability_used
+            value: "file_write"
           - type: token_usage_under
             value: 4000
 
@@ -51,8 +51,8 @@ scenarios:
             value: "Decision"
           - type: contains
             value: "Consequences"
-          - type: tool_called
-            value: "Write"
+          - type: capability_used
+            value: "file_write"
           - type: not_contains
             value: "TODO"
 
@@ -112,7 +112,7 @@ scenarios:
 
   - name: "recommends diagram format"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "What diagram format should I use for C4 Context diagrams in markdown documentation?"
         assert:

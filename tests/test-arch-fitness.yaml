@@ -17,7 +17,7 @@ scenarios:
 
   - name: "creates ArchUnit test"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "Create an ArchUnit test to enforce that service layer does not depend on infrastructure layer in a Java project."
         assert:
@@ -25,8 +25,8 @@ scenarios:
             value: "ArchUnit"
           - type: contains
             value: "dependOnClassesThat"
-          - type: tool_called
-            value: "Write"
+          - type: capability_used
+            value: "file_write"
           - type: contains
             value: "noClasses"
           - type: contains

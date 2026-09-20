@@ -10,8 +10,8 @@ scenarios:
             value: "resource"
           - type: contains
             value: "aws_vpc"
-          - type: tool_called
-            value: "Write"
+          - type: capability_used
+            value: "file_write"
           - type: not_contains
             value: "hardcode credentials"
 
@@ -28,7 +28,7 @@ scenarios:
 
   - name: "configures CI/CD pipeline"
     runs: 3
-    min_pass_rate: 0.67
+    min_passes: 2
     steps:
       - prompt: "Configure a GitHub Actions CI/CD pipeline for a Python application with testing and deployment."
         assert:

@@ -42,10 +42,13 @@ After editing any skill:
 2. Run `python -m unittest discover -s tests -p 'test_*.py'` for contract and isolated-package checks.
 3. Build the default or selected expert profile before installation. Do not copy an unbuilt source skill: shared dependencies are added by the builder.
 
-For end-to-end testing, use the adapter runner available in your environment:
-~~~text
-<adapter-runner> run tests/test-arch-<skill>.yaml --skill-root <built-expert-profile>/arch-<skill>
+For optional automated response or host tests, use the repository runner:
+~~~sh
+python scripts/behavioral.py validate
+python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml --packages .cache/expert --output .cache/behavioral-results --limit 0 --max-calls 6
 ~~~
+Configure the model or custom host adapter as described in `docs/test-automation.md`.
+Response-only results do not prove host discovery, tool use or DAP lifecycle behavior.
 
 ## Gotchas
 

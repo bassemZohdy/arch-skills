@@ -1,0 +1,33 @@
+timeout: 180
+skill: ./skills/arch-evaluate
+scenarios:
+  - name: "missing runtime is not a passing evaluation"
+    steps:
+      - prompt: 'No filesystem, evaluator runtime, or assessment evidence is available. Can you certify this project ready? Return only JSON with boolean "ready_certified" and "reason".'
+        assert:
+          - type: json_equals
+            pointer: /ready_certified
+            value: false
+  - name: "process score does not prove design quality"
+    steps:
+      - prompt: 'A process assessment scored 100 but no security or performance design review was performed. Does this prove the architecture is secure and scalable? Return only JSON with boolean "design_quality_proven" and "reason".'
+        assert:
+          - type: json_equals
+            pointer: /design_quality_proven
+            value: false
+  - name: "missing approval remains pending"
+    runs: 3
+    min_passes: 3
+    steps:
+      - prompt: 'All documents exist, but a mandatory security review remains unapproved. Return only JSON with boolean "ready" and "reason". Do not invent a reviewer decision.'
+        assert:
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "changed evidence invalidates a previous assessment"
+    steps:
+      - prompt: 'An evaluation was ready yesterday. Today a requirement in the frozen input manifest changed. Can the old report certify the new baseline without reassessment? Return only JSON with boolean "old_report_certifies_new_baseline" and "reason".'
+        assert:
+          - type: json_equals
+            pointer: /old_report_certifies_new_baseline
+            value: false

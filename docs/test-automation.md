@@ -1,0 +1,151 @@
+# Test automation and remaining coverage
+
+## What runs automatically
+
+| Layer | Execution | What a pass establishes |
+| --- | --- | --- |
+| Structure, links, DAP contracts and package isolation | Every push/PR to main, Linux/Windows, Python 3.10/3.13 | Deterministic repository invariants |
+| YAML scenario validation | Same offline CI | Valid assertions, repeat counts, known skills, coverage of all 33 skills |
+| Public external links | Weekly Monday 06:23 UTC and manual dispatch | Reachability at probe time; 404/410 fail; blocked/rate-limited/timeouts remain unverified |
+| Model response smoke tests | Manual `Optional model response tests` workflow | Selected explicit-skill responses satisfy their assertions |
+| Real host tools, automatic activation and DAP lifecycle | Requires a configured host adapter | Actual observed host behavior, only for executed scenarios |
+
+The weekly workflow follows GitHub's scheduling semantics: default-branch
+execution, possible delays and possible disabling after prolonged public-repo
+inactivity. Keep the manual dispatch option. See the
+[GitHub schedule reference](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+
+## Run response tests locally
+
+Build into a fresh directory:
+
+~~~sh
+python -m pip install -r requirements.txt
+python scripts/build_packages.py --profile expert --output .cache/expert
+python scripts/behavioral.py validate
+~~~
+
+Set `ARCH_TEST_API_BASE` to the compatible API base ending in `/v1` (not the full
+`/chat/completions` endpoint), `ARCH_TEST_MODEL` to your chosen model ID, and
+`ARCH_TEST_API_KEY` if authentication is needed. Use your shell/secret manager;
+do not put credentials in scenario files. HTTPS is required except for loopback
+HTTP servers. Nothing downloads or starts a local model automatically.
+
+~~~sh
+python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml \
+  --packages .cache/expert --output .cache/evaluate-results --limit 0 --max-calls 6
+~~~
+
+The same protocol is supported by services such as
+[Hugging Face Chat Completion](https://huggingface.co/docs/inference-providers/tasks/chat-completion).
+Providers differ: the bundled adapter requires text Chat Completions with
+`max_tokens` support and a completed `stop` response. It is not a universal API
+adapter. Configure a custom command for other APIs or hosts.
+
+Defaults select at most 10 scenarios with a 30-call ceiling. `--limit 0` selects
+all scenarios in the supplied manifests; omit `--manifest` to select from all
+35 YAML manifests. The runner rejects a selection exceeding `--max-calls`
+before making calls. These are call/output limits, not monetary spending caps.
+`ARCH_TEST_MAX_TOKENS` defaults to 2048, with a hard adapter range of 1..16384.
+Truncated answers are errors, not successful short responses. There are no hidden
+retries. Scenario `runs` means independent observations, not retries until success.
+
+Reports and per-step request/observation records are written under the fresh
+output directory, including package and manifest hashes, timestamps, adapter and
+model IDs, observed token usage where supplied, assertion outcomes, repeat pass
+rates and omitted-case counts. An incomplete run has `complete: false`.
+A provider-reported model alias is not proof of an immutable model revision.
+The HTTP adapter records generation settings but never its API key.
+
+Exit 0 means all selected scenarios met their minimum counts. Exit 1 means an
+assertion failure, execution error or invalid configuration. Exit 2 means one or
+more tests were unavailable. Unavailable attempts never improve the pass rate.
+
+## GitHub setup
+
+Set repository variables `ARCH_TEST_API_BASE` and `ARCH_TEST_MODEL`; add repository
+secret `ARCH_TEST_API_KEY` if required. Run **Optional model response tests** on
+`main`. It executes seven scenarios with 15 total calls, a 2048-token output
+limit per call and a 15-minute job timeout. It uploads reports for 14 days even
+when tests fail. Missing configuration produces an unavailable report and a
+non-success exit. No paid model calls run automatically on PRs or scheduled jobs.
+
+**Audit external links** is separate from release CI so transient network
+conditions do not block offline validation. It retains evidence for 30 days.
+No issues or messages are posted automatically. A successful audit means no
+confirmed broken links, not that all requests were verified.
+
+## Custom host adapter protocol
+
+Pass `--adapter-command` as a JSON argv array, for example
+`["python", "/absolute/path/to/my_adapter.py"]`. It runs without a shell in a
+fresh workspace per scenario repetition. All steps in one repetition share that
+workspace and conversation history. Workspaces are isolation for test data, not
+an OS security sandbox; configure host permissions and descendant-process cleanup
+in the adapter. Use absolute script paths and only trusted adapters.
+
+Read one JSON object from stdin containing `protocol_version: "1.0"`,
+`skill_root` (the built package), `workspace`, `messages` and `timeout` in seconds.
+Expected assertions are deliberately not sent to the model. Emit one JSON object
+to stdout:
+
+~~~json
+{
+  "status": "ok",
+  "response": "Observed assistant answer",
+  "execution_mode": "host",
+  "adapter": {"id": "your-host-adapter", "version": "pinned-version"},
+  "model": {"id": "model-id", "version": "observed-version"},
+  "capabilities_used": ["file_write"],
+  "total_tokens": 1234
+}
+~~~
+
+Use `execution_mode: "response-only"` with `capabilities_used: null` when no host
+tools were observed. Capability observations must come from actual tool traces,
+not a model's claim or a synthetic tool name. The runner checks adapter structure,
+not its honesty. Retain host traces in the workspace. Omit `total_tokens` if
+unmeasured; zero must not stand in for unknown. For environment unavailability or
+execution errors, emit `status: "unavailable"` or `"error"` with `reason`.
+Do not emit secrets in responses, reasons or traces. Stderr is not retained.
+
+Supported assertions: case-insensitive `contains`, `not_contains`, `contains_any`;
+`json_equals` with JSON Pointer and typed expected `value`; normalized
+`capability_used`; and `token_usage_under` (strictly less than total reported
+input plus output tokens). Missing required capability/token observations are
+unavailable, not passes. JSON answers must be raw JSON, not fenced Markdown.
+
+The YAML suite supports a scenario-level skill override, multiple steps, `runs`
+and integer `min_passes`. Two successes out of three are `runs: 3, min_passes: 2`.
+There is no ambiguous rounded `0.67` threshold. Unknown settings, duplicate YAML
+keys and unsupported assertions fail validation.
+
+This response/host transport is separate from the versioned
+[DAP adapter contract](dap-adapter-contract.md). The seven JSON DAP scenarios
+are not executed by this runner. They need fixture setup, artifact verification,
+checkpoint/review integration and a host adapter, rather than text-only checks.
+
+## Improvement priorities
+
+1. Configure a model and record a first real baseline. Current harness tests use
+   synthetic adapters/mocked HTTP; they are not live skill-quality evidence.
+2. Add one real host adapter and execute the seven DAP lifecycle fixtures. Verify
+   assertion completeness, artifacts, preserved history and input immutability.
+3. Measure automatic activation separately using ambiguous prompts and negative
+   controls. Explicitly injecting a skill cannot prove discovery or selection.
+4. Replace remaining keyword-only assertions with typed decisions, artifacts or
+   calibrated semantic rubrics. Keep human review of sampled results. Promptfoo's
+   [deterministic and model-assisted assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/)
+   are an optional established integration if richer grading is needed; do not
+   treat an LLM judge as ground truth or add another mandatory release dependency.
+5. Compare baseline/candidate runs on the same pinned host/model settings and
+   repeat count before introducing a live-quality release threshold. Two or three
+   samples are smoke tests, not a reliable reliability estimate.
+
+Corrections in this pass: added missing arch-evaluate coverage; repaired misplaced
+repeat settings and incorrect regression skill routing; replaced host-specific
+Write assertions with observed capabilities; corrected rounded pass thresholds;
+removed selected false negatives around HIPAA mentions, secret-storage cautions,
+API-version choices and security identity guidance; added bounded execution,
+strict scenario validation and persistent CI reports. Remaining keyword tests
+are explicitly limited smoke checks and still need calibration on real outputs.
