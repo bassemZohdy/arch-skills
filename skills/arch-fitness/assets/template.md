@@ -16,16 +16,16 @@ void shouldEnforceLayerDependency() {
 }
 ```
 
-```typescript
-// TypeScript ArchUnitTS Example
-describe('Architecture', () => {
-  it('should enforce layer dependency', () => {
-    const rule = rule({ should: 'not depend on' })
-      .from('src/services/**')
-      .to('src/infrastructure/**');
-    expect(rule).toPass();
-  });
-});
+```javascript
+// dependency-cruiser configuration fragment; merge into the project's config.
+module.exports = {
+  forbidden: [{
+    name: 'services-must-not-import-infrastructure',
+    severity: 'error',
+    from: { path: '^src/services/' },
+    to: { path: '^src/infrastructure/' }
+  }]
+};
 ```
 
 ## CI Integration

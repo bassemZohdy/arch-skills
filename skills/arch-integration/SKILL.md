@@ -81,7 +81,7 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 
 | Component | Description |
 |-----------|-------------|
-| **Data Plane** | Sidecar proxies handle communication |
+| **Data Plane** | Proxies handle traffic; placement can be sidecar or shared/ambient |
 | **Control Plane** | Manages proxy configuration |
 
 ### Service Mesh Features
@@ -100,7 +100,7 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 | **Istio** | Full-featured service mesh |
 | **Linkerd** | Lightweight service mesh |
 | **Consul Connect** | HashiCorp service mesh |
-| **AWS App Mesh** | AWS-managed mesh |
+| **AWS App Mesh** | Existing workloads only: support ends September 30, 2026; plan migration |
 
 ## Step 4: Integration Contracts
 
@@ -127,8 +127,8 @@ partner's schema into the domain model.
 
 | Concern | Solution |
 |---------|----------|
-| **Authentication** | mTLS, OAuth 2.0, API keys |
-| **Authorization** | RBAC, ABAC at gateway |
+| **Identity and access** | Workload mTLS, scoped OAuth access tokens; OIDC for user identity |
+| **Authorization** | Enforce resource/tenant policy in the owning service and at the gateway |
 | **Encryption** | TLS in transit, encryption at rest |
 | **Rate Limiting** | Per-client, per-endpoint |
 | **Input Validation** | Schema validation at gateway |
@@ -150,7 +150,7 @@ partner's schema into the domain model.
 
 ## Common Gotchas
 
-- A service mesh adds real operational complexity; below ~10 services, libraries usually suffice.
+- Select a mesh from workload identity, traffic-policy and operational needs; no universal service-count threshold justifies it.
 - Point-to-point integrations grow quadratically; mediate once pairs exceed a handful.
 - Schema changes without a registry and compatibility rules break consumers silently.
 - A gateway or mesh cannot make an unsafe retry safe; preserve operation semantics at the contract boundary.
@@ -159,6 +159,14 @@ partner's schema into the domain model.
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/integration-patterns.md` — Integration Patterns Reference
+
+## Cross-skill handoff
+
+Consume system owners, data authority and trust boundaries before drawing connections.
+Give arch-api synchronous contracts and arch-event asynchronous contracts, including
+deadline, retry owner, idempotency, ordering and schema compatibility. Reconcile
+gateway, client and mesh retries with arch-resilience; enforce resource authorization in
+the owning service as well as at the edge.
 
 ## Related Skills
 

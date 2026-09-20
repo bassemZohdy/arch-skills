@@ -47,7 +47,7 @@ conformance.
 | Level | Description | Requirement |
 |-------|-------------|-------------|
 | **A** | Minimum | Must meet for basic accessibility |
-| **AA** | Acceptable | Most common legal requirement |
+| **AA** | Includes all A and AA criteria | Confirm the jurisdictional or contractual target |
 | **AAA** | Optional | Apply to named content or user needs; do not assume whole-site AAA |
 
 ## Step 2: Semantic HTML
@@ -131,29 +131,10 @@ conformance.
 
 ### Focus Management
 
-```javascript
-// Move focus to element
-element.focus();
-
-// Trap focus in modal
-function trapFocus(modal) {
-  const focusable = modal.querySelectorAll('button, input, [tabindex]');
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-  
-  modal.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-  });
-}
-```
+Prefer a native modal dialog where supported. Test initial focus, Tab/Shift+Tab,
+Escape and focus return to the invoking control. Custom implementations need
+hidden/disabled element handling, dynamically changing content, background
+inertness and a no-focusable-content fallback; a two-element Tab trap is incomplete.
 
 ## Step 5: Color and Contrast
 
@@ -161,9 +142,9 @@ function trapFocus(modal) {
 
 | Text Type | Minimum Ratio (AA) |
 |-----------|-------------------|
-| Normal text (< 18pt) | 4.5:1 |
-| Large text (≥ 18pt) | 3:1 |
-| UI components | 3:1 |
+| Text not meeting the large-text definition | 4.5:1 |
+| Large text (≥ 18pt, or ≥ 14pt bold) | 3:1 |
+| Applicable non-text controls/graphics (1.4.11, with exceptions) | 3:1 |
 
 ### Don't Rely on Color Alone
 
@@ -184,7 +165,7 @@ function trapFocus(modal) {
 
 - Keyboard navigation
 - Screen reader testing (NVDA, VoiceOver, JAWS)
-- Zoom to 200%
+- Test text resizing to 200% and reflow at 320 CSS pixels, applying criterion-specific exceptions
 - Color contrast checking
 
 ### Automated Testing
@@ -211,7 +192,7 @@ function trapFocus(modal) {
 
 ## Common Gotchas
 
-- Automated tools catch roughly a third of WCAG issues; manual keyboard and screen reader testing is mandatory.
+- Automated tools cover only part of conformance; combine them with manual keyboard, screen-reader and task-based evaluation.
 - ARIA misused is worse than no ARIA; prefer native semantic HTML first.
 - Accessibility bolted on before launch costs far more than building it into components.
 
@@ -222,6 +203,14 @@ function trapFocus(modal) {
 
 The normative baseline is [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/); use
 the repository reference for routing and implementation notes.
+
+## Cross-skill handoff
+
+Consume the journey/component inventory from arch-usability and arch-frontend. Return
+criterion-level barriers, affected journeys, reproduction steps and manual verification
+to arch-test; send any legal applicability question to arch-compliance. Check focus
+restoration, error recovery, reflow, target size and authentication on the actual
+supported devices, not only a static page.
 
 ## Related Skills
 

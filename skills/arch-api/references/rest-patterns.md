@@ -17,7 +17,7 @@
 | GET | Yes | Yes | Read |
 | POST | No | No | Create |
 | PUT | Yes | No | Full update |
-| PATCH | No | No | Partial update |
+| PATCH | Not guaranteed | No | Partial update; define retry semantics |
 | DELETE | Yes | No | Remove |
 
 ## Status Codes
@@ -55,3 +55,10 @@ GET /items?page=2&limit=20&sort=-createdAt
 - URI: `/v1/users` (recommended for public)
 - Header: `Accept: application/vnd.api.v1+json`
 - Query: `/users?version=1`
+
+## Protocol evidence
+
+Use [HTTP semantics (RFC 9110)](https://www.rfc-editor.org/rfc/rfc9110.html)
+and [PATCH semantics (RFC 5789)](https://www.rfc-editor.org/rfc/rfc5789.html).
+Idempotence concerns intended server effects, not identical response codes; a
+particular POST/PATCH operation may define safe retry behavior explicitly.

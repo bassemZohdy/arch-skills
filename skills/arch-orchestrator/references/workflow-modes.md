@@ -56,8 +56,9 @@ same list as numbered or lettered Markdown choices and accept either the number,
 the option text or a custom response. Record each raw answer and its provenance
 locally as it arrives, with a lightweight acknowledgement that does not require
 a reasoning pass. At the end of a batch, send the question IDs and all collected
-answers together for one reconciliation and checkpoint. Do not invoke the
-reasoning/model turn after every answer. Reconcile a partial batch early only
+answers together for one reconciliation and checkpoint. When the host can collect answers without model turns, reconcile only after
+collection. Otherwise use the normal turn mechanism with brief acknowledgements
+and defer full reconciliation until the batch is complete. Reconcile a partial batch early only
 when an answer is ambiguous, blocking, scope-changing or high-risk. If the user
 requests all questions or the host cannot maintain turns, provide a clearly
 ordered batch as an explicit fallback and preserve the same option order for
@@ -72,7 +73,7 @@ supports one control may show the prepared questions sequentially while
 collecting answers. In both cases, defer semantic reconciliation until the
 batch is complete and submit the answers together. The host may close the batch
 early for a blocking, ambiguous, scope-changing or high-risk answer, but must
-reconcile the partial batch once rather than calling the model for every answer.
+reconcile the partial batch once without promising control over host-required model turns.
 A round consists of one question batch, its received answers, one
 reconciliation and one checkpoint.
 
@@ -80,7 +81,9 @@ Prefer a native user-input or elicitation capability over rendered text. Before
 asking a question, inspect the active host's advertised tools or capabilities.
 When one is available, send the single `Q` or bounded `Q` batch with stable
 question and option identifiers, ordered labels and a free-text/custom option,
-then wait for the host response or response set. Do not print a duplicate
+then wait for the host response or response set. Adapt batch size and choices
+to the advertised schema; do not duplicate a custom-answer field already supplied
+by the host. Do not print a duplicate
 numbered list in the same turn. Never invoke a capability that the host has not
 advertised; if no native capability is exposed or the call fails, use the
 Markdown fallback and record that the host UI was unavailable. The canonical

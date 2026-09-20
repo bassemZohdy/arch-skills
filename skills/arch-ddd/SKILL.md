@@ -81,7 +81,7 @@ graph LR
 
 ### Aggregate Design Rules
 
-1. **One aggregate per transaction** — Don't span aggregates
+1. **Prefer one aggregate per transaction** — Validate invariants before choosing cross-aggregate coordination
 2. **Reference by identity** — Don't reference other aggregates directly
 3. **Small aggregates** — Keep minimal
 4. **Invariant consistency** — All rules enforced within aggregate
@@ -107,7 +107,7 @@ class Order:  # Aggregate Root
 | Aspect | Entity | Value Object |
 |--------|--------|--------------|
 | **Identity** | Has unique ID | Compared by attributes |
-| **Mutability** | Mutable | Immutable |
+| **Mutability** | May change while preserving identity | Model as immutable values |
 | **Equality** | Same ID = equal | All attributes equal |
 | **Example** | Customer, Order | Address, Money, DateRange |
 
@@ -179,6 +179,14 @@ class PricingService:
 - `references/ddd-deep-dive.md` — Domain-Driven Design Deep Dive
 - `references/strategic-design.md` — Strategic Design Reference
 - `references/tactical-patterns.md` — Tactical Design Reference
+
+## Cross-skill handoff
+
+Obtain business vocabulary and disputed invariants from domain experts. Return context
+relationships, aggregate consistency boundaries and ownership to arch-patterns, arch-
+data and arch-microservices. A bounded context is a modeling boundary, not a mandatory
+network service; separate internal domain events from versioned integration events with
+arch-event.
 
 ## Related Skills
 

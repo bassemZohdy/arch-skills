@@ -32,7 +32,7 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 | **Release Flags** | Toggle features on/off | Gradual rollout |
 | **Experiment Flags** | A/B testing | User experience testing |
 | **Ops Flags** | Operational control | Circuit breakers, maintenance |
-| **Permission Flags** | Access control | Beta users, admin features |
+| **Entitlement Flags** | Feature availability alongside authorization | Subscription tiers, beta cohorts |
 
 ## Step 2: Feature Flag Patterns
 
@@ -109,7 +109,7 @@ if (variant === 'control') {
 | **Big Bang** | Enable for all at once | High |
 | **Canary** | Small percentage first | Low |
 | **Ring-Based** | Internal → Beta → GA | Medium |
-| **Time-Based** | Enable at specific time | Low |
+| **Time-Based** | Enable at specific time | Depends on exposure and rollback readiness |
 
 ### Rollout Checklist
 
@@ -160,6 +160,15 @@ if (variant === 'control') {
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/feature-management.md` — Feature Management Reference
+
+## Cross-skill handoff
+
+Consume rollout health and rollback limits from arch-devops and arch-observability.
+Define stable assignment keys, tenant scope, exposure events and behavior when the flag
+service is unavailable. Give arch-test the meaningful flag combinations and kill-switch
+propagation target. Separate release safety from experiment inference: define
+hypothesis, sample size, analysis window and guardrails before interpreting an A/B
+result.
 
 ## Related Skills
 

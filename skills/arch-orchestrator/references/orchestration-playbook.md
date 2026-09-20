@@ -45,7 +45,11 @@ contradictory, unsupported, or off-scope. A re-request must name the specific de
 
 ## Conflict-Resolution Policy
 
-Priority order (highest first):
+Resolve mandatory constraints first. The ordering below is a starting aid for
+remaining trade-offs, not a universal policy: an adopted hard budget is also an
+eligibility gate, and the decision owner sets preference priorities.
+
+Suggested discussion order:
 
 1. Binding legal, regulatory, security, and safety constraints (eligibility gates)
 2. Confirmed user requirements; resolve conflicts through authorized clarification

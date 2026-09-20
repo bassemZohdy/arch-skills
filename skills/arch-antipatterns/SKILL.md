@@ -134,6 +134,14 @@ Rules of engagement:
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/anti-patterns-catalog.md` — Anti-Patterns Catalog
 
+## Cross-skill handoff
+
+Use arch-metrics evidence about change coupling, churn and defects to confirm a
+suspected smell. Distinguish a deliberate transaction script or shared kernel from
+accidental coupling. Give arch-refactoring the observed dependency, preserved behavior
+and smallest safe change; send accepted debt, owner and revisit trigger to arch-
+governance.
+
 ## Related Skills
 
 - **arch-principles** - The principles these anti-patterns violate

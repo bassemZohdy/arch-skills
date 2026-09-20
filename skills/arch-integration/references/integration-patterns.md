@@ -80,8 +80,8 @@
 
 | Concern | Solution |
 |---------|----------|
-| **Authentication** | mTLS, OAuth 2.0, API keys |
-| **Authorization** | RBAC, ABAC at gateway |
+| **Identity and access** | Workload mTLS, scoped OAuth access tokens; OIDC for user identity |
+| **Authorization** | Enforce resource/tenant policy in the owning service and at the gateway |
 | **Encryption** | TLS in transit, encryption at rest |
 | **Rate Limiting** | Per-client, per-endpoint |
 | **Input Validation** | Schema validation at gateway |
@@ -96,3 +96,9 @@
 | **Shared Database** | Tight coupling | Separate data |
 | **Synchronous Everything** | Cascading failures | Use async |
 | **No Schema Evolution** | Breaking changes | Version schemas |
+
+## Product lifecycle
+
+Before adopting a listed tool, verify its support lifecycle and target runtime.
+[AWS App Mesh support ends September 30, 2026](https://docs.aws.amazon.com/app-mesh/latest/userguide/what-is-app-mesh.html);
+use it only as existing-system context and plan a supported migration.

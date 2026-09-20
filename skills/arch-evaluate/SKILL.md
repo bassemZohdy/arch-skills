@@ -75,6 +75,14 @@ authority; it does not authenticate human identities or replace human adjudicati
 - Check a candidate that has excellent scores but a pending security review.
 - Reassess after a changed requirement and identify stale approvals.
 
+## Cross-skill handoff
+
+Consume a frozen, version-compatible DAP baseline and its declared evidence. Return each
+failed gate with affected IDs, evidence gaps and a responsible next action to arch-
+orchestrator; return design concerns to arch-review separately. A missing runtime or
+dependency produces an unavailable deterministic assessment, not a fabricated numeric
+result; qualitative observations may still be reported with that limitation.
+
 ## Related skills
 
 - **arch-review** — independent design-quality assessment

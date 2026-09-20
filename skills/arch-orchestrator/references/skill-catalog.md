@@ -4,8 +4,14 @@ Stage-1 discovery metadata for the specialist skills in this repository. Read th
 catalog during skill discovery; load a specialist's SKILL.md only after selecting it.
 
 For each entry: purpose, triggers (when to select), inputs it needs, outputs it
-produces, and dependencies. "Partial" marks overlap-only coverage — document the
+produces, and supporting inputs. "Partial" marks overlap-only coverage — document the
 limitation when relying on it.
+
+Dependencies describe useful evidence, not mandatory skill invocation or a fixed
+waterfall. Existing artifacts can supply an input. Identify cross-cutting concerns
+during requirements and refine them iteratively; do not defer security, metrics
+or fitness criteria until the design is final. Resolve names through the built
+package catalog, or report a missing optional specialist in a selected expert install.
 
 ## Design & Structure
 
@@ -36,7 +42,7 @@ limitation when relying on it.
 
 | Skill | Purpose | Select When | Needs | Produces | Dependencies |
 |-------|---------|-------------|-------|----------|--------------|
-| arch-security | Threat modeling, security controls, secrets, supply chain | Any trust boundary; always for regulated/customer-facing | Architecture shape, data classification | Threat model, security controls | Style + deployment selected |
+| arch-security | Threat modeling, security controls, secrets, supply chain | Any trust boundary; always for regulated/customer-facing | Architecture shape, data classification | Threat model, security controls | Initial assets/trust boundaries; refine with deployment |
 | arch-compliance | Regulatory compliance, data residency, auditability | Regulated industry or stated compliance constraints | Compliance requirements, data flows | Compliance controls, residency design | arch-security |
 | arch-resilience | Availability, idempotency, circuit breakers, back-pressure, DR | Availability/recovery requirements exist | Failure scenarios, RTO/RPO | Resilience patterns, recovery design | Deployment architecture |
 | arch-perf | Scalability, caching, concurrency, capacity | Scale or latency requirements | Expected scale, load profile | Scaling strategy, capacity plan | Deployment architecture |
@@ -63,13 +69,13 @@ limitation when relying on it.
 | Skill | Purpose | Select When | Needs | Produces | Dependencies |
 |-------|---------|-------------|-------|----------|--------------|
 | arch-migration | Strangler fig, modernization sequencing | Modernization/migration initiatives | Current state, target state, constraints | Migration roadmap, increment plan | arch-patterns, arch-antipatterns |
-| arch-refactoring | Safe code-level restructuring toward target design | Modernization with existing codebase | Current structure, target pattern | Refactoring sequence | arch-migration |
+| arch-refactoring | Safe code-level restructuring toward target design | Modernization with existing codebase | Current structure, target pattern | Refactoring sequence | arch-test; arch-migration only for system/data cutover |
 | arch-decision | Structured trade-off analysis, ADRs | Significant or contested decisions (always on conflict) | Decision statement, options, criteria | ADRs, decision rationale | Any specialist output |
 | arch-evaluate | Deterministic Architecture Process completeness and artifact-evidence assessment | A frozen DAP baseline must be evaluated independently of design authoring | Frozen architecture baseline, versioned configuration, evidence records | Read-only findings, Q/D/F/B/T/A/S scores, readiness gate and report | DAP contracts and structural validators |
 | arch-doc | C4, arc42, ISO 42010, documentation automation | Documentation deliverable required (default: yes) | Synthesized architecture | Architecture documentation set | Synthesis complete |
 | arch-review | Independent architecture review, quality-attribute evaluation | Validation gate; QA prioritization support | Draft architecture | Review findings, risks | Draft architecture |
-| arch-fitness | Fitness functions, architecture rules in CI | Evolutionary governance requested | Validated architecture | Executable architecture rules | Final architecture |
-| arch-metrics | Architecture metrics and measurement | Maintainability governance requested | Codebase/architecture access | Metric baselines, thresholds | Final architecture |
+| arch-fitness | Fitness functions, architecture rules in CI | Evolutionary governance requested | Validated architecture | Executable architecture rules | Proposed constraints or existing baseline |
+| arch-metrics | Architecture metrics and measurement | Maintainability governance requested | Codebase/architecture access | Metric baselines, thresholds | Proposed constraints or existing baseline |
 | arch-governance | Standards, guardrails, technology governance | Enterprise standards in play | Org standards, constraints | Governance model | — |
 | arch-features | Feature flags and progressive delivery | Progressive rollout requirements | Delivery strategy | Feature management design | arch-devops |
 

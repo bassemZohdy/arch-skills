@@ -60,7 +60,7 @@ counter.add(1, {"method": "GET"})
 | Strategy | Description | Use Case |
 |----------|-------------|----------|
 | **Always** | Sample all | Debugging |
-| **Never** | Sample none | High volume |
+| **Never** | Sample none | Explicit disabled-tracing policy, not a default for high volume |
 | **Probability** | Random % | General |
 | **Rate Limit** | Max per second | Cost control |
 

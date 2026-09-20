@@ -77,7 +77,8 @@ coupling for the stated requirements.
 | Pattern | Use Case | Services |
 |---------|----------|----------|
 | **Message Queue** | Async communication | SQS, Service Bus |
-| **Event Streaming** | Event-driven | Kafka, EventBridge |
+| **Event Streaming** | Retained partitioned logs | Kafka, Kinesis Data Streams |
+| **Event Bus** | Event routing and filtering | EventBridge |
 | **API Gateway** | External APIs | API Gateway, APIM |
 
 ## Step 3: Multi-Cloud Strategy
@@ -135,6 +136,13 @@ rates, utilization, workload shape, commitments, egress and reliability impact.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/cloud-deep-dive.md` — Cloud Architecture Deep Dive
 - `references/cloud-patterns.md` — Cloud Patterns Reference
+
+## Cross-skill handoff
+
+Consume workload, residency, recovery and budget constraints before choosing services.
+Give arch-devops the regional deployment/identity topology, quotas, promotion boundaries
+and operational owner; reconcile failure headroom with arch-resilience and dated costs
+with arch-cost. Include control-plane dependencies and testable exit/export assumptions.
 
 ## Related Skills
 

@@ -3,6 +3,13 @@
 Copy criteria from this library into your DAR document's Section 4 (Evaluation Criteria).
 Adjust weights to sum to 100 for your specific context.
 
+These are prompts for evidence collection, not preset rankings. Turn mandatory
+license, residency, security and production-use requirements into eligibility gates.
+Score only eligible editions and their actual deployment/support model. Do not
+award incumbent contracts or team familiarity in a greenfield comparison unless
+the evaluation scope explicitly includes those factors. Replace illustrative
+weights, thresholds and time horizons with the decision owner's criteria.
+
 ---
 
 ## Bundle 1: Cloud Service Evaluation
@@ -13,9 +20,9 @@ Use when selecting between cloud services or SaaS products.
 |---|-----------|:--------------:|-----------------------|-----------------------|
 | C1 | Security & Compliance | 25–30 | SOC 2 Type II, ISO 27001, GDPR DPA included; pen test reports published | No compliance certifications; self-audited only |
 | C2 | Data Residency & Sovereignty | 15–20 | Configurable region lock; contractual data residency guarantee | Data may be processed in any region with no guarantee |
-| C3 | API Quality & SDK Coverage | 15–20 | OpenAPI spec; SDKs for 5+ languages; <1 hour quickstart | Undocumented or SOAP-based; no SDKs; custom integration required |
+| C3 | API Quality & SDK Coverage | 15–20 | OpenAPI spec; SDKs for 5+ languages; <1 hour quickstart | Contract/tooling poorly fits required consumers; costly integration |
 | C4 | Pricing Predictability | 10–15 | Transparent per-unit pricing with calculator; free tier for dev | Opaque pricing; enterprise-only; no public price list |
-| C5 | Operational Model | 10–15 | Fully managed SaaS; zero ops; 99.99% SLA | Self-hosted or BYO infrastructure; ops team required |
+| C5 | Operational Model | 10–15 | Meets adopted operating model and SLO with evidenced ownership | Unfunded operational burden or failure to meet required SLO |
 | C6 | Vendor Lock-in Risk | 5–10 | Open standards; easy export; multi-cloud portable | Proprietary APIs; data export is painful or impossible |
 | C7 | Support & SLA | 5–10 | Dedicated support; <1 hr response for P1; community forum | Community-only support; no SLA; best-effort response |
 
@@ -27,11 +34,11 @@ Use when choosing between open source libraries or frameworks.
 
 | # | Criterion | Typical Weight | What **5** looks like | What **1** looks like |
 |---|-----------|:--------------:|-----------------------|-----------------------|
-| C1 | Community & Momentum | 25–30 | 10K+ GitHub stars; 50+ contributors; releases monthly | <200 stars; 1–2 contributors; last release >12 months ago |
+| C1 | Community & Momentum | 25–30 | Evidenced maintainer capacity, release quality and issue response | Unresolved maintenance/security risk or insufficient continuity |
 | C2 | API Stability & Documentation | 20–25 | Semantic versioning; zero breaking changes in minors; excellent API docs | No versioning policy; frequent breaking changes; docs are auto-generated only |
 | C3 | Performance & Benchmarks | 15–20 | Published benchmarks; meets throughput/latency targets with headroom | No benchmarks; performance unknown until production |
-| C4 | Licence Compatibility | 10–15 | Apache-2.0 or MIT; no CLA complications | GPL or AGPL; proprietary dependencies; patent clauses |
-| C5 | Security Track Record | 10–15 | No critical CVEs; responsive security team; signed releases | Multiple unpatched CVEs; no security contact; unsigned |
+| C4 | Licence Compatibility | 10–15 | License and dependency obligations compatible with intended use | Incompatible or unresolved obligations for intended distribution/service use |
+| C5 | Security Track Record | 10–15 | Timely vulnerability response, maintained versions and verifiable releases | Multiple unpatched CVEs; no security contact; unsigned |
 | C6 | Integration with Our Stack | 5–10 | Drop-in compatible with our framework/language; existing team expertise | Requires adapter layer; new language or runtime; no team experience |
 
 ---
@@ -45,7 +52,7 @@ Use when deciding whether to build a solution in-house or buy/adopt an existing 
 | C1 | Time to Value | 20–25 | Delivery in <2 weeks; immediate ROI | 6+ months development; ROI uncertain |
 | C2 | Total Cost of Ownership (3-year) | 20–25 | Clear cost model; < $50K total over 3 years | Hidden costs; > $200K total; cost grows non-linearly |
 | C3 | Customisation & Control | 15–20 | Full source code; unlimited customisation; no vendor dependency | Black box; customisation via support tickets only |
-| C4 | Maintenance Burden | 15–20 | Zero ongoing maintenance; vendor handles upgrades | Dedicated 0.5+ FTE for maintenance; on-call required |
+| C4 | Maintenance Burden | 15–20 | Measured sustainable maintenance effort including vendor upgrades | Dedicated 0.5+ FTE for maintenance; on-call required |
 | C5 | Strategic Fit | 10–15 | Core to our product; builds competitive advantage | Commodity capability; no differentiation |
 | C6 | Risk of Vendor Failure | 5–10 | Established vendor; multiple exit paths; data is portable | Startup vendor; single point of failure; data locked in |
 | C7 | Team Skill Alignment | 5–10 | Team has deep expertise in required technology | Team would need to hire or train for unfamiliar tech |
@@ -93,7 +100,7 @@ Use when evaluating security tools (SAST, DAST, SIEM, WAF, etc.).
 ### Weight Adjustment Tips
 
 - Small team → Increase **Operational Complexity** / **Maintenance Burden** weight
-- Regulated industry → Increase **Security & Compliance** weight
+- Regulated industry → Gate mandatory **Security & Compliance** requirements before scoring optional benefits
 - Speed critical → Increase **Time to Value** weight
 - Early-stage startup → Increase **Cost**, decrease **Scalability** weight
 - Hard to reverse → Increase **Vendor Lock-in Risk** weight

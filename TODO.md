@@ -9,6 +9,11 @@ added seven generated schema-2 scenarios, tightened adapter-result checks and
 provided a packaged [migration guide](framework/schema-2-migration.md). Those are
 implemented; the items below depend on an actual consuming project or host choice.
 
+The full skills/link review is documented in
+[the latest audit](docs/audits/2026-09-20-full-project-review.md). Repository fixes
+and regression checks are complete; external requests blocked by network/access
+controls remain explicitly unverified in its evidence.
+
 Optional adoption/release work:
 
 - Run the host-neutral behavioral scenarios on each intended consuming host and

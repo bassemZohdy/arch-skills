@@ -59,7 +59,7 @@ def test_order_total():
 ```
 
 **Best Practices:**
-- One assertion per test
+- Test one coherent behavior; use all assertions needed to verify its observable outcome
 - Fast execution
 - No external dependencies
 - Deterministic results
@@ -213,6 +213,14 @@ the coverage of critical requirements and failure modes.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/test-deep-dive.md` — Test Architecture Deep Dive
 - `references/test-strategy.md` — Test Pyramid Reference
+
+## Cross-skill handoff
+
+Consume requirement scenarios, contracts and risks from the selected specialists. Return
+a risk-to-verification map with planned versus executed evidence, realistic environments
+and known exclusions. Cover authorization failures, concurrency, duplicate delivery,
+dependency failure and schema/version skew where applicable; pass adopted architecture
+invariants to arch-fitness and execution/promotion gates to arch-devops.
 
 ## Related Skills
 

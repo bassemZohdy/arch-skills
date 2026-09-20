@@ -188,6 +188,14 @@ window, owner and action for every metric.
 - `references/governance-deep-dive.md` — Governance Deep Dive
 - `references/governance-reference.md` — Architecture Governance Reference
 
+## Cross-skill handoff
+
+Consume findings from arch-review and proposed decisions from arch-decision. Return
+named decision rights, proportionate review triggers, time-boxed exceptions and
+disposition evidence; let arch-fitness automate only measurable policy. Boards and
+cadence are options for the organization, not prerequisites for a small team. Keep
+policy adoption separate from demonstrated compliance through arch-compliance.
+
 ## Related Skills
 
 - **arch-fitness** - Automated enforcement of standards

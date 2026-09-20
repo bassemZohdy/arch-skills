@@ -41,3 +41,20 @@ scope of the change, validation commands and any limitation that remains. Keep
 unrelated formatting or generated cache files out of the patch. A maintainer
 may request changes to preserve skill boundaries, portability or evidence
 semantics.
+
+## Links and skill connections
+
+Run `python scripts/check_links.py` for document-relative Markdown targets and
+anchors. `python tests/test_skills.py` also walks resource pointers from every
+entry point and rejects unknown skill names. Link supporting resources from a
+reachable instruction, and resolve local helper scripts from the specialist root.
+
+External probes are explicit and separate from offline CI:
+
+```sh
+python scripts/check_links.py --external --output .cache/link-audit.json
+```
+
+Keep access-denied, throttled and timed-out URLs unverified. Repair a moved link
+from the publisher's current page/source tree, not a guessed slug. Templates and
+synthetic fixtures must not claim approval or product evaluation evidence.

@@ -47,7 +47,7 @@ Ask before reaching for an LLM:
 | **Fine-Tuning** | Adapt model weights | Stable narrow tasks at high volume |
 | **Cascade** | Cheap model first, escalate to strong model | Cost-sensitive high-volume flows |
 
-**Default order of preference:** direct prompting → RAG → tool use → agent loop → fine-tuning. Each step adds cost, latency, and failure modes.
+Compare each approach against a deterministic or direct-prompt baseline. RAG addresses knowledge access, tools enable actions, and fine-tuning adapts behavior; they are complementary choices, not a universal escalation ladder.
 
 ## Step 3: RAG Architecture
 
@@ -66,7 +66,7 @@ Query → Embed → Retrieve (top-k) → Rerank → Prompt Assembly → LLM → 
 | **Reranking** | Cross-encoder rerank for precision |
 | **Grounding** | Citations, "answer only from context" instructions |
 
-**RAG quality levers (in order):** retrieval quality > prompt assembly > model choice.
+Evaluate retrieval recall, ranking, context assembly and generation separately; improve the measured bottleneck.
 
 ## Step 4: Agent Architecture
 
@@ -132,7 +132,7 @@ Query → Embed → Retrieve (top-k) → Rerank → Prompt Assembly → LLM → 
 ### Cost Model
 
 ```
-Monthly cost ≈ requests × (input_tokens × input_price + output_tokens × output_price)
+Monthly cost ≈ requests × (input_tokens × input_price_per_token + output_tokens × output_price_per_token)
 ```
 
 Track cost per request and per user; alert on anomalies like any other budget (see arch-cost).
@@ -161,6 +161,14 @@ Use the [NIST AI RMF Generative AI Profile](https://www.nist.gov/itl/ai-risk-man
 and the [OWASP GenAI Security Project](https://genai.owasp.org/llm-top-10/) when
 the system has material safety, privacy or security impact. For MCP-based tool
 integration, also check the [OWASP MCP Top 10](https://owasp.org/projects/mcp-top-10).
+
+## Cross-skill handoff
+
+Obtain data ownership, retention and retrieval ACLs from arch-data and delegated
+identities from arch-security. Carry tenant/user scope through retrieval, memory, caches
+and tools; test cross-tenant retrieval and indirect prompt injection. Give arch-test
+versioned evaluation slices and risk-specific acceptance thresholds; give arch-cost and
+arch-observability token/tool budgets, latency breakdowns and fallback signals.
 
 ## Related Skills
 

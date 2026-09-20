@@ -24,15 +24,13 @@
 
 ## 2. Gate Criteria
 
-| ID | Gate Criterion | Rationale | Status |
-|----|----------------|-----------|--------|
-| G1 | [Must X] | [Why this is required] | Pass/Fail |
-| G2 | [Must not X] | [Why this is excluded] | Pass/Fail |
+| Alternative | Gate ID | Mandatory condition | Evidence/date | Pass / Fail / Unknown | Disposition |
+| --- | --- | --- | --- | --- | --- |
+| [A1] | [G1] | [Condition] | [Source] | [Status] | [Eligible / excluded / pending] |
 
-**Exemptions:**
-| Alternative | Gate | Exemption Rationale |
-|-------------|------|---------------------|
-| [Do Nothing] | [Gate ID] | [Why exempt] |
+Apply every gate to every alternative, including a status-quo baseline. Unknown
+is pending evidence, not a pass. Record non-applicability only with rationale and
+authority; do not grant automatic exemptions to mandatory requirements.
 
 ---
 
@@ -42,7 +40,7 @@
 |----|-------------|-------------|-------------|
 | A1 | [Name] | [Brief description] | Passed/Failed |
 | A2 | [Name] | [Brief description] | Passed/Failed |
-| DN | Do Nothing | Status quo baseline | Exempt |
+| DN (optional) | Do nothing / defer | Explain relevance or infeasibility | Apply the same gates |
 
 ---
 
@@ -110,7 +108,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Status** | Approved / Deferred |
+| **Status** | Proposed / Approved / Deferred |
 | **Selected Alternative** | [ID] |
 | **Decision Date** | [Date] |
 | **Decision Owner** | [Name] |
@@ -128,26 +126,100 @@
 
 ## Appendix B — Machine-Readable JSON Summary
 
+The following is a synthetic, internally consistent arithmetic example. Replace
+all IDs, criteria, scores and evidence before use; it conveys no approval.
+Weights and shifts are percentage points. Round displayed values to two decimals
+with half-up rounding; calculate totals and rankings from unrounded products.
+
 ```json
 {
-  "document_id": "DAR-YYYY-MM-DD-slug",
-  "status": "approved",
+  "document_id": "DAR-EXAMPLE",
+  "status": "draft",
   "mode": "formal",
-  "decision_statement": "...",
+  "decision_statement": "Synthetic comparison only",
   "scored_criteria": [
-    {"id": "C1", "name": "...", "weight": 25}
+    {
+      "id": "C1",
+      "name": "Workload fit",
+      "weight": 60
+    },
+    {
+      "id": "C2",
+      "name": "Operating effort",
+      "weight": 40
+    }
   ],
   "scores": {
     "A1": {
-      "C1": {"raw": 4, "weighted": 1.0, "confidence": "high", "rationale": "..."}
+      "C1": {
+        "raw": 4,
+        "weighted": 2.4
+      },
+      "C2": {
+        "raw": 5,
+        "weighted": 2.0
+      }
+    },
+    "A2": {
+      "C1": {
+        "raw": 3,
+        "weighted": 1.8
+      },
+      "C2": {
+        "raw": 4,
+        "weighted": 1.6
+      }
     }
   },
-  "total_scores": {"A1": 4.0, "A2": 3.5},
-  "ranking": ["A1", "A2"],
+  "total_scores": {
+    "A1": 4.4,
+    "A2": 3.4
+  },
+  "ranking": [
+    "A1",
+    "A2"
+  ],
   "sensitivity": {
-    "gap_top2": 0.5,
+    "gap_top2": 1.0,
     "scenarios": [
-      {"id": "A", "ranking_change": false}
+      {
+        "id": "A",
+        "source_criterion": "C1",
+        "target_criterion": "C2",
+        "shift": 10,
+        "adjusted_weights": {
+          "C1": 50,
+          "C2": 50
+        },
+        "total_scores": {
+          "A1": 4.5,
+          "A2": 3.5
+        },
+        "ranking": [
+          "A1",
+          "A2"
+        ],
+        "ranking_change": false
+      },
+      {
+        "id": "B",
+        "source_criterion": "C2",
+        "target_criterion": "C1",
+        "shift": 10,
+        "adjusted_weights": {
+          "C1": 70,
+          "C2": 30
+        },
+        "total_scores": {
+          "A1": 4.3,
+          "A2": 3.3
+        },
+        "ranking": [
+          "A1",
+          "A2"
+        ],
+        "ranking_change": false
+      }
     ]
   },
   "recommendation": "A1"

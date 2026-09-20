@@ -75,18 +75,25 @@
 
 ### Log Retention
 
-| Regulation | Minimum Retention |
+| Obligation family | Record-specific retention decision |
 |------------|-------------------|
 | GDPR | Purpose-dependent |
-| HIPAA | 6 years |
-| PCI DSS | 1 year |
-| SOX | 7 years |
+| HIPAA | Identify the required documentation class; six-year documentation rules are not a blanket audit-log/medical-record retention rule |
+| PCI DSS | Verify the adopted edition and applicable audit-log requirement, including immediate availability |
+| SOX | Identify applicable financial/audit record obligations with the responsible authority; no blanket application-log duration |
 
 ## Data Classification
 
 | Level | Description | Controls |
 |-------|-------------|----------|
-| **Public** | No restrictions | None |
+| **Public** | Publicly readable | Integrity, availability and controlled writes |
 | **Internal** | Business use only | Access control |
 | **Confidential** | Sensitive data | Encryption, audit |
 | **Restricted** | Highly sensitive | Strict controls, MFA |
+
+## Retention evidence
+
+[45 CFR 164.316](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-C/section-164.316)
+specifies retention for required Security Rule documentation. Identify the actual
+record class and applicable policy before applying that period to logs or medical
+records. Retention and erasure decisions need a documented applicability owner.

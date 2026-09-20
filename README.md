@@ -58,6 +58,7 @@ examples are historical fixtures, not ready baselines or transferable approvals.
 See [records](framework/records.md) and [current implementation status](docs/dap-implementation-status.md).
 
 ~~~sh
+python scripts/check_links.py
 python tests/test_skills.py
 python -m unittest discover -s tests -p "test_*.py" -v
 python tests/test_activation.py
@@ -86,6 +87,19 @@ tests, not live-model execution evidence. See the
 Validator exit codes: 0 ready, 1 blocked/unassessable, 2 CLI error. Semantic
 assessments and human identities are supplied evidence, not automatically proven
 facts. Live-model scenarios remain optional and are not implied by passing tests.
+
+## Skill connections and maintenance
+
+Each skill includes a domain-specific handoff: required context, evidence to
+return, and neighboring concerns to reconcile. Related skills are optional
+collaborators, not a mandatory chain or authorization to expand the task.
+
+Offline checks validate local Markdown targets/anchors, skill names and resource
+reachability, plus decision arithmetic and isolated package execution. For an
+explicit online link audit, run `python scripts/check_links.py --external
+--output .cache/link-audit.json` on one line. HTTP 404/410 are reported as broken;
+403/429/timeouts remain unverified. A reachable URL does not prove its claims.
+See the [full project review](docs/audits/2026-09-20-full-project-review.md).
 
 ## Repository layout
 

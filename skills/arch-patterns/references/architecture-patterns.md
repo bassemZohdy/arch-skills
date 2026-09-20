@@ -136,5 +136,13 @@ enforced boundaries — monolith operational simplicity with module isolation.
 
 ## External Resources
 
-- [Vertical Slice Architecture](https://awesome-architecture.com/vertical-slice-architecture/) — curated articles, videos, and samples
-- [Modular Monolith](https://awesome-architecture.com/modular-monolith/) — curated articles, videos, and samples
+- [Vertical Slice Architecture](https://awesome-architecture.com/topics/software-architecture-architecture-patterns-vertical-slice-architecture) — curated articles, videos, and samples
+- [Modular Monolith](https://awesome-architecture.com/topics/software-architecture-architecture-patterns-modular-monolith) — curated articles, videos, and samples
+
+## Ports, adapters and call direction
+
+A driving adapter calls an application port; a driven adapter implements an
+application-owned outbound port. Runtime calls can go outward while source
+dependencies point inward. See [the original hexagonal architecture description](https://alistair.cockburn.us/hexagonal-architecture).
+Layer skipping is a documented policy choice in relaxed layering, not a universal
+violation. Likewise, CQRS does not require event sourcing or separate databases.

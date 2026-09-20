@@ -29,8 +29,8 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 
 | Regulation | Scope | Key Requirements |
 |------------|-------|------------------|
-| **GDPR** | EU data subjects | Data protection, consent, rights |
-| **HIPAA** | Health information | PHI protection, BAAs |
+| **GDPR** | Establishment/targeting/monitoring scope under Article 3 | Lawful processing, protection and rights |
+| **HIPAA** | Covered entities/business associates and applicable PHI | Safeguards and applicable agreements |
 | **PCI DSS** | Payment card data | Cardholder data protection |
 | **SOC 2** | Service organizations | Trust service criteria |
 | **ISO 27001** | Information security | ISMS implementation |
@@ -138,12 +138,12 @@ advice or as proof of compliance.
 
 ### Log Retention
 
-| Regulation | Minimum Retention |
+| Obligation family | Record-specific retention decision |
 |------------|-------------------|
 | GDPR | Purpose-dependent |
-| HIPAA | 6 years |
-| PCI DSS | 1 year |
-| SOX | 7 years |
+| HIPAA | Identify the required documentation class; six-year documentation rules are not a blanket audit-log/medical-record retention rule |
+| PCI DSS | Verify the adopted edition and applicable audit-log requirement, including immediate availability |
+| SOX | Identify applicable financial/audit record obligations with the responsible authority; no blanket application-log duration |
 
 Retention periods are examples, not universal minima. Resolve the applicable
 law, regulator, contract, litigation hold, deletion requirement and business
@@ -153,7 +153,7 @@ need for each record class, then document the conflict-resolution authority.
 
 | Level | Description | Controls |
 |-------|-------------|----------|
-| **Public** | No restrictions | None |
+| **Public** | Publicly readable | Integrity, availability and controlled writes |
 | **Internal** | Business use only | Access control |
 | **Confidential** | Sensitive data | Encryption, audit |
 | **Restricted** | Highly sensitive | Strict controls, MFA |
@@ -167,7 +167,7 @@ need for each record class, then document the conflict-resolution authority.
 ## Common Gotchas
 
 - Logging sensitive data into audit trails creates a new compliance problem inside the solution.
-- GDPR deletion must reach backups and downstream copies, not just the primary database.
+- Define erasure across active stores, derived copies and backup restore procedures; reconcile legal holds and backup expiry with the responsible authority.
 - Compliance scope grows with data spread; minimize where regulated data lives to shrink audits.
 
 ## Further Reading
@@ -175,6 +175,14 @@ need for each record class, then document the conflict-resolution authority.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/compliance-deep-dive.md` — Compliance Deep Dive
 - `references/regulatory-compliance.md` — Regulatory Compliance Reference
+
+## Cross-skill handoff
+
+Obtain record classes and data flows from arch-data; establish applicable obligations
+with the designated compliance authority. Give arch-security control objectives and
+arch-test evidence/retention requirements. Distinguish a legal obligation, contractual
+requirement, certification standard and assurance report; neither a vendor certificate
+nor this review proves system compliance.
 
 ## Related Skills
 

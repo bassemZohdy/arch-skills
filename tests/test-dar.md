@@ -1,5 +1,7 @@
 # DAR Test Document
 
+Synthetic arithmetic fixture; scores are not product recommendations or compliance evidence.
+
 **Document ID:** DAR-2026-06-12-test
 **Date:** 2026-06-12
 **Mode:** Formal
@@ -11,7 +13,7 @@
 |-------|-------|
 | **Decision Statement** | We need to decide between PostgreSQL and MongoDB for our user store |
 | **Scope** | User authentication and profile data |
-| **Constraints** | Must be SOC 2 compliant |
+| **Constraints** | Must satisfy the specified security-control baseline (synthetic) |
 | **Decision Owner** | Tech Lead |
 
 ## 2. Evaluation Criteria
@@ -36,7 +38,7 @@
 ```json
 {
   "document_id": "DAR-2026-06-12-test",
-  "status": "approved",
+  "status": "draft",
   "mode": "formal",
   "decision_statement": "We need to decide between PostgreSQL and MongoDB for our user store",
   "scored_criteria": [

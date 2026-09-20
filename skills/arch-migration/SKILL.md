@@ -151,6 +151,14 @@ rollback with production-like volume and failure injection.
 - `references/migration-deep-dive.md` — Migration Deep Dive
 - `references/migration-patterns.md` — Migration Patterns Reference
 
+## Cross-skill handoff
+
+Consume source/target contracts, authoritative data and recovery limits. Assign a single
+writer or an explicit dual-write reconciliation protocol for every phase. Give arch-test
+reconciliation and cutover evidence and arch-devops stop/rollback triggers. Mark
+irreversible steps and data written after cutover: restoring an old backup alone can
+lose valid transactions; plan replay, reconciliation or forward repair.
+
 ## Related Skills
 
 - **arch-refactoring** - Code-level restructuring within the migration

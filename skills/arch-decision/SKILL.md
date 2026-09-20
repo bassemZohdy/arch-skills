@@ -12,7 +12,7 @@ Structured decision-making for architecture and technology choices.
 ```
 1. Frame Decision → Statement, scope, constraints, owner, deadline
 2. Define Gates → Pass/fail knockout filters
-3. List Alternatives → 2-5 viable options (always include "Do Nothing")
+3. List Alternatives → Viable options and a defer/status-quo baseline when meaningful
 4. Score Criteria → Weighted matrix (weights sum to 100, scale 0-5)
 5. Evaluate Matrix → Draft scores with rationale
 6. Sensitivity Check → Test ranking stability
@@ -44,7 +44,7 @@ Capture before anything else:
 
 ## Stage 2: Gate Criteria (Knockout Filters)
 
-Binary pass/fail requirements. Any alternative failing ANY gate is eliminated.
+Define binary eligibility conditions, but record evidence as pass, fail or unknown. A failed gate excludes the alternative; an unknown gate keeps it provisional and ineligible for a final recommendation until resolved.
 
 - Any number of gate criteria is allowed, including zero when no knockout constraint applies
 - Must be strictly binary: "Must X" or "Must not X"
@@ -52,8 +52,7 @@ Binary pass/fail requirements. Any alternative failing ANY gate is eliminated.
 
 ## Stage 3: List Alternatives
 
-Enumerate 2-5 viable alternatives. Always prompt:
-> "Should we include a 'Do nothing / defer' baseline option?"
+Enumerate a manageable set of viable alternatives. Include a do-nothing/defer baseline when meaningful; otherwise explain why it cannot meet the need. Respect an explicitly constrained candidate set.
 
 Apply gate checks and eliminate failing alternatives.
 
@@ -102,7 +101,7 @@ each score, and separate measured facts from assumptions and vendor claims.
 ## Stage 6: Sensitivity Check
 
 1. Identify two highest-weight criteria (W1, W2)
-2. Normalize percentage weights to fractions in [0, 1] before sensitivity analysis. Transfer weight within those bounds, preserve a sum of 1, and convert back to percentages for the displayed matrix.
+2. Transfer a stated number of percentage points between criteria, bounded by available weight and preserving a total of 100. If using fractions internally, convert consistently; the bundled validator expects percentage points.
 3. Recompute totals using the same eligible alternatives and check ranking stability
 4. Report ranking reversals and the decision-specific meaningful score gap; adopt its threshold with the decision owner rather than assuming a universal 0.5 cutoff.
 
@@ -126,11 +125,17 @@ Generate complete DAR/ADR document using templates:
 
 - [ ] Weights sum to exactly 100
 - [ ] All alternatives passed gates
-- [ ] Totals verified by hand (at least 2)
+- [ ] Matrix completeness and arithmetic validated; calculate totals before display rounding
 - [ ] Recommendation matches highest score (or override documented)
 - [ ] Low-confidence + high-weight scores flagged
 - [ ] Sensitivity check completed
 - [ ] No overlapping criteria
+
+Run the skill-local `scripts/validate_math.py` on a completed Markdown DAR with
+its JSON summary. It checks matrix completeness, finite numeric values, exact
+pre-rounding totals, rankings and supplied sensitivity scenarios; it does not
+verify the evidence or approve a choice. Resolve this helper from this specialist's
+resource root, including when bundled.
 
 ## Criteria Library
 
@@ -164,9 +169,20 @@ See `references/criteria-library.md` for reusable evaluation bundles:
 - A close ranking needs sensitivity and uncertainty analysis against an explicitly adopted decision-specific threshold.
 - A precise-looking score does not create certainty; preserve dissent, evidence gaps and the trigger for revisiting the decision.
 
+For uncertainty, use `references/decision-deep-dive.md`.
+
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+
+## Cross-skill handoff
+
+Consume comparable alternatives and dated evidence from the relevant specialists.
+Preserve the requested greenfield/brownfield scope and candidate families; score only
+the evaluated edition and deployment model. When phased adoption matters, assess initial
+sufficiency, upgrade compatibility and continued-use consequences separately. Give arch-
+doc the proposed decision and evidence, arch-governance the required disposition, and
+arch-fitness only accepted measurable constraints.
 
 ## Related Skills
 

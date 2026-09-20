@@ -58,7 +58,7 @@ GET    /users/{id}/orders → List user's orders
 | GET | Yes | Yes | Read |
 | POST | No | No | Create |
 | PUT | Yes | No | Full update |
-| PATCH | No | No | Partial update |
+| PATCH | Not guaranteed | No | Partial update; document operation semantics |
 | DELETE | Yes | No | Remove |
 
 ### Status Codes
@@ -161,7 +161,7 @@ message User {
 | **Header** | Accept: application/vnd.api.v1+json | Clean URLs | Hidden |
 | **Query** | /users?version=1 | Simple | Messy |
 
-**Recommendation:** URI versioning for public APIs, header for internal.
+Choose versioning from consumer tooling, caching, routing and compatibility needs; public versus internal access alone does not determine the strategy.
 
 ## Step 6: Error Handling
 
@@ -212,6 +212,14 @@ message User {
 - `references/api-deep-dive.md` — API Design Deep Dive
 - `references/api-documentation.md` — API Documentation Best Practices
 - `references/rest-patterns.md` — REST Patterns Reference
+
+## Cross-skill handoff
+
+Consume operation invariants and consumer requirements from arch-ddd and arch-
+integration. Return versioned contracts, object/tenant authorization rules, pagination
+consistency, retry semantics and deprecation windows. Give arch-test positive, negative
+and mixed-version compatibility cases; give arch-event the completion/status contract
+for asynchronous operations.
 
 ## Related Skills
 

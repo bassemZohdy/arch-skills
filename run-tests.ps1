@@ -3,6 +3,9 @@ $ErrorActionPreference = 'Stop'
 
 Push-Location -LiteralPath $PSScriptRoot
 try {
+    python scripts/check_links.py
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
     python tests/test_skills.py
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 

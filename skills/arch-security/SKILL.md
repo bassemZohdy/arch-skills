@@ -70,10 +70,10 @@ substitute for a security decision.
 ## Step 4: Security Patterns
 
 ### Authentication
-- OAuth 2.0 / OpenID Connect
+- OpenID Connect for federated user authentication; OAuth 2.0 for delegated API authorization
 - Multi-factor authentication (MFA)
 - Passwordless (WebAuthn, FIDO2)
-- JWT with short expiry + refresh tokens
+- Choose opaque sessions or JWT access tokens from revocation, client and threat requirements; protect refresh credentials and validate token purpose
 
 ### Authorization
 - Role-Based Access Control (RBAC)
@@ -117,8 +117,8 @@ substitute for a security decision.
 | Standard | Scope | Key Requirements |
 |----------|-------|------------------|
 | **SOC 2** | Service organizations | Trust service criteria, audits |
-| **GDPR** | EU data subjects | Data protection, consent, rights |
-| **HIPAA** | Health information | PHI protection, BAAs |
+| **GDPR** | Establishment/targeting/monitoring scope under Article 3 | Lawful processing, protection and rights |
+| **HIPAA** | Covered entities/business associates and applicable PHI | Safeguards and applicable agreements |
 | **PCI DSS** | Payment card data | Cardholder data protection |
 | **ISO 27001** | Information security | ISMS implementation |
 
@@ -148,6 +148,15 @@ than treating the general web Top 10 as sufficient.
 - `references/security-patterns.md` — Security Patterns Reference
 - `references/threat-modeling.md` — Threat Modeling Reference
 
+## Cross-skill handoff
+
+Consume data flows, actors and trust boundaries from arch-data, arch-api and arch-
+integration. Distinguish user identity, workload identity and delegated authority;
+validate issuer, audience, token purpose and tenant/resource authorization at each
+boundary. Give arch-test negative authorization and revocation cases and arch-
+observability redacted security signals. OAuth authorization alone is not user
+authentication; use an identity protocol such as OpenID Connect when needed.
+
 ## Related Skills
 
 - **arch-compliance** - Regulatory requirements and audit trails
@@ -155,7 +164,7 @@ than treating the general web Top 10 as sufficient.
 - **arch-ai** - Prompt injection and AI-specific threats
 - **arch-devops** - Secrets management and pipeline security
 
-- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) — Versioned application verification requirements
+- [OWASP ASVS](https://github.com/OWASP/ASVS) — Versioned application verification requirements
 - [OWASP Top 10:2025](https://owasp.org/www-project-top-ten/) — Current web application risk categories
 
 ## Output template

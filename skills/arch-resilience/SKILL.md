@@ -183,7 +183,7 @@ Request → Bulkhead → Timeout → Service
 
 - Retries without idempotency create duplicate side effects (double charges, double emails).
 - Retry storms amplify outages; combine retries with circuit breakers and jitter.
-- Timeouts must shrink down the call chain; equal timeouts everywhere guarantee cascading failures.
+- Propagate the remaining deadline and cancellation; nested timeout and retry policies must fit inside the caller budget.
 - Chaos experiments need a steady-state hypothesis, blast-radius limit, abort condition and owner for remediation.
 
 ## Further Reading
@@ -191,6 +191,15 @@ Request → Bulkhead → Timeout → Service
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/resilience-deep-dive.md` — Resilience Engineering Deep Dive
 - `references/resilience-patterns.md` — Resilience Patterns Reference
+
+## Cross-skill handoff
+
+Consume operation semantics and deadlines from arch-api/arch-event plus dependency
+capacity from arch-perf. Assign one retry owner per boundary and cap total attempts
+across layers. Give arch-observability failure, recovery and freshness signals and arch-
+test bounded fault scenarios. Distinguish high availability from disaster recovery;
+verify RTO/RPO with restore and failover exercises including identity, keys, DNS and
+external dependencies.
 
 ## Related Skills
 

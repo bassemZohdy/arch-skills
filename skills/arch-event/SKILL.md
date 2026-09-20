@@ -53,7 +53,7 @@ graph LR
 Producer → Queue → Consumer
 ```
 
-**Use when:** Single consumer, guaranteed processing.
+**Use when:** One competing consumer handles each delivery; durability, acknowledgments, retries and idempotency determine processing guarantees.
 
 ### Request/Reply
 
@@ -147,11 +147,11 @@ sequenceDiagram
 ```
 
 **Pros:** Clear flow, easier debugging.
-**Cons:** Single point of failure, tight coupling.
+**Cons:** Coordinator availability and durable state need explicit design; process coupling must be managed.
 
 ### Compensation
 
-Rollback actions on failure.
+Business compensation on failure. Compensation is a new action that can fail or require manual recovery; it is not an atomic rollback.
 
 | Step | Action | Compensation |
 |------|--------|--------------|
@@ -225,6 +225,14 @@ poison-message handling and schema compatibility explicit for every stream.
 - `references/cqrs-es.md` — CQRS & Event Sourcing Reference
 - `references/event-deep-dive.md` — Event-Driven Architecture Deep Dive
 - `references/messaging-patterns.md` — Messaging Patterns Reference
+
+## Cross-skill handoff
+
+Consume domain facts, integration consumers and transaction boundaries from arch-ddd,
+arch-integration and arch-data. Return event/command schemas, ordering keys, delivery
+scope, deduplication retention and replay ownership. Give arch-test duplicate, out-of-
+order, crash-between-write-and-ack, poison-message and replay scenarios; give arch-
+observability lag/age and DLQ signals.
 
 ## Related Skills
 

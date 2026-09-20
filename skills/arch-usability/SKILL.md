@@ -152,7 +152,7 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 
 ## Common Gotchas
 
-- Five users find most usability problems; do not wait for a large study to fix obvious issues.
+- Small formative studies can reveal issues early; choose sample sizes by user diversity, task coverage and study goals. Five users is not a universal completeness threshold.
 - What users say and what they do differ; observe behavior, not just opinions.
 - Severity without frequency misprioritizes: a minor issue hit by everyone often beats a major edge case.
 
@@ -160,6 +160,15 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/usability-heuristics.md` — Usability Heuristics Reference
+
+## Cross-skill handoff
+
+Consume real user goals, context and supported languages/devices. Distinguish observed
+participant evidence from heuristic findings and synthetic personas. Give arch-frontend
+complete loading, empty, error, permission and recovery journeys; give arch-
+accessibility interaction requirements and arch-test observable acceptance criteria. For
+RTL/localized interfaces, check navigation, input, dates/numbers and text expansion with
+representative users.
 
 ## Related Skills
 

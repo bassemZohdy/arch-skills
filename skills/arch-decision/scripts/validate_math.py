@@ -1,279 +1,200 @@
 #!/usr/bin/env python3
-"""Validate DAR markdown documents — check weighted scores, row totals, and sensitivity math."""
+"""Validate complete DAR matrices and sensitivity arithmetic, not decision evidence.
+
+Weights/shifts use percentage points. Compute totals from unrounded Decimal
+products, then display two decimals with ROUND_HALF_UP. Rank by unrounded totals;
+exact ties may be listed in either order. Formal mode requires sensitivity cases.
+"""
+from __future__ import annotations
 
 import argparse
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import json
-import re
-import sys
 from pathlib import Path
-
-PASS = 0
-FAIL = 1
+import re
 
 
-def extract_json_block(text: str):
-    match = re.search(r"```json\s*\n(.*?)```", text, re.DOTALL)
-    if not match:
-        return None
-    return json.loads(match.group(1))
+def number(value, label):
+    if type(value) not in (int, float, Decimal):
+        raise ValueError(f'{label}: expected a number, not {type(value).__name__}')
+    result = Decimal(str(value))
+    if not result.is_finite():
+        raise ValueError(f'{label}: finite number required')
+    return result
 
 
-def validate_weights_sum(data: dict) -> list[str]:
+def displayed(value):
+    return value.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+
+def exact_totals(scores, weights):
+    return {alt: sum((weights[c] * number(row[c]['raw'], f'{alt}.{c}.raw') / 100
+                      for c in weights), Decimal(0)) for alt, row in scores.items()}
+
+
+def check_totals(declared, totals, label, errors):
+    if not isinstance(declared, dict) or set(declared) != set(totals):
+        errors.append(f'{label}: totals must contain exactly the scored alternatives')
+        return
+    for alt, expected in totals.items():
+        if number(declared[alt], f'{label}.{alt}') != displayed(expected):
+            errors.append(f'{label}.{alt}: expected {displayed(expected)} from unrounded products')
+
+
+def check_ranking(ranking, totals, label, errors):
+    if not isinstance(ranking, list) or any(not isinstance(x, str) for x in ranking):
+        errors.append(f'{label}: ranking must be an array of alternative IDs')
+        return
+    if len(ranking) != len(totals) or set(ranking) != set(totals):
+        errors.append(f'{label}: ranking must include every alternative exactly once')
+    elif any(totals[a] < totals[b] for a, b in zip(ranking, ranking[1:])):
+        errors.append(f'{label}: ranking contradicts unrounded totals')
+
+
+def ordering(totals):
+    names = sorted(totals)
+    return {(a, b): (totals[a] > totals[b]) - (totals[a] < totals[b])
+            for i, a in enumerate(names) for b in names[i + 1:]}
+
+
+def validate_data(data):
     errors = []
-    criteria = data.get("scored_criteria", [])
-    total = sum(c.get("weight", 0) for c in criteria)
-    if total != 100:
-        errors.append(f"Weight sum is {total}, expected 100")
+    try:
+        if not isinstance(data, dict):
+            raise ValueError('DAR summary must be an object')
+        criteria, scores = data.get('scored_criteria'), data.get('scores')
+        if not isinstance(criteria, list) or not criteria:
+            raise ValueError('scored_criteria must be a nonempty array')
+        weights = {}
+        for item in criteria:
+            if not isinstance(item, dict) or not isinstance(item.get('id'), str) or not item['id'].strip():
+                raise ValueError('each criterion needs a nonempty string ID')
+            cid = item['id']
+            if cid in weights:
+                raise ValueError(f'duplicate criterion {cid}')
+            weights[cid] = number(item.get('weight'), f'{cid}.weight')
+            if not 0 <= weights[cid] <= 100:
+                raise ValueError(f'{cid}.weight: must be in [0, 100]')
+        if sum(weights.values()) != 100:
+            errors.append('criterion weights must sum to exactly 100')
+        if not isinstance(scores, dict) or not scores:
+            raise ValueError('scores must contain at least one eligible alternative')
+        for alt, row in scores.items():
+            if not isinstance(alt, str) or not alt.strip():
+                raise ValueError('alternative IDs must be nonempty strings')
+            if not isinstance(row, dict) or set(row) != set(weights):
+                raise ValueError(f'{alt}: score every criterion exactly once; unknown criteria are invalid')
+            for cid, entry in row.items():
+                if not isinstance(entry, dict):
+                    raise ValueError(f'{alt}.{cid}: score must be an object')
+                raw = number(entry.get('raw'), f'{alt}.{cid}.raw')
+                if not 0 <= raw <= 5:
+                    raise ValueError(f'{alt}.{cid}.raw: must be in [0, 5]')
+                actual = number(entry.get('weighted'), f'{alt}.{cid}.weighted')
+                expected = displayed(weights[cid] * raw / 100)
+                if actual != expected:
+                    errors.append(f'{alt}.{cid}: weighted={actual}, expected={expected}')
+        totals = exact_totals(scores, weights)
+        check_totals(data.get('total_scores'), totals, 'baseline', errors)
+        check_ranking(data.get('ranking'), totals, 'baseline', errors)
+        sensitivity = data.get('sensitivity', {})
+        if not isinstance(sensitivity, dict):
+            raise ValueError('sensitivity must be an object')
+        if 'gap_top2' in sensitivity:
+            if len(totals) < 2:
+                raise ValueError('gap_top2 requires two alternatives')
+            ordered = sorted(totals.values(), reverse=True)
+            if number(sensitivity['gap_top2'], 'gap_top2') != displayed(ordered[0] - ordered[1]):
+                errors.append('gap_top2 does not match unrounded baseline totals')
+        scenarios = sensitivity.get('scenarios', [])
+        if not isinstance(scenarios, list):
+            raise ValueError('sensitivity.scenarios must be an array')
+        if data.get('mode', '').lower() == 'formal' and len(weights) > 1 and len(scores) > 1 and not scenarios:
+            errors.append('formal comparison requires sensitivity scenarios')
+        seen = set()
+        for scenario in scenarios:
+            if not isinstance(scenario, dict) or not isinstance(scenario.get('id'), str) or not scenario['id'].strip():
+                raise ValueError('sensitivity scenario requires an ID')
+            sid = scenario['id']
+            if sid in seen:
+                raise ValueError(f'duplicate sensitivity scenario {sid}')
+            seen.add(sid)
+            changes = scenario.get('adjusted_weights')
+            if not isinstance(changes, dict) or not changes or not set(changes) <= set(weights):
+                raise ValueError(f'{sid}: adjusted_weights must name known criteria')
+            adjusted = dict(weights)
+            adjusted.update({c: number(v, f'{sid}.{c}') for c, v in changes.items()})
+            if sum(adjusted.values()) != 100 or any(not 0 <= v <= 100 for v in adjusted.values()):
+                raise ValueError(f'{sid}: adjusted weights must be in [0, 100] and sum to 100')
+            transfer = {'source_criterion', 'target_criterion', 'shift'}
+            if transfer & scenario.keys():
+                if not transfer <= scenario.keys():
+                    raise ValueError(f'{sid}: transfer requires source, target and shift')
+                source, target = scenario['source_criterion'], scenario['target_criterion']
+                if not isinstance(source, str) or not isinstance(target, str) or source not in weights or target not in weights or source == target:
+                    raise ValueError(f'{sid}: distinct known source/target criteria required')
+                shift = number(scenario['shift'], f'{sid}.shift')
+                if not 0 < shift <= weights[source] or weights[target] + shift > 100:
+                    raise ValueError(f'{sid}: transfer exceeds available percentage points')
+                expected = dict(weights)
+                expected[source] -= shift
+                expected[target] += shift
+                if adjusted != expected:
+                    errors.append(f'{sid}: adjusted weights differ from the declared transfer')
+            alternative_totals = exact_totals(scores, adjusted)
+            check_totals(scenario.get('total_scores'), alternative_totals, sid, errors)
+            check_ranking(scenario.get('ranking'), alternative_totals, sid, errors)
+            if type(scenario.get('ranking_change')) is not bool:
+                errors.append(f'{sid}: ranking_change must be boolean')
+            elif scenario['ranking_change'] != (ordering(totals) != ordering(alternative_totals)):
+                errors.append(f'{sid}: ranking_change does not match computed ordering/ties')
+    except (ValueError, InvalidOperation, AttributeError) as exc:
+        errors.append(str(exc))
     return errors
 
 
-def validate_weighted_scores(data: dict) -> list[str]:
-    errors = []
-    criteria = {c["id"]: c["weight"] for c in data.get("scored_criteria", [])}
-    scores = data.get("scores", {})
+def extract_json_block(text):
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f'duplicate JSON key: {key}')
+            result[key] = value
+        return result
 
-    for alt_id, alt_scores in scores.items():
-        for crit_id, entry in alt_scores.items():
-            if crit_id not in criteria:
-                continue
-            weight = criteria[crit_id]
-            raw = entry.get("raw", 0)
-            expected_weighted = round((weight / 100) * raw, 2)
-            actual_weighted = entry.get("weighted", 0)
-
-            if actual_weighted != expected_weighted:
-                errors.append(
-                    f"{alt_id}.{crit_id}: weighted={actual_weighted}, "
-                    f"expected={expected_weighted} "
-                    f"(weight={weight}, raw={raw})"
-                )
-    return errors
+    summaries = []
+    for match in re.finditer(r'^```json\s*\n(.*?)^```\s*$', text, re.M | re.S):
+        value = json.loads(match[1], parse_float=Decimal, object_pairs_hook=unique_object,
+                           parse_constant=lambda x: (_ for _ in ()).throw(ValueError(f'invalid JSON constant {x}')))
+        if isinstance(value, dict) and 'scored_criteria' in value:
+            summaries.append(value)
+    if len(summaries) != 1:
+        raise ValueError('expected exactly one JSON DAR summary containing scored_criteria')
+    return summaries[0]
 
 
-def validate_total_scores(data: dict) -> list[str]:
-    errors = []
-    criteria = {c["id"]: c["weight"] for c in data.get("scored_criteria", [])}
-    scores = data.get("scores", {})
-    total_scores = data.get("total_scores", {})
-
-    for alt_id, alt_scores in scores.items():
-        computed = 0.0
-        for crit_id, entry in alt_scores.items():
-            if crit_id in criteria:
-                computed += entry.get("weighted", 0)
-        computed = round(computed, 2)
-
-        declared = total_scores.get(alt_id)
-        if declared is None:
-            errors.append(f"{alt_id}: missing from total_scores")
-            continue
-
-        declared = round(declared, 2)
-        if computed != declared:
-            errors.append(f"{alt_id}: total_scores={declared}, computed={computed}")
-    return errors
-
-
-def expected_ranking(total_scores: dict) -> list[str]:
-    return sorted(total_scores.keys(), key=lambda k: total_scores[k], reverse=True)
-
-
-def validate_ranking(data: dict) -> list[str]:
-    errors = []
-    total_scores = data.get("total_scores", {})
-    ranking = data.get("ranking", [])
-
-    if not ranking or not total_scores:
-        return errors
-
-    expected = expected_ranking(total_scores)
-
-    if ranking != expected:
-        errors.append(f"Ranking mismatch: declared={ranking}, expected={expected}")
-    return errors
-
-
-def validate_raw_score_range(data: dict) -> list[str]:
-    errors = []
-    scores = data.get("scores", {})
-
-    for alt_id, alt_scores in scores.items():
-        for crit_id, entry in alt_scores.items():
-            raw = entry.get("raw", 0)
-            if raw < 0 or raw > 5:
-                errors.append(f"{alt_id}.{crit_id}: raw={raw} out of range [0, 5]")
-    return errors
-
-
-def compute_totals_with_weights(data: dict, weights: dict[str, int]) -> dict[str, float]:
-    totals = {}
-    for alt_id, alt_scores in data.get("scores", {}).items():
-        total = 0.0
-        for crit_id, entry in alt_scores.items():
-            if crit_id in weights:
-                total += (weights[crit_id] / 100) * entry.get("raw", 0)
-        totals[alt_id] = round(total, 2)
-    return totals
-
-
-def validate_sensitivity(data: dict) -> list[str]:
-    errors = []
-    sensitivity = data.get("sensitivity", {})
-    if not sensitivity:
-        return errors
-
-    ranking = data.get("ranking", [])
-    total_scores = data.get("total_scores", {})
-    if len(ranking) >= 2:
-        top = ranking[0]
-        second = ranking[1]
-        gap = round(total_scores.get(top, 0) - total_scores.get(second, 0), 2)
-        declared_gap = sensitivity.get("gap_top2")
-        if declared_gap is not None and round(declared_gap, 2) != gap:
-            errors.append(f"Sensitivity gap_top2={declared_gap}, computed={gap}")
-
-    scenarios = sensitivity.get("scenarios", [])
-    if not scenarios:
-        return errors
-
-    criteria = data.get("scored_criteria", [])
-    baseline_weights = {c["id"]: c["weight"] for c in criteria}
-    baseline_ranking = data.get("ranking", [])
-    weight_order = sorted(
-        enumerate(criteria), key=lambda item: (-item[1].get("weight", 0), item[0])
-    )
-    required_pairs = {}
-    if len(weight_order) >= 2:
-        w1 = weight_order[0][1]["id"]
-        w2 = weight_order[1][1]["id"]
-        required_pairs = {"A": (w1, w2), "B": (w2, w1)}
-
-    for scenario in scenarios:
-        scenario_id = scenario.get("id", "<missing id>")
-        adjusted_weights = dict(baseline_weights)
-        adjusted_weights.update(scenario.get("adjusted_weights", {}))
-
-        if sum(adjusted_weights.values()) != 100:
-            errors.append(
-                f"Sensitivity scenario {scenario_id}: adjusted weights sum "
-                f"{sum(adjusted_weights.values())}, expected 100"
-            )
-
-        if any(weight < 0 for weight in adjusted_weights.values()):
-            errors.append(f"Sensitivity scenario {scenario_id}: adjusted weights include negative values")
-
-        source = scenario.get("source_criterion")
-        target = scenario.get("target_criterion")
-        shift = scenario.get("shift", 10)
-        if scenario_id in required_pairs and (source, target) != required_pairs[scenario_id]:
-            expected_source, expected_target = required_pairs[scenario_id]
-            errors.append(
-                f"Sensitivity scenario {scenario_id}: source/target=({source}, {target}), "
-                f"expected=({expected_source}, {expected_target})"
-            )
-        if source in baseline_weights and target in baseline_weights:
-            expected_source = baseline_weights[source] - shift
-            expected_target = baseline_weights[target] + shift
-            if adjusted_weights.get(source) != expected_source:
-                errors.append(
-                    f"Sensitivity scenario {scenario_id}: {source} weight="
-                    f"{adjusted_weights.get(source)}, expected {expected_source}"
-                )
-            if adjusted_weights.get(target) != expected_target:
-                errors.append(
-                    f"Sensitivity scenario {scenario_id}: {target} weight="
-                    f"{adjusted_weights.get(target)}, expected {expected_target}"
-                )
-
-        computed_totals = compute_totals_with_weights(data, adjusted_weights)
-        declared_totals = scenario.get("total_scores", {})
-        for alt_id, computed in computed_totals.items():
-            declared = declared_totals.get(alt_id)
-            if declared is None:
-                errors.append(f"Sensitivity scenario {scenario_id}: missing total for {alt_id}")
-                continue
-            if round(declared, 2) != computed:
-                errors.append(
-                    f"Sensitivity scenario {scenario_id}: {alt_id} total={declared}, computed={computed}"
-                )
-
-        computed_ranking = expected_ranking(computed_totals)
-        declared_ranking = scenario.get("ranking", [])
-        if declared_ranking and declared_ranking != computed_ranking:
-            errors.append(
-                f"Sensitivity scenario {scenario_id}: ranking={declared_ranking}, expected={computed_ranking}"
-            )
-
-        if "ranking_change" in scenario:
-            computed_change = computed_ranking != baseline_ranking
-            if scenario["ranking_change"] != computed_change:
-                errors.append(
-                    f"Sensitivity scenario {scenario_id}: ranking_change={scenario['ranking_change']}, "
-                    f"computed={computed_change}"
-                )
-
-    return errors
-
-
-def validate_file(filepath: Path) -> tuple[list[str], list[str]]:
-    text = filepath.read_text(encoding="utf-8")
-    data = extract_json_block(text)
-
-    if data is None:
-        return [], [f"{filepath}: no JSON block found — skipping structured validation"]
-
-    all_errors = []
-    all_warnings = []
-
-    all_errors.extend(validate_weights_sum(data))
-    all_errors.extend(validate_weighted_scores(data))
-    all_errors.extend(validate_total_scores(data))
-    all_errors.extend(validate_ranking(data))
-    all_errors.extend(validate_raw_score_range(data))
-    all_errors.extend(validate_sensitivity(data))
-
-    return all_warnings, all_errors
+def validate_file(filepath):
+    try:
+        return [], validate_data(extract_json_block(Path(filepath).read_text(encoding='utf-8')))
+    except (OSError, ValueError) as exc:
+        return [], [str(exc)]
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Validate DAR markdown files")
-    parser.add_argument(
-        "files",
-        nargs="+",
-        type=Path,
-        help="DAR markdown files to validate",
-    )
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('files', nargs='+', type=Path)
     args = parser.parse_args()
-
-    total_errors = 0
-    total_warnings = 0
-
+    count = 0
     for filepath in args.files:
-        if not filepath.exists():
-            print(f"ERROR: {filepath} not found")
-            total_errors += 1
-            continue
-
-        warnings, errors = validate_file(filepath)
-
-        for w in warnings:
-            print(f"WARN  {filepath}: {w}")
-            total_warnings += 1
-
-        for e in errors:
-            print(f"ERROR {filepath}: {e}")
-            total_errors += 1
-
-        if not errors and not warnings:
-            print(f"OK    {filepath}")
-
-    print(f"\n{'=' * 60}")
-    print(f"Files checked: {len(args.files)}")
-    print(f"Warnings: {total_warnings}")
-    print(f"Errors:   {total_errors}")
-
-    sys.exit(FAIL if total_errors > 0 else PASS)
+        _, errors = validate_file(filepath)
+        for error in errors:
+            print(f'ERROR {filepath}: {error}')
+        if not errors:
+            print(f'OK {filepath}')
+        count += len(errors)
+    print(f'Files checked: {len(args.files)}; errors: {count}')
+    return int(bool(count))
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    raise SystemExit(main())

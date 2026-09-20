@@ -74,7 +74,7 @@ quadrantChart
     quadrant-1 Zone of Uselessness
     quadrant-2 Balanced
     quadrant-3 Zone of Pain
-    quadrant-4 Rigid
+    quadrant-4 Concrete and independent
 ```
 
 ## Step 2: Dependency Analysis
@@ -86,7 +86,7 @@ quadrantChart
 | **Depth** | Longest dependency chain | Complexity |
 | **Width** | Number of direct dependencies | Coupling |
 | **Cycles** | Circular dependencies | Architecture violation |
-| **Fan-in/Fan-out** | Import/export ratio | Stability |
+| **Fan-in/Fan-out** | Incoming/outgoing dependency counts | Change propagation |
 
 ### Dependency Rules
 
@@ -101,7 +101,7 @@ quadrantChart
 | Category | Metric | Measurement |
 |----------|--------|-------------|
 | **Code Debt** | Code smells | SonarQube |
-| **Test Debt** | Coverage gaps | < 80% = debt |
+| **Test Debt** | Unverified critical behavior | Requirement and failure-mode coverage |
 | **Doc Debt** | Missing docs | Coverage % |
 | **Dependency Debt** | Outdated packages | Age, CVEs |
 | **Architecture Debt** | Violations | Dependency cycles |
@@ -193,6 +193,14 @@ health score unless the weighting and loss of information are explicit.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/complexity-metrics.md` — Complexity Metrics Reference
 - `references/metrics-deep-dive.md` — Metrics Deep Dive
+
+## Cross-skill handoff
+
+Consume the actual module boundaries and change history. Return metric definition,
+population, units, time window, baseline and missing-data status to arch-review; use
+arch-fitness only for explicitly adopted limits. Fan-in and fan-out are separate
+dependency counts, not an import/export ratio; code coverage and class counts are
+proxies, not direct proofs of design quality.
 
 ## Related Skills
 

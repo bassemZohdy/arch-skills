@@ -2,7 +2,7 @@
 
 ## What Are Fitness Functions?
 
-Fitness functions are objective, automated checks that evaluate architectural characteristics. They make architecture testable and enforceable.
+Fitness functions are objective assessments, automated where practical that evaluate architectural characteristics. They make architecture testable and enforceable.
 
 **Source:** Building Evolutionary Architectures by Ford, Parsons, Kua
 
@@ -12,7 +12,7 @@ Fitness functions are objective, automated checks that evaluate architectural ch
 
 | Type | Scope | Example |
 |------|-------|---------|
-| **Atomic** | Single attribute | "Each class has single responsibility" |
+| **Atomic** | Single attribute | "Domain packages do not import infrastructure" |
 | **Holistic** | Multiple attributes | "System handles 1000 req/s with <200ms latency" |
 
 ### Static vs Dynamic
@@ -40,16 +40,17 @@ void servicesShouldNotDependOnInfrastructure() {
 }
 ```
 
-**ArchUnitTS (TypeScript):**
-```typescript
-describe('Architecture', () => {
-  it('services should not depend on infrastructure', () => {
-    const rule = rule({ should: 'not depend on' })
-      .from('src/services/**')
-      .to('src/infrastructure/**');
-    expect(rule).toPass();
-  });
-});
+**dependency-cruiser (JavaScript/TypeScript):**
+```javascript
+// dependency-cruiser configuration fragment; merge into the project's config.
+module.exports = {
+  forbidden: [{
+    name: 'services-must-not-import-infrastructure',
+    severity: 'error',
+    from: { path: '^src/services/' },
+    to: { path: '^src/infrastructure/' }
+  }]
+};
 ```
 
 ### 2. Module Structure
@@ -87,7 +88,7 @@ void controllersShouldBeNamedCorrectly() {
 @Test
 void apiResponseTimeShouldBeUnder200ms() {
     Stopwatch timer = Stopwatch.createStarted();
-    // Make API call
+    performRealApiCall(); // Supply the actual client and representative test environment
     long elapsed = timer.elapsed(TimeUnit.MILLISECONDS);
     assertThat(elapsed).isLessThan(200);
 }
@@ -110,7 +111,7 @@ void apiResponseTimeShouldBeUnder200ms() {
 | Tool | Language | Purpose |
 |------|----------|---------|
 | [ArchUnit](https://www.archunit.org/) | Java | Architecture unit testing |
-| [ArchUnitTS](https://github.com/LukasNielsen/ArchUnitTS) | TypeScript | Architecture testing |
+| [ArchUnitTS](https://github.com/LukasNiessen/ArchUnitTS) | TypeScript | Architecture testing |
 | [SonarQube](https://www.sonarsource.com/) | Multi | Code quality gates |
 | [Checkstyle](https://checkstyle.org/) | Java | Code style enforcement |
 | [ESLint](https://eslint.org/) | JavaScript | Code quality |
@@ -129,7 +130,7 @@ jobs:
   architecture-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       
       - name: Run ArchUnit tests
         run: ./gradlew test --tests "*ArchitectureTest*"
@@ -154,6 +155,11 @@ quality-gates:
       - metric: code-coverage
         threshold: 80%
 ```
+
+The single-call timing snippet is illustrative only; it does not establish a
+percentile SLO. Use warm-up, representative load, adequate samples, error counts
+and a defined environment for performance fitness checks. Adopt numeric gates
+from the project risk and baseline rather than copying sample coverage values.
 
 ## Creating Fitness Functions
 
@@ -190,7 +196,7 @@ Set up alerts for fitness function failures.
 ## Best Practices
 
 1. **Start Small** - Begin with most critical decisions
-2. **Automate Everything** - Manual checks don't scale
+2. **Automate measurable invariants** - Keep subjective assessments explicitly manual
 3. **Fail the Build** - Architecture violations should break CI
 4. **Document Decisions** - Link fitness functions to ADRs
 5. **Review Regularly** - Update fitness functions as architecture evolves

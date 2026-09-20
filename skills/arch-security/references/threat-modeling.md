@@ -11,7 +11,9 @@
 | **Denial of Service** | Availability attack | Rate limiting, DDoS protection |
 | **Elevation of Privilege** | Unauthorized access | Least privilege, RBAC |
 
-## DREAD Risk Assessment
+## Optional historical DREAD rubric
+
+Use only if the organization has adopted and calibrated it. Prefer scenario-specific likelihood, impact, evidence and residual-risk disposition; averaging ordinal scores does not establish objective risk.
 
 | Factor | Question | 1-3 (Low) | 4-6 (Medium) | 7-10 (High) |
 |--------|----------|-----------|--------------|-------------|

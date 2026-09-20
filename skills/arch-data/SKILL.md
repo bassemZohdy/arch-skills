@@ -143,7 +143,7 @@ Source System → Ingestion → Processing → Storage → Consumption
 
 | Level | Description | Controls |
 |-------|-------------|----------|
-| **Public** | No restrictions | None |
+| **Public** | Publicly readable | Integrity, availability and controlled writes |
 | **Internal** | Business use only | Access control |
 | **Confidential** | Sensitive data | Encryption, audit |
 | **Restricted** | Highly sensitive | Strict controls |
@@ -180,6 +180,14 @@ from derived copies and state the maximum acceptable staleness.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/data-deep-dive.md` — Data Architecture Deep Dive
 - `references/data-modeling.md` — Data Modeling Reference
+
+## Cross-skill handoff
+
+Consume domain invariants from arch-ddd and classify authoritative versus derived data.
+Specify transaction/isolation boundaries, schema evolution, deletion propagation and
+reconciliation. Give arch-event CDC/outbox and replay contracts; give arch-migration
+backfill/cutover rules and arch-resilience restore evidence. Public data still needs
+integrity, availability and controlled writes.
 
 ## Related Skills
 

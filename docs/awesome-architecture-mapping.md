@@ -2,7 +2,24 @@
 
 Analysis of [awesome-architecture.com](https://awesome-architecture.com/) (published version of
 `mehdihadeli/awesome-software-architecture`) and how its catalog maps onto the skills in this repo.
-Sitemap fetched 2026-07-24: **305 topic pages**.
+Historical sitemap baseline (2026-07-24): **305 topic pages**. Counts and the
+taxonomy below describe that baseline, not current site coverage.
+
+## Route migration (2026-09-20)
+
+The upstream site now uses collection pages and `/topics/<source-path-slug>`
+routes. All 297 legacy topic URLs referenced by this repository were mapped to
+current source files at upstream revision
+`686546eb1bb1167229d409b9e9eb996a882aeadc`; the slug algorithm is defined in
+`web/src/lib/content.ts`. Renamed AI topics were mapped explicitly, including
+Microsoft Agent Framework, evaluation/test, skills/subagents/plugins and agent
+coding. ACP now refers to Agent Client Protocol in that catalog.
+
+The migration preserves topic-specific links. Source-route resolution is distinct
+from HTTP reachability and from validating resources inside a topic hub. See the
+[current audit](audits/2026-09-20-full-project-review.md) for executed checks and
+network limitations. Use primary specifications for normative decisions; this
+community catalog is optional further reading.
 
 ## What the Site Is
 

@@ -5,6 +5,8 @@ import re
 from pathlib import Path
 import sys
 import yaml
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from check_links import prose
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -46,7 +48,7 @@ def validate_skill(directory, shared_root=None):
         errors.append(f"frontmatter: {exc}")
     if len(text.splitlines()) > 500:
         errors.append("entry point exceeds 500 lines")
-    body = re.sub(r"```[\s\S]*?```", "", text)
+    body = prose(text)
     headings = re.findall(r"^#{1,4}\s+(.+)$", body, re.M)
     lowered = [h.strip().lower() for h in headings]
     if len(set(lowered)) != len(lowered):
@@ -65,13 +67,41 @@ def validate_skill(directory, shared_root=None):
         # Local resource references in all maintained documents, not just Markdown
         # links in the entry point. Code examples are not dependency declarations.
         content = path.read_text(encoding="utf-8")
-        content = re.sub(r"```[\s\S]*?```", "", content)
+        content = prose(content)
         for relative in resource_paths(content):
-            base = shared_root if relative.startswith(("framework/", "scripts/")) else directory
+            base = shared_root if relative.startswith("framework/") or relative.startswith("scripts/dap") else directory
             candidate = base / relative
             if not candidate.exists() and not (path.parent / relative).exists():
                 errors.append(f"{path.relative_to(directory)}: missing resource {relative}")
+    # Skill names are semantic handoffs, not mandatory installed dependencies.
+    canonical = shared_root / "skills"
+    if canonical.is_dir():
+        known = set(discover_skills(canonical))
+        for name in set(re.findall(r"\barch-[a-z]+(?:-[a-z]+)*\b", body)):
+            if name not in known:
+                errors.append(f"unknown related skill: {name}")
     return sorted(set(errors))
+
+
+def unreachable_resources(directory):
+    """Walk declared resource pointers from SKILL.md; directory pointers include assets."""
+    directory = Path(directory).resolve()
+    reached, pending = set(), [directory / "SKILL.md"]
+    while pending:
+        item = pending.pop()
+        if item in reached or not item.is_file():
+            continue
+        reached.add(item)
+        if item.suffix != ".md":
+            continue
+        for relative in resource_paths(prose(item.read_text(encoding="utf-8"))):
+            candidates = [directory / relative, item.parent / relative]
+            target = next((p.resolve() for p in candidates if p.exists()), None)
+            if target and target.is_relative_to(directory):
+                pending.extend(target.rglob("*") if target.is_dir() else [target])
+    return sorted(p.relative_to(directory).as_posix() for folder in ("references", "assets", "scripts")
+                  for p in (directory / folder).rglob("*") if p.is_file()
+                  and "__pycache__" not in p.parts and p not in reached)
 
 
 def main():
@@ -82,6 +112,7 @@ def main():
         problems = validate_skill(directory / name, ROOT)
         print(f"{'FAIL' if problems else 'PASS'} {name}")
         errors.extend(f"{name}: {problem}" for problem in problems)
+        errors.extend(f"{name}: unreachable resource {path}" for path in unreachable_resources(directory / name))
     catalog = (directory / "arch-orchestrator/references/skill-catalog.md").read_text(encoding="utf-8")
     errors.extend(f"catalog omits {name}" for name in names if name != "arch-orchestrator" and name not in catalog)
     print("\n".join(errors))

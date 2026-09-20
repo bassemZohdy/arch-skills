@@ -116,7 +116,7 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 |----------|-------|
 | Can I name this unit's single responsibility? | Split it (SRP) |
 | Does a change require edits in many modules? | Indirection or expert violation |
-| Are there abstractions with one implementation "for later"? | YAGNI — delete |
+| Does an abstraction lack a present seam or change scenario? | Consider removing speculative indirection |
 | Does business logic import frameworks/infrastructure? | DIP violation |
 | Is the same rule encoded in two places? | DRY violation |
 
@@ -124,7 +124,7 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 
 | Conflict | Resolution |
 |----------|------------|
-| DRY vs decoupling | Duplicate across boundaries; never couple two bounded contexts to share code |
+| DRY vs decoupling | Avoid accidental coupling; share a kernel only with explicit ownership and coordinated change |
 | KISS vs flexibility | Start simple; add indirection only when the second case arrives |
 | Encapsulation vs testability | Test through the public contract, not by exposing internals |
 | Consistency vs availability | Decide per operation from business cost of staleness |
@@ -148,6 +148,14 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/design-principles.md` — Design Principles Deep Dive
 - `references/grasp-coupling-cap.md` — GRASP, Coupling & Cohesion, CAP
+
+## Cross-skill handoff
+
+Consume a concrete change scenario and the existing boundary design. Give arch-
+refactoring evidence of a costly dependency or invariant violation, not a checklist of
+missing interfaces. A one-implementation abstraction can still isolate a volatile
+dependency or support testing; retain it when the seam has a present purpose. Record
+intentional exceptions and their quality trade-offs with arch-decision.
 
 ## Related Skills
 

@@ -189,6 +189,14 @@ revert boundary before moving data or public contracts.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/refactoring-patterns.md` — Refactoring Patterns Reference
 
+## Cross-skill handoff
+
+Consume confirmed smells from arch-antipatterns and baselines from arch-metrics.
+Preserve externally observed behavior with characterization, contract or differential
+checks from arch-test. Treat changed business behavior as a separate, explicit change;
+route data movement and external compatibility changes through arch-migration. Report
+both structural improvement and evidence that critical behavior remains intact.
+
 ## Related Skills
 
 - **arch-metrics** - Measuring smells and tracking improvement

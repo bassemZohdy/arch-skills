@@ -30,6 +30,11 @@ Lightweight DAR for reversible, low-risk, or time-boxed decisions. Use Formal Mo
 
 ---
 
+For a scored expedited comparison, record criterion IDs, weights totaling 100,
+raw scores, rationale and totals using the formal template's JSON summary. For
+a qualitative decision, state that no arithmetic validation was performed.
+Apply hard gates to every option; include defer only when meaningful.
+
 ## 3. Recommendation
 
 **Recommended Alternative:** [A1/A2/Defer]

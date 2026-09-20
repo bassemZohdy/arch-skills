@@ -75,15 +75,15 @@ observability tax of every additional service.
 |---------|----------|------------|
 | **Message Queue** | Task distribution | Reliable, but eventual |
 | **Event Streaming** | Event sourcing | Ordered, but complex |
-| **Pub/Sub** | Broadcasting | Decoupled, but no guarantee |
+| **Pub/Sub** | Broadcasting | Delivery guarantees depend on broker, subscription and acknowledgment policy |
 
 ### Communication Selection
 
 ```
 Need real-time response? → Synchronous (REST/gRPC)
-Need reliability? → Asynchronous (Queue/Stream)
+Need durable decoupling? → Evaluate queue/stream persistence and acknowledgment policy
 Need decoupling? → Pub/Sub
-Need ordering? → Event Streaming
+Need ordering? → Specify ordering key, partition scope and consumer concurrency
 ```
 
 ## Step 3: Service Patterns
@@ -172,10 +172,20 @@ stateDiagram-v2
 - Synchronous call chains across services multiply latency and failure probability.
 - A team or database boundary alone is not a service boundary; verify independent lifecycle and clear ownership.
 
+Read `references/microservices-deep-dive.md` for boundary and operational trade-offs.
+
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/microservices-patterns.md` — Microservices Patterns Reference
+
+## Cross-skill handoff
+
+Consume bounded contexts, invariants and ownership from arch-ddd and arch-data. Return a
+topology with per-interaction consistency/failure contracts to arch-api, arch-event and
+arch-resilience. Verify independent deployment with mixed-version tests and changes that
+remain local. Compare the same requirements against a modular monolith before accepting
+network, platform and on-call cost.
 
 ## Related Skills
 

@@ -156,6 +156,15 @@ business SLO. Keep p50, p95 and p99 visible and record the measurement method.
 - `references/performance-deep-dive.md` — Performance Engineering Deep Dive
 - `references/performance-patterns.md` — Performance Patterns Reference
 
+## Cross-skill handoff
+
+Consume journey-level latency and throughput goals with data sizes, tenant skew and
+arrival patterns. Separate active requests from registered users; use concurrency =
+throughput × mean time only for a stable system and consistent boundaries. Give arch-
+resilience saturation/failure headroom and arch-cost a measured capacity curve. Report
+offered versus achieved load, tail latency and errors; avoid coordinated omission in
+load generation.
+
 ## Related Skills
 
 - **arch-resilience** - Timeouts and circuit breakers that bound latency

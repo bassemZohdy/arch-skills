@@ -137,7 +137,7 @@ graph LR
 
 | Pros | Cons |
 |------|------|
-| No extra infrastructure | Rollback complicated |
+| Reuses the fleet; surge capacity may be needed | Rollback complicated |
 | Gradual rollout | Version skew possible |
 | Simple | Slower than blue-green |
 
@@ -174,7 +174,7 @@ Simple and clean-state, but causes downtime. Acceptable only for non-critical or
 
 - Set CPU/memory resource requests and limits
 - Configure liveness and readiness probes
-- Use rolling updates for zero-downtime deployments
+- Verify readiness, draining, capacity and mixed-version compatibility before claiming zero-downtime rolling updates
 - Enable horizontal auto-scaling based on metrics
 - Restrict pod communication with network policies
 
@@ -238,7 +238,7 @@ Use the current five-metric model, keeping historical series explicitly versione
 | Metric | What to measure |
 |--------|-------------------|
 | **Deployment frequency** | How often value reaches production |
-| **Lead time for changes** | Commit or approval to production |
+| **Lead time for changes** | Commit to production; track approval wait separately |
 | **Change failure rate** | Deployments requiring remediation or rollback |
 | **Failed deployment recovery time** | Time to recover from a failed deployment needing immediate intervention |
 | **Deployment rework rate** | Share of unplanned deployments responding to production incidents |
@@ -289,6 +289,14 @@ not prove that the deployed artifact is the one that was reviewed.
 For release provenance, use the [SLSA v1.2 specification](https://slsa.dev/spec/v1.2/)
 and record which build/source track properties are verified. SBOM generation and
 provenance verification are complementary controls.
+
+## Cross-skill handoff
+
+Consume the deployment topology and recovery objectives from arch-cloud and arch-
+resilience. Reconcile rollout capacity, readiness/startup probes, traffic draining and
+mixed-version compatibility before claiming zero downtime. Give arch-observability
+explicit promotion/abort signals and arch-migration the data compatibility window; an
+application rollback does not undo database writes.
 
 ## Related Skills
 

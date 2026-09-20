@@ -25,7 +25,7 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 6. Respond → Take action
 ```
 
-## Step 1: Three Pillars
+## Step 1: Telemetry Signals
 
 | Pillar | Purpose | Data |
 |--------|---------|------|
@@ -137,7 +137,7 @@ Trace (abc123)
 | Strategy | Description | Use Case |
 |----------|-------------|----------|
 | **Always** | Sample all | Debugging |
-| **Never** | Sample none | High volume |
+| **Never** | Sample none | Explicitly disabled tracing; high volume alone does not justify losing all traces |
 | **Probability** | Random % | General |
 | **Rate Limit** | Max per second | Cost control |
 
@@ -235,6 +235,14 @@ Use the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs
 with a pinned version. Treat [OpenTelemetry profiles](https://opentelemetry.io/docs/concepts/signals/profiles/)
 as an emerging optional signal whose maturity and backend support must be
 verified for the workload.
+
+## Cross-skill handoff
+
+Consume user journeys and failure/latency objectives from arch-perf and arch-resilience.
+Define each SLI numerator, denominator, window and exclusions before dashboards. Give
+arch-devops release signals and arch-test telemetry-loss scenarios. Do not average per-
+instance percentiles; use aggregatable histograms, budget cardinality and distinguish
+application failure from missing telemetry.
 
 ## Related Skills
 

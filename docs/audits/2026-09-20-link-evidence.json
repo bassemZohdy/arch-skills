@@ -1,0 +1,4078 @@
+{
+  "date": "2026-09-20",
+  "source_commit": "277fc80",
+  "upstream_route_source_commit": "686546eb1bb1167229d409b9e9eb996a882aeadc",
+  "method": "GET with 10-second timeout, redirects followed; 404/410 broken; denials, throttling and network errors unverified; HTTP success does not prove content. Online pass preceded audit-report creation.",
+  "before": {
+    "checked_at": "2026-09-20T11:13:02.710398+00:00",
+    "counts": {
+      "unverified": 65,
+      "reachable": 19,
+      "broken": 256
+    },
+    "probes": [
+      {
+        "url": "https://adr.github.io/madr/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://agentskills.io/specification",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://arc42.org/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://arc42.org/"
+      },
+      {
+        "url": "https://arc42.org/overview/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://arc42.org/overview/"
+      },
+      {
+        "url": "https://arxiv.org/html/2507.02564v1",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/abstraction/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/actor-model-architecture/actor-model-architecture/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/actor-model-architecture/akka-net/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/actor-model-architecture/orleans/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/actor-model-architecture/protoactor/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/a2a/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/acp/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/agent-framework/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/agent/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/ai-design/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/ai-security/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/ai/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/context/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/embedding-vector/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/evaluation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/harness-engineering/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/langchain/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/mcp/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/meai/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/memory/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/ml.net/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/models/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/prompt-engineering/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/rag/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/self-hosting/ollama/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/self-hosting/vllm/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/semantic-kernel/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/skills/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/tools/ai-tools/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/tools/claude-code/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/tools/copilot/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ai/tools/dev-tools/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/algorithm/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/anti-patterns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/big-ball-of-mud/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/code-smells/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/god-object/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/leaky-abstractions/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/partial-object/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/anti-patterns/static-cling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/architectural-design-principles/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/cap/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/cohesion/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/coupling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/cqs/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/cross-cutting-concerns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/dependency-inversion/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/dry/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/encapsulation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/fail-fast/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/favor-composition-over-inheritance/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/grasp/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/interface-segregation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/inversion-control/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/kiss/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/open-closed-principles/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/persistence-ignorance/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/single-responsibility/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/solid/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architectural-design-principles/yagni/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/architecture-documententation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/aks/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-api-management/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-app-service/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-arc/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-cloud/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-configuration/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-functions/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-load-balancing/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-logic-app/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-resource-manager/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-security/azure-active-directory/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-security/azure-key-vault/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/azure-sql/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/messaging/azure-event-grid/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/messaging/azure-event-hub/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/messaging/azure-queue/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/messaging/azure-service-bus/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/messaging/azure-web-pub-sub/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/messaging/messaging/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/nosql/azure-nosql/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/nosql/cosmosdb/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/service-fabric/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/storage/blob/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/storage/file/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/storage/queue/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/storage/storage/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/azure/storage/table/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/back-pressure/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/caching/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/clean-architecture/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/clean-code/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-best-practices/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/ambassador-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/anti-corruption-layer-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/bff/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/bulkhead-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/circuit-breaker/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/cloud-design-patterns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/exactly-one-delivery/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/gateway-aggregation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/gateway-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/inbox-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/outbox-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/sidecar/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-design-patterns/strangler-fig-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cloud-native/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/code-review/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/concurrency/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/cqrs/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/data-driven-design/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/nosql/cosmosdb/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/nosql/documentdb/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/nosql/mongodb/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/nosql/nosql/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/nosql/ravendb/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/relational/postgres/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/relational/relational-database/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/relational/sql/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/replication/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/database/sharding/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-best-practices/12-factor/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-best-practices/design-best-practices/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-best-practices/thin-controllers/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/adapter-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/builder/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/chain-of-responsibility/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/command-message-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/command-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/decorator-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/design-patterns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/factory-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/mediator-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/observer/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/query-object-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/repository-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/repr/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/service-locator/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/singleton/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/specification-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/state-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/strategy-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/design-patterns/transaction-script-pattern/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/ci-cd/azure-devops/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/ci-cd/github-actions/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/ci-cd/jenkins/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/containerd/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/docker/docker-compose/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/docker/docker/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/gitops/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/debuging-development/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/deployment-strategies/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/deployment-tools/argo-cd/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/deployment-tools/flux/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/deployment-tools/helm/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/deployment-tools/kubernetes-operator/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/deployment-tools/kustomize/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/ingress-controller/ingress-controller/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/ingress-controller/nginx-ingress/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/ingress-controller/traefik-ingress/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/kubernetes/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/garden/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/k3s/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/mirrord/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/okteto/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/skaffold/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/telepresence/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/other-tools/tilt/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/kubernetes/services/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/linux-bash/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/terminal/bash/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/devops/terminal/powershell/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/distributed-locking/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/distributed-transactions/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/aggregation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/anemic-domain-model/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/application-service/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/bounded-context/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/domain-driven-design/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/domain-events/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/domain-primitives/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/domain-service/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/domain/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/enums/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/exception-and-validation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/infrastructure/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/integration-event/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/mapping/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/orm/ef/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/rich-domain-model/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/strategic-design-patterns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/tactical-design-patterns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/domain-driven-design/value-objects/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/event-driven-architecture/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/event-sourcing/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/eventual-consistency/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/functional/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/grpc/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/hexagonal-architecture/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/iaas/ansible/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/iaas/iaas/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/iaas/nomad/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/iaas/pulumi/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/iaas/terraform/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/ids/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/async-api-documentation/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/change-data-capture/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/kafka/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/messaging-patterns/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/messaging/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/nats/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/rabbitmq/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/messaging/zeromq/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/micro-frontend/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/api-gateway/ambassador/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/api-gateway/api-gateway/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/api-gateway/kong/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/api-gateway/ocelot/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/communication/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/composite-ui/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/microservices/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/correlationId/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/diagnostics/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/distributed-tracing/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/logging/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/monitoring/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/observability/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/tools/efk/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/tools/elk/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/tools/fluent-bit/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/tools/fluentd/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/observability/tools/loki/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/resiliency/high-availibility/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/resiliency/idempotency/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/resiliency/resiliency/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/security/sbom/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/security/security-scan/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/security/security/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/security/vault/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/services-boundries/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/testing/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/aspire/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/cap/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/dapr/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/mass-transit/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/nservicebus/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/steeltoe/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/tye/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/microservices/tools/wolverine/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/architecture-diagram/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/class-diagram/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/component-diagram/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/conceptual-modeling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/data-model-notations/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/domain-stroytelling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/er-diagrams/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/event-modeling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/event-storming/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/logical-modeling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/modeling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/physical-modeling/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/relationship/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/tools/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modeling/use-case-diagram/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/modular-monolith/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/object-oriented-design/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/onion-architecture/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/open-source/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/paas/heroku/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/paas/netlify/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/paas/openshift/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/paas/rancher/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/refactoring/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/rest/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/envoy/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/fabio/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/haproxy/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/load-balancing/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/metallb/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/nginx/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/reverse-proxy/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/traefik/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/reverse-proxy-lb/yarp/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/scaling/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/serverless/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-discovery/consul/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-discovery/eureka/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-discovery/service-discovery/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-mesh/istio/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-mesh/linkerd/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-mesh/service-mesh/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/service-oriented-architecture/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/software-architecture/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/systems-design/consistent-hash/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/systems-design/systems-design/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/type-driven-design/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://awesome-architecture.com/vertical-slice-architecture/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://bitbucket.org/tinkerer_/adr-tools-python/src/master/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://c4model.com/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://c4model.com/diagrams",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://checkstyle.org/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html",
+        "status": "unverified",
+        "error": "The read operation timed out"
+      },
+      {
+        "url": "https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://eslint.org/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://genai.owasp.org/llm-top-10/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/DecispherHQ/decision-guardian",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/LukasNielsen/ArchUnitTS",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/LukasNiessen/ArchUnitTS",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/TheoV823/mneme",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/MnemeHQ/mneme"
+      },
+      {
+        "url": "https://github.com/dependabot",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/dependabot"
+      },
+      {
+        "url": "https://github.com/joelparkerhenderson/architecture-decision-record",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/architecture-decision-record/architecture-decision-record"
+      },
+      {
+        "url": "https://github.com/npryce/adr-tools",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/npryce/adr-tools"
+      },
+      {
+        "url": "https://github.com/sverweij/dependency-cruiser",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/sverweij/dependency-cruiser"
+      },
+      {
+        "url": "https://opentelemetry.io/docs/concepts/signals/profiles/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://opentelemetry.io/docs/specs/semconv/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://opentelemetry.io/docs/specs/semconv/"
+      },
+      {
+        "url": "https://owasp.org/projects/mcp-top-10",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://owasp.org/www-project-application-security-verification-standard/",
+        "status": "broken",
+        "http_status": 404
+      },
+      {
+        "url": "https://owasp.org/www-project-top-ten/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://owasp.org/projects/top-ten"
+      },
+      {
+        "url": "https://slsa.dev/spec/v1.2/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://top10.owasp.org/2025/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://top10.owasp.org/2025/"
+      },
+      {
+        "url": "https://www.agilebusiness.org/resource/what-is-moscow-prioritization/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.agilebusiness.org/resource/what-is-moscow-prioritization/"
+      },
+      {
+        "url": "https://www.archunit.org/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.archunit.org/"
+      },
+      {
+        "url": "https://www.finops.org/framework/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.finops.org/framework/"
+      },
+      {
+        "url": "https://www.iso.org/standard/72089.html",
+        "status": "unverified",
+        "http_status": 403
+      },
+      {
+        "url": "https://www.iso.org/standard/73436.html",
+        "status": "unverified",
+        "http_status": 403
+      },
+      {
+        "url": "https://www.iso.org/standard/78176.html",
+        "status": "unverified",
+        "http_status": 403
+      },
+      {
+        "url": "https://www.ndepend.com/docs/code-metrics",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.ndepend.com/docs/code-metrics"
+      },
+      {
+        "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.nist.gov/itl/ai-risk-management-framework"
+      },
+      {
+        "url": "https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986368/",
+        "status": "unverified",
+        "http_status": 403
+      },
+      {
+        "url": "https://www.sei.cmu.edu/library/atam-method-for-architecture-evaluation/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.sei.cmu.edu/library/atam-method-for-architecture-evaluation/"
+      },
+      {
+        "url": "https://www.sei.cmu.edu/library/attribute-driven-design-add-version-20/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.sei.cmu.edu/library/attribute-driven-design-add-version-20/"
+      },
+      {
+        "url": "https://www.sonarsource.com/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.sonarsource.com/"
+      },
+      {
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.w3.org/TR/WCAG22/"
+      }
+    ]
+  },
+  "after": {
+    "checked_at": "2026-09-20T11:21:18.621899+00:00",
+    "counts": {
+      "reachable": 309,
+      "unverified": 36
+    },
+    "probes": [
+      {
+        "url": "https://adr.github.io/madr/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://adr.github.io/madr/"
+      },
+      {
+        "url": "https://agentskills.io/specification",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://arc42.org/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://arc42.org/overview/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://arxiv.org/html/2507.02564v1",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-a2a",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-acp",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-agent",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-agents-coding",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-ai",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-ai-design",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-ai-security",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-ai-security"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-ai-tools",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-ai-tools"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-context",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-context"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-embedding-vector",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-embedding-vector"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-evaluation-test",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-evaluation-test"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-harness-engineering",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-harness-engineering"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-langchain",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-langchain"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-mcp",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-mcp"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-meai",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-meai"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-memory",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-memory"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-microsoft-agent-framework",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-microsoft-agent-framework"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-ml.net",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-ml.net"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-models",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-models"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-ollama",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-ollama"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-prompt-engineering",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-prompt-engineering"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-rag",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-rag"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-semantic-kernel",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-semantic-kernel"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-skills-subagents-plugins",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-skills-subagents-plugins"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/ai-vllm",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/ai-vllm"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-aks",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-aks"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-api-management",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-api-management"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-app-service",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-app-service"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-arc",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-arc"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-cloud",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-cloud"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-configuration",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-configuration"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-functions",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-functions"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-load-balancing",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-load-balancing"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-logic-app",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-logic-app"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-resource-manager",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-resource-manager"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-security-azure-active-directory",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-security-azure-active-directory"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-security-azure-key-vault",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-security-azure-key-vault"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-sql",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-sql"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-event-grid",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-event-grid"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-event-hub",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-event-hub"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-queue",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-queue"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-service-bus",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-service-bus"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-web-pub-sub",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-web-pub-sub"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-messaging",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-messaging"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-nosql-azure-nosql",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-nosql-azure-nosql"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-nosql-cosmosdb",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-nosql-cosmosdb"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-service-fabric",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-service-fabric"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-blob",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-blob"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-file",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-file"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-queue",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-queue"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-storage",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-storage"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-table",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-table"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-best-practices",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-best-practices"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-native",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-native"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-ambassador-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-ambassador-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-anti-corruption-layer-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-anti-corruption-layer-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-bff",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-bff"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-bulkhead-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-bulkhead-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-circuit-breaker",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-circuit-breaker"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-cloud-design-patterns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-cloud-design-patterns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-exactly-one-delivery",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-exactly-one-delivery"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-gateway-aggregation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-gateway-aggregation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-gateway-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-gateway-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-inbox-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-inbox-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-outbox-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-outbox-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-sidecar",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-sidecar"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-strangler-fig-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-strangler-fig-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-ansible",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-ansible"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-iaas",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-iaas"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-nomad",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-nomad"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-pulumi",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-pulumi"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-terraform",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-iaas-terraform"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-envoy",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-envoy"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-fabio",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-fabio"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-haproxy",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-haproxy"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-load-balancing",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-load-balancing"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-metallb",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-metallb"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-nginx",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-nginx"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-reverse-proxy",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-reverse-proxy"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-traefik",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-traefik"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-networking-yarp",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-networking-yarp"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-paas-heroku",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-paas-heroku"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-paas-netlify",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-paas-netlify"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-paas-openshift",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-paas-openshift"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-paas-rancher",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-paas-rancher"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/cloud-platforms-serverless",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/cloud-platforms-serverless"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-caching",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-caching"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-data-driven-design",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-data-driven-design"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-nosql-cosmosdb",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-nosql-cosmosdb"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-nosql-documentdb",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-nosql-documentdb"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-nosql-mongodb",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-nosql-mongodb"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-nosql-nosql",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-nosql-nosql"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-nosql-ravendb",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-nosql-ravendb"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-relational-postgres",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-relational-postgres"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-relational-relational-database",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-relational-relational-database"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-relational-sql",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-relational-sql"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-replication",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-replication"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-databases-sharding",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-databases-sharding"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/data-ids",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/data-ids"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-ci-cd-azure-devops",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-ci-cd-azure-devops"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-ci-cd-github-actions",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-ci-cd-github-actions"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-ci-cd-jenkins",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-ci-cd-jenkins"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-containerd",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-containerd"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-docker-docker",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-docker-docker"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-docker-docker-compose",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-docker-docker-compose"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-gitops",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-gitops"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-debuging-development",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-debuging-development"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-strategies",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-strategies"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-argo-cd",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-argo-cd"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-flux",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-flux"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-helm",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-helm"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-kubernetes-operator",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-kubernetes-operator"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-kustomize",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-kustomize"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-ingress-controller",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-ingress-controller"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-nginx-ingress",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-nginx-ingress"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-traefik-ingress",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-traefik-ingress"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-kubernetes",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-kubernetes"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-garden",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-garden"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-k3s",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-k3s"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-mirrord",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-mirrord"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-okteto",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-okteto"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-skaffold",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-skaffold"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-telepresence",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-telepresence"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-tilt",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-tilt"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-kubernetes-services",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-kubernetes-services"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-linux-bash",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-linux-bash"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-terminal-bash",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-terminal-bash"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/devops-terminal-powershell",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/devops-terminal-powershell"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-back-pressure",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-back-pressure"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-concurrency",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-concurrency"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-distributed-locking",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-distributed-locking"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-distributed-transactions",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-distributed-transactions"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-event-driven-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-event-driven-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-eventual-consistency",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-eventual-consistency"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-grpc",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-grpc"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-async-api-documentation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-async-api-documentation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-change-data-capture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-change-data-capture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-kafka",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-kafka"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-messaging",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-messaging"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-messaging-patterns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-messaging-patterns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-nats",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-nats"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-rabbitmq",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-rabbitmq"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-messaging-zeromq",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-messaging-zeromq"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-ambassador",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-ambassador"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-api-gateway",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-api-gateway"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-kong",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-kong"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-ocelot",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-ocelot"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-communication",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-communication"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-composite-ui",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-composite-ui"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-microservices",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-microservices"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-correlationId",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-correlationId"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-diagnostics",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-diagnostics"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-distributed-tracing",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-distributed-tracing"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-logging",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-logging"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-monitoring",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-monitoring"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-observability",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-observability"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-efk",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-efk"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-elk",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-elk"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-fluent-bit",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-fluent-bit"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-fluentd",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-fluentd"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-loki",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-loki"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-high-availibility",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-high-availibility"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-idempotency",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-idempotency"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-resiliency",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-resiliency"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-sbom",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-sbom"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-security",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-security"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-security-scan",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-security-scan"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-vault",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-vault"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-services-boundries",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-services-boundries"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-testing",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-testing"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-aspire",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-aspire"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-cap",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-cap"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-dapr",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-dapr"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-mass-transit",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-mass-transit"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-nservicebus",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-nservicebus"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-steeltoe",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-steeltoe"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-tye",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-tye"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-wolverine",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-wolverine"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-scaling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-scaling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-consul",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-consul"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-eureka",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-eureka"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-service-discovery",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-service-discovery"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-istio",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-istio"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-linkerd",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-linkerd"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-service-mesh",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-service-mesh"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-systems-design-consistent-hash",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-systems-design-consistent-hash"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/distributed-systems-systems-design-systems-design",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/distributed-systems-systems-design-systems-design"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-abstraction",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-abstraction"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-algorithm",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-algorithm"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-architecture-documententation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-architecture-documententation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-clean-code",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-clean-code"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-code-review",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-code-review"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-functional",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-functional"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-architecture-diagram",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-architecture-diagram"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-class-diagram",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-class-diagram"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-component-diagram",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-component-diagram"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-conceptual-modeling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-conceptual-modeling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-data-model-notations",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-data-model-notations"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-domain-stroytelling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-domain-stroytelling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-er-diagrams",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-er-diagrams"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-event-modeling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-event-modeling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-event-storming",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-event-storming"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-logical-modeling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-logical-modeling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-modeling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-modeling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-physical-modeling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-physical-modeling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-relationship",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-relationship"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-tools",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-tools"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-modeling-use-case-diagram",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-modeling-use-case-diagram"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-object-oriented-design",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-object-oriented-design"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-open-source",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-open-source"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-refactoring",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-refactoring"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-software-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-software-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/foundations-type-driven-design",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/foundations-type-driven-design"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-anti-patterns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-anti-patterns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-big-ball-of-mud",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-big-ball-of-mud"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-code-smells",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-code-smells"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-god-object",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-god-object"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-leaky-abstractions",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-leaky-abstractions"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-partial-object",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-partial-object"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-static-cling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-static-cling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-actor-model-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-actor-model-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-akka-net",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-akka-net"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-orleans",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-orleans"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-protoactor",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-protoactor"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-clean-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-clean-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-cqrs",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-cqrs"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-adapter-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-adapter-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-builder",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-builder"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-chain-of-responsibility",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-chain-of-responsibility"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-command-message-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-command-message-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-command-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-command-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-decorator-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-decorator-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-design-patterns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-design-patterns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-factory-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-factory-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-mediator-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-mediator-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-observer",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-observer"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-query-object-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-query-object-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-repository-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-repository-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-repr",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-repr"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-service-locator",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-service-locator"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-singleton",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-singleton"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-specification-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-specification-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-state-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-state-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-strategy-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-strategy-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-transaction-script-pattern",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-transaction-script-pattern"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-aggregation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-aggregation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-anemic-domain-model",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-anemic-domain-model"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-application-service",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-application-service"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-bounded-context",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-bounded-context"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-driven-design",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-driven-design"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-events",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-events"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-primitives",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-primitives"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-service",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-service"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-enums",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-enums"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-exception-and-validation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-exception-and-validation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-infrastructure",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-infrastructure"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-integration-event",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-integration-event"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-mapping",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-mapping"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-orm-ef",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-orm-ef"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-rich-domain-model",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-rich-domain-model"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-strategic-design-patterns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-strategic-design-patterns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-tactical-design-patterns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-tactical-design-patterns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-value-objects",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-value-objects"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-event-sourcing",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-event-sourcing"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-hexagonal-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-hexagonal-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-micro-frontend",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-micro-frontend"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-modular-monolith",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-modular-monolith"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-onion-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-onion-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-rest",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-rest"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-service-oriented-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-service-oriented-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-vertical-slice-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-vertical-slice-architecture"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-design-practices-12-factor",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-design-practices-12-factor"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-design-practices-design-best-practices",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-design-practices-design-best-practices"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-design-practices-thin-controllers",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-design-practices-thin-controllers"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-architectural-design-principles",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-architectural-design-principles"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-cap",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-cap"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-cohesion",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-cohesion"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-coupling",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-coupling"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-cqs",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-cqs"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-cross-cutting-concerns",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-cross-cutting-concerns"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-dependency-inversion",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-dependency-inversion"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-dry",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-dry"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-encapsulation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-encapsulation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-fail-fast",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-fail-fast"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-favor-composition-over-inheritance",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-favor-composition-over-inheritance"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-grasp",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-grasp"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-interface-segregation",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-interface-segregation"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-inversion-control",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-inversion-control"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-kiss",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-kiss"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-open-closed-principles",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-open-closed-principles"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-persistence-ignorance",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-persistence-ignorance"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-single-responsibility",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-single-responsibility"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-solid",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-solid"
+      },
+      {
+        "url": "https://awesome-architecture.com/topics/software-architecture-principles-yagni",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://awesome-architecture.com/topics/software-architecture-principles-yagni"
+      },
+      {
+        "url": "https://bitbucket.org/tinkerer_/adr-tools-python/src/master/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://c4model.com/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://c4model.com/diagrams",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://checkstyle.org/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html",
+        "status": "unverified",
+        "error": "The read operation timed out"
+      },
+      {
+        "url": "https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://eslint.org/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://genai.owasp.org/llm-top-10/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/DecispherHQ/decision-guardian",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/LukasNiessen/ArchUnitTS",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://github.com/OWASP/ASVS",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/OWASP/ASVS"
+      },
+      {
+        "url": "https://github.com/TheoV823/mneme",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/MnemeHQ/mneme"
+      },
+      {
+        "url": "https://github.com/dependabot",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/dependabot"
+      },
+      {
+        "url": "https://github.com/joelparkerhenderson/architecture-decision-record",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/architecture-decision-record/architecture-decision-record"
+      },
+      {
+        "url": "https://github.com/npryce/adr-tools",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/npryce/adr-tools"
+      },
+      {
+        "url": "https://github.com/sverweij/dependency-cruiser",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://github.com/sverweij/dependency-cruiser"
+      },
+      {
+        "url": "https://opentelemetry.io/docs/concepts/signals/profiles/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://opentelemetry.io/docs/concepts/signals/profiles/"
+      },
+      {
+        "url": "https://opentelemetry.io/docs/specs/semconv/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://opentelemetry.io/docs/specs/semconv/"
+      },
+      {
+        "url": "https://owasp.org/projects/mcp-top-10",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://owasp.org/www-project-top-ten/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://slsa.dev/spec/v1.2/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://top10.owasp.org/2025/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.agilebusiness.org/resource/what-is-moscow-prioritization/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.agilebusiness.org/resource/what-is-moscow-prioritization/"
+      },
+      {
+        "url": "https://www.archunit.org/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.finops.org/framework/",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.iso.org/standard/72089.html",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.iso.org/standard/73436.html",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.iso.org/standard/78176.html",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.ndepend.com/docs/code-metrics",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.ndepend.com/docs/code-metrics"
+      },
+      {
+        "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986368/",
+        "status": "unverified",
+        "http_status": 403
+      },
+      {
+        "url": "https://www.sei.cmu.edu/library/atam-method-for-architecture-evaluation/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.sei.cmu.edu/library/atam-method-for-architecture-evaluation/"
+      },
+      {
+        "url": "https://www.sei.cmu.edu/library/attribute-driven-design-add-version-20/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.sei.cmu.edu/library/attribute-driven-design-add-version-20/"
+      },
+      {
+        "url": "https://www.sonarsource.com/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.sonarsource.com/"
+      },
+      {
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.w3.org/TR/WCAG22/"
+      },
+      {
+        "url": "https://alistair.cockburn.us/hexagonal-architecture",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://alistair.cockburn.us/hexagonal-architecture"
+      },
+      {
+        "url": "https://docs.aws.amazon.com/app-mesh/latest/userguide/what-is-app-mesh.html",
+        "status": "unverified",
+        "error": "The read operation timed out"
+      },
+      {
+        "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-C/section-164.316",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.rfc-editor.org/rfc/rfc5789.html",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.rfc-editor.org/rfc/rfc5789.html"
+      },
+      {
+        "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+      },
+      {
+        "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.rfc-editor.org/rfc/rfc9700.html"
+      },
+      {
+        "url": "https://github.com/sverweij/dependency-cruiser/blob/main/doc/rules-reference.md",
+        "status": "unverified",
+        "error": "<urlopen error timed out>"
+      },
+      {
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+        "status": "reachable",
+        "http_status": 200,
+        "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+      }
+    ],
+    "current_document_urls": 345
+  },
+  "route_replacements": {
+    "https://awesome-architecture.com/abstraction/": "https://awesome-architecture.com/topics/foundations-abstraction",
+    "https://awesome-architecture.com/actor-model-architecture/actor-model-architecture/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-actor-model-architecture",
+    "https://awesome-architecture.com/actor-model-architecture/akka-net/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-akka-net",
+    "https://awesome-architecture.com/actor-model-architecture/orleans/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-orleans",
+    "https://awesome-architecture.com/actor-model-architecture/protoactor/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-actor-model-protoactor",
+    "https://awesome-architecture.com/ai/a2a/": "https://awesome-architecture.com/topics/ai-a2a",
+    "https://awesome-architecture.com/ai/acp/": "https://awesome-architecture.com/topics/ai-acp",
+    "https://awesome-architecture.com/ai/agent-framework/": "https://awesome-architecture.com/topics/ai-microsoft-agent-framework",
+    "https://awesome-architecture.com/ai/agent/": "https://awesome-architecture.com/topics/ai-agent",
+    "https://awesome-architecture.com/ai/ai-design/": "https://awesome-architecture.com/topics/ai-ai-design",
+    "https://awesome-architecture.com/ai/ai-security/": "https://awesome-architecture.com/topics/ai-ai-security",
+    "https://awesome-architecture.com/ai/ai/": "https://awesome-architecture.com/topics/ai-ai",
+    "https://awesome-architecture.com/ai/context/": "https://awesome-architecture.com/topics/ai-context",
+    "https://awesome-architecture.com/ai/embedding-vector/": "https://awesome-architecture.com/topics/ai-embedding-vector",
+    "https://awesome-architecture.com/ai/evaluation/": "https://awesome-architecture.com/topics/ai-evaluation-test",
+    "https://awesome-architecture.com/ai/harness-engineering/": "https://awesome-architecture.com/topics/ai-harness-engineering",
+    "https://awesome-architecture.com/ai/langchain/": "https://awesome-architecture.com/topics/ai-langchain",
+    "https://awesome-architecture.com/ai/mcp/": "https://awesome-architecture.com/topics/ai-mcp",
+    "https://awesome-architecture.com/ai/meai/": "https://awesome-architecture.com/topics/ai-meai",
+    "https://awesome-architecture.com/ai/memory/": "https://awesome-architecture.com/topics/ai-memory",
+    "https://awesome-architecture.com/ai/ml.net/": "https://awesome-architecture.com/topics/ai-ml.net",
+    "https://awesome-architecture.com/ai/models/": "https://awesome-architecture.com/topics/ai-models",
+    "https://awesome-architecture.com/ai/prompt-engineering/": "https://awesome-architecture.com/topics/ai-prompt-engineering",
+    "https://awesome-architecture.com/ai/rag/": "https://awesome-architecture.com/topics/ai-rag",
+    "https://awesome-architecture.com/ai/self-hosting/ollama/": "https://awesome-architecture.com/topics/ai-ollama",
+    "https://awesome-architecture.com/ai/self-hosting/vllm/": "https://awesome-architecture.com/topics/ai-vllm",
+    "https://awesome-architecture.com/ai/semantic-kernel/": "https://awesome-architecture.com/topics/ai-semantic-kernel",
+    "https://awesome-architecture.com/ai/skills/": "https://awesome-architecture.com/topics/ai-skills-subagents-plugins",
+    "https://awesome-architecture.com/ai/tools/ai-tools/": "https://awesome-architecture.com/topics/ai-ai-tools",
+    "https://awesome-architecture.com/ai/tools/claude-code/": "https://awesome-architecture.com/topics/ai-agents-coding",
+    "https://awesome-architecture.com/ai/tools/copilot/": "https://awesome-architecture.com/topics/ai-agents-coding",
+    "https://awesome-architecture.com/ai/tools/dev-tools/": "https://awesome-architecture.com/topics/ai-ai-tools",
+    "https://awesome-architecture.com/algorithm/": "https://awesome-architecture.com/topics/foundations-algorithm",
+    "https://awesome-architecture.com/anti-patterns/anti-patterns/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-anti-patterns",
+    "https://awesome-architecture.com/anti-patterns/big-ball-of-mud/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-big-ball-of-mud",
+    "https://awesome-architecture.com/anti-patterns/code-smells/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-code-smells",
+    "https://awesome-architecture.com/anti-patterns/god-object/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-god-object",
+    "https://awesome-architecture.com/anti-patterns/leaky-abstractions/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-leaky-abstractions",
+    "https://awesome-architecture.com/anti-patterns/partial-object/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-partial-object",
+    "https://awesome-architecture.com/anti-patterns/static-cling/": "https://awesome-architecture.com/topics/software-architecture-anti-patterns-static-cling",
+    "https://awesome-architecture.com/architectural-design-principles/architectural-design-principles/": "https://awesome-architecture.com/topics/software-architecture-principles-architectural-design-principles",
+    "https://awesome-architecture.com/architectural-design-principles/cap/": "https://awesome-architecture.com/topics/software-architecture-principles-cap",
+    "https://awesome-architecture.com/architectural-design-principles/cohesion/": "https://awesome-architecture.com/topics/software-architecture-principles-cohesion",
+    "https://awesome-architecture.com/architectural-design-principles/coupling/": "https://awesome-architecture.com/topics/software-architecture-principles-coupling",
+    "https://awesome-architecture.com/architectural-design-principles/cqs/": "https://awesome-architecture.com/topics/software-architecture-principles-cqs",
+    "https://awesome-architecture.com/architectural-design-principles/cross-cutting-concerns/": "https://awesome-architecture.com/topics/software-architecture-principles-cross-cutting-concerns",
+    "https://awesome-architecture.com/architectural-design-principles/dependency-inversion/": "https://awesome-architecture.com/topics/software-architecture-principles-dependency-inversion",
+    "https://awesome-architecture.com/architectural-design-principles/dry/": "https://awesome-architecture.com/topics/software-architecture-principles-dry",
+    "https://awesome-architecture.com/architectural-design-principles/encapsulation/": "https://awesome-architecture.com/topics/software-architecture-principles-encapsulation",
+    "https://awesome-architecture.com/architectural-design-principles/fail-fast/": "https://awesome-architecture.com/topics/software-architecture-principles-fail-fast",
+    "https://awesome-architecture.com/architectural-design-principles/favor-composition-over-inheritance/": "https://awesome-architecture.com/topics/software-architecture-principles-favor-composition-over-inheritance",
+    "https://awesome-architecture.com/architectural-design-principles/grasp/": "https://awesome-architecture.com/topics/software-architecture-principles-grasp",
+    "https://awesome-architecture.com/architectural-design-principles/interface-segregation/": "https://awesome-architecture.com/topics/software-architecture-principles-interface-segregation",
+    "https://awesome-architecture.com/architectural-design-principles/inversion-control/": "https://awesome-architecture.com/topics/software-architecture-principles-inversion-control",
+    "https://awesome-architecture.com/architectural-design-principles/kiss/": "https://awesome-architecture.com/topics/software-architecture-principles-kiss",
+    "https://awesome-architecture.com/architectural-design-principles/open-closed-principles/": "https://awesome-architecture.com/topics/software-architecture-principles-open-closed-principles",
+    "https://awesome-architecture.com/architectural-design-principles/persistence-ignorance/": "https://awesome-architecture.com/topics/software-architecture-principles-persistence-ignorance",
+    "https://awesome-architecture.com/architectural-design-principles/single-responsibility/": "https://awesome-architecture.com/topics/software-architecture-principles-single-responsibility",
+    "https://awesome-architecture.com/architectural-design-principles/solid/": "https://awesome-architecture.com/topics/software-architecture-principles-solid",
+    "https://awesome-architecture.com/architectural-design-principles/yagni/": "https://awesome-architecture.com/topics/software-architecture-principles-yagni",
+    "https://awesome-architecture.com/architecture-documententation/": "https://awesome-architecture.com/topics/foundations-architecture-documententation",
+    "https://awesome-architecture.com/azure/aks/": "https://awesome-architecture.com/topics/cloud-platforms-azure-aks",
+    "https://awesome-architecture.com/azure/azure-api-management/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-api-management",
+    "https://awesome-architecture.com/azure/azure-app-service/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-app-service",
+    "https://awesome-architecture.com/azure/azure-arc/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-arc",
+    "https://awesome-architecture.com/azure/azure-cloud/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-cloud",
+    "https://awesome-architecture.com/azure/azure-configuration/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-configuration",
+    "https://awesome-architecture.com/azure/azure-functions/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-functions",
+    "https://awesome-architecture.com/azure/azure-load-balancing/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-load-balancing",
+    "https://awesome-architecture.com/azure/azure-logic-app/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-logic-app",
+    "https://awesome-architecture.com/azure/azure-resource-manager/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-resource-manager",
+    "https://awesome-architecture.com/azure/azure-security/azure-active-directory/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-security-azure-active-directory",
+    "https://awesome-architecture.com/azure/azure-security/azure-key-vault/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-security-azure-key-vault",
+    "https://awesome-architecture.com/azure/azure-sql/": "https://awesome-architecture.com/topics/cloud-platforms-azure-azure-sql",
+    "https://awesome-architecture.com/azure/messaging/azure-event-grid/": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-event-grid",
+    "https://awesome-architecture.com/azure/messaging/azure-event-hub/": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-event-hub",
+    "https://awesome-architecture.com/azure/messaging/azure-queue/": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-queue",
+    "https://awesome-architecture.com/azure/messaging/azure-service-bus/": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-service-bus",
+    "https://awesome-architecture.com/azure/messaging/azure-web-pub-sub/": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-azure-web-pub-sub",
+    "https://awesome-architecture.com/azure/messaging/messaging/": "https://awesome-architecture.com/topics/cloud-platforms-azure-messaging-messaging",
+    "https://awesome-architecture.com/azure/nosql/azure-nosql/": "https://awesome-architecture.com/topics/cloud-platforms-azure-nosql-azure-nosql",
+    "https://awesome-architecture.com/azure/nosql/cosmosdb/": "https://awesome-architecture.com/topics/cloud-platforms-azure-nosql-cosmosdb",
+    "https://awesome-architecture.com/azure/service-fabric/": "https://awesome-architecture.com/topics/cloud-platforms-azure-service-fabric",
+    "https://awesome-architecture.com/azure/storage/blob/": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-blob",
+    "https://awesome-architecture.com/azure/storage/file/": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-file",
+    "https://awesome-architecture.com/azure/storage/queue/": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-queue",
+    "https://awesome-architecture.com/azure/storage/storage/": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-storage",
+    "https://awesome-architecture.com/azure/storage/table/": "https://awesome-architecture.com/topics/cloud-platforms-azure-storage-table",
+    "https://awesome-architecture.com/back-pressure/": "https://awesome-architecture.com/topics/distributed-systems-back-pressure",
+    "https://awesome-architecture.com/caching/": "https://awesome-architecture.com/topics/data-caching",
+    "https://awesome-architecture.com/clean-architecture/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-clean-architecture",
+    "https://awesome-architecture.com/clean-code/": "https://awesome-architecture.com/topics/foundations-clean-code",
+    "https://awesome-architecture.com/cloud-best-practices/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-best-practices",
+    "https://awesome-architecture.com/cloud-design-patterns/ambassador-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-ambassador-pattern",
+    "https://awesome-architecture.com/cloud-design-patterns/anti-corruption-layer-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-anti-corruption-layer-pattern",
+    "https://awesome-architecture.com/cloud-design-patterns/bff/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-bff",
+    "https://awesome-architecture.com/cloud-design-patterns/bulkhead-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-bulkhead-pattern",
+    "https://awesome-architecture.com/cloud-design-patterns/circuit-breaker/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-circuit-breaker",
+    "https://awesome-architecture.com/cloud-design-patterns/cloud-design-patterns/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-cloud-design-patterns",
+    "https://awesome-architecture.com/cloud-design-patterns/exactly-one-delivery/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-exactly-one-delivery",
+    "https://awesome-architecture.com/cloud-design-patterns/gateway-aggregation/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-gateway-aggregation",
+    "https://awesome-architecture.com/cloud-design-patterns/gateway-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-gateway-pattern",
+    "https://awesome-architecture.com/cloud-design-patterns/inbox-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-inbox-pattern",
+    "https://awesome-architecture.com/cloud-design-patterns/outbox-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-outbox-pattern",
+    "https://awesome-architecture.com/cloud-design-patterns/sidecar/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-sidecar",
+    "https://awesome-architecture.com/cloud-design-patterns/strangler-fig-pattern/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-patterns-strangler-fig-pattern",
+    "https://awesome-architecture.com/cloud-native/": "https://awesome-architecture.com/topics/cloud-platforms-cloud-native",
+    "https://awesome-architecture.com/code-review/": "https://awesome-architecture.com/topics/foundations-code-review",
+    "https://awesome-architecture.com/concurrency/": "https://awesome-architecture.com/topics/distributed-systems-concurrency",
+    "https://awesome-architecture.com/cqrs/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-cqrs",
+    "https://awesome-architecture.com/data-driven-design/": "https://awesome-architecture.com/topics/data-data-driven-design",
+    "https://awesome-architecture.com/database/nosql/cosmosdb/": "https://awesome-architecture.com/topics/data-databases-nosql-cosmosdb",
+    "https://awesome-architecture.com/database/nosql/documentdb/": "https://awesome-architecture.com/topics/data-databases-nosql-documentdb",
+    "https://awesome-architecture.com/database/nosql/mongodb/": "https://awesome-architecture.com/topics/data-databases-nosql-mongodb",
+    "https://awesome-architecture.com/database/nosql/nosql/": "https://awesome-architecture.com/topics/data-databases-nosql-nosql",
+    "https://awesome-architecture.com/database/nosql/ravendb/": "https://awesome-architecture.com/topics/data-databases-nosql-ravendb",
+    "https://awesome-architecture.com/database/relational/postgres/": "https://awesome-architecture.com/topics/data-databases-relational-postgres",
+    "https://awesome-architecture.com/database/relational/relational-database/": "https://awesome-architecture.com/topics/data-databases-relational-relational-database",
+    "https://awesome-architecture.com/database/relational/sql/": "https://awesome-architecture.com/topics/data-databases-relational-sql",
+    "https://awesome-architecture.com/database/replication/": "https://awesome-architecture.com/topics/data-databases-replication",
+    "https://awesome-architecture.com/database/sharding/": "https://awesome-architecture.com/topics/data-databases-sharding",
+    "https://awesome-architecture.com/design-best-practices/12-factor/": "https://awesome-architecture.com/topics/software-architecture-design-practices-12-factor",
+    "https://awesome-architecture.com/design-best-practices/design-best-practices/": "https://awesome-architecture.com/topics/software-architecture-design-practices-design-best-practices",
+    "https://awesome-architecture.com/design-best-practices/thin-controllers/": "https://awesome-architecture.com/topics/software-architecture-design-practices-thin-controllers",
+    "https://awesome-architecture.com/design-patterns/adapter-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-adapter-pattern",
+    "https://awesome-architecture.com/design-patterns/builder/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-builder",
+    "https://awesome-architecture.com/design-patterns/chain-of-responsibility/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-chain-of-responsibility",
+    "https://awesome-architecture.com/design-patterns/command-message-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-command-message-pattern",
+    "https://awesome-architecture.com/design-patterns/command-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-command-pattern",
+    "https://awesome-architecture.com/design-patterns/decorator-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-decorator-pattern",
+    "https://awesome-architecture.com/design-patterns/design-patterns/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-design-patterns",
+    "https://awesome-architecture.com/design-patterns/factory-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-factory-pattern",
+    "https://awesome-architecture.com/design-patterns/mediator-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-mediator-pattern",
+    "https://awesome-architecture.com/design-patterns/observer/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-observer",
+    "https://awesome-architecture.com/design-patterns/query-object-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-query-object-pattern",
+    "https://awesome-architecture.com/design-patterns/repository-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-repository-pattern",
+    "https://awesome-architecture.com/design-patterns/repr/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-repr",
+    "https://awesome-architecture.com/design-patterns/service-locator/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-service-locator",
+    "https://awesome-architecture.com/design-patterns/singleton/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-singleton",
+    "https://awesome-architecture.com/design-patterns/specification-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-specification-pattern",
+    "https://awesome-architecture.com/design-patterns/state-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-state-pattern",
+    "https://awesome-architecture.com/design-patterns/strategy-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-strategy-pattern",
+    "https://awesome-architecture.com/design-patterns/transaction-script-pattern/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-design-patterns-transaction-script-pattern",
+    "https://awesome-architecture.com/devops/ci-cd/azure-devops/": "https://awesome-architecture.com/topics/devops-ci-cd-azure-devops",
+    "https://awesome-architecture.com/devops/ci-cd/github-actions/": "https://awesome-architecture.com/topics/devops-ci-cd-github-actions",
+    "https://awesome-architecture.com/devops/ci-cd/jenkins/": "https://awesome-architecture.com/topics/devops-ci-cd-jenkins",
+    "https://awesome-architecture.com/devops/containerd/": "https://awesome-architecture.com/topics/devops-containerd",
+    "https://awesome-architecture.com/devops/docker/docker-compose/": "https://awesome-architecture.com/topics/devops-docker-docker-compose",
+    "https://awesome-architecture.com/devops/docker/docker/": "https://awesome-architecture.com/topics/devops-docker-docker",
+    "https://awesome-architecture.com/devops/gitops/": "https://awesome-architecture.com/topics/devops-gitops",
+    "https://awesome-architecture.com/devops/kubernetes/debuging-development/": "https://awesome-architecture.com/topics/devops-kubernetes-debuging-development",
+    "https://awesome-architecture.com/devops/kubernetes/deployment-strategies/": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-strategies",
+    "https://awesome-architecture.com/devops/kubernetes/deployment-tools/argo-cd/": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-argo-cd",
+    "https://awesome-architecture.com/devops/kubernetes/deployment-tools/flux/": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-flux",
+    "https://awesome-architecture.com/devops/kubernetes/deployment-tools/helm/": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-helm",
+    "https://awesome-architecture.com/devops/kubernetes/deployment-tools/kubernetes-operator/": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-kubernetes-operator",
+    "https://awesome-architecture.com/devops/kubernetes/deployment-tools/kustomize/": "https://awesome-architecture.com/topics/devops-kubernetes-deployment-tools-kustomize",
+    "https://awesome-architecture.com/devops/kubernetes/ingress-controller/ingress-controller/": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-ingress-controller",
+    "https://awesome-architecture.com/devops/kubernetes/ingress-controller/nginx-ingress/": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-nginx-ingress",
+    "https://awesome-architecture.com/devops/kubernetes/ingress-controller/traefik-ingress/": "https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-traefik-ingress",
+    "https://awesome-architecture.com/devops/kubernetes/kubernetes/": "https://awesome-architecture.com/topics/devops-kubernetes-kubernetes",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/garden/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-garden",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/k3s/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-k3s",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/mirrord/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-mirrord",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/okteto/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-okteto",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/skaffold/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-skaffold",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/telepresence/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-telepresence",
+    "https://awesome-architecture.com/devops/kubernetes/other-tools/tilt/": "https://awesome-architecture.com/topics/devops-kubernetes-other-tools-tilt",
+    "https://awesome-architecture.com/devops/kubernetes/services/": "https://awesome-architecture.com/topics/devops-kubernetes-services",
+    "https://awesome-architecture.com/devops/linux-bash/": "https://awesome-architecture.com/topics/devops-linux-bash",
+    "https://awesome-architecture.com/devops/terminal/bash/": "https://awesome-architecture.com/topics/devops-terminal-bash",
+    "https://awesome-architecture.com/devops/terminal/powershell/": "https://awesome-architecture.com/topics/devops-terminal-powershell",
+    "https://awesome-architecture.com/distributed-locking/": "https://awesome-architecture.com/topics/distributed-systems-distributed-locking",
+    "https://awesome-architecture.com/distributed-transactions/": "https://awesome-architecture.com/topics/distributed-systems-distributed-transactions",
+    "https://awesome-architecture.com/domain-driven-design/aggregation/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-aggregation",
+    "https://awesome-architecture.com/domain-driven-design/anemic-domain-model/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-anemic-domain-model",
+    "https://awesome-architecture.com/domain-driven-design/application-service/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-application-service",
+    "https://awesome-architecture.com/domain-driven-design/bounded-context/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-bounded-context",
+    "https://awesome-architecture.com/domain-driven-design/domain-driven-design/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-driven-design",
+    "https://awesome-architecture.com/domain-driven-design/domain-events/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-events",
+    "https://awesome-architecture.com/domain-driven-design/domain-primitives/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-primitives",
+    "https://awesome-architecture.com/domain-driven-design/domain-service/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain-service",
+    "https://awesome-architecture.com/domain-driven-design/domain/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-domain",
+    "https://awesome-architecture.com/domain-driven-design/enums/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-enums",
+    "https://awesome-architecture.com/domain-driven-design/exception-and-validation/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-exception-and-validation",
+    "https://awesome-architecture.com/domain-driven-design/infrastructure/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-infrastructure",
+    "https://awesome-architecture.com/domain-driven-design/integration-event/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-integration-event",
+    "https://awesome-architecture.com/domain-driven-design/mapping/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-mapping",
+    "https://awesome-architecture.com/domain-driven-design/orm/ef/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-orm-ef",
+    "https://awesome-architecture.com/domain-driven-design/rich-domain-model/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-rich-domain-model",
+    "https://awesome-architecture.com/domain-driven-design/strategic-design-patterns/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-strategic-design-patterns",
+    "https://awesome-architecture.com/domain-driven-design/tactical-design-patterns/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-tactical-design-patterns",
+    "https://awesome-architecture.com/domain-driven-design/value-objects/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-domain-driven-design-value-objects",
+    "https://awesome-architecture.com/event-driven-architecture/": "https://awesome-architecture.com/topics/distributed-systems-event-driven-architecture",
+    "https://awesome-architecture.com/event-sourcing/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-event-sourcing",
+    "https://awesome-architecture.com/eventual-consistency/": "https://awesome-architecture.com/topics/distributed-systems-eventual-consistency",
+    "https://awesome-architecture.com/functional/": "https://awesome-architecture.com/topics/foundations-functional",
+    "https://awesome-architecture.com/grpc/": "https://awesome-architecture.com/topics/distributed-systems-grpc",
+    "https://awesome-architecture.com/hexagonal-architecture/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-hexagonal-architecture",
+    "https://awesome-architecture.com/iaas/ansible/": "https://awesome-architecture.com/topics/cloud-platforms-iaas-ansible",
+    "https://awesome-architecture.com/iaas/iaas/": "https://awesome-architecture.com/topics/cloud-platforms-iaas-iaas",
+    "https://awesome-architecture.com/iaas/nomad/": "https://awesome-architecture.com/topics/cloud-platforms-iaas-nomad",
+    "https://awesome-architecture.com/iaas/pulumi/": "https://awesome-architecture.com/topics/cloud-platforms-iaas-pulumi",
+    "https://awesome-architecture.com/iaas/terraform/": "https://awesome-architecture.com/topics/cloud-platforms-iaas-terraform",
+    "https://awesome-architecture.com/ids/": "https://awesome-architecture.com/topics/data-ids",
+    "https://awesome-architecture.com/messaging/async-api-documentation/": "https://awesome-architecture.com/topics/distributed-systems-messaging-async-api-documentation",
+    "https://awesome-architecture.com/messaging/change-data-capture/": "https://awesome-architecture.com/topics/distributed-systems-messaging-change-data-capture",
+    "https://awesome-architecture.com/messaging/kafka/": "https://awesome-architecture.com/topics/distributed-systems-messaging-kafka",
+    "https://awesome-architecture.com/messaging/messaging-patterns/": "https://awesome-architecture.com/topics/distributed-systems-messaging-messaging-patterns",
+    "https://awesome-architecture.com/messaging/messaging/": "https://awesome-architecture.com/topics/distributed-systems-messaging-messaging",
+    "https://awesome-architecture.com/messaging/nats/": "https://awesome-architecture.com/topics/distributed-systems-messaging-nats",
+    "https://awesome-architecture.com/messaging/rabbitmq/": "https://awesome-architecture.com/topics/distributed-systems-messaging-rabbitmq",
+    "https://awesome-architecture.com/messaging/zeromq/": "https://awesome-architecture.com/topics/distributed-systems-messaging-zeromq",
+    "https://awesome-architecture.com/micro-frontend/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-micro-frontend",
+    "https://awesome-architecture.com/microservices/api-gateway/ambassador/": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-ambassador",
+    "https://awesome-architecture.com/microservices/api-gateway/api-gateway/": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-api-gateway",
+    "https://awesome-architecture.com/microservices/api-gateway/kong/": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-kong",
+    "https://awesome-architecture.com/microservices/api-gateway/ocelot/": "https://awesome-architecture.com/topics/distributed-systems-microservices-api-gateway-ocelot",
+    "https://awesome-architecture.com/microservices/communication/": "https://awesome-architecture.com/topics/distributed-systems-microservices-communication",
+    "https://awesome-architecture.com/microservices/composite-ui/": "https://awesome-architecture.com/topics/distributed-systems-microservices-composite-ui",
+    "https://awesome-architecture.com/microservices/microservices/": "https://awesome-architecture.com/topics/distributed-systems-microservices-microservices",
+    "https://awesome-architecture.com/microservices/observability/correlationId/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-correlationId",
+    "https://awesome-architecture.com/microservices/observability/diagnostics/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-diagnostics",
+    "https://awesome-architecture.com/microservices/observability/distributed-tracing/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-distributed-tracing",
+    "https://awesome-architecture.com/microservices/observability/logging/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-logging",
+    "https://awesome-architecture.com/microservices/observability/monitoring/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-monitoring",
+    "https://awesome-architecture.com/microservices/observability/observability/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-observability",
+    "https://awesome-architecture.com/microservices/observability/tools/efk/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-efk",
+    "https://awesome-architecture.com/microservices/observability/tools/elk/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-elk",
+    "https://awesome-architecture.com/microservices/observability/tools/fluent-bit/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-fluent-bit",
+    "https://awesome-architecture.com/microservices/observability/tools/fluentd/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-fluentd",
+    "https://awesome-architecture.com/microservices/observability/tools/loki/": "https://awesome-architecture.com/topics/distributed-systems-microservices-observability-tools-loki",
+    "https://awesome-architecture.com/microservices/resiliency/high-availibility/": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-high-availibility",
+    "https://awesome-architecture.com/microservices/resiliency/idempotency/": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-idempotency",
+    "https://awesome-architecture.com/microservices/resiliency/resiliency/": "https://awesome-architecture.com/topics/distributed-systems-microservices-resiliency-resiliency",
+    "https://awesome-architecture.com/microservices/security/sbom/": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-sbom",
+    "https://awesome-architecture.com/microservices/security/security-scan/": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-security-scan",
+    "https://awesome-architecture.com/microservices/security/security/": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-security",
+    "https://awesome-architecture.com/microservices/security/vault/": "https://awesome-architecture.com/topics/distributed-systems-microservices-security-vault",
+    "https://awesome-architecture.com/microservices/services-boundries/": "https://awesome-architecture.com/topics/distributed-systems-microservices-services-boundries",
+    "https://awesome-architecture.com/microservices/testing/": "https://awesome-architecture.com/topics/distributed-systems-microservices-testing",
+    "https://awesome-architecture.com/microservices/tools/aspire/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-aspire",
+    "https://awesome-architecture.com/microservices/tools/cap/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-cap",
+    "https://awesome-architecture.com/microservices/tools/dapr/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-dapr",
+    "https://awesome-architecture.com/microservices/tools/mass-transit/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-mass-transit",
+    "https://awesome-architecture.com/microservices/tools/nservicebus/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-nservicebus",
+    "https://awesome-architecture.com/microservices/tools/steeltoe/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-steeltoe",
+    "https://awesome-architecture.com/microservices/tools/tye/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-tye",
+    "https://awesome-architecture.com/microservices/tools/wolverine/": "https://awesome-architecture.com/topics/distributed-systems-microservices-tools-wolverine",
+    "https://awesome-architecture.com/modeling/architecture-diagram/": "https://awesome-architecture.com/topics/foundations-modeling-architecture-diagram",
+    "https://awesome-architecture.com/modeling/class-diagram/": "https://awesome-architecture.com/topics/foundations-modeling-class-diagram",
+    "https://awesome-architecture.com/modeling/component-diagram/": "https://awesome-architecture.com/topics/foundations-modeling-component-diagram",
+    "https://awesome-architecture.com/modeling/conceptual-modeling/": "https://awesome-architecture.com/topics/foundations-modeling-conceptual-modeling",
+    "https://awesome-architecture.com/modeling/data-model-notations/": "https://awesome-architecture.com/topics/foundations-modeling-data-model-notations",
+    "https://awesome-architecture.com/modeling/domain-stroytelling/": "https://awesome-architecture.com/topics/foundations-modeling-domain-stroytelling",
+    "https://awesome-architecture.com/modeling/er-diagrams/": "https://awesome-architecture.com/topics/foundations-modeling-er-diagrams",
+    "https://awesome-architecture.com/modeling/event-modeling/": "https://awesome-architecture.com/topics/foundations-modeling-event-modeling",
+    "https://awesome-architecture.com/modeling/event-storming/": "https://awesome-architecture.com/topics/foundations-modeling-event-storming",
+    "https://awesome-architecture.com/modeling/logical-modeling/": "https://awesome-architecture.com/topics/foundations-modeling-logical-modeling",
+    "https://awesome-architecture.com/modeling/modeling/": "https://awesome-architecture.com/topics/foundations-modeling-modeling",
+    "https://awesome-architecture.com/modeling/physical-modeling/": "https://awesome-architecture.com/topics/foundations-modeling-physical-modeling",
+    "https://awesome-architecture.com/modeling/relationship/": "https://awesome-architecture.com/topics/foundations-modeling-relationship",
+    "https://awesome-architecture.com/modeling/tools/": "https://awesome-architecture.com/topics/foundations-modeling-tools",
+    "https://awesome-architecture.com/modeling/use-case-diagram/": "https://awesome-architecture.com/topics/foundations-modeling-use-case-diagram",
+    "https://awesome-architecture.com/modular-monolith/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-modular-monolith",
+    "https://awesome-architecture.com/object-oriented-design/": "https://awesome-architecture.com/topics/foundations-object-oriented-design",
+    "https://awesome-architecture.com/onion-architecture/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-onion-architecture",
+    "https://awesome-architecture.com/open-source/": "https://awesome-architecture.com/topics/foundations-open-source",
+    "https://awesome-architecture.com/paas/heroku/": "https://awesome-architecture.com/topics/cloud-platforms-paas-heroku",
+    "https://awesome-architecture.com/paas/netlify/": "https://awesome-architecture.com/topics/cloud-platforms-paas-netlify",
+    "https://awesome-architecture.com/paas/openshift/": "https://awesome-architecture.com/topics/cloud-platforms-paas-openshift",
+    "https://awesome-architecture.com/paas/rancher/": "https://awesome-architecture.com/topics/cloud-platforms-paas-rancher",
+    "https://awesome-architecture.com/refactoring/": "https://awesome-architecture.com/topics/foundations-refactoring",
+    "https://awesome-architecture.com/rest/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-rest",
+    "https://awesome-architecture.com/reverse-proxy-lb/envoy/": "https://awesome-architecture.com/topics/cloud-platforms-networking-envoy",
+    "https://awesome-architecture.com/reverse-proxy-lb/fabio/": "https://awesome-architecture.com/topics/cloud-platforms-networking-fabio",
+    "https://awesome-architecture.com/reverse-proxy-lb/haproxy/": "https://awesome-architecture.com/topics/cloud-platforms-networking-haproxy",
+    "https://awesome-architecture.com/reverse-proxy-lb/load-balancing/": "https://awesome-architecture.com/topics/cloud-platforms-networking-load-balancing",
+    "https://awesome-architecture.com/reverse-proxy-lb/metallb/": "https://awesome-architecture.com/topics/cloud-platforms-networking-metallb",
+    "https://awesome-architecture.com/reverse-proxy-lb/nginx/": "https://awesome-architecture.com/topics/cloud-platforms-networking-nginx",
+    "https://awesome-architecture.com/reverse-proxy-lb/reverse-proxy/": "https://awesome-architecture.com/topics/cloud-platforms-networking-reverse-proxy",
+    "https://awesome-architecture.com/reverse-proxy-lb/traefik/": "https://awesome-architecture.com/topics/cloud-platforms-networking-traefik",
+    "https://awesome-architecture.com/reverse-proxy-lb/yarp/": "https://awesome-architecture.com/topics/cloud-platforms-networking-yarp",
+    "https://awesome-architecture.com/scaling/": "https://awesome-architecture.com/topics/distributed-systems-scaling",
+    "https://awesome-architecture.com/serverless/": "https://awesome-architecture.com/topics/cloud-platforms-serverless",
+    "https://awesome-architecture.com/service-discovery/consul/": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-consul",
+    "https://awesome-architecture.com/service-discovery/eureka/": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-eureka",
+    "https://awesome-architecture.com/service-discovery/service-discovery/": "https://awesome-architecture.com/topics/distributed-systems-service-discovery-service-discovery",
+    "https://awesome-architecture.com/service-mesh/istio/": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-istio",
+    "https://awesome-architecture.com/service-mesh/linkerd/": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-linkerd",
+    "https://awesome-architecture.com/service-mesh/service-mesh/": "https://awesome-architecture.com/topics/distributed-systems-service-mesh-service-mesh",
+    "https://awesome-architecture.com/service-oriented-architecture/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-service-oriented-architecture",
+    "https://awesome-architecture.com/software-architecture/": "https://awesome-architecture.com/topics/foundations-software-architecture",
+    "https://awesome-architecture.com/systems-design/consistent-hash/": "https://awesome-architecture.com/topics/distributed-systems-systems-design-consistent-hash",
+    "https://awesome-architecture.com/systems-design/systems-design/": "https://awesome-architecture.com/topics/distributed-systems-systems-design-systems-design",
+    "https://awesome-architecture.com/type-driven-design/": "https://awesome-architecture.com/topics/foundations-type-driven-design",
+    "https://awesome-architecture.com/vertical-slice-architecture/": "https://awesome-architecture.com/topics/software-architecture-architecture-patterns-vertical-slice-architecture"
+  }
+}

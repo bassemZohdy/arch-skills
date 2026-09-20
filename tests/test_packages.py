@@ -41,7 +41,7 @@ class PackageTests(unittest.TestCase):
                 module_root = package / entry["resource_root"]
                 for document in module_root.rglob("*.md"):
                     for path in resource_paths(document.read_text(encoding="utf-8")):
-                        base = package if path.startswith(("scripts/", "framework/")) else module_root
+                        base = package if path.startswith("framework/") or path.startswith("scripts/dap") else module_root
                         self.assertTrue((base / path).exists() or (document.parent / path).exists(),
                                         f"{name}/{other}/{document.name}: {path}")
 
@@ -51,6 +51,12 @@ class PackageTests(unittest.TestCase):
                              cwd=self.root, capture_output=True, text=True)
         self.assertEqual(run.returncode, 0, run.stderr + run.stdout)
         self.assertTrue(json.loads(run.stdout)["gate"]["ready"])
+
+    def test_bundled_decision_helper_from_unrelated_directory(self):
+        helper = self.output / "arch-orchestrator/references/specialists/arch-decision/scripts/validate_math.py"
+        run = subprocess.run([sys.executable, str(helper), str(ROOT / "tests/test-dar.md")],
+                             cwd=self.root, capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
 
     def test_manifest_covers_every_shipped_file(self):
         import hashlib

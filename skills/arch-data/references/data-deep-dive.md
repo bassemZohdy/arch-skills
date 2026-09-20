@@ -57,7 +57,7 @@
 
 | Level | Description | Controls |
 |-------|-------------|----------|
-| **Public** | No restrictions | None |
+| **Public** | Publicly readable | Integrity, availability and controlled writes |
 | **Internal** | Business use only | Access control |
 | **Confidential** | Sensitive data | Encryption, audit |
 | **Restricted** | Highly sensitive | Strict controls, MFA |

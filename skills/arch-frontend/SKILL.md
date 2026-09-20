@@ -123,7 +123,7 @@ score does not prove an accessible or usable experience.
 
 ## Common Gotchas
 
-- Micro frontends solve an organizational problem; below several teams they only add complexity.
+- Justify micro frontends with independent ownership, release cadence or isolation needs; team count alone is not a selection threshold.
 - Server state belongs in a query cache (React Query/SWR), not in global UI state stores.
 - Shared dependencies across micro frontends reintroduce the coupling you tried to remove.
 - A micro frontend boundary without independent ownership, deployment or failure isolation is only an integration boundary.
@@ -133,6 +133,14 @@ score does not prove an accessible or usable experience.
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/frontend-deep-dive.md` — Frontend Architecture Deep Dive
 - `references/frontend-patterns.md` — Frontend Architecture Reference
+
+## Cross-skill handoff
+
+Consume journeys from arch-usability, inclusive interaction requirements from arch-
+accessibility and contracts from arch-api. Document rendering, routing, session
+ownership, cache partitioning, design-system versions and remote-module failure
+behavior. Web Components and module federation do not provide a security sandbox;
+involve arch-security for untrusted content and cross-origin messaging.
 
 ## Related Skills
 

@@ -46,7 +46,8 @@ instead of requiring those instructions to be repeated in every prompt.
 5. Mark the interview active and record each selected option or free-text answer
    and its provenance as it arrives. Persist raw answers locally, but send the
    completed batch together for reconciliation and checkpointing rather than
-   invoking the reasoning/model turn after every answer. Reconcile early when
+   performing full reconciliation after every answer. Host-required model turns
+   still occur; do not claim to suppress them. Reconcile early when
    an answer is ambiguous, blocking, scope-changing or high-risk, then prepare
    the next batch. Do not produce a candidate architecture, technology
    recommendation, ADR or specialist selection until the interview has enough
@@ -133,6 +134,17 @@ An evaluate request never authorizes repair.
 - Interview stakeholders for a proposed order platform, stopping at confirmed requirements.
 - Create an architecture from an approved brief, choosing only relevant specialists.
 - Update a billing architecture for a changed residency constraint and identify affected approvals.
+
+## Cross-skill handoff
+
+Use the catalog as a routing aid, not a mandatory execution chain. Capture security,
+accessibility, operations and cost constraints during requirements; refine them as the
+design develops. Reconcile competing specialist proposals against the same baseline and
+record the chosen owner and evidence. Respect host form limits and built-in custom-
+answer controls; conversational batching cannot suppress host-required model turns.
+
+For requested external reading, load `references/awesome-architecture.md`;
+community links do not replace primary evidence for a design decision.
 
 ## Related skills
 

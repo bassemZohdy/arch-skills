@@ -15,7 +15,7 @@ Publisher → Topic → Subscriber A
 Producer → Queue → Consumer
 ```
 
-**Use when:** Single consumer, guaranteed processing.
+**Use when:** One competing consumer handles each delivery; processing guarantees depend on persistence, acknowledgments, retries and idempotency.
 
 ## Event Streaming
 

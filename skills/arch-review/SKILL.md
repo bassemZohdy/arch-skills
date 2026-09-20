@@ -42,8 +42,8 @@ Select review dimensions based on context:
 
 | Dimension | Skill | When to Review |
 |-----------|-------|----------------|
-| **Design Patterns** | arch-review | Always |
-| **Security** | arch-security | Always |
+| **Design Patterns** | arch-patterns, arch-principles, arch-antipatterns | Structural choices or coupling concerns |
+| **Security** | arch-security | Trust boundaries, sensitive data or security scope |
 | **Performance** | arch-perf | User-facing systems |
 | **Resilience** | arch-resilience | Distributed systems |
 | **Data** | arch-data | Data-intensive systems |
@@ -174,10 +174,7 @@ Report structure:
 ## Step 7: Prioritize Actions
 
 Create prioritized remediation plan:
-1. **Immediate** (Critical issues): Fix within sprint
-2. **Short-term** (High issues): Plan for next quarter
-3. **Medium-term** (Medium issues): Add to backlog
-4. **Long-term** (Low issues): Consider during major refactors
+Prioritize by exposure, impact, urgency and dependencies. Assign a disposition and due date with the owner; active critical exposures may require immediate containment, while bounded risks can enter the planned backlog. Severity alone does not set a universal sprint or quarter deadline.
 
 ## Review output contract
 
@@ -211,6 +208,15 @@ opportunities, and state which findings require a new ADR or human disposition.
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/review-methods.md` — Architecture Review Methods
+
+## Cross-skill handoff
+
+Start from stakeholder quality scenarios and select only applicable specialist
+dimensions; document excluded scope and missing evidence. Reconcile cross-domain
+contradictions such as retries versus deadlines, caching versus isolation, and retention
+versus deletion. Return prioritized findings with an owner and verification action; a
+request for fixes may proceed through separately authorized authoring after preserving
+the reviewed baseline.
 
 ## Related Skills
 

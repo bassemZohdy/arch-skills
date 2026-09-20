@@ -120,7 +120,7 @@ graph TB
 
 | Adapter Type | Description | Examples |
 |--------------|-------------|----------|
-| **Driving** | Implements primary ports | REST controller, CLI handler |
+| **Driving** | Calls primary ports exposed by the application | REST controller, CLI handler |
 | **Driven** | Implements secondary ports | Database adapter, Email adapter |
 
 ## Step 4: Layered Architecture
@@ -143,7 +143,7 @@ graph TB
 | Rule | Description |
 |------|-------------|
 | **Dependency Direction** | Upper layers depend on lower |
-| **No Skip Layers** | Don't bypass intermediate layers |
+| **Layer Bypass** | For strict layering, forbid skips; document permitted skips in relaxed layering |
 | **Interface Contracts** | Layers communicate via interfaces |
 | **Single Responsibility** | Each layer has one purpose |
 
@@ -197,6 +197,14 @@ graph LR
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/architecture-patterns.md` — Architecture Patterns Reference
+
+## Cross-skill handoff
+
+Consume quality scenarios and constraints; compare the simplest viable baseline with
+proposed styles. Return dependency direction, allowed exceptions and runtime
+consequences to arch-doc and arch-fitness. Distinguish compile-time dependency arrows
+from runtime calls. A pattern can improve one quality while worsening another; validate
+the trade-off through arch-test rather than awarding points for pattern count.
 
 ## Related Skills
 

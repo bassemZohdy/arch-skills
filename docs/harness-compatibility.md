@@ -28,7 +28,10 @@ Install each complete generated directory with the selected host's native mechan
 The builder does not perform installation or modify global skill locations.
 
 Resolve references/assets relative to the current skill/module resource root;
-resolve shared framework/scripts from the outer package root. Read the catalogue
+resolve shared framework and scripts/dap*.py from the outer package root.
+Resolve a specialist-local script, such as arch-decision's math validator, from
+that module's resource root. Related skill names are optional handoffs; a
+selected expert package does not imply that every related specialist is installed. Read the catalogue
 before choosing module paths. A specialist is ordinary instruction content and
 does not require a subagent; delegate only if supported and authorized.
 
@@ -43,7 +46,8 @@ question by default, but can prepare a bounded group of related independent
 questions when that is more efficient. The adapter should separate presentation
 turns from reasoning turns: prepare a batch once, collect its answers locally,
 then submit the question IDs, values and provenance together for one
-reconciliation. It must not invoke the model after every answer. A blocking,
+reconciliation when the host supports collection without model turns. Otherwise,
+use the normal host turn mechanism and defer full reconciliation. A blocking,
 ambiguous, scope-changing or high-risk answer may close the batch early and
 trigger one partial reconciliation.
 

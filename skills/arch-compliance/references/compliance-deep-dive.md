@@ -126,6 +126,6 @@
 | Regulation | Minimum |
 |------------|---------|
 | GDPR | Purpose-dependent |
-| HIPAA | 6 years |
-| PCI DSS | 1 year |
-| SOX | 7 years |
+| HIPAA | Identify the required documentation class; six-year documentation rules are not a blanket audit-log/medical-record retention rule |
+| PCI DSS | Verify the adopted edition and applicable audit-log requirement, including immediate availability |
+| SOX | Identify applicable financial/audit record obligations with the responsible authority; no blanket application-log duration |

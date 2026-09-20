@@ -28,7 +28,7 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 
 ## What Are Fitness Functions?
 
-Fitness functions are objective, automated checks that evaluate architectural characteristics. They:
+Fitness functions are objective assessments, automated where practical that evaluate architectural characteristics. They:
 - Make architecture testable and enforceable
 - Run continuously (every commit, every build)
 - Provide pass/fail feedback
@@ -45,7 +45,7 @@ decision becomes ignored policy.
 
 | Type | Scope | Example |
 |------|-------|---------|
-| **Atomic** | Single architectural attribute | "Each class has single responsibility" |
+| **Atomic** | Single architectural attribute | "Domain packages do not import infrastructure" |
 | **Holistic** | Multiple attributes together | "System handles 1000 req/s with <200ms latency" |
 
 ### Static vs Dynamic
@@ -80,16 +80,17 @@ void servicesShouldNotDependOnInfrastructure() {
 }
 ```
 
-**ArchUnitTS Example (TypeScript):**
-```typescript
-describe('Architecture', () => {
-  it('services should not depend on infrastructure', () => {
-    const rule = rule({ should: 'not depend on' })
-      .from('src/services/**')
-      .to('src/infrastructure/**');
-    expect(rule).toPass();
-  });
-});
+**dependency-cruiser example (JavaScript/TypeScript):**
+```javascript
+// dependency-cruiser configuration fragment; merge into the project's config.
+module.exports = {
+  forbidden: [{
+    name: 'services-must-not-import-infrastructure',
+    severity: 'error',
+    from: { path: '^src/services/' },
+    to: { path: '^src/infrastructure/' }
+  }]
+};
 ```
 
 ### 2. Module Structure
@@ -127,11 +128,14 @@ void controllersShouldBeNamedCorrectly() {
 @Test
 void apiResponseTimeShouldBeUnder200ms() {
     Stopwatch timer = Stopwatch.createStarted();
-    // Make API call
+    performRealApiCall(); // Supply the actual client and representative test environment
     long elapsed = timer.elapsed(TimeUnit.MILLISECONDS);
     assertThat(elapsed).isLessThan(200);
 }
 ```
+
+A single timed call cannot prove a p95/p99 objective. Use a representative load
+profile, warm-up, sample count, error reporting and a declared environment.
 
 ### 5. Dependency Health
 
@@ -170,7 +174,7 @@ jobs:
   architecture-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       
       - name: Run ArchUnit tests
         run: ./gradlew test --tests "*ArchitectureTest*"
@@ -269,6 +273,14 @@ Read `references/automation-reference.md` for detailed automation guidance.
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/fitness-functions.md` — Fitness Functions Reference
+
+## Cross-skill handoff
+
+Consume accepted constraints from arch-decision and measurement definitions from arch-
+metrics. Return an executable check or an explicitly manual assessment, owner, evidence
+output and failure disposition to arch-devops and arch-governance. Validate each
+automated rule with a known violating fixture; a passing check with no matching files or
+samples is unassessable, not proof of fitness.
 
 ## Related Skills
 

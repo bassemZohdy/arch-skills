@@ -93,7 +93,10 @@ drift.
 
 ### Generating Diagrams
 
-Use templates from `assets/mermaid-templates/` as starting points. Replace placeholders with actual system elements.
+Use `assets/mermaid-templates/` for Markdown diagrams,
+`assets/plantuml-templates/` when the consumer supports PlantUML, and
+`assets/drawio-templates/` for editable drawings. Select only the needed template
+and replace placeholders with actual system elements.
 
 **Mermaid C4 Example:**
 ```mermaid
@@ -219,6 +222,14 @@ While framework-agnostic, adjust recommendations based on detected stack:
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/documentation-automation.md` — Documentation Automation Reference
 - `references/skill-testing.md` — Skill Testing Reference
+
+## Cross-skill handoff
+
+Consume one named architecture baseline, decision history and specialist evidence.
+Cross-check component names, IDs, protocols, trust boundaries and deployment nodes
+across static and runtime views. Give arch-review unresolved inconsistencies; link its
+design findings separately from arch-evaluate process results. C4 views can populate
+arc42 sections; these approaches are complementary, not mutually exclusive.
 
 ## Related Skills
 

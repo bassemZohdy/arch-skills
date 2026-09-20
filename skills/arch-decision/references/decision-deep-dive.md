@@ -7,7 +7,7 @@ Extended patterns, edge cases, and advanced DAR methodology.
 | Signal | Action |
 |--------|--------|
 | Multiple stakeholders disagree on criteria | Escalate to formal — run a facilitated session |
-| Decision cost exceeds $50K or 2 sprints | Escalate to formal — document thoroughly |
+| Decision exceeds the adopted cost/reversibility threshold | Escalate to formal — document thoroughly |
 | Reversible within a sprint | Stay expedited — document briefly |
 | Single approver with authority | Stay expedited — record and move on |
 | External audit/compliance requires traceability | Escalate to formal — generate full DAR |
@@ -18,7 +18,7 @@ Extended patterns, edge cases, and advanced DAR methodology.
 ### Tornado Diagram (Mental Model)
 
 1. Rank criteria by weight (highest first)
-2. For each criterion, vary weight by ±10 while adjusting others proportionally
+2. For each criterion, vary weight by an adopted percentage-point range while adjusting others proportionally within [0, 100]
 3. Record ranking change at each perturbation
 4. Criteria whose perturbation changes the ranking are "sensitive"
 
@@ -84,7 +84,7 @@ For decisions that cascade (choose platform → choose database → choose ORM):
 4. Lock the database decision
 5. Use database constraints as gates for the ORM DAR
 
-Never evaluate all three in one matrix — the combinatorial space explodes.
+Use linked decisions for separable choices; evaluate a combined alternative when compatibility or cost interactions make independent scoring misleading.
 
 ## Communicating Decisions
 
@@ -103,7 +103,7 @@ Never evaluate all three in one matrix — the combinatorial space explodes.
 - Signed DAR document
 - Evidence links per score
 - Reviewer sign-off
-- Retention: 7 years (SOX) or regulation-dependent
+- Retention: record-class-specific policy confirmed by the responsible authority
 
 ## Tooling
 

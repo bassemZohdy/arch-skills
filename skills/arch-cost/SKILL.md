@@ -178,6 +178,14 @@ The [FinOps Framework](https://www.finops.org/framework/) is a living reference;
 pin the version used by the organization and record the business-value metric
 that justifies each optimization.
 
+## Cross-skill handoff
+
+Consume demand ranges, failure headroom and deployment topology from arch-perf, arch-
+resilience and arch-cloud. Model low/base/high demand, idle capacity, replication,
+egress, licensing, support, observability and staff effort over one stated horizon.
+Return unit economics and sensitivity to arch-decision; do not approve savings that
+invalidate recovery or latency targets.
+
 ## Related Skills
 
 - **arch-cloud** - Provider services and Well-Architected cost pillar
