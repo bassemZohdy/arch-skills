@@ -1,0 +1,440 @@
+{
+  "audit_date": "2026-09-20",
+  "assessed_commit": "1089b9f01034a76743330864d23a55a72f12ca74",
+  "observations": {
+    "P01_arithmetic_fixture_readiness": {
+      "ready": true,
+      "assessable": true,
+      "score": 76,
+      "scores": {
+        "requirements_quality": 80,
+        "decision_coverage": 75,
+        "forward_traceability": 90,
+        "backward_traceability": 60,
+        "traceability": 60,
+        "artifact_completeness": 100
+      }
+    },
+    "P01_populations": {
+      "requirements": 10,
+      "decisions": 4,
+      "assessment_rows": {
+        "requirements_quality": 10,
+        "decision_coverage": 4,
+        "artifact_completeness": 5
+      }
+    },
+    "P02_all_quality_decision_artifact_checks_fail": {
+      "ready": true,
+      "assessable": true,
+      "score": 21,
+      "scores": {
+        "requirements_quality": 0,
+        "decision_coverage": 0,
+        "forward_traceability": 90,
+        "backward_traceability": 60,
+        "traceability": 60,
+        "artifact_completeness": 0
+      }
+    },
+    "P03_empty_required_inventories": {
+      "ready": true,
+      "assessable": false,
+      "score": null,
+      "scores": {
+        "requirements_quality": 80,
+        "decision_coverage": 75,
+        "forward_traceability": null,
+        "backward_traceability": null,
+        "traceability": null,
+        "artifact_completeness": 100
+      }
+    },
+    "P04_one_anonymous_check_per_dimension": {
+      "ready": true,
+      "assessable": true,
+      "score": 86,
+      "scores": {
+        "requirements_quality": 100,
+        "decision_coverage": 100,
+        "forward_traceability": 90,
+        "backward_traceability": 60,
+        "traceability": 60,
+        "artifact_completeness": 100
+      }
+    },
+    "P05_security_review_disabled": {
+      "ready": true,
+      "assessable": true,
+      "score": 76,
+      "scores": {
+        "requirements_quality": 80,
+        "decision_coverage": 75,
+        "forward_traceability": 90,
+        "backward_traceability": 60,
+        "traceability": 60,
+        "artifact_completeness": 100
+      }
+    },
+    "P06_unsupported_versions": {
+      "ready": true,
+      "assessable": true,
+      "score": 76,
+      "scores": {
+        "requirements_quality": 80,
+        "decision_coverage": 75,
+        "forward_traceability": 90,
+        "backward_traceability": 60,
+        "traceability": 60,
+        "artifact_completeness": 100
+      }
+    },
+    "P07_assessment_change": {
+      "stale": false,
+      "before_score": 76,
+      "after_score": 21
+    },
+    "P08_external_config_change": {
+      "stale": false,
+      "before_score": 76,
+      "after_score": 67.5
+    },
+    "P09_invalid_records": "accepted: wrong-kind IDs, cross-kind duplicates, missing fields, dangling endpoints, unknown edge type",
+    "P10_persisted_state_envelope": {
+      "ready": false,
+      "assessable": true,
+      "score": 76,
+      "scores": {
+        "requirements_quality": 80,
+        "decision_coverage": 75,
+        "forward_traceability": 90,
+        "backward_traceability": 60,
+        "traceability": 60,
+        "artifact_completeness": 100
+      }
+    },
+    "P11_tampered_checkpoint_hash": {
+      "loaded_state": "tampered"
+    },
+    "P12_rtm_schema_edge": {
+      "verification_id_rendered": false,
+      "first_requirement_row": "| REQ-001 | must | DES-001 | — | PLANNED |"
+    },
+    "P13_publication_history": {
+      "report_files": [
+        "latest.json"
+      ],
+      "previous_report_stale": false
+    },
+    "P14_isolated_evaluator": {
+      "exit_code": 2,
+      "declared_script_exists": false
+    }
+  },
+  "inventory": [
+    {
+      "skill": "arch-accessibility",
+      "lines": 245,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-ai",
+      "lines": 193,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-antipatterns",
+      "lines": 161,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-api",
+      "lines": 238,
+      "resources": 5,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 4,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-cloud",
+      "lines": 161,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-compliance",
+      "lines": 203,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-cost",
+      "lines": 196,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-data",
+      "lines": 206,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-ddd",
+      "lines": 205,
+      "resources": 5,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 4,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-decision",
+      "lines": 174,
+      "resources": 8,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 5,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": [
+        "assets/dap-adr-template.md"
+      ]
+    },
+    {
+      "skill": "arch-devops",
+      "lines": 317,
+      "resources": 5,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 4,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-doc",
+      "lines": 221,
+      "resources": 20,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 10,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": [
+        "references/dap-arc42-mapping.md"
+      ]
+    },
+    {
+      "skill": "arch-evaluate",
+      "lines": 89,
+      "resources": 2,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-event",
+      "lines": 249,
+      "resources": 5,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 4,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-features",
+      "lines": 182,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-fitness",
+      "lines": 271,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-frontend",
+      "lines": 160,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-governance",
+      "lines": 213,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-integration",
+      "lines": 185,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-metrics",
+      "lines": 212,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-microservices",
+      "lines": 203,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-migration",
+      "lines": 182,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-observability",
+      "lines": 262,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-orchestrator",
+      "lines": 229,
+      "resources": 8,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 8,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": [
+        "assets/dap-checkpoint-template.json",
+        "assets/dap-requirement-template.json"
+      ]
+    },
+    {
+      "skill": "arch-patterns",
+      "lines": 219,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-perf",
+      "lines": 180,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-principles",
+      "lines": 168,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-refactoring",
+      "lines": 211,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-resilience",
+      "lines": 213,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-review",
+      "lines": 213,
+      "resources": 7,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 7,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-security",
+      "lines": 178,
+      "resources": 5,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 4,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-test",
+      "lines": 232,
+      "resources": 4,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 3,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    },
+    {
+      "skill": "arch-usability",
+      "lines": 182,
+      "resources": 3,
+      "markdown_resource_links": 0,
+      "inline_resource_paths": 2,
+      "missing_inline_paths": [],
+      "dap_resources_not_named_by_entry": []
+    }
+  ]
+}

@@ -102,9 +102,9 @@ each score, and separate measured facts from assumptions and vendor claims.
 ## Stage 6: Sensitivity Check
 
 1. Identify two highest-weight criteria (W1, W2)
-2. Run two bounded perturbations. Transfer weight only within the [0, 1] interval and renormalize all weights; never create negative weights or weights above 1.
+2. Normalize percentage weights to fractions in [0, 1] before sensitivity analysis. Transfer weight within those bounds, preserve a sum of 1, and convert back to percentages for the displayed matrix.
 3. Recompute totals using the same eligible alternatives and check ranking stability
-4. Flag if gap < 0.5 → Close call
+4. Report ranking reversals and the decision-specific meaningful score gap; adopt its threshold with the decision owner rather than assuming a universal 0.5 cutoff.
 
 ## Stage 7: Recommendation
 
@@ -117,6 +117,7 @@ each score, and separate measured facts from assumptions and vendor claims.
 ## Stage 8: Document
 
 Generate complete DAR/ADR document using templates:
+- For DAP work, use `assets/dap-adr-template.md` and the packaged `framework/contribution-contract.md`. Record baseline/hash, REQ/CON/DES/VER links, evidence, human authority and supersession. An option ranking is not approval.
 - `assets/dar-document.md` - Formal mode template
 - `assets/dar-expedited.md` - Expedited mode template
 - `assets/adr-template.md` - MADR ADR template
@@ -160,7 +161,7 @@ See `references/criteria-library.md` for reusable evaluation bundles:
 
 - Do not let one stakeholder's preferred option drive the criteria weights; set weights before scoring.
 - Overlapping criteria double-count the same concern and skew totals.
-- A close call (gap < 0.5) without a sensitivity check is a coin flip dressed as analysis.
+- A close ranking needs sensitivity and uncertainty analysis against an explicitly adopted decision-specific threshold.
 - A precise-looking score does not create certainty; preserve dissent, evidence gaps and the trigger for revisiting the decision.
 
 ## Further Reading

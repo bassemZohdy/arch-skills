@@ -10,8 +10,11 @@ Portable Agent Skills for software architecture: documentation generation (`arch
 # Validate skill structure (discovered checks, no LLM needed)
 python tests/test_skills.py
 
- # Run an optional behavioral scenario through an external host adapter
-<external-adapter> run tests/test-arch-doc.yaml --skill-root ./skills/arch-doc
+# Run all offline release checks (Linux/macOS: bash run-tests.sh)
+./run-tests.ps1
+
+# Build portable packages into a fresh isolated destination
+python scripts/build_packages.py --profile default --output .cache/packages-default
 ```
 
 ## Repo Structure
@@ -21,6 +24,8 @@ python tests/test_skills.py
 - `skills/<name>/assets/` — Templates/files used in output, not loaded into context.
 - `tests/` — Structural validation (`test_skills.py`) and optional host-neutral scenario manifests (`.yaml`).
 - `scripts/` — Deterministic framework validators and artifact helpers.
+- `scripts/build_packages.py` — Default (three entry points) and expert packages; always use a fresh output directory.
+- `framework/` — Canonical schemas, contribution contracts and versioned rubric, bundled into installed packages.
 
 ## Skill Authoring Conventions
 
@@ -34,11 +39,12 @@ python tests/test_skills.py
 
 After editing any skill:
 1. `python tests/test_skills.py` — must pass all applicable checks
-2. Install the selected skill directory with the target host's native package mechanism, if needed.
+2. Run `python -m unittest discover -s tests -p 'test_*.py'` for contract and isolated-package checks.
+3. Build the default or selected expert profile before installation. Do not copy an unbuilt source skill: shared dependencies are added by the builder.
 
 For end-to-end testing, use the adapter runner available in your environment:
 ~~~text
-<adapter-runner> run tests/test-arch-<skill>.yaml --skill-root ./skills/arch-<skill>
+<adapter-runner> run tests/test-arch-<skill>.yaml --skill-root <built-expert-profile>/arch-<skill>
 ~~~
 
 ## Gotchas
@@ -49,7 +55,7 @@ For end-to-end testing, use the adapter runner available in your environment:
 - During validation, sync into an isolated test destination rather than modifying global skill installations.
 
 - Behavioral runners are optional external adapters; do not encode their commands, model names or tool APIs in SKILL.md.
-- Windows symlinks require admin privileges or Developer Mode. Repo uses copy+sync instead.
+- Windows symlinks require admin privileges or Developer Mode. Package generation copies files instead.
 - Use the available Agent Skills specification validator when the target host provides one; the repository's structural suite must remain independently runnable.
 - Skills are generic (framework/language agnostic) by design.
 - Host-specific installation paths are adapter configuration, not part of the skill contract.

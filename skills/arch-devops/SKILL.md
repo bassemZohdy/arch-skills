@@ -7,6 +7,13 @@ description: Design DevOps, deployment, and release engineering architecture. Us
 
 Systematic approach to infrastructure automation, CI/CD, deployment strategies, and release engineering.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record artifact identity and provenance, environment ownership, promotion approvals, rollout/rollback thresholds and verification evidence.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -226,14 +233,18 @@ graph LR
 
 ## Step 7: DORA Metrics
 
-Measure delivery performance with the four DORA metrics:
+Use the current five-metric model, keeping historical series explicitly versioned:
 
 | Metric | What to measure |
 |--------|-------------------|
 | **Deployment frequency** | How often value reaches production |
 | **Lead time for changes** | Commit or approval to production |
 | **Change failure rate** | Deployments requiring remediation or rollback |
-| **Time to restore service** | Detection or failure to restored service |
+| **Failed deployment recovery time** | Time to recover from a failed deployment needing immediate intervention |
+| **Deployment rework rate** | Share of unplanned deployments responding to production incidents |
+
+Do not substitute broad incident MTTR for deployment-specific recovery. See the
+[current DORA definitions](https://dora.dev/guides/dora-metrics/).
 
 Use a stable definition, baseline and trend for each metric. Do not turn published
 performance bands into universal targets or optimize delivery speed at the cost
@@ -287,31 +298,7 @@ provenance verification are complementary controls.
 - **arch-fitness** - Architecture checks enforced inside the pipeline
 - **arch-migration** - Data and legacy system migration strategies
 
-## DevOps Review Template
+## Output template
 
-```markdown
-## DevOps & Deployment Review: [System]
-
-### Infrastructure
-| Component | Tool | Status |
-|-----------|------|--------|
-
-### CI/CD Pipeline
-| Stage | Tool | Duration | Success Rate |
-|-------|------|----------|--------------|
-
-### Deployment
-- Strategy: [Blue-Green/Canary/Rolling]
-- Rollback time: [Time]
-
-### DORA Metrics
-| Metric | Current | Target |
-|--------|---------|--------|
-
-### Security
-| Concern | Implementation | Verified |
-|---------|---------------|----------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

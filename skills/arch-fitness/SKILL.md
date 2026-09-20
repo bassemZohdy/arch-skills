@@ -9,6 +9,13 @@ Automated checks that verify architectural decisions are maintained.
 
 **Source:** [Building Evolutionary Architectures](https://www.oreilly.com/library/view/building-evolutionary-architectures/9781491986368/) by Ford, Parsons, Kua
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/template.md` and record protected decision/requirement, rule ID and scope, measurement, tolerated variance, owner, evidence output, failure action and exception expiry.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```

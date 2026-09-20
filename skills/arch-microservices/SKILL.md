@@ -7,6 +7,13 @@ description: Design microservices architecture. Use when decomposing monoliths, 
 
 Systematic approach to designing microservices systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record service DES IDs, domain/data ownership, independent lifecycle evidence, consistency/failure scenarios and modular-monolith alternative.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -177,27 +184,7 @@ stateDiagram-v2
 - **arch-event** - Sagas and async communication
 - **arch-integration** - Gateways and service mesh
 
-## Microservices Review Template
+## Output template
 
-```markdown
-## Microservices Review: [System]
-
-### Service Inventory
-| Service | Responsibility | Owner | Database |
-|---------|---------------|-------|----------|
-
-### Communication
-| From | To | Pattern | Protocol |
-|------|----|---------|----------|
-
-### Data Management
-| Service | Data Owned | Consistency Model |
-|---------|------------|-------------------|
-
-### Deployment
-| Service | Instances | Scaling Strategy |
-|---------|------------|------------------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

@@ -6,6 +6,11 @@ __pycache__/
 .Python
 venv/
 env/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
 # IDE
 .vscode/
@@ -17,11 +22,13 @@ env/
 .DS_Store
 Thumbs.db
 
-# Skillprobe cache
+# Local build and validation cache
 .cache/
 
 # Local secrets
 .env
+.env.*
+!.env.example
 *.key
 
 # Codex system skills (not part of this repo)

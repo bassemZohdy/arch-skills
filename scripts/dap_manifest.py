@@ -1,19 +1,37 @@
 #!/usr/bin/env python3
+"""Create or compare a DAP input manifest without modifying source artifacts."""
 from __future__ import annotations
-import argparse, json, sys
+
+import argparse
+import json
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from dap.scoring import _manifest
+import sys
+
+from dap.snapshot import Snapshot, report_is_stale
+
+
 def main() -> int:
-    p=argparse.ArgumentParser(description="Create or compare a DAP input manifest")
-    p.add_argument("project", type=Path)
-    p.add_argument("--compare", type=Path)
-    a=p.parse_args()
-    current=_manifest(a.project, {"process/assessment.json"})
-    if a.compare:
-        old=json.loads(a.compare.read_text(encoding="utf-8"))
-        old_hash = old.get("sha256") or old.get("input_manifest", {}).get("sha256")
-        current["stale"]=old_hash != current["sha256"]
-    print(json.dumps(current,indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("project", type=Path)
+    parser.add_argument("--compare", type=Path)
+    args = parser.parse_args()
+    try:
+        current = Snapshot(args.project).manifest
+        if args.compare:
+            old = json.loads(args.compare.read_text(encoding="utf-8"))
+            if not isinstance(old, dict):
+                raise ValueError("comparison must contain a manifest or report object")
+            if "input_manifest" in old:
+                current["stale"] = report_is_stale(args.project, old)
+            else:
+                previous = Snapshot(args.project, old.get("external_config")).manifest
+                current["stale"] = old.get("sha256") != previous["sha256"]
+    except (OSError, ValueError, TypeError, AttributeError) as exc:
+        print(f"manifest refused: {exc}", file=sys.stderr)
+        return 2
+    print(json.dumps(current, indent=2))
     return 0
-if __name__=="__main__": raise SystemExit(main())
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

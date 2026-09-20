@@ -1,24 +1,37 @@
 # Evaluation contract
 
-The evaluator reads a project root containing requirements.json, design-elements.json,
-decisions.json, traceability.json and process/{config,assessment,state,reviews}.json.
+Read the packaged framework/records.md and project-schema.json for exact inputs,
+checkpoint shape and authority records. Supported versions are framework 1.0.0,
+schema 2.0.0 and rubric 1.0.0; historical incompatible scoring is unavailable.
 
-Each check has result pass, fail, unknown or not_applicable. Unknown is included in
-the denominator and receives zero credit. Not applicable is excluded only when the
-record includes reason and authorized_by.
+Q expands eleven checks per in-scope active requirement, five set checks and one
+stakeholder stability check. D expands ten per significant decision, including
+missing ADRs identified by the design inventory. A expands three per applicable
+arc42 section and supporting record group. Assessment IDs bind target, criterion,
+dimension, baseline/hash, assessor, rationale and frozen evidence.
 
-Q, D and A are the passed applicable checks divided by all applicable checks. Forward
-coverage is active requirements with a requirement_to_design link divided by active
-requirements. Backward coverage is significant active design elements with a
-design_to_requirement link divided by significant active design elements.
-T = min(forward, backward). Empty required populations are not assessable.
+Fail/unknown remain in the denominator with zero credit. Authorized N/A exclusions
+are visible and cannot waive mandatory gates. Empty required populations prevent
+an overall score. Never accept anonymous one-row summaries as complete catalogues.
 
-S = wQ*Q + wD*D + wT*T + wA*A. Configuration weights must be non-negative, sum
-to one and make traceability the largest weight. Scores are rounded only for display.
+F counts confirmed-source → REQ → DES/accepted ADR → VER plan chains. B counts
+significant DES elements justified by active REQ or sourced CON, directly or
+through accepted ADRs. Validate typed IDs, statuses and semantic evidence. Show
+both counts and uncovered IDs; T=min(F,B). Planned verification is not delivery
+evidence. Use the same graph for the generated RTM.
 
-The readiness gate is independent of S. Convergence, required review dispositions,
-valid configuration and structural integrity must pass. Security implications require
-an approved security review when configured. Reports include the frozen input manifest
-and are stale when any assessed input changes. Generated reports and publication
-receipts are excluded from the assessed hash.
+S=wQ×Q+wD×D+wT×T+wA×A, with explicitly approved nonnegative weights summing to one
+and traceability largest. Calculate using exact fractions; round only display.
+
+Readiness requires convergence, current reviews, valid configuration, structural
+integrity, complete trace chains, valid decision dispositions, substantive
+artifacts and freshness. Mandatory security/privacy/compliance implications
+cannot be disabled by configuration. Unknown policy and unresolved blocking
+risks, questions or exceptions prevent acceptance independently of S.
+
+Evaluate one explicit snapshot containing assessments, config, schema and rubric.
+Report evidence gaps and version/config identity. Generated outputs do not affect
+their own input hash. Publishing archives immutable reports and separate summary
+files; linking that summary is an authorized documentation operation, not an
+audit-side source repair. Read-only evaluation never manufactures missing records.
 

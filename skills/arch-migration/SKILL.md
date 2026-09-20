@@ -7,6 +7,13 @@ description: Plan migrations and legacy modernization. Use when planning databas
 
 Systematic approach to planning and executing system migrations.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/plan-template.md` and record old/new baseline revisions, phase dependencies, owners, reconciliation evidence, quantitative cutover/rollback criteria and irreversible-step approval.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -150,33 +157,7 @@ rollback with production-like volume and failure injection.
 - **arch-devops** - Deployment strategies for cutover
 - **arch-data** - Data movement and validation
 
-## Migration Plan Template
+## Output template
 
-```markdown
-## Migration Plan: [System Name]
-
-### Current State
-- System: [Description]
-- Pain points: [List]
-- Constraints: [List]
-
-### Target State
-- Goal: [Description]
-- Benefits: [List]
-- Success criteria: [List]
-
-### Strategy
-- Pattern: [Strangler fig / Branch by abstraction / Parallel run]
-- Phases: [Number]
-
-### Phase 1: [Name]
-- Scope: [What's included]
-- Timeline: [Duration]
-- Risks: [List]
-- Validation: [How to verify]
-
-### Rollback Plan
-- Triggers: [When to rollback]
-- Process: [Steps]
-- Time to rollback: [Duration]
-```
+Use `assets/plan-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

@@ -31,19 +31,14 @@ Instability = Ce / (Ca + Ce)
 
 ### Zone of Pain/Uselessness
 
-```
-Abstractness ↑
-    │  Zone of Uselessness
-    │  (Low instability, high abstractness)
-1.0 ├────────────────────────
-    │
-    │
-0.0 ├────────────────────────
-    │  Zone of Pain
-    │  (High instability, low abstractness)
-    └────────────────────────
-       0.0          1.0  Instability →
-```
+| Region | Instability I | Abstractness A | Interpretation |
+| --- | --- | --- | --- |
+| Pain | Near 0 | Near 0 | Stable, concrete dependencies are difficult to change |
+| Uselessness | Near 1 | Near 1 | Abstract elements have few dependents |
+
+When Ca+Ce is zero, I is undefined. Thresholds depend on the role and workload,
+not a universal goal to maximize abstractness or minimize outgoing dependencies.
+[Definitions](https://www.ndepend.com/docs/code-metrics).
 
 ## Design Health Metrics
 

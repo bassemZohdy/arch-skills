@@ -1,89 +1,82 @@
 ---
 name: arch-evaluate
-description: Evaluate whether a solution architecture followed the Deterministic Architecture Process and whether its recorded artifacts are complete, traceable and current. Use for DAP completeness audits, brownfield baseline assessment, requirements-to-design traceability, gate validation, score calculation, evidence-linked report publication and stale evaluation detection. Do not use it as a substitute for architecture design-quality review.
+description: "Evaluate Deterministic Architecture Process completeness, traceability, evidence freshness and readiness for a frozen architecture baseline. Use for process audits, brownfield evidence-gap assessment and readiness checks. Use arch-review for design quality; do not author or repair architecture during evaluation."
 ---
 
-# Deterministic Architecture Process Evaluator
+# Architecture process evaluation
 
-Assess a frozen architecture baseline. The evaluator reports process and artifact evidence; it does not design the system, repair the assessed files or certify delivered behavior.
+Assess recorded evidence independently of authoring. Process completeness does
+not certify design quality or delivered behavior. Preserve unknowns and
+disagreements rather than inferring undocumented interviews or approvals.
 
 ## Workflow
 
-1. Resolve the project artifact root, configuration and recorded framework/schema/rubric versions.
-2. Freeze the explicit input manifest and refuse to assess a concurrent revision.
-3. Run the deterministic validator and score calculator from scripts/dap_validate.py.
-4. Inspect semantic checks and record evidence locators, unknowns and applicability decisions.
-5. Calculate requirements quality, decision coverage, forward traceability, backward traceability, conservative traceability, artifact completeness and the configured overall score.
-6. Evaluate readiness gates separately. A score never overrides a failed review, missing evidence, invalid configuration or stale baseline.
-7. Write a versioned report and generated appendix only through the publishing command. Audit-only mode leaves assessed inputs unchanged.
+1. Identify scope and the project artifact root. Load its explicit manifest,
+   configuration and versions. Read `references/evaluation-contract.md`.
+2. Resolve the installed package root independently of the current directory.
+   Its scripts and framework contracts are bundled by the package builder.
+   Install the declared Python dependencies only when authorized.
+3. Run the package's scripts/dap_validate.py against the project. Exit 0 means
+   ready, 1 means assessed but blocked/unassessable, and 2 means CLI failure.
+4. Review semantic assessments against their cited evidence. Structural validity
+   alone cannot prove a stakeholder's intent or a human's authority.
+5. Report Q/D/F/B/T/A/S with counts, exclusions, unknowns, uncovered IDs, input
+   hash, versions, evaluator identity and readiness gates. Never renormalize
+   missing dimensions or equate a high score with readiness.
+6. For an authorized report publication, use scripts/dap_publish.py. It creates
+   immutable reports and an adjacent generated summary; arch-doc can link that
+   summary in its evaluation appendix without changing the assessed baseline.
+7. For a requested design review, route separately to arch-review. Return
+   missing evidence and next actions; do not invoke authoring to fill the gaps.
 
-## Required distinctions
+## Invocation
 
-- Process completeness is separate from design fitness; use arch-review for architecture quality and trade-offs.
-- Design-stage traceability is separate from implementation and executed verification evidence.
-- A missing historical record is unproven, not proof that the event never happened.
-- Unknown checks receive zero credit. Approved not-applicable checks require a reason and authority.
-- Won't have is a timeframe priority and cannot waive a binding security, legal, compliance or quality obligation.
-- LLM confidence is commentary, not approval evidence.
+Resolve these paths from the installed package root, not a repository checkout:
 
-## Commands
+- scripts/dap_validate.py PROJECT — read-only evaluation
+- scripts/dap_publish.py PROJECT — explicitly authorized generated-report write
+- scripts/dap_rtm.py PROJECT — explicitly authorized derived RTM under evaluations/
+- scripts/dap_manifest.py PROJECT — snapshot inspection/freshness comparison
 
-From the repository root:
+The source checkout has the same scripts at its root for contributors. Build a
+portable package before installing an individual skill; copying this source
+directory alone does not include its generated dependencies.
 
-  python scripts/dap_validate.py path/to/architecture
-  python scripts/dap_rtm.py path/to/architecture
-  python scripts/dap_publish.py path/to/architecture
+## Evidence rules
 
-Read references/evaluation-contract.md for the score and freshness contract. Use
-assets/evaluation-report-template.json as the report shape when a host needs a
-structured template.
+Read `framework/records.md` for schema 2.0.0 records, source/constraint/verification
+links and checkpoint envelope. Unsupported historical contracts are reported as
+unavailable; never fabricate a historical score or silently migrate approvals.
+
+Enumerate criteria from the packaged immutable rubric. Every semantic assessment
+names its criterion, target, dimension, baseline revision, subject hash, assessor,
+evidence locators and rationale. Unknown/fail receive zero; authorized
+inapplicability is explicit and never waives mandatory convergence or review.
+Cross-check significant decisions against the design inventory, not just ADRs.
+
+Security/privacy/compliance implications always require human disposition.
+Validate configured risk, irreversible, cross-team and cost review applicability;
+the authoring agent cannot approve these by changing a convenience flag.
+Unapproved/expired exceptions, conflicting constraints and blocked questions
+prevent readiness. Missing source, design or verification evidence breaks a
+design-stage trace chain. A planned test is not executed verification.
 
 ## Output
 
-Report the input manifest hash, versions, all metric numerators and denominators,
-forward/backward uncovered IDs, gate status, blocking findings, stale status,
-evidence gaps and the next action. Do not report an overall score when a required
-dimension is not assessable.
+Use `assets/evaluation-report-template.json` as the minimum report shape.
+Include exact counts and full-precision calculation provenance, rounding only
+displayed percentages. Report freshness separately and keep previous reports.
+The implementation verifies evidence existence, snapshot binding and declared
+authority; it does not authenticate human identities or replace human adjudication.
 
-## Evidence and boundaries
+## Examples
 
-Treat the evaluator as an independent, read-only assessor of a frozen baseline.
-Every pass, fail, unknown and approved not-applicable result needs a locator and
-rationale. A generated report is a new artifact, not evidence that was present in
-the assessed baseline. Never repair inputs, infer stakeholder intent, or convert a
-score into approval.
-## Assessment inputs
+- Audit a brownfield architecture whose interview history is incomplete.
+- Check a candidate that has excellent scores but a pending security review.
+- Reassess after a changed requirement and identify stale approvals.
 
-Treat the architecture directory as a frozen evidence set. Include the requirements, constraints, design elements, ADRs, traceability graph, verification plans, process state, review dispositions, exceptions, configuration and rubric identified by the manifest. Do not add generated reports, appendices or evaluator commentary to the assessed input set. If an expected artifact is absent, record the absence as unknown evidence and explain the resulting gate or score effect.
+## Related skills
 
-Check that every identifier is stable and that links point to records in the same baseline. Confirm that the configuration names the framework, schema, rubric and policy versions, and that the configured authority is present for every applicable review. A report with a valid hash but invalid configuration is not ready.
-
-## Semantic evidence
-
-Structural checks establish that records exist and are linked; they do not establish that a stakeholder confirmed intent or that a reviewer approved a decision. For each semantic criterion, cite the exact record, section, field or line that supports the result. Preserve the assessor's rationale when evidence is ambiguous. Use pass only when the evidence meets the criterion, fail when the evidence contradicts it, unknown when the required population or evidence is unavailable, and not-applicable only when an authorised authority recorded a reason.
-
-Do not infer a completed interview from polished requirements, infer approval from silence, or infer implementation verification from a planned test. Keep design coverage, implementation coverage and executed verification as separate measures.
-
-## Gate handling
-
-Compute the configured dimensions from the frozen assessments and show each numerator, denominator, excluded population and unknown count. Apply the configured weights exactly; do not change them to improve a result. A high score cannot override a pending security, privacy, legal, compliance, cost or cross-team review. A stale manifest invalidates the report even when the calculated score is unchanged.
-
-If a gate fails, report the blocking finding and the next evidence or human disposition required. Do not repair the assessed files during an audit-only run. An authorised publishing step may write only the generated report and appendix after the input manifest has been verified.
-
-## Report discipline
-
-Include framework, schema, rubric and configuration versions, the UTC assessment time, evaluator identity, input manifest hash, metric details, uncovered identifiers, evidence locators, applicability decisions, blocking findings, gate status and stale status. State the next action in operational terms. Preserve prior reports as immutable records and create a new report for every changed baseline.
-
-Use arch-review for design quality and trade-off assessment, arch-governance for authority and exception policy, arch-decision for option analysis, and arch-doc for the architecture description. This skill evaluates recorded process evidence; it does not replace those responsibilities.
-
-## Further Reading
-
-- `references/evaluation-contract.md` — Versioned score, gate and freshness contract
-- `assets/evaluation-report-template.json` — Structured report shape for publishing
-
-## Related Skills
-
-- **arch-orchestrator** — Runs the process and preserves the shared baseline
-- **arch-review** — Reviews design fitness and trade-offs
-- **arch-governance** — Defines decision authority and exception policy
-- **arch-decision** — Records significant choices and rejected alternatives
+- **arch-review** — independent design-quality assessment
+- **arch-orchestrator** — authorized create/update work after findings
+- **arch-governance**, **arch-decision**, **arch-doc** — policy, ADRs and documentation

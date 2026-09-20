@@ -7,6 +7,13 @@ description: Design and review secure architectures with threat modeling, zero-t
 
 Systematic approach to designing and reviewing secure architectures.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record threat/control IDs and selected standard edition, trust boundaries, residual risk, verification evidence and human security disposition.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -151,28 +158,7 @@ than treating the general web Top 10 as sufficient.
 - [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) — Versioned application verification requirements
 - [OWASP Top 10:2025](https://owasp.org/www-project-top-ten/) — Current web application risk categories
 
-## Security Review Template
+## Output template
 
-```markdown
-## Security Review: [System Name]
-
-### Assets Protected
-- [List assets]
-
-### Threats Identified
-| ID | Threat | STRIDE | Likelihood × impact | Mitigation |
-|----|--------|--------|--------------|------------|
-
-### Controls Implemented
-- [ ] Authentication: [Pattern used]
-- [ ] Authorization: [Pattern used]
-- [ ] Encryption: [At rest/in transit]
-- [ ] Logging: [Audit trail]
-
-### OWASP Compliance
-- [ ] All Top 10 addressed
-
-### Recommendations
-1. [Critical finding]
-2. [High finding]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

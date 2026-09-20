@@ -1,73 +1,104 @@
 # Architecture Skills
 
-A collection of 33 portable Agent Skills for software architecture design, documentation, review and governance. Skills are Markdown instructions, references and reusable templates. The `skills/` tree is the complete, host-neutral source package; each AI tool supplies its own discovery and installation adapter.
+Portable architecture skills with a small default interface and optional specialist access.
+Canonical instructions, references and templates remain host-neutral.
 
-## Deterministic architecture framework
+## Four workflows, three public entry points
 
-The [framework specification](docs/deterministic-architecture-process.md) defines the implemented reference process: a repeatable path from incomplete requirements to a reviewed, traceable architecture baseline. Determinism applies to recorded gates and score calculation; LLM reasoning does not imply a unique design.
+| Workflow | Entry point | Boundary |
+| --- | --- | --- |
+| Interview | arch-orchestrator, interview mode | Stop at the requirement/constraint handoff |
+| Create | arch-orchestrator, create mode | Develop a new candidate without inventing approval |
+| Update | arch-orchestrator, update mode | Preserve history, assess dependency impacts, re-enter affected stages |
+| Evaluate | arch-evaluate for process; arch-review for design | Read-only assessment; keep results separate |
 
-**Current status:** the reference implementation is available. It includes versioned contracts, durable checkpoint helpers, deterministic score calculation, the `arch-evaluate` skill, report/RTM tooling and lifecycle fixtures. Host integrations remain constrained by each host's persistence and skill-loading capabilities.
+The default distribution exposes only those three skills. It bundles the remaining
+capabilities as selectively loaded resources, not additional discoverable SKILL.md
+entry points. The expert profile exposes all 33 canonical skills, or just selected
+specialists. There is one orchestration engine and one canonical source per skill.
 
-| Read | Purpose |
-| --- | --- |
-| [Framework](docs/deterministic-architecture-process.md) | Stages, gates, records, review policy and scoring |
-| [Review](docs/framework-review.md) | Corrections and repository gaps |
-| [Implementation reference](docs/framework-implementation-plan.md) | Delivered integration boundaries, artifact layout and arc42 mapping |
-| [DAP implementation status](docs/dap-implementation-status.md) | Completed tasks, DAP explanation and verification evidence |
-| [DAP adapter contract](docs/dap-adapter-contract.md) | Optional host-neutral behavioral scenarios and versioned evidence results |
-| [Skill boundaries](docs/skill-boundaries.md) | Redundancy review and responsibility boundaries |
-| [TODO.md](TODO.md) | Open follow-up work only |
+## Build and install
 
-The execution entry point is the existing `arch-orchestrator`. `arch-evaluate` assesses process evidence; `arch-review` remains responsible for design-quality review. The framework reuses `arch-doc`, `arch-decision` and `arch-governance` without a separate agent platform.
+Use Python 3.10+ and the declared dependencies:
 
-## Quick start
+~~~sh
+python -m pip install -r requirements.txt
+python scripts/build_packages.py --profile default --output .cache/packages-default
+python scripts/build_packages.py --profile expert --skill arch-api --output .cache/packages-api
+~~~
 
-Run structural validation from the repository root:
+Choose a fresh output directory: the builder never deletes or overwrites an existing
+destination. Install complete directories from the built output using the host's
+native mechanism. Do not install source skill directories directly: shared runtime
+and contracts are bundled during the build.
 
-```bash
-python tests/test_skills.py
-```
-
-Install a selected `skills/<name>/` directory using the host's native skill-package mechanism. This repository intentionally does not detect hosts, create global links, select a model, or install provider-specific metadata. See [compatibility](docs/harness-compatibility.md) and [testing guidance](docs/skill-testing.md).
-
-## Existing skills
-
-| Area | Skills |
-| --- | --- |
-| Orchestration | `arch-orchestrator` |
-| Core | `arch-doc`, `arch-review`, `arch-fitness`, `arch-decision`, `arch-governance` |
-| Design fundamentals | `arch-principles`, `arch-antipatterns` |
-| Technical quality | `arch-security`, `arch-perf`, `arch-resilience`, `arch-test` |
-| Architecture | `arch-api`, `arch-cloud`, `arch-event`, `arch-ddd`, `arch-data`, `arch-metrics`, `arch-integration`, `arch-microservices`, `arch-patterns`, `arch-refactoring` |
-| Frontend | `arch-frontend` |
-| Operations | `arch-observability`, `arch-migration`, `arch-devops`, `arch-cost` |
-| Features and AI | `arch-features`, `arch-ai` |
-| Additional quality concerns | `arch-usability`, `arch-accessibility`, `arch-compliance` |
+No host detection, provider metadata, model choice or global installation happens.
+A default package contains a lightweight specialist catalogue and resource modules;
+load only the relevant ones. No universal host-specific hidden flag is required.
+See [packaging and compatibility](docs/harness-compatibility.md).
 
 Example requests:
 
-```text
-Use arch-doc to create C4 diagrams.
-Use arch-review to review architecture trade-offs.
-Use arch-decision to compare technologies against explicit requirements.
-Use arch-orchestrator to coordinate a solution architecture design.
-```
+- Interview stakeholders and stop after confirming requirements.
+- Create a solution architecture from this brief.
+- Update the architecture for this changed residency requirement.
+- Evaluate process readiness and design quality, without changing source artifacts.
+- Expert installation: use arch-api for a focused contract review.
 
-`arch-evaluate` is available for frozen-baseline assessment. Run `python scripts/dap_validate.py examples/greenfield/architecture` for the deterministic example.
+## DAP contracts and validation
 
-## Repository structure
+The [Deterministic Architecture Process](docs/deterministic-architecture-process.md)
+defines the stages, authority rules and evidence requirements. The runtime supports
+framework 1.0.0, corrected record schema 2.0.0 and rubric 1.0.0. Prior schema-1
+examples are historical fixtures, not ready baselines or transferable approvals.
+See [records](framework/records.md) and [current implementation status](docs/dap-implementation-status.md).
+
+~~~sh
+python tests/test_skills.py
+python -m unittest discover -s tests -p "test_*.py" -v
+python tests/test_activation.py
+~~~
+
+Run the same offline checks together with `./run-tests.ps1` on Windows or
+`bash run-tests.sh` on Linux/macOS. Both stop on the first failure and work from
+any current directory. GitHub Actions runs these checks and builds both package
+profiles on Windows and Linux with Python 3.10 and 3.13 for pushes and pull
+requests to `main`.
+
+For a clearly synthetic positive example in a fresh directory:
+
+~~~sh
+python tests/dap_fixture.py --output .cache/dap-example
+python scripts/dap_validate.py .cache/dap-example
+~~~
+
+Generate all seven current workflow fixtures with
+`python tests/dap_fixture.py --suite --output .cache/dap-scenarios` in a fresh
+directory. They are synthetic inputs for deterministic or optional behavioral
+tests, not live-model execution evidence. See the
+[adapter contract](docs/dap-adapter-contract.md) and
+[real-project migration guide](framework/schema-2-migration.md).
+
+Validator exit codes: 0 ready, 1 blocked/unassessable, 2 CLI error. Semantic
+assessments and human identities are supplied evidence, not automatically proven
+facts. Live-model scenarios remain optional and are not implied by passing tests.
+
+## Repository layout
 
 | Path | Purpose |
 | --- | --- |
-| `skills/` | Canonical skill definitions, references and reusable templates |
-| `tests/` | Structural checks and host-neutral scenario manifests |
-| `scripts/` | Deterministic framework validators and artifact helpers |
-| `docs/` | Framework specification, planning and project guides |
-| `TODO.md` | Open follow-up work |
-| `AGENTS.md` | Contribution instructions |
+| skills/ | 33 canonical skill definitions and domain assets |
+| framework/ | Versioned schemas, rubric, shared contribution and record contracts |
+| scripts/ | Portable packaging, evaluation, graph, checkpoint and publication helpers |
+| tests/ | Offline structure, contract, lifecycle and isolated-package tests |
+| docs/ | Process specification, audits, boundaries and usage guidance |
+| examples/ | Clearly labelled historical schema-1 regression inputs |
 
-Defined scenarios and historical counts are not a current passing test result. [Skill boundaries](docs/skill-boundaries.md) records the responsibility review; [DAP implementation status](docs/dap-implementation-status.md) records the current implementation and verification evidence.
+The [audit](docs/audits/2026-09-20-dap-skill-audit.md) records the earlier defects;
+the [remediation review](docs/audits/2026-09-20-remediation-review.md) records the
+changes and validation. [TODO](TODO.md) distinguishes remaining adoption work.
 
 ## License
 
-MIT, as declared by the existing project documentation. The reviewed repository snapshot does not contain a root `LICENSE` file.
+Prior project documentation declares MIT. This checkout has no root LICENSE file;
+confirm the authoritative license text and copyright holder before redistribution.

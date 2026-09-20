@@ -7,6 +7,13 @@ description: Model domains with Domain-Driven Design. Use when modeling complex 
 
 Systematic approach to modeling complex business domains.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record domain-expert confirmation, context/invariant IDs, owning teams, cross-context dependencies and invariant verification.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -179,27 +186,7 @@ class PricingService:
 - **arch-event** - Domain events and eventual consistency
 - **arch-patterns** - Clean/Hexagonal architectures that host the domain model
 
-## DDD Review Template
+## Output template
 
-```markdown
-## DDD Review: [System]
-
-### Bounded Contexts
-| Context | Responsibility | Team |
-|---------|---------------|------|
-
-### Context Map
-- Relationships: [List]
-
-### Aggregates
-| Aggregate | Invariants | Commands |
-|-----------|------------|----------|
-
-### Tactical Patterns
-- Value Objects: [List]
-- Domain Events: [List]
-- Repositories: [List]
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

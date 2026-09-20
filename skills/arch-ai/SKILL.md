@@ -7,6 +7,13 @@ description: Design AI and LLM system architecture. Use when designing RAG pipel
 
 Systematic approach to designing systems that embed LLMs, agents, and machine learning components.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record model/prompt/corpus/evaluation-set revisions, permitted tool actions, risk-specific thresholds, human gates, fallback and spend limits.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -163,31 +170,7 @@ integration, also check the [OWASP MCP Top 10](https://owasp.org/projects/mcp-to
 - **arch-observability** - Tracing multi-step LLM flows
 - **arch-resilience** - Timeouts, retries, and fallbacks around model calls
 
-## AI Architecture Review Template
+## Output template
 
-```markdown
-## AI Architecture Review: [System]
-
-### Use Cases
-| Use Case | Pattern | Model(s) | Fallback |
-|----------|---------|----------|----------|
-
-### RAG / Context
-- Retrieval: [Vector/Hybrid/None]
-- Grounding: [Citations? Context-only answers?]
-
-### Guardrails
-| Layer | Control | Verified |
-|-------|---------|----------|
-
-### Evaluation
-- Offline evals: [Dataset size, method]
-- Online monitoring: [Metrics]
-
-### Cost & Latency
-| Metric | Budget | Current |
-|--------|--------|---------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

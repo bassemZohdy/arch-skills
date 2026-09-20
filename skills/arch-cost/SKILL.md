@@ -7,6 +7,13 @@ description: Optimize cloud costs and design FinOps architecture. Use when model
 
 Systematic approach to cost management and optimization.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record currency and time horizon, dated rate sources, demand/commitment assumptions, unit economics, forecast uncertainty and approval threshold.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -29,9 +36,9 @@ Systematic approach to cost management and optimization.
 5. **Decisions are data-driven** - Cost/quality trade-offs
 6. **Use the cloud's variable-cost model deliberately** - Automate visibility and optimization where it is safe
 
-### FinOps Phases
+### FinOps Domains
 
-| Phase | Activities |
+| Domain | Activities |
 |-------|------------|
 | **Understand usage and cost** | Visibility, allocation, forecasting and benchmarking |
 | **Quantify business value** | Unit economics, value metrics and trade-offs |
@@ -39,6 +46,10 @@ Systematic approach to cost management and optimization.
 | **Manage practice** | Policies, accountability, automation and continuous improvement |
 
 ## Step 2: Cost Allocation
+
+Apply the Inform, Optimize and Operate phases across these domains; phases and
+domains are different dimensions. Use `references/finops-reference.md` and pin
+the adopted [FinOps Framework](https://www.finops.org/framework/) revision.
 
 ### Tagging Strategy
 
@@ -173,24 +184,7 @@ that justifies each optimization.
 - **arch-devops** - IaC enforcement of tagging and budgets
 - **arch-ai** - Inference spend budgeting
 
-## Cost Review Template
+## Output template
 
-```markdown
-## Cost Review: [System]
-
-### Current Spend
-- Monthly: [Amount]
-- Trend: [Increasing/Stable/Decreasing]
-
-### Cost Breakdown
-| Category | Amount | % of Total |
-|----------|--------|------------|
-
-### Optimization Opportunities
-| Opportunity | Potential Savings | Effort |
-|-------------|-------------------|--------|
-
-### Recommendations
-1. [High impact]
-2. [Medium impact]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

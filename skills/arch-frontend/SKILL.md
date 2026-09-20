@@ -7,6 +7,13 @@ description: Design frontend architecture. Use when designing micro frontends or
 
 Systematic approach to frontend architecture.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record journey IDs, rendering/state and trust boundaries, team ownership, architecture alternatives and accessibility/performance/security verification.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -133,28 +140,7 @@ score does not prove an accessible or usable experience.
 - **arch-accessibility** - WCAG and assistive technology support
 - **arch-perf** - Performance budgets and caching
 
-## Frontend Review Template
+## Output template
 
-```markdown
-## Frontend Review: [Application]
-
-### Architecture
-- Style: [Monolith/Micro Frontends]
-- Framework: [React/Angular/Vue]
-- State Management: [Solution]
-
-### Components
-| Component | Type | Complexity |
-|-----------|------|------------|
-
-### Performance
-| Metric | Target | Current |
-|--------|--------|---------|
-
-### Testing
-| Level | Coverage | Tools |
-|-------|----------|-------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

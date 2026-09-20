@@ -7,6 +7,13 @@ description: Design event-driven architecture. Use when designing messaging syst
 
 Systematic approach to designing event-driven systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/design-template.md` and record event versus command intent, schema version, producer/consumer ownership, delivery/ordering scope, replay/idempotency and compensation verification.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -225,25 +232,7 @@ poison-message handling and schema compatibility explicit for every stream.
 - **arch-microservices** - Service boundaries that events cross
 - **arch-resilience** - DLQs, retries, and failure isolation
 
-## Event-Driven Review Template
+## Output template
 
-```markdown
-## Event-Driven Architecture Review: [System]
-
-### Events Identified
-| Event | Producer | Consumers |
-|-------|----------|-----------|
-
-### Patterns Used
-- Messaging: [Pub/sub, queue]
-- State: [CQRS, Event Sourcing]
-- Transactions: [Saga type]
-
-### Reliability
-- Idempotency: [How ensured]
-- DLQ: [Configured?]
-- Ordering: [Guaranteed?]
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/design-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

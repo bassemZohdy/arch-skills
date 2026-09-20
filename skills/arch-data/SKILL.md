@@ -7,6 +7,13 @@ description: Design data architecture. Use when modeling databases, designing da
 
 Systematic approach to designing data systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record data authority, lineage/source revisions, classification, schema/lifecycle decisions, retention, quality/freshness and restore criteria.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -180,27 +187,7 @@ from derived copies and state the maximum acceptable staleness.
 - **arch-compliance** - Retention, classification, and audit requirements
 - **arch-ai** - Embedding pipelines and training data
 
-## Data Architecture Review Template
+## Output template
 
-```markdown
-## Data Architecture Review: [System]
-
-### Data Domains
-| Domain | Type | Volume | Retention |
-|--------|------|--------|-----------|
-
-### Storage
-| Data | Store | Justification |
-|------|-------|---------------|
-
-### Pipelines
-| Pipeline | Type | Frequency | SLA |
-|----------|------|-----------|-----|
-
-### Governance
-- Classification: [List]
-- Quality metrics: [List]
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

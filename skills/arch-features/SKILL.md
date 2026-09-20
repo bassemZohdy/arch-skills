@@ -7,6 +7,13 @@ description: Design feature management architecture. Use when implementing featu
 
 Systematic approach to feature management.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record flag/experiment IDs, exposure and privacy policy, owner/expiry, guardrail thresholds, approval, kill-switch checks and removal criteria.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -160,23 +167,7 @@ if (variant === 'control') {
 - **arch-observability** - Measuring rollout health
 - **arch-test** - Testing both flag states
 
-## Feature Review Template
+## Output template
 
-```markdown
-## Feature Management Review: [System]
-
-### Feature Flags
-| Flag | Type | Status | Owner |
-|------|------|--------|-------|
-
-### Rollout Status
-| Feature | Strategy | Progress | Rollback Plan |
-|---------|----------|----------|---------------|
-
-### Experiments
-| Experiment | Variants | Sample Size | Status |
-|------------|----------|-------------|--------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

@@ -7,6 +7,13 @@ description: Measure architecture health and complexity. Use when measuring arch
 
 Systematic approach to measuring and tracking architecture health.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/dashboard-template.md` and record measurement definition and units, source revision, sampling window, baseline, uncertainty and explicitly adopted thresholds.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -52,8 +59,12 @@ Instability = Ce / (Ca + Ce)
 - 1.0 = Highly unstable (no incoming deps)
 ```
 
-**Zone of Pain:** High instability, low abstractness
-**Zone of Uselessness:** Low instability, high abstractness
+**Zone of Pain:** Low instability, low abstractness (stable and concrete).
+**Zone of Uselessness:** High instability, high abstractness (abstract with few dependents).
+
+When Ca + Ce is zero, report instability as undefined rather than dividing by zero.
+Interpret the metrics in context, not as universal optimization targets. See
+[metric definitions](https://www.ndepend.com/docs/code-metrics).
 
 ```mermaid
 quadrantChart
@@ -189,24 +200,7 @@ health score unless the weighting and loss of information are explicit.
 - **arch-refactoring** - Acting on what the metrics reveal
 - **arch-review** - Metrics as evidence in reviews
 
-## Metrics Review Template
+## Output template
 
-```markdown
-## Architecture Metrics Review: [System]
-
-### Complexity
-| Metric | Value | Target | Status |
-|--------|-------|--------|--------|
-
-### Dependencies
-| Metric | Value | Target | Status |
-|--------|-------|--------|--------|
-
-### Technical Debt
-| Category | Score | Trend |
-|----------|-------|-------|
-
-### Recommendations
-1. [Highest priority improvement]
-2. [Next improvement]
-```
+Use `assets/dashboard-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

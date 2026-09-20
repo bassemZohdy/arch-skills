@@ -1,96 +1,68 @@
-# Deterministic Architecture Process implementation status
+# DAP implementation status
 
-Framework version: 1.0.0  
-Repository: arch-skills  
-Implementation baseline: 51176ba98cac296034c93c3b09d8acbca91f540d
+Reviewed: 2026-09-20. Framework 1.0.0; schema 2.0.0; rubric 1.0.0; evaluator 2.0.0.
 
-## What DAP means
+The earlier schema-1 implementation passed limited tests but did not implement all
+readiness, traceability, authority or freshness requirements. Its completion claims
+are superseded by the [audit](audits/2026-09-20-dap-skill-audit.md) and this status.
+Do not use its 76% arithmetic fixture as proof of readiness.
 
-DAP is the Deterministic Architecture Process. It is a repeatable, evidence-backed operating model for turning an incomplete requirement into a reviewed architecture baseline.
+## Implemented and tested
 
-It has six stages:
+- Three public entry points with interview/create/update authoring modes and
+  separate process/design evaluation; default and expert package generation.
+- Typed record schema, semantic endpoints, version compatibility, full criterion
+  population expansion and missing significant ADR inventory.
+- Required source/design/verification chains and backward justification through
+  requirements, constraints and accepted ADRs; shared RTM semantics.
+- Readiness independent of scores; mandatory human review categories, current
+  authority/disposition evidence, unresolved blockers and non-waivable obligations.
+- Explicit byte snapshots including assessments, configuration, schema and rubric;
+  freshness checks and baseline-bound semantic assessments/reviews.
+- Hashed checkpoint envelope, expected-revision locking, interrupted-lock refusal
+  and optional artifact verification on resume.
+- Exact weighted arithmetic, partial reporting, empty-population handling,
+  authorized applicability and no anonymous score summaries.
+- Immutable report history with generated summaries, safe output destinations,
+  source-preserving audit and derived RTM publication.
+- All 33 skill entry points reviewed; 28 specialist contribution routes and output
+  sets aligned, plus core doc/decision/review routes and templates.
+- Duplicate inline templates removed and demonstrated standards/reference drift
+  corrected. Current source validation is offline and checks actual resource paths.
+- Seven generated current-schema fixtures back the optional scenario manifest;
+  historical examples are no longer used as current behavioral inputs. Adapter
+  validation rejects empty/contradictory result claims and invalid timestamps/paths.
+- A packaged schema-2 migration guide preserves historical evidence and requires
+  explicit reassessment rather than manufactured approvals.
 
-1. Capture the initial requirement seed.
-2. Prepare the run by classifying scope, loading existing evidence and recording gaps.
-3. Interview stakeholders and converge requirements using explicit quality and stability gates.
-4. Develop architecture views and ADRs together.
-5. Route risky or governed decisions through the configured human review authority.
-6. Produce an arc42 description, ADR log, traceability graph and evaluation report.
+## Validation
 
-“Deterministic” applies to the recorded state transitions, gate rules, evidence requirements and score arithmetic. It does not mean that an LLM will invent the same questions or that a system has only one valid architecture.
+See [remediation review](audits/2026-09-20-remediation-review.md) for the final
+executed test counts and limitations. Reproduce with:
 
-## Completed DAP tasks
-
-| Task | Delivered implementation |
-| --- | --- |
-| DAP-001 | Versioned framework, schema and rubric contracts; configuration example; stable-ID and authority validation |
-| DAP-002 | Requirements, design, decision, verification and exception record guidance; checkpoint and requirement templates; arc42 mapping; RTM generator |
-| DAP-003 | Atomic checkpoints, state hashes and expected-revision conflict detection |
-| DAP-004 | Orchestrator rules for greenfield, brownfield and mixed-scope preparation |
-| DAP-005 | Interview round, budget, convergence, stakeholder confirmation and MoSCoW rules |
-| DAP-006 | Integrated view/ADR guidance; mandatory constraints and bounded DAR sensitivity |
-| DAP-007 | Fail-closed review authority and exception rules for security, privacy, compliance, cost and cross-team impact |
-| DAP-008 | Requirement/design/review change routing, dependency impact and supersession guidance |
-| DAP-009 | Deterministic validator and Q/D/F/B/T/A/S score calculation |
-| DAP-010 | arch-evaluate skill and evaluation contract |
-| DAP-011 | Input manifests, report publishing and stale-report detection |
-| DAP-012 | Greenfield, brownfield, interrupted and blocking-review lifecycle fixtures |
-| DAP-013 | Portable packaging and isolated validation guidance |
-| DAP-014 | Deterministic tests, usage documentation and verification commands |
-
-## Verification evidence
-
-Executed from the repository root:
-
-~~~text
-python -m unittest discover -s tests -p test_dap.py -v
-7 tests passed
-
-python scripts/dap_validate.py examples/greenfield/architecture
-overall_score: 76.0
-gate.ready: true
-
-python scripts/dap_validate.py examples/blocking-review/architecture
-overall_score: 76.0
-gate.ready: false
-blocking finding: security review is not approved
-
-python scripts/dap_rtm.py examples/greenfield/architecture
-generated the requirements traceability matrix
-
-python -m compileall -q scripts tests/test_dap.py
-passed
-~~~
-
-Post-baseline repository validation:
-
-~~~text
+~~~sh
 python tests/test_skills.py
-371 structural checks passed across 33 skills
-
-python -m unittest discover -s tests -p 'test_dap*.py'
-12 tests passed
-
+python -m unittest discover -s tests -p "test_*.py" -v
 python tests/test_activation.py
-33 descriptions scored Good or better
-
-python scripts/dap_adapter.py validate-scenarios tests/dap-adapter-scenarios.json
-5 scenarios validated
-
-python scripts/dap_adapter.py validate-result tests/dap-adapter-result.example.json --scenario-id DAP-BEH-001
-unavailable result shape validated; no live execution claimed
-
-python -m compileall -q scripts tests
-passed
 ~~~
 
-Live-model adapter scenarios remain opt-in. They are separate from the deterministic DAP checks and do not change the score or gate result.
+Tests use synthetic evidence, disposable projects and isolated packages. They
+do not modify global installations. A Windows sandbox may require permission to
+create and clean Python temporary directories.
 
-## Adapter coverage
+## Deliberate limits
 
-The repository includes five host-neutral DAP behavioral scenarios covering
-greenfield preparation, brownfield gaps, interrupted-session recovery,
-blocking-review behavior and versioned/freshness-safe evaluation reports.
-scripts/dap_adapter.py validates the scenario manifest and result contract.
-Live execution remains opt-in; an unavailable adapter is reported separately
-and is not presented as execution evidence.
+The runtime verifies recorded structure, links, calculation and evidence binding.
+It cannot independently establish semantic truth or authenticate a human identity.
+Human review remains necessary; the implementation conservatively requires human
+dispositions rather than automatically accepting under delegation.
+
+The skills conduct interviews and maintain artifacts through the host; scripts do
+not implement an LLM runtime, event scheduler or notification system. Missing host
+capabilities must remain visible. A generated instruction is not evidence that an
+agent followed it.
+
+Schema-1 historical scoring is unavailable in this runtime. There is no silent
+migration or approval transfer. The current positive example generator is explicitly
+synthetic; older examples remain regression inputs. Live-model adapter executions,
+independent architecture-quality certification and legal conformity are not claimed.

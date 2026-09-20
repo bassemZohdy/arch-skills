@@ -19,6 +19,10 @@ the mapping below prevents the two structures from drifting when DAP is active.
 | Risks and technical debt | 11 Risks and Technical Debt |
 | Terms and IDs | 12 Glossary |
 
+Use numbered level-two headings (`## 1. Introduction and Goals` through
+`## 12. Glossary`) in `architecture.md`. Arc42 assessment evidence must point to
+the matching numbered heading, not reuse another section or a generated appendix.
+
 The RTM, checkpoint, reviews and exceptions remain durable supporting records and
 are linked from appendices. Generated evaluation output is dated and excluded from
 the input manifest used to assess the baseline.

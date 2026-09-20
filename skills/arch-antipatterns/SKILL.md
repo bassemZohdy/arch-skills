@@ -7,6 +7,13 @@ description: "Detect and remediate architecture anti-patterns and code smells. U
 
 Systematic approach to detecting, assessing, and remediating anti-patterns and code smells.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/antipattern-review-template.md` and record observed location and cost of change, refactor/contain/accept disposition, accepted-debt authority, revisit date and prevention checks.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -135,27 +142,7 @@ Rules of engagement:
 - **arch-fitness** - Automated prevention in CI
 - **arch-ddd** - Rich vs anemic domain models
 
-## Anti-Pattern Assessment Template
+## Output template
 
-```markdown
-## Anti-Pattern Assessment: [Component]
-
-### Detected
-| Anti-Pattern | Location | Evidence | Severity |
-|--------------|----------|----------|----------|
-
-### Impact
-- Change frequency: [high/med/low]
-- Coupling radius: [modules affected]
-- Trend: [growing/stable/shrinking]
-
-### Decision
-| Option | Cost | Benefit | Chosen? |
-|--------|------|---------|---------|
-| Refactor | | | |
-| Contain | | | |
-| Accept (ADR) | | | |
-
-### Remediation Plan
-1. [Incremental step] — [test coverage needed]
-```
+Use `assets/antipattern-review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

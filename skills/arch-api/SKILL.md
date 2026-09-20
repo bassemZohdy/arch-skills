@@ -7,6 +7,13 @@ description: Design APIs and API governance. Use when designing REST, GraphQL, o
 
 Systematic approach to designing and governing APIs.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/api-template.md` and record contract version, producer/consumer owners, auth boundaries, compatibility policy, idempotency and negative/contract verification.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -212,27 +219,7 @@ message User {
 - **arch-security** - AuthN/AuthZ and rate limiting for APIs
 - **arch-event** - AsyncAPI and event contracts
 
-## API Review Template
+## Output template
 
-```markdown
-## API Review: [API Name]
-
-### Style
-- Type: [REST/GraphQL/gRPC]
-- Version: [Version]
-
-### Endpoints
-| Method | Path | Description |
-|--------|------|-------------|
-
-### Authentication
-- Method: [OAuth/API Key/JWT]
-
-### Rate Limiting
-- Limit: [Requests per window]
-- Window: [Time period]
-
-### Documentation
-- OpenAPI spec: [Link]
-- Examples: [Link]
-```
+Use `assets/api-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

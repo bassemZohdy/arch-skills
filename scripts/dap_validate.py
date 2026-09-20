@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
+"""Validate and score a DAP project without modifying its artifacts."""
 from __future__ import annotations
-import argparse, json, sys
+
+import argparse
+import json
 from pathlib import Path
-SCRIPT_ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(SCRIPT_ROOT))
+import sys
+
 from dap.scoring import evaluate_project
-from dap.contracts import ContractError
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate and score a DAP project baseline")
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("project", type=Path)
     parser.add_argument("--config", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if args.output:
+        parser.error("audit is read-only; use dap_publish.py to publish a versioned report")
     try:
         report = evaluate_project(args.project, args.config)
-    except (ContractError, KeyError, FileNotFoundError, ValueError) as exc:
+    except (KeyError, OSError, ValueError) as exc:
         print(f"DAP validation failed: {exc}", file=sys.stderr)
         return 2
-    payload = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(payload, encoding="utf-8")
-    else:
-        print(payload, end="")
-    return 0
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    return 0 if report["gate"]["ready"] else 1
+
+
 if __name__ == "__main__":
     raise SystemExit(main())
-

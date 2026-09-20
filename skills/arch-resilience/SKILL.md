@@ -7,6 +7,13 @@ description: Design resilience engineering for fault-tolerant distributed system
 
 Systematic approach to building fault-tolerant distributed systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record failure-model IDs, SLO/RTO/RPO constraints, policy rationale, recovery ownership, experiment blast radius and abort authority.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -191,23 +198,7 @@ Request → Bulkhead → Timeout → Service
 - **arch-observability** - Detecting failures the patterns must handle
 - **arch-event** - Dead letter queues and idempotent consumers
 
-## Resilience Review Template
+## Output template
 
-```markdown
-## Resilience Review: [System]
-
-### Dependencies
-| Service | Criticality | Patterns Used |
-|---------|-------------|---------------|
-
-### Configuration
-| Pattern | Setting | Value |
-|---------|---------|-------|
-
-### Failure Scenarios
-| Scenario | Expected Behavior | Verified |
-|----------|-------------------|----------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

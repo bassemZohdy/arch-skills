@@ -7,6 +7,13 @@ description: Engineer performance and plan capacity. Use when designing for perf
 
 Systematic approach to designing and validating performant systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record stimulus/environment/response/threshold scenarios, workload and dataset revisions, measured percentiles, uncertainty and benchmark owner.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -155,26 +162,7 @@ business SLO. Keep p50, p95 and p99 visible and record the measurement method.
 - **arch-observability** - Measuring latency, throughput, and saturation
 - **arch-cost** - Trading performance headroom against spend
 
-## Performance Review Template
+## Output template
 
-```markdown
-## Performance Review: [System Name]
-
-### Requirements
-- Latency: [Target]
-- Throughput: [Target]
-- Availability: [Target]
-
-### Current State
-- Measured latency: [Value]
-- Measured throughput: [Value]
-- Bottlenecks: [List]
-
-### Recommendations
-1. [High impact improvement]
-2. [Medium impact improvement]
-
-### Performance Budget
-| Metric | Budget | Current | Status |
-|--------|--------|---------|--------|
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

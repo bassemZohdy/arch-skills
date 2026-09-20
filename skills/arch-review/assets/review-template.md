@@ -12,8 +12,14 @@
 - [Critical issues that need immediate attention]
 - [Overall assessment]
 
-### Recommendation
-[Approve / Approve with Conditions / Reject / Major Revision Required]
+### Recommendation (not an approval record)
+[Recommend acceptance / Recommend changes / Blocking concern]
+
+### Evidence boundary
+- Assessed scope, baseline revision and manifest hash:
+- REQ/CON/DES/ADR targets and source revisions:
+- Human decision authority and disposition (pending unless evidenced):
+- Process-completeness assessment (separate report):
 
 ---
 
@@ -102,10 +108,8 @@
 
 ## Findings Summary
 
-| ID | Category | Finding | Severity | Confidence | Recommendation |
-|----|----------|---------|----------|------------|----------------|
-| F-001 | [Cat] | [Description] | [H/M/L] | [H/M/L] | [Action] |
-| F-002 | [Cat] | [Description] | [H/M/L] | [H/M/L] | [Action] |
+| ID | Target IDs | Finding and impact | Severity / uncertainty | Evidence locator | Owner / authority | Verification action |
+| --- | --- | --- | --- | --- | --- | --- |
 
 ---
 

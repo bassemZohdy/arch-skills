@@ -7,6 +7,13 @@ description: Plan and execute code and architecture refactoring. Use when identi
 
 Systematic approach to code and architecture refactoring.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record before/after structure IDs, preserved behavior and characterization evidence, affected contracts, rollback boundary and validation owner.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -188,24 +195,7 @@ revert boundary before moving data or public contracts.
 - **arch-migration** - Larger-scale system modernization
 - **arch-test** - The safety net refactoring depends on
 
-## Refactoring Review Template
+## Output template
 
-```markdown
-## Refactoring Review: [Component]
-
-### Code Smells Identified
-| Smell | Location | Impact |
-|-------|----------|--------|
-
-### Refactoring Plan
-| Smell | Refactoring | Risk | Priority |
-|-------|-------------|------|----------|
-
-### Progress
-| Refactoring | Status | Tests Pass |
-|-------------|--------|------------|
-
-### Metrics Before/After
-| Metric | Before | After |
-|--------|--------|-------|
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

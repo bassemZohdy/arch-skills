@@ -2,13 +2,17 @@
   "id": "REQ-001",
   "statement": "",
   "type": "functional",
-  "source": "",
+  "source": "SRC-001",
   "source_revision": "",
   "owner": "",
+  "revision": 1,
+  "baseline_revision": 1,
   "priority": "must",
   "scope": "release-1",
   "acceptance_criteria": [],
-  "verification": {"id": "VER-001", "method": "", "owner": "", "evidence": ""},
+  "verification_ids": [
+    "VER-001"
+  ],
   "dependencies": [],
   "status": "proposed"
 }

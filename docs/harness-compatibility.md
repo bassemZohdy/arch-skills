@@ -1,27 +1,45 @@
-# Host adapter compatibility
+# Portable package compatibility
 
-The canonical skills follow the Agent Skills specification and are host-neutral. They use Markdown frontmatter, relative references and portable assets. A consuming AI tool is responsible for discovery, installation, invocation, capability mapping and model configuration.
+Use built packages, not isolated copies of source skill directories.
+The format follows the [Agent Skills specification](https://agentskills.io/specification).
+Discovery and invocation are host responsibilities; a skill does not supply a
+scheduler, a subagent API, credentials or durable storage by itself.
 
-## Compatibility contract
+## Distribution profiles
 
-Every compatible host must be able to:
+- Default: arch-orchestrator, arch-evaluate and arch-review are the only SKILL.md
+  entry points. Other capabilities are instructions.md resources under
+  references/specialists, located through package-catalog.json.
+- Expert: all 33 entry points, or selected specialists using --skill. Narrow
+  expert requests do not require the entire DAP workflow.
+- Both: framework contracts, Python runtime/dependencies and content hashes are
+  copied from one canonical source. There are no manually maintained host mirrors.
 
-1. Discover a skill by its SKILL.md frontmatter.
-2. Load referenced files relative to the skill root.
-3. Invoke the skill without changing its instructions.
-4. Provide an isolated workspace and a way to persist requested artifacts.
-5. Report unavailable tools or capabilities instead of silently simulating them.
+The default interface presents interview/create/update/evaluate workflows. It
+does not add four engines or hide evaluation inside an authoring-only path.
+No nonstandard hidden metadata is required. Hosts that discover SKILL.md entries
+see three in the default output, including recursive discovery.
 
-## Adapter boundary
+## Build contract
 
-Host names, installation paths, command syntax, model identifiers and tool APIs belong in the consuming tool's configuration. They must not appear in canonical skills/*/SKILL.md files. This repository does not detect hosts, create global links or ship provider-specific metadata. Copying a complete selected skill directory is the portable installation operation.
+Run scripts/build_packages.py with a fresh --output and default/expert --profile.
+The builder refuses an existing destination rather than deleting user data.
+Install each complete generated directory with the selected host's native mechanism.
+The builder does not perform installation or modify global skill locations.
 
-## Packaging requirements
+Resolve references/assets relative to the current skill/module resource root;
+resolve shared framework/scripts from the outer package root. Read the catalogue
+before choosing module paths. A specialist is ordinary instruction content and
+does not require a subagent; delegate only if supported and authorized.
 
-- Preserve the complete skill directory, including references/ and assets/.
-- Resolve all internal links from the installed skill root.
-- Keep host-specific metadata outside the canonical skill package.
-- Do not require repository-relative paths such as ../../docs from inside an installed skill.
-- Validate an isolated copy before publishing an adapter package.
+Use Python 3.10+ and requirements.txt for deterministic helpers. Test scripts from
+an unrelated working directory. A host without execution support can return a
+plan or provisional analysis, but cannot claim the deterministic checks ran.
 
-The canonical skill is the portable unit. Consuming tools may add launchers, aliases, metadata or test fixtures without changing the skill's behavior.
+## Verified boundaries
+
+Automated tests verify default/expert discovery counts, resource resolution,
+bundle hashes, no-overwrite behavior and isolated evaluator execution. These are
+filesystem/runtime compatibility tests, not proof that every AI host follows the
+instructions correctly. Host-specific behavioral trials remain external,
+optional and explicitly labelled with real execution evidence.

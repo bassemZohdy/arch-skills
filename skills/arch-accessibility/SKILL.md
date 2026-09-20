@@ -7,6 +7,13 @@ description: Design accessible interfaces and achieve WCAG conformance. Use when
 
 Systematic approach to designing accessible systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record WCAG edition/level, scoped journeys, criterion IDs, browser/assistive-technology context, manual evidence and remaining barriers.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -211,7 +218,7 @@ function trapFocus(modal) {
 ## Further Reading
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
-- `references/wcag-reference.md` — WCAG 2.1 Reference
+- `references/wcag-reference.md` — WCAG 2.2 scope, criteria and verification reference
 
 The normative baseline is [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/); use
 the repository reference for routing and implementation notes.
@@ -222,24 +229,7 @@ the repository reference for routing and implementation notes.
 - **arch-frontend** - Component architecture where semantics live
 - **arch-compliance** - Legal requirements (ADA, EAA, Section 508)
 
-## Accessibility Review Template
+## Output template
 
-```markdown
-## Accessibility Review: [System]
-
-### WCAG Conformance
-- Target Level: [A/AA/AAA]
-- Current Status: [Conforming/Partial/Non-conforming]
-
-### Audit Results
-| Principle | Pass | Fail | Notes |
-|-----------|------|------|-------|
-
-### Issues Found
-| Issue | Severity | WCAG Criterion | Fix |
-|-------|----------|----------------|-----|
-
-### Recommendations
-1. [High priority]
-2. [Medium priority]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

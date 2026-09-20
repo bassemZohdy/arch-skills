@@ -42,7 +42,7 @@ limitation when relying on it.
 | arch-perf | Scalability, caching, concurrency, capacity | Scale or latency requirements | Expected scale, load profile | Scaling strategy, capacity plan | Deployment architecture |
 | arch-observability | Logging, metrics, tracing, monitoring | Any production system | Critical flows, SLOs | Observability design | Deployment architecture |
 | arch-test | Test strategy, testability of architecture | Production or mission-critical | Architecture shape | Test strategy, quality gates | Application design |
-| arch-usability / arch-accessibility | UX quality, accessibility standards | Customer-facing applications | User requirements | Usability/accessibility requirements & checks | Requirements analysis |
+| arch-usability / arch-accessibility | UX quality, accessibility standards | Any human-facing interface, including internal tools | User requirements | Usability/accessibility requirements & checks | Requirements analysis |
 
 ## Platform & Delivery
 

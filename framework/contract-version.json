@@ -1,12 +1,16 @@
 {
   "framework_version": "1.0.0",
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "rubric_version": "1.0.0",
-  "status": "stable",
+  "evaluator_version": "2.0.0",
+  "status": "reference",
   "compatibility": {
-    "major_must_match": true,
-    "minor_may_read_older": true,
-    "patch_is_backward_compatible": true
+    "supported_exact": {
+      "framework": "1.0.0",
+      "schema": "2.0.0",
+      "rubric": "1.0.0"
+    },
+    "historical": "schema 1.0.0 evaluation unavailable; explicit migration and renewed assessment required"
   }
 }
 

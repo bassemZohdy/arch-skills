@@ -7,6 +7,13 @@ description: Select and apply architecture patterns including Clean Architecture
 
 Systematic approach to selecting and applying architecture patterns.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record quality scenarios, eligible alternatives, disqualifying constraints, operational cost, DES/ADR mapping and fitness criteria.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -197,23 +204,7 @@ graph LR
 - **arch-fitness** - Enforcing pattern rules in CI
 - **arch-refactoring** - Migrating toward a target pattern
 
-## Pattern Review Template
+## Output template
 
-```markdown
-## Pattern Review: [System]
-
-### Selected Pattern
-- Pattern: [Name]
-- Rationale: [Why this pattern]
-
-### Implementation
-| Component | Pattern Element | Status |
-|-----------|----------------|--------|
-
-### Compliance
-| Rule | Status | Violations |
-|------|--------|------------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

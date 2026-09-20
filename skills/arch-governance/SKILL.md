@@ -21,6 +21,13 @@ manifest and become stale when assessed requirements, design elements, ADRs,
 reviews or configuration change. Process completeness, architecture fitness and
 implementation verification remain separate reports.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record policy provenance and version, review type and authority, baseline-bound disposition, delegation limits, exception expiry and handoff/cadence owners.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -187,27 +194,7 @@ window, owner and action for every metric.
 - **arch-decision** - Structured decision-making the board can ratify
 - **arch-review** - Review process the board consumes
 
-## Governance Review Template
+## Output template
 
-```markdown
-## Governance Review: [Organization]
-
-### Standards
-| Standard | Status | Compliance |
-|----------|--------|------------|
-
-### Reviews
-| Review Type | Frequency | Last Conducted |
-|-------------|-----------|----------------|
-
-### Exceptions
-| Exception | Risk | Status | Owner |
-|-----------|------|--------|-------|
-
-### Debt
-| Category | Items | Trend |
-|----------|-------|-------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

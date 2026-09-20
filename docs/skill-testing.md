@@ -13,9 +13,23 @@ python tests/test_skills.py
 
 Validate frontmatter, progressive disclosure, internal links, assets, metadata, naming and forbidden files without invoking a model.
 
+The suite is offline, checks inline and Markdown resource paths across references,
+and does not enforce a minimum word count or unnecessary resource directories.
+Run contract and isolated-package tests with
+`python -m unittest discover -s tests -p 'test_*.py' -v`.
+
+Use `./run-tests.ps1` or `bash run-tests.sh` to run structural validation, the
+complete contract/package suite and description lint together. These wrappers
+stop on failure and resolve the repository from their own location. The
+GitHub Actions workflow runs the wrappers and fresh default/expert builds on
+Windows and Linux with Python 3.10 and 3.13.
+
 ### 2. Activation checks
 
-Use tests/test_activation.py to evaluate whether each description contains precise triggers and domain terms. Keep activation tests independent of a particular host or model.
+Use tests/test_activation.py for a lexical description heuristic. Its scores and
+advisory notes are not proof of correct host/model selection; do not pad a precise
+description with irrelevant keywords to maximize the score. Keep this lint
+independent of a particular host or model and measure real activation separately.
 
 ### 3. Behavioral adapter tests
 
@@ -24,7 +38,7 @@ Run a scenario through any compatible adapter. The scenario file should contain 
 Generic invocation shape:
 ~~~text
 <adapter-runner> run tests/test-arch-doc.yaml \
-  --skill-root ./skills/arch-doc \
+  --skill-root <built-expert-package>/arch-doc \
   --model <model-id> \
   --report <output>
 ~~~
@@ -69,7 +83,8 @@ unavailable, not as a passing or failing skill result.
 - Prefer deterministic assertions over response wording.
 - Repeat non-deterministic scenarios and publish pass rates.
 - Treat a missing adapter, model or credential as an unavailable test environment, not as a skill failure.
-- Keep live-model tests opt-in; structural validation remains the required gate.
+- Keep live-model tests opt-in; structural validation, contract/package tests and
+  fresh package builds remain the required repository checks.
 
 ## Authoring rule
 

@@ -4,13 +4,15 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import json
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 PROTOCOL_VERSION = "1.0.0"
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "2.0"
+FIXTURES = {"greenfield", "create", "brownfield", "interrupted", "blocking-review", "interview", "update"}
 STATUSES = {"passed", "failed", "unavailable"}
 ASSERTION_TYPES = {
     "file_exists",
@@ -41,6 +43,23 @@ def load_json(path: Path) -> dict[str, Any]:
 def _require_string(value: Any, label: str) -> None:
     if not isinstance(value, str) or not value.strip():
         raise AdapterContractError(f"{label} must be a non-empty string")
+
+
+def _relative_path(value: Any, label: str) -> None:
+    _require_string(value, label)
+    if "\\" in value or ":" in value or PurePosixPath(value).is_absolute() or ".." in value.split("/"):
+        raise AdapterContractError(f"{label} must stay within the workspace")
+
+
+def _timestamp(value: Any, label: str):
+    _require_string(value, label)
+    try:
+        result = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        if result.tzinfo is None:
+            raise ValueError("timezone required")
+        return result
+    except ValueError as exc:
+        raise AdapterContractError(f"{label} must be a timezone-aware ISO timestamp") from exc
 
 
 def _reject_host_keys(value: Any, location: str = "manifest") -> None:
@@ -79,10 +98,11 @@ def validate_scenario_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
         if scenario_id in ids:
             raise AdapterContractError(f"duplicate scenario id: {scenario_id}")
         ids.add(scenario_id)
-        if not scenario["skill"].startswith("./skills/"):
+        _relative_path(scenario["skill"], f"{location}.skill")
+        if not scenario["skill"].startswith("./skills/") or len(PurePosixPath(scenario["skill"]).parts) != 2:
             raise AdapterContractError(f"{location}.skill must be a repository skill path")
-        if not scenario["fixture"].startswith("examples/"):
-            raise AdapterContractError(f"{location}.fixture must be an examples path")
+        if scenario["fixture"] not in {f"generated:{name}" for name in FIXTURES}:
+            raise AdapterContractError(f"{location}.fixture must name a current generated fixture")
         assertions = scenario.get("assertions")
         if not isinstance(assertions, list) or not assertions:
             raise AdapterContractError(f"{location}.assertions must be non-empty")
@@ -91,10 +111,23 @@ def validate_scenario_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
             if not isinstance(assertion, dict):
                 raise AdapterContractError(f"{assertion_location} must be an object")
             assertion_type = assertion.get("type")
-            if assertion_type not in ASSERTION_TYPES:
+            if not isinstance(assertion_type, str) or assertion_type not in ASSERTION_TYPES:
                 raise AdapterContractError(
                     f"{assertion_location}.type is unsupported: {assertion_type!r}"
                 )
+            if assertion_type in {"file_exists", "file_contains", "json_path_equals"}:
+                _relative_path(assertion.get("path"), f"{assertion_location}.path")
+            if assertion_type in {"file_contains", "response_contains", "response_not_contains"}:
+                _require_string(assertion.get("value"), f"{assertion_location}.value")
+            if assertion_type == "evidence_present":
+                _require_string(assertion.get("field"), f"{assertion_location}.field")
+            if assertion_type == "gate_ready" and type(assertion.get("expected")) is not bool:
+                raise AdapterContractError(f"{assertion_location}.expected must be boolean")
+            if assertion_type == "json_path_equals":
+                pointer = assertion.get("pointer")
+                if (not isinstance(pointer, str) or (pointer and not pointer.startswith("/"))
+                        or "expected" not in assertion):
+                    raise AdapterContractError(f"{assertion_location} requires a JSON pointer and expected value")
     return {"schema_version": SCHEMA_VERSION, "scenario_count": len(scenarios)}
 
 
@@ -128,23 +161,42 @@ def validate_result(result: dict[str, Any], scenario_id: str | None = None) -> d
     _require_string(result["scenario_id"], "result.scenario_id")
     if scenario_id and result["scenario_id"] != scenario_id:
         raise AdapterContractError("result.scenario_id does not match the requested scenario")
-    if result["status"] not in STATUSES:
+    if not isinstance(result["status"], str) or result["status"] not in STATUSES:
         raise AdapterContractError(f"unsupported result.status: {result['status']!r}")
     _require_string(result["run_id"], "result.run_id")
-    _require_string(result["started_at"], "result.started_at")
-    _require_string(result["finished_at"], "result.finished_at")
+    started = _timestamp(result["started_at"], "result.started_at")
+    finished = _timestamp(result["finished_at"], "result.finished_at")
+    if finished < started:
+        raise AdapterContractError("result.finished_at precedes started_at")
     _validate_version_block(result["adapter"], "result.adapter")
     _validate_version_block(result["model"], "result.model")
     if not isinstance(result["assertions"], list):
         raise AdapterContractError("result.assertions must be an array")
     if not isinstance(result["evidence"], list):
         raise AdapterContractError("result.evidence must be an array")
+    for assertion in result["assertions"]:
+        if (not isinstance(assertion, dict) or not isinstance(assertion.get("type"), str)
+                or assertion["type"] not in ASSERTION_TYPES
+                or type(assertion.get("passed")) is not bool):
+            raise AdapterContractError("result assertions require a supported type and boolean passed")
+    for evidence in result["evidence"]:
+        if not isinstance(evidence, dict):
+            raise AdapterContractError("result evidence must be an object with a relative path")
+        _relative_path(evidence.get("path"), "result.evidence.path")
     if result["status"] == "unavailable":
         _require_string(result.get("reason"), "result.reason")
+        if result["assertions"]:
+            raise AdapterContractError("unavailable execution cannot claim executed assertions")
     elif not result["evidence"]:
         raise AdapterContractError(
             "passed or failed executions must provide observable evidence"
         )
+    else:
+        if not result["assertions"]:
+            raise AdapterContractError("executed results require assertion outcomes")
+        passed = all(a["passed"] for a in result["assertions"])
+        if (result["status"] == "passed") != passed:
+            raise AdapterContractError("result status contradicts assertion outcomes")
     return {
         "scenario_id": result["scenario_id"],
         "status": result["status"],

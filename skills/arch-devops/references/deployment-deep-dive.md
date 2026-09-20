@@ -4,12 +4,12 @@
 
 ## DORA Metrics
 
-| Metric | Description | Elite Performance |
-|--------|-------------|-------------------|
-| **Deployment Frequency** | How often deploy | On-demand (multiple/day) |
-| **Lead Time** | Time from commit to deploy | Less than 1 hour |
-| **Change Failure Rate** | % of deployments causing failure | 0-15% |
-| **Time to Restore** | Time to recover from failure | Less than 1 hour |
+Use the [current five-metric model](https://dora.dev/guides/dora-metrics/).
+Measure deployment frequency, change lead time, failed-deployment recovery,
+change-failure proportion and deployment rework. Keep deployment-specific
+recovery separate from broad service MTTR, and record definition/version,
+sampling window and system scope. Adopt targets from local evidence rather
+than treating historical performance bands as universal gates.
 
 ## Deployment Strategies
 

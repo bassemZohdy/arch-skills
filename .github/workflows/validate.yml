@@ -1,0 +1,47 @@
+name: Validate architecture skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.13']
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run offline checks (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./run-tests.ps1
+      - name: Run offline checks (Linux)
+        if: runner.os == 'Linux'
+        run: bash run-tests.sh
+      - name: Build default packages
+        run: python scripts/build_packages.py --profile default --output .cache/ci-default
+      - name: Build expert packages
+        run: python scripts/build_packages.py --profile expert --output .cache/ci-expert
+      - name: Check patch whitespace
+        run: git diff --check

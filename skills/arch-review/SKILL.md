@@ -9,6 +9,14 @@ Orchestrate comprehensive architecture reviews using specialized skills.
 
 ## Workflow
 
+Keep the assessed baseline read-only. Resolve bundled specialists using the
+outer package's package-catalog.json; load only relevant instructions/resources.
+For DAP work read `framework/contribution-contract.md` from that package root
+and include target IDs, baseline/hash, evidence, uncertainty and verification
+actions in `assets/review-template.md`. A recommendation is not human approval.
+Report process completeness separately through arch-evaluate; do not repair
+evidence gaps during review or require full DAP for a narrow standalone review.
+
 ```
 1. Understand Context → System purpose, constraints, stakeholders
 2. Define Scope → Which dimensions to review?

@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-Activation Tests — verify skill descriptions trigger correctly.
+Description lint -- a lexical heuristic, not proof of model activation.
 
-Checks that each skill's description contains enough trigger keywords
-to be matched by AI harnesses for relevant user requests.
+Checks whether descriptions contain useful intent and domain terms. Actual
+selection behavior must be measured separately with an optional host adapter.
 
 Run: python tests/test_activation.py
 """
 
-import os
 import re
 import yaml
 from pathlib import Path
@@ -37,7 +36,7 @@ def score_description(desc, skill_name):
     issues = []
     score = 10
 
-    # Must have at least 3 words
+    # Flag descriptions too short to express useful intent.
     if len(desc.split()) < 5:
         issues.append("Too short (< 5 words)")
         score -= 3
@@ -56,7 +55,7 @@ def score_description(desc, skill_name):
         1 for p in trigger_indicators if re.search(p, desc.lower())
     )
     if trigger_count < 3:
-        issues.append(f"Only {trigger_count} trigger indicators (need ≥3)")
+        issues.append(f"Only {trigger_count} trigger indicators (heuristic: >=3)")
         score -= 2
 
     # Should mention specific technologies/domains
@@ -77,7 +76,7 @@ def score_description(desc, skill_name):
         1 for kw in domain_keywords if kw.lower() in desc.lower()
     )
     if domain_count < 2:
-        issues.append(f"Only {domain_count} domain keywords (need ≥2)")
+        issues.append(f"Only {domain_count} domain keywords (heuristic: >=2)")
         score -= 2
 
     # Should not be purely generic
@@ -86,7 +85,7 @@ def score_description(desc, skill_name):
         r"^Systematic approach to \w+\.?\s*$",
     ]
     if any(re.match(p, desc) for p in generic_only_patterns):
-        issues.append("Description is purely generic — needs trigger keywords")
+        issues.append("Description is purely generic - needs trigger keywords")
         score -= 3
 
     return max(0, score), issues
@@ -107,7 +106,7 @@ def main():
     for skill in skills:
         desc = load_skill_description(skill)
         if desc is None:
-            print(f"\n  ✗ {skill}: No description found")
+            print(f"\n  FAIL {skill}: No description found")
             results.append((skill, 0, ["No description"]))
             continue
 
@@ -115,12 +114,12 @@ def main():
         results.append((skill, score, issues))
 
         if issues:
-            print(f"\n  ⚠ {skill} (score: {score}/10)")
+            print(f"\n  NOTE {skill} (score: {score}/10)")
             for issue in issues:
-                print(f"    — {issue}")
+                print(f"    - {issue}")
             print(f"    Description: {desc[:120]}...")
         else:
-            print(f"\n  ✓ {skill} (score: {score}/10)")
+            print(f"\n  PASS {skill} (score: {score}/10)")
 
     # Summary
     total = len(results)
@@ -128,7 +127,7 @@ def main():
     weak = [(name, s, i) for name, s, i in results if s < 7]
 
     print("\n" + "=" * 60)
-    print(f"Total: {total} | Good (≥7): {passed} | Weak (<7): {len(weak)}")
+    print(f"Total: {total} | Good (>=7): {passed} | Weak (<7): {len(weak)}")
     if weak:
         print("\nSkills needing description improvements:")
         for name, s, i in weak:

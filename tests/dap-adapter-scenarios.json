@@ -1,67 +1,169 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "adapter_protocol_version": "1.0.0",
-  "description": "Optional, host-neutral DAP behavioral scenarios. The selected adapter supplies the harness, model, credentials and invocation protocol.",
+  "description": "Optional host-neutral scenarios using generated schema-2 fixtures and built skill packages. Synthetic fixture identities are not real approvals.",
   "scenarios": [
     {
       "id": "DAP-BEH-001",
-      "name": "greenfield baseline produces traceable records",
+      "name": "create from confirmed synthetic requirements",
       "skill": "./skills/arch-orchestrator",
-      "fixture": "examples/greenfield/architecture",
-      "prompt": "Run the DAP process for this greenfield architecture request. Establish the requirement baseline, preserve evidence, produce the architecture and decisions, and report the readiness gate.",
+      "fixture": "generated:create",
+      "prompt": "Create a candidate architecture from the supplied synthetic requirement baseline. Develop design and ADR proposals, preserve provenance, and report pending human review without inventing approval.",
       "assertions": [
-        {"type": "file_exists", "path": "architecture/requirements.json"},
-        {"type": "file_exists", "path": "architecture/traceability.json"},
-        {"type": "file_exists", "path": "architecture/process/state.json"},
-        {"type": "evidence_present", "field": "readiness_gate"}
+        {
+          "type": "file_exists",
+          "path": "architecture/requirements.json"
+        },
+        {
+          "type": "file_exists",
+          "path": "architecture/traceability.json"
+        },
+        {
+          "type": "file_exists",
+          "path": "architecture/process/state.json"
+        },
+        {
+          "type": "evidence_present",
+          "field": "readiness_gate"
+        },
+        {
+          "type": "evidence_present",
+          "field": "new_design_and_decision_proposals"
+        }
       ]
     },
     {
       "id": "DAP-BEH-002",
       "name": "brownfield preparation preserves known gaps",
       "skill": "./skills/arch-orchestrator",
-      "fixture": "examples/brownfield/architecture",
+      "fixture": "generated:brownfield",
       "prompt": "Resume DAP preparation for this brownfield architecture. Preserve existing evidence, distinguish confirmed facts from assumptions, record gaps and avoid silently replacing the current baseline.",
       "assertions": [
-        {"type": "file_exists", "path": "architecture/process/assessment.json"},
-        {"type": "file_contains", "path": "architecture/process/state.json", "value": "brownfield"},
-        {"type": "evidence_present", "field": "assumptions_or_gaps"}
+        {
+          "type": "file_exists",
+          "path": "architecture/process/assessment.json"
+        },
+        {
+          "type": "gate_ready",
+          "expected": false
+        },
+        {
+          "type": "evidence_present",
+          "field": "assumptions_or_gaps"
+        }
       ]
     },
     {
       "id": "DAP-BEH-003",
       "name": "interrupted run resumes from checkpoint",
       "skill": "./skills/arch-orchestrator",
-      "fixture": "examples/interrupted/architecture",
+      "fixture": "generated:interrupted",
       "prompt": "Continue the interrupted DAP run from its checkpoint. Do not reset prior accepted records; reconcile the checkpoint revision and report what remains incomplete.",
       "assertions": [
-        {"type": "file_exists", "path": "architecture/process/checkpoint.json"},
-        {"type": "file_contains", "path": "architecture/process/state.json", "value": "interview"},
-        {"type": "evidence_present", "field": "checkpoint_revision"}
+        {
+          "type": "file_exists",
+          "path": "architecture/process/state.json"
+        },
+        {
+          "type": "evidence_present",
+          "field": "preserved_answer_history"
+        },
+        {
+          "type": "evidence_present",
+          "field": "checkpoint_revision"
+        }
       ]
     },
     {
       "id": "DAP-BEH-004",
       "name": "blocking review prevents readiness",
       "skill": "./skills/arch-evaluate",
-      "fixture": "examples/blocking-review/architecture",
-      "prompt": "Evaluate this frozen architecture baseline. Report the score and readiness independently, and keep the baseline blocked because the required security review is not approved.",
+      "fixture": "generated:blocking-review",
+      "prompt": "Evaluate this frozen synthetic architecture baseline without modifying assessed files. Report score, readiness, and evidence-backed blocking findings separately.",
       "assertions": [
-        {"type": "gate_ready", "expected": false},
-        {"type": "response_contains", "value": "security review"},
-        {"type": "evidence_present", "field": "blocking_findings"}
+        {
+          "type": "gate_ready",
+          "expected": false
+        },
+        {
+          "type": "response_contains",
+          "value": "security review"
+        },
+        {
+          "type": "evidence_present",
+          "field": "blocking_findings"
+        },
+        {
+          "type": "evidence_present",
+          "field": "unchanged_input_manifest"
+        }
       ]
     },
     {
       "id": "DAP-BEH-005",
       "name": "evaluation reports versions and freshness",
       "skill": "./skills/arch-evaluate",
-      "fixture": "examples/greenfield/architecture",
+      "fixture": "generated:greenfield",
       "prompt": "Evaluate the frozen greenfield baseline and publish an evidence-linked report. Include framework, schema, rubric, configuration, evaluator and input-manifest versions, then state whether the report is current.",
       "assertions": [
-        {"type": "file_exists", "path": "architecture/evaluations/latest.json"},
-        {"type": "evidence_present", "field": "input_manifest_hash"},
-        {"type": "evidence_present", "field": "versions"}
+        {
+          "type": "file_exists",
+          "path": "architecture/evaluations/latest.json"
+        },
+        {
+          "type": "evidence_present",
+          "field": "input_manifest_hash"
+        },
+        {
+          "type": "evidence_present",
+          "field": "versions"
+        }
+      ]
+    },
+    {
+      "id": "DAP-BEH-006",
+      "name": "interview stops before design",
+      "skill": "./skills/arch-orchestrator",
+      "fixture": "generated:interview",
+      "prompt": "Interview only: clarify the greeting requirement and record pending stakeholder answers. Stop at the requirements handoff. Do not design the solution or infer consent from missing answers.",
+      "assertions": [
+        {
+          "type": "json_path_equals",
+          "path": "architecture/process/state.json",
+          "pointer": "/state/mode",
+          "expected": "interview"
+        },
+        {
+          "type": "json_path_equals",
+          "path": "architecture/design-elements.json",
+          "pointer": "",
+          "expected": []
+        },
+        {
+          "type": "evidence_present",
+          "field": "pending_questions_and_handoff"
+        }
+      ]
+    },
+    {
+      "id": "DAP-BEH-007",
+      "name": "update preserves accepted baseline reasoning",
+      "skill": "./skills/arch-orchestrator",
+      "fixture": "generated:update",
+      "prompt": "Assess architecture/change-request.md against the existing synthetic baseline. Record dependency impacts and the required re-entry stage. Preserve accepted ADR reasoning and do not claim the changed candidate approved.",
+      "assertions": [
+        {
+          "type": "evidence_present",
+          "field": "change_impact_ids"
+        },
+        {
+          "type": "evidence_present",
+          "field": "reentry_stage"
+        },
+        {
+          "type": "evidence_present",
+          "field": "preserved_prior_decisions"
+        }
       ]
     }
   ]

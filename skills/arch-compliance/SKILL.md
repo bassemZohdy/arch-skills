@@ -7,6 +7,13 @@ description: "Design regulatory controls and auditability architecture. Use when
 
 Systematic approach to regulatory compliance and auditability.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record obligation source/version, jurisdiction and applicability authority, data scope, control mappings, retention basis and exception expiry.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -175,29 +182,7 @@ need for each record class, then document the conflict-resolution authority.
 - **arch-data** - Classification, retention, lineage
 - **arch-governance** - Processes that keep compliance continuous
 
-## Compliance Review Template
+## Output template
 
-```markdown
-## Compliance Review: [System]
-
-### Applicable Regulations
-| Regulation | Applicability | Status |
-|------------|---------------|--------|
-
-### Data Inventory
-| Data Type | Classification | Retention | Purpose |
-|-----------|---------------|-----------|---------|
-
-### Controls Assessment
-| Control | Implemented | Verified | Evidence |
-|---------|-------------|----------|----------|
-
-### Audit Trail
-- Logging: [Configured?]
-- Retention: [Period]
-- Access: [Who can view?]
-
-### Recommendations
-1. [Critical gap]
-2. [High priority]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

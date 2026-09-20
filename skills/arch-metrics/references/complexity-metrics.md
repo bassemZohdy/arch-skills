@@ -14,25 +14,18 @@
 
 | Metric | Formula | Good | Bad |
 |--------|---------|------|-----|
-| Afferent Coupling (Ca) | Incoming deps | High | Low |
+| Afferent Coupling (Ca) | Incoming deps | Depends on role | High concentration can increase change impact |
 | Efferent Coupling (Ce) | Outgoing deps | Low | High |
-| Instability | Ce / (Ca + Ce) | 0.0 | 1.0 |
-| Abstractness | Abstract / Total | High | Low |
+| Instability | Ce / (Ca + Ce) | Context-dependent | Undefined if denominator is zero |
+| Abstractness | Abstract / Total | Context-dependent | Undefined if no types |
 
 ## Zone of Pain/Uselessness
 
-```
-Abstractness ↑
-    │
-    │  Zone of        │
-    │  Uselessness    │
-    │                 │
-1.0 ├─────────────────┤
-    │                 │
-    │                 │
-0.0 ├─────────────────┤
-    │  Zone of        │
-    │  Pain           │
-    └─────────────────┘
-       0.0          1.0  Instability →
-```
+| Region | Instability I | Abstractness A | Interpretation |
+| --- | --- | --- | --- |
+| Pain | Near 0 | Near 0 | Stable, concrete dependencies are difficult to change |
+| Uselessness | Near 1 | Near 1 | Abstract elements have few dependents |
+
+When Ca+Ce is zero, I is undefined. Thresholds depend on the role and workload,
+not a universal goal to maximize abstractness or minimize outgoing dependencies.
+[Definitions](https://www.ndepend.com/docs/code-metrics).

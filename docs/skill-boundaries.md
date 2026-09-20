@@ -6,6 +6,13 @@ Reviewed against all 33 canonical skills in skills/*/SKILL.md.
 
 The skills are complementary and should remain separate. No current pair has enough responsibility overlap to justify a merge, and no skill has a scope large enough to require a split. The canonical skill files contain no references to a named assistant, model provider, CLI, installation directory or host-specific tool API.
 
+Separate source responsibilities do not require exposing every skill to users.
+The default distribution now exposes arch-orchestrator (interview/create/update),
+arch-evaluate (process) and arch-review (design). Other capabilities are bundled as
+selectively loaded modules. Expert packages preserve direct specialist access.
+See [packaging](harness-compatibility.md); do not merge process assessment into
+authoring or duplicate the orchestration engine merely to reduce discovery noise.
+
 The cleanup is therefore boundary-focused:
 
 - host names, commands, model identifiers and tool APIs belong to adapter documentation and test configuration;

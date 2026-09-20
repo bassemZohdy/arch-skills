@@ -7,6 +7,13 @@ description: Design cloud-native architecture. Use when designing cloud architec
 
 Systematic approach to designing cloud-native systems.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/architecture-template.md` and record workload constraints, dated regional/quota/rate evidence, identity boundaries, data residency, recovery and exit decisions.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -138,24 +145,7 @@ rates, utilization, workload shape, commitments, egress and reliability impact.
 - **arch-data** - Data modeling, pipelines, governance
 - **arch-perf** - Caching, capacity planning, load testing
 
-## Cloud Review Template
+## Output template
 
-```markdown
-## Cloud Architecture Review: [System]
-
-### Provider
-- Primary: [AWS/Azure/GCP]
-- Services: [List]
-
-### Well-Architected Assessment
-| Pillar | Score | Issues |
-|--------|-------|--------|
-
-### Cost Analysis
-- Monthly spend: [Amount]
-- Optimization opportunities: [List]
-
-### Recommendations
-1. [High priority]
-2. [Medium priority]
-```
+Use `assets/architecture-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

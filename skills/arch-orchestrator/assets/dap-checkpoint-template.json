@@ -1,17 +1,34 @@
 {
   "revision": 0,
   "state": {
-    "run_id": "RUN-001",
+    "run_id": "",
     "stage": "preparation",
-    "mode": "greenfield",
-    "framework_version": "1.0.0",
-    "schema_version": "1.0.0",
-    "rubric_version": "1.0.0",
+    "mode": "interview",
+    "versions": {
+      "framework": "1.0.0",
+      "schema": "2.0.0",
+      "rubric": "1.0.0"
+    },
+    "baseline_revision": 1,
+    "subject_hash": "",
     "round": 0,
+    "elapsed_minutes": 0,
     "answered_questions": [],
     "pending_questions": [],
     "gate_results": {},
     "pending_reviews": [],
-    "next_action": ""
-  }
+    "next_action": "",
+    "stability": {
+      "confirmed": false,
+      "participants": [],
+      "round_id": "",
+      "before_hash": "",
+      "after_hash": "",
+      "evidence": []
+    },
+    "blocking_findings": [],
+    "mandatory_conflicts": [],
+    "incomplete_operations": []
+  },
+  "state_hash": ""
 }

@@ -7,6 +7,13 @@ description: Design test strategy, test architecture, contract testing and verif
 
 Systematic approach to designing test strategies.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/strategy-template.md` and record VER register with requirement/constraint/design mappings, method, acceptance threshold, environment, owner and planned versus executed evidence.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -213,20 +220,7 @@ the coverage of critical requirements and failure modes.
 - **arch-refactoring** - The safety net tests provide
 - **arch-devops** - Where the tests run in the pipeline
 
-## Test Strategy Template
+## Output template
 
-```markdown
-## Test Strategy: [System]
-
-### Test Pyramid
-| Level | Count | Coverage | Speed |
-|-------|-------|----------|-------|
-
-### Key Flows
-| Flow | Test Type | Priority |
-|------|-----------|----------|
-
-### Quality Gates
-| Gate | Threshold |
-|------|-----------|
-```
+Use `assets/strategy-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

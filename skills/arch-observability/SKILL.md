@@ -7,6 +7,13 @@ description: Design observability architecture. Use when designing structured lo
 
 Systematic approach to making systems observable.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record signal definition and semantic-convention version, REQ/SLO mapping, cardinality/privacy/retention budgets, alert owner and runbook verification.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -235,28 +242,7 @@ verified for the workload.
 - **arch-perf** - SLOs the dashboards track
 - **arch-devops** - Deployment health and pipeline integration
 
-## Observability Review Template
+## Output template
 
-```markdown
-## Observability Review: [System]
-
-### Current State
-| Pillar | Coverage | Quality |
-|--------|----------|---------|
-
-### Gaps
-- [Gap 1]
-- [Gap 2]
-
-### Recommendations
-1. [High priority]
-2. [Medium priority]
-
-### Tool Stack
-| Category | Tool |
-|----------|------|
-| Logs | [Tool] |
-| Metrics | [Tool] |
-| Traces | [Tool] |
-| Alerts | [Tool] |
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

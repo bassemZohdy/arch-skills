@@ -1,13 +1,19 @@
-# Run validation tests for all skills
+# Run the offline release checks from any working directory.
+$ErrorActionPreference = 'Stop'
 
-Write-Host "============================================" -ForegroundColor Cyan
-Write-Host "Architecture Skills Test Suite"
-Write-Host "============================================" -ForegroundColor Cyan
-Write-Host ""
+Push-Location -LiteralPath $PSScriptRoot
+try {
+    python tests/test_skills.py
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-python "$PSScriptRoot\tests\test_skills.py"
+    python -m unittest discover -s tests -p 'test_*.py'
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host ""
-Write-Host "============================================" -ForegroundColor Cyan
-Write-Host "All tests completed!" -ForegroundColor Green
-Write-Host "============================================" -ForegroundColor Cyan
+    python tests/test_activation.py
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+    Write-Host 'All offline checks passed.' -ForegroundColor Green
+}
+finally {
+    Pop-Location
+}

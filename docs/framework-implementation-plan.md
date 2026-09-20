@@ -1,6 +1,6 @@
 # Framework implementation reference
 
-Status: implemented reference baseline. Framework target: 1.0.0. The repository now contains executable contracts, persistence, scoring, evaluation, reporting and fixtures; future work is limited to deeper host-specific integration and live-model scenario coverage.
+Status: corrected reference implementation. Normative framework: 1.0.0; executable schema: 2.0.0; rubric: 1.0.0. The 2026-09-20 audit found material gaps in the earlier completion claims. See the current implementation status and remediation review for implemented safeguards, executed tests and limits; this document is not a blanket conformance claim.
 
 Use the [corrected framework](deterministic-architecture-process.md) as the normative reference and [the review](framework-review.md) for the rationale. Current delivery and verification are recorded in [DAP implementation status](dap-implementation-status.md); keep [TODO.md](../TODO.md) for open follow-up work.
 
@@ -27,18 +27,20 @@ These paths belong to a project being designed, not to the skill repository's ow
 | Path | Content |
 | --- | --- |
 | `architecture/architecture.md` | Twelve arc42 sections and a generated evaluation summary |
-| `architecture/requirements.json` | Requirement and constraint records with provenance, scenarios and verification plans |
+| `architecture/requirements.json`, `constraints.json`, `sources.json` | Typed requirements, binding constraints and confirmed source provenance |
+| `architecture/design-elements.json`, `decisions.json`, `verification.json` | Design inventory, ADR index and planned/executed verification records |
 | `architecture/decisions/` | ADR files and a stable index |
 | `architecture/traceability.json` | Typed relationships between source, requirement, design, ADR and verification IDs |
-| `architecture/traceability.md` | Generated readable RTM from the same graph |
+| `architecture/evaluations/traceability.md` | Generated readable RTM from the same graph; not assessed source |
 | `architecture/process/config.json` | Framework, schema, rubric and organisational policy versions and values |
 | `architecture/process/state.json` | Atomic checkpoint, active stage, baseline, counters and next action |
 | `architecture/process/history.jsonl` | Minimal answer/change/gate history without unnecessary sensitive data |
 | `architecture/process/reviews.json` | Human dispositions and delegation evidence |
 | `architecture/process/exceptions.json` | Explicit exceptions, authority, residual risk and expiry/review triggers |
-| `architecture/evaluations/` | Versioned input manifests, criterion assessments and generated reports |
+| `architecture/process/manifest.json`, `assessment.json` | Explicit assessed set and baseline-bound criterion assessments |
+| `architecture/evaluations/` | Immutable generated reports, input manifests and linked Markdown summaries |
 
-JSON is the proposed machine-readable baseline format to minimise parser dependencies; Markdown remains the human-facing format. DAP-001 freezes exact schemas and paths. RTM and appendix generation must be repeatable and must preserve content outside their generated regions.
+JSON is the machine-readable baseline format; Markdown remains the human-facing format. See framework/records.md for current schemas and paths. RTM generation is repeatable. Publishing emits an adjacent summary which arch-doc may link in an authorized appendix edit, preserving all other source content.
 
 ## State and concurrency
 

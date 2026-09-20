@@ -29,20 +29,15 @@
 | **Level 2** | Standard | Most web applications |
 | **Level 3** | Advanced | Applications handling sensitive data |
 
-## OWASP Top 10 2025
+## Versioned security verification
 
-| # | Risk | Description |
-|---|------|-------------|
-| A01 | Broken Access Control | Unauthorized action execution |
-| A02 | Cryptographic Failures | Sensitive data exposure |
-| A03 | Injection | SQL, NoSQL, OS command injection |
-| A04 | Insecure Design | Missing security architecture |
-| A05 | Security Misconfiguration | Default configurations |
-| A06 | Vulnerable Components | Known vulnerabilities |
-| A07 | Authentication Failures | Broken authentication |
-| A08 | Software and Data Integrity | Supply chain attacks |
-| A09 | Security Logging Failures | Insufficient logging |
-| A10 | Server-Side Request Forgery | SSRF attacks |
+Use [OWASP Top 10:2025](https://top10.owasp.org/2025/) as risk-awareness guidance,
+not a complete compliance standard. Pin the chosen ASVS/control baseline and
+record criterion IDs, threats, controls, evidence and residual-risk disposition.
+Do not reuse category numbers from another edition.
+
+| Standard / edition | Criterion | Threat / target IDs | Planned control | Verification evidence | Human disposition |
+| --- | --- | --- | --- | --- | --- |
 
 ## Attack Trees
 

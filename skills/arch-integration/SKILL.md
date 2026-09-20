@@ -7,6 +7,13 @@ description: Design system integration architecture. Use when designing service 
 
 Systematic approach to designing system integrations.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/review-template.md` and record system/contract revisions, producer/consumer ownership, data authority, failure/ordering semantics and cross-team review.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -159,27 +166,7 @@ partner's schema into the domain model.
 - **arch-event** - Async messaging patterns
 - **arch-microservices** - Service-to-service communication
 
-## Integration Review Template
+## Output template
 
-```markdown
-## Integration Review: [System]
-
-### Systems Integrated
-| System | Pattern | Protocol | Status |
-|--------|---------|----------|--------|
-
-### Integration Patterns
-| Pattern | Use Case | Implementation |
-|---------|----------|----------------|
-
-### Contracts
-| System | Specification | Version | Status |
-|--------|--------------|---------|--------|
-
-### Security
-| Concern | Implementation | Verified |
-|---------|---------------|----------|
-
-### Recommendations
-1. [Improvement]
-```
+Use `assets/review-template.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

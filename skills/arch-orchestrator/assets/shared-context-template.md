@@ -65,7 +65,7 @@ not applicable; never delete open questions.
 |-------|-------|
 | Framework / schema / rubric versions | |
 | Artifact root and baseline revision | |
-| Stable record IDs (REQ, DES, ADR, VER, Q, ASM, EXC) | |
+| Stable record IDs (SRC, REQ, CON, DES, ADR, VER, Q, ASM, EXC) | |
 | Interview round and elapsed budget | |
 | Convergence gate results and evidence | |
 | Review authority and pending dispositions | |
@@ -76,8 +76,9 @@ not applicable; never delete open questions.
 ## Update Rules
 
 - Merge only confirmed findings and ratified decisions after each skill completes.
-- A specialist may propose a change to an approved decision; only the orchestrator
-  ratifies it, and the change is recorded with its rationale.
+- A specialist may propose a change to an approved decision; the orchestrator
+  records it and obtains the configured human authority's disposition. Agent
+  synthesis is not approval. Supersede substantive accepted/rejected reasoning.
 - Every decision entry links back to the requirement(s) or quality attribute(s)
   that motivated it.
 - Never store credentials or unnecessary sensitive interview content in process

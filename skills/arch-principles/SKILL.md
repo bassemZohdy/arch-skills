@@ -7,6 +7,13 @@ description: Apply software design principles. Use when evaluating or applying S
 
 Systematic approach to applying and evaluating fundamental design principles.
 
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/principles-checklist.md` and record applicability, evidence, justified seams and exceptions, cost-of-change reasoning and protected boundary verification.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
 ## Workflow
 
 ```
@@ -150,19 +157,7 @@ Under a network **Partition**, choose between **Consistency** and **Availability
 - **arch-refactoring** - Fixing violations safely
 - **arch-ddd** - Persistence ignorance and rich domain models
 
-## Principle Evaluation Template
+## Output template
 
-```markdown
-## Principle Evaluation: [Component]
-
-### Findings
-| Location | Principle | Violation | Severity |
-|----------|-----------|-----------|----------|
-
-### Conflicts
-| Principle A | Principle B | Decision | Rationale |
-|-------------|-------------|----------|-----------|
-
-### Recommended Refactorings
-1. [Change] — restores [principle]
-```
+Use `assets/principles-checklist.md`. Populate its scope and evidence fields for DAP work;
+keep missing measurements and approvals explicit.

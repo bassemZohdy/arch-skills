@@ -1,9 +1,24 @@
-# TODO
+# Follow-up work
 
-There are no open repository implementation tasks. Completed DAP work and
-verification evidence are documented in
-[DAP implementation status](docs/dap-implementation-status.md).
+The 2026-09-20 structural/DAP remediation is documented in
+[the review](docs/audits/2026-09-20-remediation-review.md), including executed tests.
+Do not reinterpret deterministic fixture results as live-model evidence.
 
-Host-specific adapters remain external adoption work: when a target host
-provides durable state and review integrations, it may implement the
-versioned contract in [the adapter guide](docs/dap-adapter-contract.md).
+The repository-side completion pass also replaced stale behavioral fixture links,
+added seven generated schema-2 scenarios, tightened adapter-result checks and
+provided a packaged [migration guide](framework/schema-2-migration.md). Those are
+implemented; the items below depend on an actual consuming project or host choice.
+
+Optional adoption/release work:
+
+- Run the host-neutral behavioral scenarios on each intended consuming host and
+  record actual model/adapter versions, observed routing and artifacts.
+- For real schema-1 projects, plan an explicit migration with owners; capture
+  missing evidence and renew affected assessments instead of inventing history.
+- Confirm the authoritative MIT license text and copyright holder before
+  redistribution; do not infer ownership from a username.
+- Adopt project-specific review identities, thresholds, cadence and retention;
+  the configuration example deliberately contains unapproved placeholders.
+
+No global installation, host adapter, scheduler, live-model run or GitHub push is
+performed by the package builder or implied by this remediation.

@@ -1,21 +1,18 @@
 # Quality Attributes Reference
 
-## ISO 25010 Quality Model
+## Versioned product-quality model
 
-The ISO/IEC 25010 standard defines eight quality characteristics for software products.
+Use [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) as the current
+product-quality model, which has nine characteristics. Record the selected
+edition and consult its authoritative definitions for detailed criterion mapping.
 
-### Quality Characteristics
+Organize review concerns around functional suitability, performance efficiency,
+compatibility, interaction capability, reliability, security, maintainability,
+flexibility and safety. Do not label the older eight-characteristic model as the
+2023 edition or imply formal ISO conformity from this review checklist.
 
-| Characteristic | Definition | Sub-characteristics |
-|----------------|------------|---------------------|
-| **Functional Suitability** | Degree to which functions meet needs | Completeness, Correctness, Appropriateness |
-| **Performance Efficiency** | Performance relative to resources | Time Behavior, Resource Utilization, Capacity |
-| **Compatibility** | Degree to share environment | Co-existence, Interoperability |
-| **Usability** | Ease of use | Learnability, Operability, User Error Protection, UI Aesthetics, Accessibility |
-| **Reliability** | Degree of maintained performance | Maturity, Availability, Fault Tolerance, Recoverability |
-| **Security** | Degree of protection | Confidentiality, Integrity, Non-repudiation, Accountability, Authenticity |
-| **Maintainability** | Ease of modification | Modularity, Reusability, Analyzability, Modifiability, Testability |
-| **Portability** | Ease of transfer | Adaptability, Installability, Replaceability |
+Targets below are illustrative; adopt scenario-specific thresholds and evidence
+with the accountable owner before using them as project gates.
 
 ## Quality Attribute Scenarios
 

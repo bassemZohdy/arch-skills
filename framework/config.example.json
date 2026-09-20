@@ -1,22 +1,46 @@
 {
   "versions": {
     "framework": "1.0.0",
-    "schema": "1.0.0",
+    "schema": "2.0.0",
     "rubric": "1.0.0"
   },
+  "configuration_version": "1.0.0",
+  "scope": "release-1",
+  "baseline_revision": 1,
+  "approved_by": "",
+  "approval_evidence": "",
+  "artifact_owner": "",
+  "delivery_maintainer": "",
+  "architectural_reviewer": "",
+  "periodic_review_owner": "",
+  "evidence_retention": "",
   "weights": {
     "requirements_quality": 0.25,
-    "decision_coverage": 0.20,
+    "decision_coverage": 0.2,
     "traceability": 0.35,
-    "artifact_completeness": 0.20
+    "artifact_completeness": 0.2
   },
   "governance": {
-    "decision_authority": "architecture-review-board",
-    "reviewers": ["security-owner", "architecture-owner"],
-    "security_review_required": true,
-    "cost_threshold": {"amount": 10000, "currency": "AED", "horizon": "annual"},
-    "cross_team_impact_requires_review": true,
-    "async_review_due_hours": 72
+    "decision_authority": "",
+    "reviewers": {
+      "architecture": [],
+      "security": [],
+      "privacy": [],
+      "compliance": [],
+      "irreversible": [],
+      "high_risk": [],
+      "cross_team": [],
+      "cost": []
+    },
+    "risk_categories": "",
+    "cross_team_rule": "",
+    "async_queue_owner": "",
+    "async_review_due_hours": 72,
+    "cost_threshold": {
+      "amount": 10000,
+      "currency": "AED",
+      "horizon": "annual"
+    }
   },
   "limits": {
     "max_interview_rounds": 8,

@@ -1,14 +1,10 @@
-#!/bin/bash
-# Run validation tests for all skills
+#!/usr/bin/env bash
+# Run the offline release checks from any working directory.
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-echo "============================================"
-echo "Architecture Skills Test Suite"
-echo "============================================"
-echo ""
+python3 tests/test_skills.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 tests/test_activation.py
 
-python3 "$(dirname "$0")/tests/test_skills.py"
-
-echo ""
-echo "============================================"
-echo "All tests completed!"
-echo "============================================"
+echo 'All offline checks passed.'

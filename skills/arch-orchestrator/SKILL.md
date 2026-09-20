@@ -1,229 +1,95 @@
 ---
 name: arch-orchestrator
-description: Orchestrate specialist architecture skills to deliver one coherent solution architecture. Use for end-to-end architecture design requests - greenfield systems, modernization, migration, integration programs, or any request spanning multiple architecture domains that requires skill selection, coordinated execution, conflict resolution, validation, and a single consolidated deliverable.
+description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
 ---
 
-# Solution Architecture Orchestrator
+# Architecture authoring
 
-Coordination and quality-control layer for solution architecture work. Analyze an
-architecture request, select the minimum sufficient set of specialist skills
-(`arch-*`), coordinate their execution over a shared context, resolve conflicts,
-and synthesize one coherent architecture.
-
-Do NOT duplicate specialist knowledge. Own only: orchestration, context management,
-decision sequencing, validation, and final synthesis.
+Own mode selection, evidence/state management, specialist routing, reconciliation
+and one coherent architecture. Keep domain reasoning in specialist modules.
+Do not confer human approval, infer consent, or broaden an interview into design.
 
 ## Workflow
 
-```
-1. Understand   → Problem, requirements, quality attributes, constraints, deliverables
-2. Classify     → Request type along 6 dimensions
-3. Discover     → Read lightweight skill metadata only (Stage 1)
-4. Select       → Minimum sufficient skill set (Stage 2) + selection table
-5. Context      → Create the shared architecture context
-6. Plan         → Dependency-aware execution order
-7. Execute      → Invoke skills per the invocation contract; update context after each
-8. Reconcile    → Normalize outputs; detect and resolve conflicts explicitly
-9. Validate     → Run the validation gates; loop back on failure
-10. Synthesize  → One unified architecture document + decision record
-11. Baseline    → Persist checkpoint, freeze manifest, evaluate gates and publish only when authorized
-```
+1. Select interview, create or update from the user's requested outcome. Read
+   `references/workflow-modes.md` for the selected mode and its stopping boundary.
+2. Inspect available artifacts before assuming a new project. Classify greenfield,
+   brownfield or mixed scope; record missing evidence and the accountable owners.
+3. Read the packaged `framework/records.md` and configuration contract for DAP
+   work. Verify persistence and compatible framework/schema/rubric versions.
+   Use `assets/dap-requirement-template.json` and
+   `assets/dap-checkpoint-template.json`; placeholders are not approved records.
+4. Interview and reconcile requirements, constraints and quality scenarios.
+   Save answers, provenance and checkpoints after every round. Respect the
+   configured budget; silence and incomplete evidence do not establish convergence.
+5. For create/update, select the minimum sufficient specialists using
+   `references/skill-catalog.md`. In a built package, resolve modules through
+   package-catalog.json. Record selection reasons, gaps and dependencies with
+   `assets/selection-table-template.md`. Do not load all modules by default.
+6. Supply relevant baseline/REQ/CON IDs, questions, evidence, protected decisions
+   and expected output. Read `references/orchestration-playbook.md` for the
+   contribution contract. Maintain `assets/shared-context-template.md`.
+7. Develop views and proposed ADRs together. Mandatory constraints are eligibility
+   gates, not weighted preferences. Resolve conflicts explicitly with alternatives,
+   evidence, consequences and the configured human decision authority.
+8. Review the design through arch-review and route mandatory human dispositions.
+   Security/privacy/compliance, irreversible/high-risk, material cross-team and
+   configured cost implications cannot be silently waived.
+9. Assemble the default twelve-section arc42 description through arch-doc, with
+   ADR log, trace graph and verification plans. Preserve useful content from
+   `assets/solution-architecture-template.md` through the arc42 mapping; the
+   22-section template is only an optional standalone presentation format.
+10. Freeze a candidate, run arch-evaluate read-only, and distinguish design
+    quality, process completeness and executed verification. Publish generated
+    reports only when authorized. An incomplete candidate remains a draft.
 
-## Step 1: Understand the Request
+## Shared state and authority
 
-Extract into the shared context: business problem, stakeholders, functional
-requirements, quality attributes, constraints, assumptions, existing systems,
-expected scale, availability/recovery needs, budget, and expected deliverables.
+Use REQ, CON, DES, ADR, VER, Q, ASM and EXC IDs (plus SRC for source records).
+Keep provenance, revisions, owners and typed relationships. Stable requirements
+need per-item checks, set-level checks and explicit stakeholder confirmation on
+the same baseline. Bind reviews and assessments to the frozen subject hash.
+Accepted/rejected ADR reasoning is immutable; substantive changes supersede it.
 
-- Do not invent requirements. Mark unknowns as explicit assumptions or open questions.
-- Do not select technology before requirements are understood.
-- Treat user technology preferences as inputs, not constraints, unless stated as constraints.
+The orchestrator merges proposals; only the configured human authority or an
+evidenced human-approved delegation can accept a decision. An agent's confidence
+and a high completeness score are not authority. Missing policy blocks dependent
+acceptance without preventing independent analysis.
 
-## Step 2: Classify the Request
+Update mode preserves the current baseline and follows dependency closure.
+Return to interview for invalidated requirements, design for design-only changes,
+and review for authority changes. Invalidate affected assessments/approvals and
+evaluate the complete new candidate before readiness.
 
-Classify along all applicable dimensions; use the result to drive skill selection.
+## Outputs and stopping
 
-| Dimension | Values |
-|-----------|--------|
-| Initiative | Greenfield, modernization, migration, integration, review |
-| Style tendency | Monolith, modular monolith, microservices, event-driven, serverless, workflow-based, agentic, hybrid |
-| System type | Internal platform, customer-facing app, shared service, data platform, AI platform, infrastructure platform |
-| Environment | Cloud, on-premises, hybrid, edge, Kubernetes, OpenShift |
-| Criticality | Prototype, PoC, production, regulated, mission-critical |
-| Processing | Synchronous, asynchronous, batch, streaming, long-running, human-in-the-loop |
+- Interview: scoped requirement/constraint records, scenarios, questions,
+  assumptions, convergence evidence and resumable next action; stop before design.
+- Create: coherent candidate views, ADRs, DES inventory, VER plans, trace graph,
+  human review status and separate process/design findings.
+- Update: change record, affected IDs, re-entry stage, supersessions, new candidate
+  revision, stale evidence and a concise before/after explanation.
 
-## Step 3-4: Discover and Select Skills (Two Stages)
+At handoff name the artifact owner, delivery maintainer, continuing architectural
+reviewer, periodic-review owner/cadence and pending actions. Do not claim a
+scheduler or review notification ran when the host has not performed it.
 
-**Stage 1 — Discovery.** Read only lightweight metadata per skill: name, purpose,
-applicable scenarios, triggers, required inputs, produced outputs, dependencies,
-exclusions, estimated cost. Use `references/skill-catalog.md` for the specialist
-catalog mapping to the `arch-*` skills in this repo.
+## Failure and fallback
 
-**Stage 2 — Selection.** Select the minimum sufficient set. Select a skill ONLY when
-at least one is true:
-
-- The user explicitly requests its architectural area.
-- A requirement or constraint directly maps to it.
-- Another selected skill declares it as a dependency.
-- Omitting it leaves an important quality attribute or risk unaddressed.
-- An applicable quality gate requires it.
-
-Never select a skill merely because it is available. Build the selection table
-(skill, selected/skipped, reason, dependencies, order, expected contribution) from
-`assets/selection-table-template.md` and include a concise version in the final result.
-
-## Step 5: Shared Architecture Context
-
-Create the context object from `assets/shared-context-template.md`: problem, goals,
-requirements, quality attributes, constraints, assumptions, systems, tech
-preferences/prohibitions, environment, security/compliance/residency, integrations,
-scale, availability/recovery, budget, style, decisions made, open questions, risks,
-selected skills, execution status.
-
-- Give every skill the relevant parts of this context — never a blank slate.
-- After each skill completes, merge its confirmed findings and decisions back.
-- No skill may silently replace a decision the orchestrator already approved.
-
-## Step 6: Plan Execution
-
-Dependency-aware order. Typical sequence (skip phases with no selected skill):
-
-```
-Requirements → QA priorities → Domain/context → Style selection →
-App/service/integration/data design → Security/compliance →
-Deployment/platform → Reliability/scale/observability →
-Delivery/CI-CD/ops → Cost & complexity review → Validation → ADRs & docs
-```
-
-Parallelize only skills with no dependency between them. Never parallelize a skill
-with another whose decisions it consumes.
-
-## Step 7: Execute per the Invocation Contract
-
-Give each skill: problem summary, relevant requirements/constraints, existing
-decisions, the specific questions it must answer, expected output structure,
-decisions it MAY make, decisions it must NOT override, its dependencies, and
-required evidence/rationale.
-
-Require each skill to return: findings, recommendations, alternatives considered,
-trade-offs, assumptions, risks, dependencies, proposed decisions, conflicts with
-existing decisions, open questions, confidence level.
-
-Reject and re-request outputs that are generic, contradictory, unsupported, or
-unrelated to the shared context. Full contract: `references/orchestration-playbook.md`.
-
-## Step 8: Reconcile Outputs
-
-- Normalize terminology; remove duplicated recommendations; merge into one model.
-- Detect contradictions, gaps, unsupported assumptions, unnecessary complexity.
-- Resolve conflicts by the priority order in `references/orchestration-playbook.md`
-  (user requirements > legal/regulatory/security > business-critical quality attributes
-  > enterprise standards > operational feasibility > simplicity > cost > technology
-  preference).
-- Never hide conflicts. Document conflicting recommendations, cause, chosen decision,
-  rejected alternative, consequences. Create an ADR (via arch-decision) for
-  significant choices.
-- Apply overengineering controls: before any component/broker/gateway/layer is added,
-  verify which requirement needs it, which risk it mitigates, why nothing existing
-  suffices, its operational cost, failure modes, and migration implications.
-
-## Step 9: Validate
-
-Run the full validation gate checklist in `references/orchestration-playbook.md`:
-every requirement and critical quality attribute addressed, boundaries justified,
-data ownership explicit, trust boundaries secured, failure/recovery defined,
-complexity proportional, incrementally deliverable, no implicit major decisions.
-
-On failure, re-invoke the relevant specialist with a targeted correction request.
-
-## Step 10: Synthesize the Final Architecture
-
-Produce ONE unified document using `assets/solution-architecture-template.md`
-(executive summary through validation checklist, 22 sections). It must read as a
-single coherent architecture — not pasted-together specialist reports. Record
-decisions, rejected alternatives, risks, follow-ups. Verify the result addresses
-every original requirement.
-
-## Deterministic Architecture Process mode
-
-For end-to-end design, changes to an existing architecture, or explicit process
-evaluation, use the versioned contract under framework/ and helpers under
-scripts/dap. The host needs a writable project artifact root or the run remains a
-non-resumable draft.
-
-Preparation classifies greenfield, brownfield or mixed scope and records missing
-evidence. Brownfield analysis includes dependency closure, prior requirements,
-architecture views, ADRs, traceability, reviews and configuration. Missing history
-is unknown evidence; never infer approval from silence or model confidence.
-
-Persist a checkpoint after each interview round and substantive change. Keep stable
-REQ, DES, ADR, VER, Q, ASM and EXC identifiers. Separate mutable drafts, frozen
-candidate manifests and publication receipts. Detect concurrent revisions and resume
-from the last valid checkpoint.
-
-Ask functional and architecture-driving quality questions together as dependencies
-appear. Convergence requires individual checks, set-level checks and explicit
-stakeholder confirmation of a stable baseline. Silence, exhausted budgets and an
-LLM-only summary cannot pass the stability gate.
-
-Develop views and ADRs together. Mandatory constraints are eligibility rules and
-cannot be outweighed by a weighted score. Accepted ADR reasoning is preserved and
-substantive changes use a new superseding ADR. MoSCoW is scoped to a named timeframe
-and does not waive security, legal, compliance or quality obligations.
-
-Route security, privacy, compliance, irreversible, materially costly and cross-team
-decisions through configured human authority. Unset policy escalates; timeouts and
-confidence scores never approve.
-
-Run arch-evaluate against frozen inputs when available. Report requirements quality,
-decision coverage, forward/backward traceability, artifact completeness and overall
-score separately from design fitness and delivered behavior. Never publish an
-overall score for an unassessable dimension or claim readiness with a pending gate.
-
-## Failure and Fallback
-
-- Required skill unavailable: state the missing capability; use an overlapping skill
-  only with documented limitations; otherwise do basic orchestrator-level analysis
-  and mark the area as requiring specialist review.
-- Runtime cannot invoke skills dynamically: produce the recommended execution plan,
-  name the skills to apply with their required inputs, do not pretend they ran, and
-  continue with the best analysis possible from available context.
-
-## Behavioral Rules
-
-- Do not invoke every skill; do not duplicate specialist content.
-- Do not leave specialist outputs isolated — synthesis is the deliverable.
-- Do not hide uncertainty; use explicit assumptions.
-- Preserve traceability from requirements to decisions.
-- Stay technology-neutral until technology selection is justified.
-- Guide implementation without collapsing into low-level coding detail.
+Missing persistence yields a non-resumable draft, not a completed DAP baseline.
+Missing specialists yield explicit limitations. Read bundled module instructions
+directly when possible; never pretend a tool/subagent invocation occurred.
+A process-only audit routes to arch-evaluate, not back through authoring.
+An evaluate request never authorizes repair.
 
 ## Examples
 
-- "Design a greenfield order management platform for a retailer; cloud, ~50k orders/day, PCI scope."
-  → Classify (greenfield, customer-facing, cloud, production+regulated); select arch-patterns,
-  arch-ddd, arch-api, arch-data, arch-security, arch-compliance, arch-cloud, arch-observability,
-  arch-decision, arch-doc; skip arch-ai, arch-frontend, arch-migration.
-- "Modernize our on-prem monolith toward microservices." → Add arch-migration, arch-microservices,
-  arch-resilience, arch-devops; keep modular-monolith as an explicit considered alternative.
-- "We need Kafka, Kubernetes, and a service mesh." → Treat as preferences, not constraints;
-  verify each against requirements via overengineering controls before accepting.
+- Interview stakeholders for a proposed order platform, stopping at confirmed requirements.
+- Create an architecture from an approved brief, choosing only relevant specialists.
+- Update a billing architecture for a changed residency constraint and identify affected approvals.
 
-## Common Gotchas
+## Related skills
 
-- Selecting every skill "for completeness" — the deliverable is judgment, not coverage.
-- Letting a specialist quietly overturn an approved decision — all overrides are explicit and recorded.
-- Pasting specialist sections together — normalize and deduplicate before synthesis.
-- Technology-first answers — classification and requirements come before any tech choice.
-
-## Further Reading
-
-- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
-
-## Related Skills
-
-- **arch-review** - Independent review of the synthesized architecture
-- **arch-decision** - ADRs for significant choices and resolved conflicts
-- **arch-doc** - Final documentation formats (C4, arc42, ADRs)
-- **arch-patterns** - Style selection specialist
-- **arch-fitness** - Encoding the validated architecture as enforceable rules
+- **arch-evaluate** — process evidence and readiness, read-only
+- **arch-review** — design fitness and trade-offs
+- **arch-doc**, **arch-decision**, **arch-governance** — artifact, decision and authority support

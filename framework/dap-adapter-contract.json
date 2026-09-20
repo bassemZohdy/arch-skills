@@ -1,6 +1,8 @@
 {
   "contract_version": "1.0.0",
   "protocol": "dap-adapter",
+  "scenario_manifest_schema_version": "2.0",
+  "fixture_resolution": "generated:<name> selects a disposable schema-2 fixture from tests/dap_fixture.py. Resolve the source skill identifier to a complete built package, never install the source directory directly.",
   "purpose": "Host-neutral interchange contract for optional live DAP behavioral scenarios.",
   "request": {
     "required": [
@@ -40,7 +42,7 @@
         "version"
       ]
     },
-    "evidence_rule": "A passed or failed execution must return at least one observable evidence record. An unavailable execution must return a non-empty reason and must not be counted as a skill failure."
+    "evidence_rule": "Passed/failed executions require nonempty assertion outcomes and evidence objects with workspace-relative paths. Each outcome names a supported type and boolean passed. Passed requires all outcomes true; failed requires at least one false. Unavailable requires a reason and no executed assertions. Timestamps must be timezone-aware and ordered. Validation checks the envelope, not whether evidence exists or a host really executed it."
   },
   "assertion_types": [
     "file_exists",

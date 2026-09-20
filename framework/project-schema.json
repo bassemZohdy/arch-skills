@@ -1,54 +1,1043 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Deterministic Architecture Process project records",
+  "title": "DAP records schema 2.0.0",
   "type": "object",
-  "required": ["requirements", "design_elements", "decisions", "traceability", "process"],
+  "required": [
+    "sources",
+    "requirements",
+    "constraints",
+    "design_elements",
+    "decisions",
+    "verification",
+    "questions",
+    "assumptions",
+    "exceptions",
+    "traceability"
+  ],
   "properties": {
-    "requirements": {"type": "array", "items": {"$ref": "#/$defs/requirement"}},
-    "design_elements": {"type": "array", "items": {"$ref": "#/$defs/designElement"}},
-    "decisions": {"type": "array", "items": {"$ref": "#/$defs/decision"}},
-    "traceability": {"type": "array", "items": {"$ref": "#/$defs/link"}},
-    "process": {"type": "object"}
-  },
-  "$defs": {
-    "requirement": {
-      "type": "object",
-      "required": ["id", "statement", "status", "source", "priority", "scope"],
-      "properties": {
-        "id": {"type": "string", "pattern": "^REQ-[0-9]{3,}$"},
-        "statement": {"type": "string", "minLength": 1},
-        "status": {"enum": ["active", "superseded", "rejected", "proposed"]},
-        "source": {"type": "string", "minLength": 1},
-        "priority": {"enum": ["must", "should", "could", "wont"]},
-        "scope": {"type": "string", "minLength": 1}
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
       }
     },
-    "designElement": {
+    "requirements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/constraint"
+      }
+    },
+    "design_elements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/design"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/verification"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assumption"
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/exception"
+      }
+    },
+    "traceability": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/link"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
       "type": "object",
-      "required": ["id", "name", "significance", "status"],
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "evidence"
+      ],
       "properties": {
-        "id": {"type": "string", "pattern": "^DES-[0-9]{3,}$"},
-        "name": {"type": "string", "minLength": 1},
-        "significance": {"enum": ["significant", "supporting"]},
-        "status": {"enum": ["active", "deprecated", "superseded"]}
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "unconfirmed",
+            "superseded"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^SRC-[0-9]{3,}$"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "statement",
+        "type",
+        "priority",
+        "scope",
+        "acceptance_criteria",
+        "verification_ids",
+        "dependencies"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "active",
+            "proposed",
+            "superseded",
+            "rejected"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^REQ-[0-9]{3,}$"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "type": {
+          "enum": [
+            "functional",
+            "quality"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "must",
+            "should",
+            "could",
+            "wont"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "verification_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "scenario": {
+          "type": "object",
+          "required": [
+            "stimulus",
+            "environment",
+            "element",
+            "response",
+            "threshold"
+          ],
+          "properties": {
+            "stimulus": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "environment": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "element": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "response": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "threshold": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        }
+      }
+    },
+    "constraint": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "statement",
+        "scope",
+        "binding",
+        "waivable",
+        "verification_ids"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "active",
+            "proposed",
+            "superseded",
+            "rejected"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^CON-[0-9]{3,}$"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "binding": {
+          "type": "boolean"
+        },
+        "waivable": {
+          "type": "boolean"
+        },
+        "verification_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "design": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "name",
+        "significance",
+        "scope",
+        "requires_decision",
+        "decision_ids",
+        "implications"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "active",
+            "deprecated",
+            "superseded"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^DES-[0-9]{3,}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "significance": {
+          "enum": [
+            "significant",
+            "supporting"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "requires_decision": {
+          "type": "boolean"
+        },
+        "decision_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "implications": {
+          "type": "object",
+          "required": [
+            "security",
+            "privacy",
+            "compliance",
+            "irreversible",
+            "high_risk",
+            "cross_team",
+            "cost",
+            "currency",
+            "horizon"
+          ],
+          "properties": {
+            "security": {
+              "type": "boolean"
+            },
+            "privacy": {
+              "type": "boolean"
+            },
+            "compliance": {
+              "type": "boolean"
+            },
+            "irreversible": {
+              "type": "boolean"
+            },
+            "high_risk": {
+              "type": "boolean"
+            },
+            "cross_team": {
+              "type": "boolean"
+            },
+            "cost": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "horizon": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        }
       }
     },
     "decision": {
       "type": "object",
-      "required": ["id", "status", "owner"],
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "statement",
+        "context",
+        "alternatives",
+        "criteria",
+        "evidence",
+        "uncertainty",
+        "consequences",
+        "dependencies",
+        "scope",
+        "implications",
+        "supersedes"
+      ],
       "properties": {
-        "id": {"type": "string", "pattern": "^ADR-[0-9]{3,}$"},
-        "status": {"enum": ["proposed", "accepted", "rejected", "deprecated", "superseded"]},
-        "owner": {"type": "string", "minLength": 1}
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "accepted",
+            "rejected",
+            "deprecated",
+            "superseded"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^ADR-[0-9]{3,}$"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "uncertainty": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "consequences": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "implications": {
+          "type": "object",
+          "required": [
+            "security",
+            "privacy",
+            "compliance",
+            "irreversible",
+            "high_risk",
+            "cross_team",
+            "cost",
+            "currency",
+            "horizon"
+          ],
+          "properties": {
+            "security": {
+              "type": "boolean"
+            },
+            "privacy": {
+              "type": "boolean"
+            },
+            "compliance": {
+              "type": "boolean"
+            },
+            "irreversible": {
+              "type": "boolean"
+            },
+            "high_risk": {
+              "type": "boolean"
+            },
+            "cross_team": {
+              "type": "boolean"
+            },
+            "cost": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "horizon": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "method",
+        "acceptance",
+        "environment",
+        "targets",
+        "evidence"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "passed",
+            "failed",
+            "superseded"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^VER-[0-9]{3,}$"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "acceptance": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "question",
+        "impact",
+        "blocking"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "open",
+            "answered",
+            "superseded"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^Q-[0-9]{3,}$"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "blocking": {
+          "type": "boolean"
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "assumption": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "statement",
+        "impact",
+        "validation_trigger",
+        "blocking"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "open",
+            "validated",
+            "rejected",
+            "superseded"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^ASM-[0-9]{3,}$"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "validation_trigger": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      }
+    },
+    "exception": {
+      "type": "object",
+      "required": [
+        "id",
+        "owner",
+        "source",
+        "source_revision",
+        "revision",
+        "baseline_revision",
+        "status",
+        "obligation",
+        "reason",
+        "residual_risk",
+        "controls",
+        "expires_at",
+        "evidence"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "baseline_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "expired"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^EXC-[0-9]{3,}$"
+        },
+        "obligation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "approved_by": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "residual_risk": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "expires_at": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
       }
     },
     "link": {
       "type": "object",
-      "required": ["from", "to", "type"],
+      "required": [
+        "from",
+        "to",
+        "type",
+        "rationale",
+        "evidence"
+      ],
       "properties": {
-        "from": {"type": "string", "minLength": 1},
-        "to": {"type": "string", "minLength": 1},
-        "type": {"enum": ["source_to_requirement", "requirement_to_design", "requirement_to_decision", "design_to_requirement", "decision_to_requirement", "design_to_verification"]}
+        "from": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "type": {
+          "enum": [
+            "source_to_requirement",
+            "source_to_constraint",
+            "requirement_to_design",
+            "constraint_to_design",
+            "requirement_to_decision",
+            "constraint_to_decision",
+            "decision_to_design",
+            "design_to_requirement",
+            "design_to_constraint",
+            "design_to_decision",
+            "decision_to_requirement",
+            "decision_to_constraint",
+            "design_to_verification"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        }
       }
     }
   }

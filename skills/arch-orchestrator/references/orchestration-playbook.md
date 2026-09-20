@@ -31,7 +31,11 @@ Steps 7-10 of the skill.
 | Assumptions | Everything it assumed beyond the shared context |
 | Risks | What could make the recommendation fail |
 | Dependencies | What it needs from other skills |
-| Proposed decisions | Decisions it asks the orchestrator to ratify |
+| Proposed decisions | ADR proposals for the configured human authority; not agent approvals |
+| Baseline and trace | Run/revision/hash, relevant REQ/CON/DES/ADR IDs and impacted dependencies |
+| Verification | VER plans with method, acceptance threshold, owner and planned/executed evidence |
+| Evidence | Source locators, revisions, uncertainty and Q/ASM gaps |
+| Review needs | Required human dispositions, authority, exceptions and next action |
 | Conflicts | Where it disagrees with existing decisions |
 | Open questions | What remains unresolved |
 | Confidence | High / Medium / Low, with reason |
@@ -43,8 +47,8 @@ contradictory, unsupported, or off-scope. A re-request must name the specific de
 
 Priority order (highest first):
 
-1. Explicit user requirements
-2. Legal, regulatory, security, and safety constraints
+1. Binding legal, regulatory, security, and safety constraints (eligibility gates)
+2. Confirmed user requirements; resolve conflicts through authorized clarification
 3. Business-critical quality attributes
 4. Existing enterprise standards
 5. Operational feasibility
@@ -105,7 +109,8 @@ All must pass before final synthesis:
 - [ ] Open questions and assumptions are visible in the output
 
 On failure: identify the failing gate, re-invoke the responsible specialist with a
-targeted correction request naming the gate, then re-validate only the affected gates.
+targeted correction request naming the gate. Revalidate affected evidence, then
+evaluate the complete new baseline before readiness. Never reuse stale approvals.
 
 ## Final Synthesis Rules
 

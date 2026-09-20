@@ -9,6 +9,14 @@ Generate complete architecture documentation with diagrams using established fra
 
 ## Workflow
 
+For DAP create/update work, read `references/dap-arc42-mapping.md` and the packaged
+`framework/contribution-contract.md`. Default to twelve arc42 sections with
+REQ/CON/DES/ADR/VER links, source revisions and evidence locators. Keep the user's
+chosen format for standalone documentation. Link an authorized immutable
+evaluation summary in a generated appendix; never present a planned test as
+delivery proof or rewrite accepted ADR reasoning. Resolve packaged specialists
+through the outer package's catalogue when available.
+
 ```
 1. Determine Scope → What system/feature to document?
 2. Select Framework → C4, arc42, TOGAF, or ISO 42010?
