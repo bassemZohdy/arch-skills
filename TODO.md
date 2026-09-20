@@ -15,10 +15,8 @@ Optional adoption/release work:
   record actual model/adapter versions, observed routing and artifacts.
 - For real schema-1 projects, plan an explicit migration with owners; capture
   missing evidence and renew affected assessments instead of inventing history.
-- Confirm the authoritative MIT license text and copyright holder before
-  redistribution; do not infer ownership from a username.
 - Adopt project-specific review identities, thresholds, cadence and retention;
   the configuration example deliberately contains unapproved placeholders.
 
-No global installation, host adapter, scheduler, live-model run or GitHub push is
-performed by the package builder or implied by this remediation.
+No global installation, host adapter, scheduler or live-model run is performed by
+the package builder. Consuming-host adoption remains external to the repository.

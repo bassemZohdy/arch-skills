@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security report
+    url: https://github.com/bassemZohdy/arch-skills/security/advisories/new
+    about: Report suspected vulnerabilities privately; do not open a public issue.
+  - name: Documentation and testing guide
+    url: https://github.com/bassemZohdy/arch-skills/blob/main/docs/skill-testing.md
+    about: Check the testing and adapter boundaries before opening a question.

@@ -100,5 +100,11 @@ changes and validation. [TODO](TODO.md) distinguishes remaining adoption work.
 
 ## License
 
-Prior project documentation declares MIT. This checkout has no root LICENSE file;
-confirm the authoritative license text and copyright holder before redistribution.
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
+
+## Community
+
+See [CONTRIBUTING](CONTRIBUTING.md) for local checks and package guidance,
+[SUPPORT](SUPPORT.md) for questions, [SECURITY](SECURITY.md) for private
+vulnerability reports and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for community
+expectations.
