@@ -54,6 +54,16 @@ If the user requests all questions or the host cannot maintain turns, provide a
 clearly ordered batch as an explicit fallback and preserve the same option order
 for every question.
 
+Prefer a native user-input or elicitation capability over rendered text. Before
+asking a question, inspect the active host's advertised tools or capabilities.
+When one is available, send the single `Q` with stable option identifiers,
+ordered labels and a free-text/custom option, then wait for the host response.
+Do not print a duplicate numbered list in the same turn. Never invoke a
+capability that the host has not advertised; if no native capability is exposed
+or the call fails, use the Markdown fallback and record that the host UI was
+unavailable. The canonical skill remains host-neutral and does not depend on a
+specific tool name or protocol.
+
 ## Interview
 
 Capture the seed, participants, scope, evidence access and human decision owner.

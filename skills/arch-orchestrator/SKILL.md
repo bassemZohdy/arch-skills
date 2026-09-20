@@ -1,6 +1,6 @@
 ---
 name: arch-orchestrator
-description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a one-question-at-a-time requirements conversation using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
+description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a one-question-at-a-time requirements conversation using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Prefer an advertised native user-input or elicitation control; use text choices only as a host fallback. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
 ---
 
 # Architecture authoring
@@ -29,8 +29,11 @@ technology, specialists or a target architecture on the first turn.
    of choices: a recommended best-practice default first, a relevant
    reference-backed industry option when one genuinely applies, other viable
    alternatives with their trade-offs, and `Custom answer` as the final option.
-   Never invent a standard, citation or industry claim. Use native choice
-   controls when the host provides them; otherwise render numbered choices.
+   Never invent a standard, citation or industry claim. Inspect the active host
+   capabilities first: when a native user-input or elicitation control is
+   advertised, invoke it with the question and choices and do not duplicate
+   them as numbered text. Use numbered choices only when that capability is not
+   exposed or the host reports that it failed.
 5. Mark the interview active, record the selected option or free-text answer and
    its provenance, then reconcile and checkpoint before asking the next question.
    Do not produce a candidate architecture, technology recommendation, ADR or

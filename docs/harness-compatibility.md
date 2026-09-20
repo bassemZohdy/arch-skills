@@ -39,11 +39,17 @@ plan or provisional analysis, but cannot claim the deterministic checks ran.
 ## Conversational interview controls
 
 The orchestrator's interview contract is host-neutral. It keeps one active
-question per turn and can map the ordered choices to native buttons, menus or
-other structured controls when a host provides them. Hosts without those
-controls should render the same choices as numbered or lettered text and accept
-the selected number, option text or a custom response. No particular UI API is
-required; the checkpoint and question records remain the portable state.
+question per turn and first checks whether the host advertises a native
+user-input or elicitation capability. A host adapter maps the ordered choices,
+stable option identifiers and final free-text option to its own controls, then
+returns the selected value and provenance. The skill must not print a duplicate
+numbered list when that native capability is available.
+
+Hosts without a native capability should render the same choices as numbered or
+lettered text and accept the selected number, option text or a custom response.
+The checkpoint and question records remain the portable state. Codex app-server
+integrations may provide server-initiated user-input or MCP elicitation requests;
+that integration belongs to the host adapter, not to the canonical skill.
 
 ## Verified boundaries
 
