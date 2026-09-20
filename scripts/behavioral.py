@@ -15,7 +15,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 TYPES = {'contains', 'not_contains', 'contains_any', 'json_equals',
-         'capability_used', 'token_usage_under'}
+         'capability_used', 'skill_used', 'skill_not_used', 'token_usage_under'}
 
 
 class UniqueLoader(yaml.SafeLoader):
@@ -57,8 +57,16 @@ def load_cases(paths):
     for path in paths:
         manifest = yaml.load(path.read_text(encoding='utf-8'), Loader=UniqueLoader)
         require(isinstance(manifest, dict), f'{path}: expected mapping')
-        require(not set(manifest) - {'skill', 'timeout', 'scenarios'}, f'{path}: unknown manifest setting')
-        skill_name(manifest.get('skill'))
+        require(not set(manifest) - {'mode', 'skill', 'skills', 'timeout', 'scenarios'}, f'{path}: unknown manifest setting')
+        mode = manifest.get('mode', 'explicit')
+        require(mode in {'explicit', 'activation'}, f'{path}: mode must be explicit or activation')
+        if mode == 'explicit':
+            skill_name(manifest.get('skill'))
+        else:
+            catalog = manifest.get('skills')
+            require(isinstance(catalog, list) and catalog, f'{path}: activation skills must be nonempty')
+            for skill in catalog:
+                skill_name(skill)
         timeout = manifest.get('timeout', 180)
         require(positive(timeout) and timeout <= 600, f'{path}: timeout must be 1..600 seconds')
         scenarios = manifest.get('scenarios')
@@ -71,7 +79,11 @@ def load_cases(paths):
             case_id = f'{path.stem}/{scenario["name"]}'
             require(case_id not in ids, f'duplicate case: {case_id}')
             ids.add(case_id)
-            skill = skill_name(scenario.get('skill', manifest['skill']))
+            if mode == 'activation':
+                require('skill' not in scenario, f'{case_id}: activation scenario cannot pin a skill')
+                skill, skills = None, list(manifest['skills'])
+            else:
+                skill, skills = skill_name(scenario.get('skill', manifest['skill'])), None
             runs = scenario.get('runs', 1)
             minimum = scenario.get('min_passes', runs)
             require(positive(runs) and runs <= 10 and positive(minimum) and minimum <= runs,
@@ -103,7 +115,7 @@ def load_cases(paths):
                         json.dumps(value, allow_nan=False)
                     else:
                         require(isinstance(value, str) and value.strip(), 'assertion value must be text')
-            cases.append(dict(id=case_id, skill=skill, runs=runs, min_passes=minimum,
+            cases.append(dict(id=case_id, mode=mode, skill=skill, skills=skills, runs=runs, min_passes=minimum,
                               timeout=timeout, steps=steps, manifest_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
     return cases
 
@@ -139,6 +151,14 @@ def check_assertion(assertion, observation):
         if observation.get('capabilities_used') is None:
             return None
         return expected in observation['capabilities_used']
+    if kind == 'skill_used':
+        if observation.get('skills_used') is None:
+            return None
+        return expected in observation['skills_used']
+    if kind == 'skill_not_used':
+        if observation.get('skills_used') is None:
+            return None
+        return expected not in observation['skills_used']
     if observation.get('total_tokens') is None:
         return None
     return observation['total_tokens'] < expected
@@ -161,6 +181,9 @@ def validate_observation(value):
     if value.get('capabilities_used') is not None:
         require(value['execution_mode'] == 'host' and isinstance(value['capabilities_used'], list)
                 and all(isinstance(v, str) for v in value['capabilities_used']), 'invalid capability trace')
+    if value.get('skills_used') is not None:
+        require(value['execution_mode'] == 'host' and isinstance(value['skills_used'], list)
+                and all(isinstance(v, str) for v in value['skills_used']), 'invalid skill trace')
     return value
 
 
@@ -193,19 +216,24 @@ def run_cases(cases, packages, output, command, max_calls):
     require(planned <= max_calls, f'selection needs {planned} calls, above max-calls={max_calls}')
     require(cases, 'no scenarios selected')
     for case in cases:
-        package = packages / case['skill']
-        require((package / 'SKILL.md').is_file() and (package / 'framework').is_dir()
-                and (package / 'package-manifest.json').is_file(),
-                f'build the expert package first: {package}')
+        package = packages if case['mode'] == 'activation' else packages / case['skill']
+        if case['mode'] == 'activation':
+            require(package.is_dir() and all((package / skill_name(skill)).is_dir() for skill in case['skills']),
+                    f'build the expert package first: {package}')
+        else:
+            require((package / 'SKILL.md').is_file() and (package / 'framework').is_dir()
+                    and (package / 'package-manifest.json').is_file(),
+                    f'build the expert package first: {package}')
     output.mkdir(parents=True, exist_ok=False)
     report = {'schema_version': '1.0', 'started_at': datetime.now(timezone.utc).isoformat(),
               'planned_calls': planned, 'expected_scenarios': len(cases), 'complete': False,
-              'cases': [], 'scope': 'explicit skill execution; not automatic activation'}
+              'cases': [], 'scope': 'explicit skill execution or host-reported activation'}
     (output / 'report.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     for index, case in enumerate(cases):
-        package = (packages / case['skill']).resolve()
+        package = (packages / case['skill']).resolve() if case['mode'] == 'explicit' else packages.resolve()
         result = {k: v for k, v in case.items() if k != 'steps'}
         result.update(package_sha256=package_hash(package), attempts=[])
+        identities = []
         for attempt in range(case['runs']):
             workspace = output / f'case-{index + 1:04d}' / f'run-{attempt + 1:02d}'
             workspace.mkdir(parents=True)
@@ -213,10 +241,16 @@ def run_cases(cases, packages, output, command, max_calls):
             status = 'passed'
             for number, step in enumerate(case['steps']):
                 messages.append({'role': 'user', 'content': step['prompt']})
-                request = {'protocol_version': '1.0', 'skill_root': str(package),
+                request = {'protocol_version': '1.0', 'mode': case['mode'],
                            'workspace': str(workspace.resolve()), 'messages': messages,
                            'timeout': case['timeout']}
+                if case['mode'] == 'explicit':
+                    request['skill_root'] = str(package)
+                else:
+                    request['skills_root'] = str(package)
                 observation = invoke(command, request, workspace, case['timeout'])
+                if observation.get('adapter'):
+                    identities.append((observation.get('adapter'), observation.get('model')))
                 evidence = workspace / f'step-{number + 1}.json'
                 evidence.write_text(json.dumps({'request': request, 'observation': observation}, indent=2) + '\n', encoding='utf-8')
                 if observation['status'] != 'ok':
@@ -224,7 +258,9 @@ def run_cases(cases, packages, output, command, max_calls):
                     outcomes.append({'status': status, 'evidence': evidence.relative_to(output).as_posix()})
                     break
                 assertions = [dict(a, passed=check_assertion(a, observation)) for a in step['assert']]
-                outcomes.append({'assertions': assertions, 'evidence': evidence.relative_to(output).as_posix()})
+                outcomes.append({'assertions': assertions, 'evidence': evidence.relative_to(output).as_posix(),
+                                 'adapter': observation.get('adapter'), 'model': observation.get('model'),
+                                 'execution_mode': observation.get('execution_mode')})
                 if any(a['passed'] is None for a in assertions):
                     status = 'unavailable'
                 elif any(a['passed'] is False for a in assertions) and status == 'passed':
@@ -233,6 +269,8 @@ def run_cases(cases, packages, output, command, max_calls):
             result['attempts'].append({'status': status, 'steps': outcomes})
         counts = Counter(a['status'] for a in result['attempts'])
         result['pass_rate'] = counts['passed'] / case['runs']
+        if identities:
+            result['adapter'], result['model'] = identities[0]
         result['status'] = ('error' if counts['error'] else 'unavailable' if counts['unavailable'] else
                             'passed' if counts['passed'] >= case['min_passes'] else 'failed')
         report['cases'].append(result)
@@ -258,7 +296,7 @@ def main(argv=None):
         paths = args.manifest or sorted((ROOT / 'tests').glob('test-*.yaml'))
         cases = load_cases(paths)
         if args.command == 'validate':
-            covered = {c['skill'] for c in cases}
+            covered = {c['skill'] for c in cases if c['mode'] == 'explicit'}
             if not args.manifest:
                 expected = {p.parent.name for p in (ROOT / 'skills').glob('arch-*/SKILL.md')}
                 require(covered == expected, f'scenario coverage missing: {sorted(expected - covered)}')

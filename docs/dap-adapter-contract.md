@@ -72,6 +72,14 @@ Validate an adapter result:
 The example result is intentionally unavailable; it demonstrates the required
 shape and must not be reported as executed evidence.
 
+For an executed result, also validate completeness against the requested scenario
+and its workspace:
+
+    python scripts/dap_adapter.py validate-execution result.json tests/dap-adapter-scenarios.json --workspace .cache/dap-run
+
+This requires assertion IDs in the form `<scenario-id>:<one-based-index>` and
+checks that every returned evidence path is an existing workspace-relative file.
+
 ## Host boundary
 
 Host-specific adapters may add harness commands, model configuration,

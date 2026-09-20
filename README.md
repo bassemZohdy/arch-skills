@@ -91,7 +91,7 @@ facts. Live-model scenarios remain optional and are not implied by passing tests
 
 ## Automated behavioral testing
 
-The scenario runner validates 219 scenarios across all 33 skills without a model.
+The scenario runner validates 222 scenarios across all 33 skills without a model.
 For live response tests, build the expert packages and configure a compatible
 model endpoint; see [test automation](docs/test-automation.md) for commands,
 adapter integration, repeat counts, evidence and limits.

@@ -5,7 +5,7 @@
 | Layer | Execution | What a pass establishes |
 | --- | --- | --- |
 | Structure, links, DAP contracts and package isolation | Every push/PR to main, Linux/Windows, Python 3.10/3.13 | Deterministic repository invariants |
-| YAML scenario validation | Same offline CI | Valid assertions, repeat counts, known skills, coverage of all 33 skills |
+| YAML scenario validation | Same offline CI | Valid assertions, repeat counts, known skills, coverage of all 33 skills and activation cases |
 | Public external links | Weekly Monday 06:23 UTC and manual dispatch | Reachability at probe time; 404/410 fail; blocked/rate-limited/timeouts remain unverified |
 | Model response smoke tests | Manual `Optional model response tests` workflow | Selected explicit-skill responses satisfy their assertions |
 | Real host tools, automatic activation and DAP lifecycle | Requires a configured host adapter | Actual observed host behavior, only for executed scenarios |
@@ -44,7 +44,7 @@ adapter. Configure a custom command for other APIs or hosts.
 
 Defaults select at most 10 scenarios with a 30-call ceiling. `--limit 0` selects
 all scenarios in the supplied manifests; omit `--manifest` to select from all
-35 YAML manifests. The runner rejects a selection exceeding `--max-calls`
+36 YAML manifests. The runner rejects a selection exceeding `--max-calls`
 before making calls. These are call/output limits, not monetary spending caps.
 `ARCH_TEST_MAX_TOKENS` defaults to 2048, with a hard adapter range of 1..16384.
 Truncated answers are errors, not successful short responses. There are no hidden
@@ -84,8 +84,10 @@ workspace and conversation history. Workspaces are isolation for test data, not
 an OS security sandbox; configure host permissions and descendant-process cleanup
 in the adapter. Use absolute script paths and only trusted adapters.
 
-Read one JSON object from stdin containing `protocol_version: "1.0"`,
-`skill_root` (the built package), `workspace`, `messages` and `timeout` in seconds.
+Read one JSON object from stdin containing `protocol_version: "1.0"`, `mode`,
+`workspace`, `messages` and `timeout` in seconds. Explicit mode also provides
+`skill_root` (the built package); activation mode provides `skills_root` (the
+expert package root) and asks the host to report which skills it actually loaded.
 Expected assertions are deliberately not sent to the model. Emit one JSON object
 to stdout:
 
@@ -97,12 +99,14 @@ to stdout:
   "adapter": {"id": "your-host-adapter", "version": "pinned-version"},
   "model": {"id": "model-id", "version": "observed-version"},
   "capabilities_used": ["file_write"],
+  "skills_used": ["arch-api"],
   "total_tokens": 1234
 }
 ~~~
 
-Use `execution_mode: "response-only"` with `capabilities_used: null` when no host
-tools were observed. Capability observations must come from actual tool traces,
+Use `execution_mode: "response-only"` with `capabilities_used: null` and
+`skills_used: null` when no host tools or skill-loading events were observed.
+Capability and skill observations must come from actual host traces,
 not a model's claim or a synthetic tool name. The runner checks adapter structure,
 not its honesty. Retain host traces in the workspace. Omit `total_tokens` if
 unmeasured; zero must not stand in for unknown. For environment unavailability or
@@ -111,11 +115,14 @@ Do not emit secrets in responses, reasons or traces. Stderr is not retained.
 
 Supported assertions: case-insensitive `contains`, `not_contains`, `contains_any`;
 `json_equals` with JSON Pointer and typed expected `value`; normalized
-`capability_used`; and `token_usage_under` (strictly less than total reported
+`capability_used`, `skill_used` and `skill_not_used`; and `token_usage_under` (strictly less than total reported
 input plus output tokens). Missing required capability/token observations are
 unavailable, not passes. JSON answers must be raw JSON, not fenced Markdown.
 
-The YAML suite supports a scenario-level skill override, multiple steps, `runs`
+The YAML suite supports explicit skill execution and activation mode. In activation
+mode, the adapter receives `skills_root` and must return a host-observed
+`skills_used` list. The runner does not treat a model's claim as a skill trace.
+The suite also supports a scenario-level skill override, multiple steps, `runs`
 and integer `min_passes`. Two successes out of three are `runs: 3, min_passes: 2`.
 There is no ambiguous rounded `0.67` threshold. Unknown settings, duplicate YAML
 keys and unsupported assertions fail validation.
@@ -125,22 +132,47 @@ This response/host transport is separate from the versioned
 are not executed by this runner. They need fixture setup, artifact verification,
 checkpoint/review integration and a host adapter, rather than text-only checks.
 
+Run the stronger DAP completeness check after `validate-result`:
+
+~~~sh
+python scripts/dap_adapter.py validate-execution \
+  result.json tests/dap-adapter-scenarios.json --workspace .cache/dap-run
+~~~
+
+It matches the result to its manifest scenario, requires one uniquely identified
+outcome for every requested assertion, and verifies every evidence path exists
+inside the execution workspace. An unavailable result remains explicitly
+unavailable and does not need fixture evidence.
+
+Completed reports can be compared before accepting a change:
+
+~~~sh
+python scripts/compare_behavioral.py baseline/report.json candidate/report.json \
+  --output .cache/behavioral-diff.json
+~~~
+
+The comparator rejects case-selection, manifest, package or adapter/model drift and
+fails when a previously passing case regresses. Use
+`--allow-configuration-change` only to start an intentional new baseline.
+
 ## Improvement priorities
 
 1. Configure a model and record a first real baseline. Current harness tests use
    synthetic adapters/mocked HTTP; they are not live skill-quality evidence.
 2. Add one real host adapter and execute the seven DAP lifecycle fixtures. Verify
-   assertion completeness, artifacts, preserved history and input immutability.
-3. Measure automatic activation separately using ambiguous prompts and negative
-   controls. Explicitly injecting a skill cannot prove discovery or selection.
+   artifacts, preserved history and input immutability; the repository now checks
+   assertion identity and evidence-file completeness for returned DAP results.
+3. Configure an actual host adapter for the activation manifest. The runner now
+   accepts host-observed `skills_used` traces and includes positive/negative cases.
 4. Replace remaining keyword-only assertions with typed decisions, artifacts or
    calibrated semantic rubrics. Keep human review of sampled results. Promptfoo's
    [deterministic and model-assisted assertions](https://www.promptfoo.dev/docs/configuration/expected-outputs/)
    are an optional established integration if richer grading is needed; do not
    treat an LLM judge as ground truth or add another mandatory release dependency.
 5. Compare baseline/candidate runs on the same pinned host/model settings and
-   repeat count before introducing a live-quality release threshold. Two or three
-   samples are smoke tests, not a reliable reliability estimate.
+   repeat count before introducing a live-quality release threshold. The comparator
+   now automates drift and regression detection; two or three samples are smoke
+   tests, not a reliable reliability estimate.
 
 Corrections in this pass: added missing arch-evaluate coverage; repaired misplaced
 repeat settings and incorrect regression skill routing; replaced host-specific

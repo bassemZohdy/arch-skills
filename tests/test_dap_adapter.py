@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from dap_adapter import AdapterContractError, FIXTURES, load_json, validate_result, validate_scenario_manifest
+from dap_adapter import AdapterContractError, FIXTURES, load_json, validate_execution, validate_result, validate_scenario_manifest
 from dap_fixture import SCENARIOS, make_scenario
 from dap.scoring import evaluate_project
 from dap.persistence import load_checkpoint
@@ -115,6 +115,38 @@ class DAPAdapterContractTests(unittest.TestCase):
         }
         with self.assertRaises(AdapterContractError):
             validate_result(result)
+
+    def test_execution_requires_every_manifest_assertion_and_real_evidence(self):
+        manifest = load_json(MANIFEST)
+        scenario = manifest["scenarios"][0]
+        result = {
+            "protocol_version": "1.0.0", "scenario_id": scenario["id"], "status": "passed",
+            "run_id": "run-001", "adapter": {"id": "a", "version": "1"},
+            "model": {"id": "m", "version": "1"},
+            "started_at": "2026-09-19T00:00:00Z", "finished_at": "2026-09-19T00:01:00Z",
+            "assertions": [{"assertion_id": f"{scenario['id']}:1", "type": scenario["assertions"][0]["type"], "passed": True}],
+            "evidence": [{"path": "report.json"}],
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            (workspace / "report.json").write_text("{}")
+            with self.assertRaises(AdapterContractError):
+                validate_execution(result, manifest, workspace)
+            result["assertions"] = [
+                {"assertion_id": f"{scenario['id']}:{i + 1}", "type": assertion["type"], "passed": True}
+                for i, assertion in enumerate(scenario["assertions"])
+            ]
+            summary = validate_execution(result, manifest, workspace)
+            self.assertTrue(summary["execution_checked"])
+            result["assertions"][0]["assertion_id"] = "unexpected"
+            with self.assertRaises(AdapterContractError):
+                validate_execution(result, manifest, workspace)
+
+    def test_unavailable_execution_does_not_require_fixture_evidence(self):
+        manifest = load_json(MANIFEST)
+        result = load_json(ROOT / "tests/dap-adapter-result.example.json")
+        summary = validate_execution(result, manifest, ROOT / ".cache")
+        self.assertFalse(summary["execution_checked"])
 
 
 if __name__ == "__main__":

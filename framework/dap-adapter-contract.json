@@ -42,7 +42,7 @@
         "version"
       ]
     },
-    "evidence_rule": "Passed/failed executions require nonempty assertion outcomes and evidence objects with workspace-relative paths. Each outcome names a supported type and boolean passed. Passed requires all outcomes true; failed requires at least one false. Unavailable requires a reason and no executed assertions. Timestamps must be timezone-aware and ordered. Validation checks the envelope, not whether evidence exists or a host really executed it."
+    "evidence_rule": "Passed/failed executions require nonempty assertion outcomes and evidence objects with workspace-relative paths. Each outcome names a supported type and boolean passed. The validate-execution command additionally requires a unique assertion_id for every manifest assertion and verifies each evidence file exists inside the workspace. Passed requires all outcomes true; failed requires at least one false. Unavailable requires a reason and no executed assertions. Timestamps must be timezone-aware and ordered. Envelope validation alone does not prove host execution."
   },
   "assertion_types": [
     "file_exists",

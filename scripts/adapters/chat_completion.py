@@ -15,6 +15,8 @@ class NoRedirect(HTTPRedirectHandler):
 
 
 def complete(request):
+    if request.get('mode') == 'activation':
+        return {'status': 'unavailable', 'reason': 'The response-only adapter cannot observe host skill-loading events; use a host adapter.'}
     base, model = os.getenv('ARCH_TEST_API_BASE', ''), os.getenv('ARCH_TEST_MODEL', '')
     if not base or not model:
         return {'status': 'unavailable', 'reason': 'Set ARCH_TEST_API_BASE and ARCH_TEST_MODEL; no model was invoked.'}

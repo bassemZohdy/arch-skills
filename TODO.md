@@ -15,7 +15,7 @@ and regression checks are complete; external requests blocked by network/access
 controls remain explicitly unverified in its evidence.
 
 Test automation is implemented in [the runner and workflow guide](docs/test-automation.md).
-Offline CI validates all 219 behavioral scenarios; the model-response workflow is
+Offline CI validates all 222 behavioral scenarios; the model-response workflow is
 opt-in and requires configuration. Scheduled public-link audits retain evidence.
 
 Remaining test improvements:
@@ -23,12 +23,15 @@ Remaining test improvements:
 - Configure the endpoint/model and run the 15-call smoke workflow; record the first
   real baseline. Synthetic adapter tests are not live skill-quality evidence.
 - Implement one actual host adapter, then execute the seven DAP lifecycle scenarios
-  with artifact/assertion completeness checks and preserved-baseline verification.
-- Add automatic-activation tests with ambiguous prompts and negative controls.
+  with fixture setup and preserved-baseline verification. The repository now
+  enforces assertion identity and evidence-file completeness for returned results.
+- Configure an actual host adapter for the activation manifest; the runner now
+  accepts host-observed `skills_used` traces and has positive/negative scenarios.
 - Calibrate remaining keyword assertions on real outputs; move priority cases to
   typed decisions, artifact checks or reviewed semantic rubrics.
 - Compare baseline/candidate versions with identical model/host settings before
-  making behavioral pass rates a release gate.
+  making behavioral pass rates a release gate; `scripts/compare_behavioral.py`
+  now automates the comparison and rejects drift.
 
 Project adoption work:
 

@@ -28,7 +28,7 @@ def observation(text='API'):
 class BehavioralTests(unittest.TestCase):
     def test_every_skill_has_valid_scenarios(self):
         cases = load_cases(sorted((ROOT / 'tests').glob('test-*.yaml')))
-        self.assertEqual({c['skill'] for c in cases},
+        self.assertEqual({c['skill'] for c in cases if c['mode'] == 'explicit'},
                          {p.parent.name for p in (ROOT / 'skills').glob('arch-*/SKILL.md')})
 
     def test_manifest_rejects_silent_settings_and_invalid_assertions(self):
@@ -78,7 +78,7 @@ class BehavioralTests(unittest.TestCase):
                 self.assertEqual(invoke(command, {}, temp, 1)['status'], 'error')
 
     def test_repeat_counts_isolation_budget_and_unavailable(self):
-        case = dict(id='test', skill='arch-api', runs=3, min_passes=2, timeout=5,
+        case = dict(id='test', mode='explicit', skill='arch-api', skills=None, runs=3, min_passes=2, timeout=5,
                     steps=[{'prompt': 'Test', 'assert': [{'type': 'contains', 'value': 'API'}]}])
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -97,7 +97,7 @@ class BehavioralTests(unittest.TestCase):
             self.assertEqual(report['counts'], {'unavailable': 1})
 
     def test_multiturn_retains_history_but_new_attempt_resets_it(self):
-        case = dict(id='multi', skill='arch-api', runs=2, min_passes=2, timeout=5,
+        case = dict(id='multi', mode='explicit', skill='arch-api', skills=None, runs=2, min_passes=2, timeout=5,
                     steps=[{'prompt': p, 'assert': [{'type': 'contains', 'value': 'API'}]}
                            for p in ['first', 'next']])
         requests = []
@@ -112,6 +112,20 @@ class BehavioralTests(unittest.TestCase):
         self.assertEqual([len(r['messages']) for r in requests], [1, 3, 1, 3])
         self.assertNotEqual(requests[0]['workspace'], requests[2]['workspace'])
         self.assertNotIn('assert', json.dumps(requests))
+
+    def test_activation_mode_requires_host_reported_skill_trace(self):
+        cases = load_cases([ROOT / 'tests/test-activation.yaml'])
+        self.assertEqual({case['mode'] for case in cases}, {'activation'})
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            build(root / 'packages', profile='expert', selected=['arch-api', 'arch-security', 'arch-observability'])
+            def respond(command, request, workspace, timeout):
+                self.assertEqual(request['mode'], 'activation')
+                return dict(observation(), execution_mode='host', skills_used=['arch-api'])
+            with patch('behavioral.invoke', side_effect=respond):
+                report = run_cases([cases[0]], root / 'packages', root / 'results', ['synthetic'], 1)
+            self.assertEqual(report['counts'], {'passed': 1})
+            self.assertEqual(report['cases'][0]['adapter']['id'], 'synthetic-test-double')
 
     def test_unconfigured_adapter_is_not_success_and_sends_no_request(self):
         with patch.dict(os.environ, {'ARCH_TEST_API_BASE': '', 'ARCH_TEST_MODEL': ''}), patch('adapters.chat_completion.build_opener') as network:

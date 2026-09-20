@@ -1,0 +1,31 @@
+mode: activation
+skills:
+  - ./skills/arch-api
+  - ./skills/arch-security
+  - ./skills/arch-observability
+timeout: 180
+scenarios:
+  - name: "focused API request loads API skill"
+    steps:
+      - prompt: "Design a versioned REST API for an internal employee directory."
+        assert:
+          - type: skill_used
+            value: arch-api
+          - type: skill_not_used
+            value: arch-observability
+  - name: "security request loads security skill"
+    steps:
+      - prompt: "Threat-model a public authentication API using STRIDE."
+        assert:
+          - type: skill_used
+            value: arch-security
+  - name: "unrelated request does not load selected architecture skills"
+    steps:
+      - prompt: "Summarize the supplied meeting notes in three sentences."
+        assert:
+          - type: skill_not_used
+            value: arch-api
+          - type: skill_not_used
+            value: arch-security
+          - type: skill_not_used
+            value: arch-observability

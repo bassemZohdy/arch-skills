@@ -206,6 +206,44 @@ def validate_result(result: dict[str, Any], scenario_id: str | None = None) -> d
     }
 
 
+def validate_execution(result: dict[str, Any], manifest: dict[str, Any], workspace: Path) -> dict[str, Any]:
+    """Check that an executed result covers exactly the requested assertions and files."""
+    validate_scenario_manifest(manifest)
+    scenarios = {item["id"]: item for item in manifest["scenarios"]}
+    scenario = scenarios.get(result.get("scenario_id"))
+    if scenario is None:
+        raise AdapterContractError("result.scenario_id is not present in the scenario manifest")
+    summary = validate_result(result, result["scenario_id"])
+    if result["status"] == "unavailable":
+        return summary | {"execution_checked": False, "reason": result["reason"]}
+    expected = {
+        f"{scenario['id']}:{index + 1}": assertion["type"]
+        for index, assertion in enumerate(scenario["assertions"])
+    }
+    actual = {}
+    for assertion in result["assertions"]:
+        assertion_id = assertion.get("assertion_id")
+        _require_string(assertion_id, "result.assertions[].assertion_id")
+        if assertion_id in actual:
+            raise AdapterContractError(f"duplicate assertion outcome: {assertion_id}")
+        if assertion_id not in expected:
+            raise AdapterContractError(f"unexpected assertion outcome: {assertion_id}")
+        if assertion["type"] != expected[assertion_id]:
+            raise AdapterContractError(f"assertion type mismatch for {assertion_id}")
+        actual[assertion_id] = assertion["type"]
+    if set(actual) != set(expected):
+        missing = sorted(set(expected) - set(actual))
+        raise AdapterContractError(f"missing assertion outcomes: {missing}")
+    workspace = workspace.resolve()
+    if not workspace.is_dir():
+        raise AdapterContractError(f"workspace does not exist: {workspace}")
+    for evidence in result["evidence"]:
+        path = workspace / PurePosixPath(evidence["path"])
+        if not path.resolve().is_relative_to(workspace) or not path.is_file():
+            raise AdapterContractError(f"evidence file is missing or escapes workspace: {evidence['path']}")
+    return summary | {"execution_checked": True, "assertion_count": len(actual)}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -217,12 +255,19 @@ def main(argv: list[str] | None = None) -> int:
     result_parser.add_argument("result", type=Path)
     result_parser.add_argument("--scenario-id")
 
+    execution_parser = subparsers.add_parser("validate-execution")
+    execution_parser.add_argument("result", type=Path)
+    execution_parser.add_argument("manifest", type=Path)
+    execution_parser.add_argument("--workspace", type=Path, required=True)
+
     args = parser.parse_args(argv)
     try:
         if args.command == "validate-scenarios":
             summary = validate_scenario_manifest(load_json(args.manifest))
-        else:
+        elif args.command == "validate-result":
             summary = validate_result(load_json(args.result), args.scenario_id)
+        else:
+            summary = validate_execution(load_json(args.result), load_json(args.manifest), args.workspace)
     except AdapterContractError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
