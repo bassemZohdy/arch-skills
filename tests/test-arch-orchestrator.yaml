@@ -15,6 +15,19 @@ scenarios:
           - type: contains
             value: "requirements"
 
+  - name: "asks conversational prioritized choices with a custom fallback"
+    steps:
+      - prompt: "Interview me one question at a time for a customer order platform. Include prioritized best-practice and industry-reference choices, with custom answer last."
+        assert:
+          - type: contains
+            value: "recommended"
+          - type: contains
+            value: "industry"
+          - type: contains
+            value: "custom answer"
+          - type: contains
+            value: "one question"
+
   - name: "selects minimal skill set instead of all skills"
     steps:
       - prompt: "Design a small internal REST API for employee directory lookup. No events, no AI, no frontend, low traffic. Which specialist skills do you select?"

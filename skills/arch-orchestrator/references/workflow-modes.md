@@ -10,25 +10,60 @@ explicitly supplies a mode and a confirmed, traceable requirements baseline.
 The first response must summarize the requirement seed, classify the scope as
 greenfield, brownfield or mixed, list known constraints and evidence, identify
 the decision owner and expose the important gaps. It then prepares a small,
-prioritized batch of `Q` records covering functional goals, scope, quality
-attributes, mandatory constraints, stakeholders, evidence and verification.
+prioritized question plan covering functional goals, scope, quality attributes,
+mandatory constraints, stakeholders, evidence and verification, while exposing
+only the next question.
 
-Present the prepared questions and ask the user to answer them in the same
+Present one prepared question and ask the user to answer it in the same
 response. This marks the interview active; it is not a design response and it
-must not select technologies, specialists or ADRs. Reconcile each answer batch
-into the checkpoint before asking the next batch. Once the requirements handoff
+must not select technologies, specialists or ADRs. Reconcile each answer into
+the checkpoint before asking the next question. Once the requirements handoff
 has explicit stakeholder confirmation, honor the requested stopping boundary or
 continue into create/update when the user asked for it.
+
+## Conversational question protocol
+
+Use one active `Q` record per turn. Keep the question focused; do not combine
+several independent decisions into one prompt. Each question should contain:
+
+1. The question and a short statement of why the answer affects the
+   architecture or its verification.
+2. A prioritized choice list, normally no more than four options:
+   - **Recommended** — the best-practice default for the stated context, with
+     the reason and its main trade-off.
+   - **Industry reference** — a relevant option grounded in a named standard,
+     protocol, regulatory source or established industry pattern, with a link
+     or source identifier when available. Omit this option when no genuine
+     reference applies; never fabricate one.
+   - **Alternative** — another viable choice, with the consequence that makes
+     it different.
+   - **Custom answer** — free text supplied by the stakeholder; always last.
+
+Merge options when the recommended practice is also the reference-backed choice
+so the list remains short. Treat every suggested choice as an assumption until
+the stakeholder selects it. A free-text reply, an answer outside the list or an
+explicit uncertainty is recorded as user input and may trigger a follow-up
+question; do not force it into the closest option.
+
+If the host supports structured choice controls, use them. Otherwise render the
+same list as numbered or lettered Markdown choices and accept either the number,
+the option text or a custom response. After each answer, acknowledge what was
+recorded, retain the selected option's rationale and provenance, update linked
+`REQ`/`CON`/`ASM` records, save the checkpoint and then ask the next question.
+If the user requests all questions or the host cannot maintain turns, provide a
+clearly ordered batch as an explicit fallback and preserve the same option order
+for every question.
 
 ## Interview
 
 Capture the seed, participants, scope, evidence access and human decision owner.
-Load an existing baseline when present. Ask small question batches covering
-business flows and architecture-driving quality attributes together. Capture
-source revision, owner, REQ/CON IDs, scenarios, Q/ASM records and verification
-intent. Suggested answers remain assumptions until confirmed.
+Load an existing baseline when present. Ask one question per turn, covering
+business flows and architecture-driving quality attributes together across the
+conversation. Capture source revision, owner, REQ/CON IDs, scenarios, Q/ASM
+records and verification intent. Suggested answers remain assumptions until
+confirmed.
 
-After each received batch, reconcile the baseline and save a checkpoint. Apply
+After each received answer, reconcile the baseline and save a checkpoint. Apply
 eleven per-requirement, five set-level and one stability check. Stability needs
 an explicit stakeholder confirmation round with matching before/after hashes.
 Exhausted budgets or unanswered blocking questions produce a blocked checkpoint.

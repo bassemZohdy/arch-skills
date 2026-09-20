@@ -1,6 +1,6 @@
 ---
 name: arch-orchestrator
-description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a requirements interview by presenting a concise initial question plan before design. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
+description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a one-question-at-a-time requirements conversation using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
 ---
 
 # Architecture authoring
@@ -21,19 +21,24 @@ technology, specialists or a target architecture on the first turn.
 2. State the selected mode and its reason. If the mode or scope classification
    is genuinely unclear, ask the smallest clarifying question before preparing
    the interview.
-3. Prepare a bounded first question batch covering goals and scope, users and
+3. Prepare a prioritized question plan covering goals and scope, users and
    workflows, mandatory constraints, quality attributes, evidence and
-   ownership, and success or verification. Mark each item as a pending `Q`
-   record, with its owner and decision impact.
-4. Present that prepared batch as the first interview round and ask the user to
-   answer it. Mark the interview active; do not stop at a question-plan-only
-   response or silently proceed to design.
-5. Reconcile and checkpoint each answer round. Do not produce a candidate
-   architecture, technology recommendation, ADR or specialist selection until
-   the interview has enough evidence and the stakeholder explicitly confirms
-   the requirements handoff. A user who supplies a confirmed, traceable
-   baseline and explicitly requests create or update may skip the initial batch
-   only after provenance and convergence are checked.
+   ownership, and success or verification. Keep the plan in the checkpoint,
+   but expose only the next question unless the user asks for the full plan.
+4. Ask exactly one question per conversational turn. Offer a small ordered set
+   of choices: a recommended best-practice default first, a relevant
+   reference-backed industry option when one genuinely applies, other viable
+   alternatives with their trade-offs, and `Custom answer` as the final option.
+   Never invent a standard, citation or industry claim. Use native choice
+   controls when the host provides them; otherwise render numbered choices.
+5. Mark the interview active, record the selected option or free-text answer and
+   its provenance, then reconcile and checkpoint before asking the next question.
+   Do not produce a candidate architecture, technology recommendation, ADR or
+   specialist selection until the interview has enough evidence and the
+   stakeholder explicitly confirms the requirements handoff. A user who
+   supplies a confirmed, traceable baseline and explicitly requests create or
+   update may skip the initial conversation only after provenance and
+   convergence are checked.
 
 ## Workflow
 

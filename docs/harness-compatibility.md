@@ -36,6 +36,15 @@ Use Python 3.10+ and requirements.txt for deterministic helpers. Test scripts fr
 an unrelated working directory. A host without execution support can return a
 plan or provisional analysis, but cannot claim the deterministic checks ran.
 
+## Conversational interview controls
+
+The orchestrator's interview contract is host-neutral. It keeps one active
+question per turn and can map the ordered choices to native buttons, menus or
+other structured controls when a host provides them. Hosts without those
+controls should render the same choices as numbered or lettered text and accept
+the selected number, option text or a custom response. No particular UI API is
+required; the checkpoint and question records remain the portable state.
+
 ## Verified boundaries
 
 Automated tests verify default/expert discovery counts, resource resolution,
