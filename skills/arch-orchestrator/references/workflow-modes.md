@@ -11,20 +11,26 @@ The first response must summarize the requirement seed, classify the scope as
 greenfield, brownfield or mixed, list known constraints and evidence, identify
 the decision owner and expose the important gaps. It then prepares a small,
 prioritized question plan covering functional goals, scope, quality attributes,
-mandatory constraints, stakeholders, evidence and verification, while exposing
-only the next question.
+mandatory constraints, stakeholders, evidence and verification. Partition
+related independent questions into bounded batches, while exposing only the
+next question or the first related batch.
 
-Present one prepared question and ask the user to answer it in the same
-response. This marks the interview active; it is not a design response and it
-must not select technologies, specialists or ADRs. Reconcile each answer into
-the checkpoint before asking the next question. Once the requirements handoff
-has explicit stakeholder confirmation, honor the requested stopping boundary or
-continue into create/update when the user asked for it.
+Present one prepared question by default, or the first bounded related batch,
+and ask the user to answer it in the same response. This marks the interview
+active; it is not a design response and it must not select technologies,
+specialists or ADRs. Collect answers for the batch and reconcile them together
+into the checkpoint before preparing the next batch. Once the requirements
+handoff has explicit stakeholder confirmation, honor the requested stopping
+boundary or continue into create/update when the user asked for it.
 
 ## Conversational question protocol
 
-Use one active `Q` record per turn. Keep the question focused; do not combine
-several independent decisions into one prompt. Each question should contain:
+Use one active `Q` record per question by default. A bounded `Q` batch may
+contain related independent questions that share context and can be answered
+without seeing one another's answers. Do not combine several independent
+decisions into one prompt or batch. Keep a batch normally between two and four
+questions; keep high-risk, blocking, scope-changing or answer-dependent
+questions outside the batch. Each question should contain:
 
 1. The question and a short statement of why the answer affects the
    architecture or its verification.
@@ -47,34 +53,52 @@ question; do not force it into the closest option.
 
 If the host supports structured choice controls, use them. Otherwise render the
 same list as numbered or lettered Markdown choices and accept either the number,
-the option text or a custom response. After each answer, acknowledge what was
-recorded, retain the selected option's rationale and provenance, update linked
-`REQ`/`CON`/`ASM` records, save the checkpoint and then ask the next question.
-If the user requests all questions or the host cannot maintain turns, provide a
-clearly ordered batch as an explicit fallback and preserve the same option order
-for every question.
+the option text or a custom response. Record each raw answer and its provenance
+locally as it arrives, with a lightweight acknowledgement that does not require
+a reasoning pass. At the end of a batch, send the question IDs and all collected
+answers together for one reconciliation and checkpoint. Do not invoke the
+reasoning/model turn after every answer. Reconcile a partial batch early only
+when an answer is ambiguous, blocking, scope-changing or high-risk. If the user
+requests all questions or the host cannot maintain turns, provide a clearly
+ordered batch as an explicit fallback and preserve the same option order for
+every question.
+
+### Batching and reasoning budget
+
+Separate presentation turns from reasoning turns. Before a batch begins,
+prepare its questions, options and stable IDs in one planning pass. A capable
+host may render the batch as a native multi-question form; a host that only
+supports one control may show the prepared questions sequentially while
+collecting answers. In both cases, defer semantic reconciliation until the
+batch is complete and submit the answers together. The host may close the batch
+early for a blocking, ambiguous, scope-changing or high-risk answer, but must
+reconcile the partial batch once rather than calling the model for every answer.
+A round consists of one question batch, its received answers, one
+reconciliation and one checkpoint.
 
 Prefer a native user-input or elicitation capability over rendered text. Before
 asking a question, inspect the active host's advertised tools or capabilities.
-When one is available, send the single `Q` with stable option identifiers,
-ordered labels and a free-text/custom option, then wait for the host response.
-Do not print a duplicate numbered list in the same turn. Never invoke a
-capability that the host has not advertised; if no native capability is exposed
-or the call fails, use the Markdown fallback and record that the host UI was
-unavailable. The canonical skill remains host-neutral and does not depend on a
-specific tool name or protocol.
+When one is available, send the single `Q` or bounded `Q` batch with stable
+question and option identifiers, ordered labels and a free-text/custom option,
+then wait for the host response or response set. Do not print a duplicate
+numbered list in the same turn. Never invoke a capability that the host has not
+advertised; if no native capability is exposed or the call fails, use the
+Markdown fallback and record that the host UI was unavailable. The canonical
+skill remains host-neutral and does not depend on a specific tool name or
+protocol.
 
 ## Interview
 
 Capture the seed, participants, scope, evidence access and human decision owner.
-Load an existing baseline when present. Ask one question per turn, covering
-business flows and architecture-driving quality attributes together across the
+Load an existing baseline when present. Ask one question per turn by default,
+or a bounded related batch when the questions share context, covering business
+flows and architecture-driving quality attributes together across the
 conversation. Capture source revision, owner, REQ/CON IDs, scenarios, Q/ASM
 records and verification intent. Suggested answers remain assumptions until
 confirmed.
 
-After each received answer, reconcile the baseline and save a checkpoint. Apply
-eleven per-requirement, five set-level and one stability check. Stability needs
+After each batch, reconcile the baseline and save a checkpoint. Apply eleven
+per-requirement, five set-level and one stability check. Stability needs
 an explicit stakeholder confirmation round with matching before/after hashes.
 Exhausted budgets or unanswered blocking questions produce a blocked checkpoint.
 

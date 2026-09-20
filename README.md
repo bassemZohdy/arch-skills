@@ -40,8 +40,9 @@ See [packaging and compatibility](docs/harness-compatibility.md).
 Example requests:
 
 - Interview me for a customer order platform. The orchestrator supplies the
-  preparation step, one-question turns, prioritized choices and host-native
-  question controls when the host exposes them.
+  preparation step, one-question turns or small related question batches,
+  prioritized choices and host-native question controls when the host exposes
+  them, while reconciling each batch together.
 - Interview stakeholders and stop after confirming requirements.
 - Create a solution architecture from this brief.
 - Update the architecture for this changed residency requirement.

@@ -1,6 +1,6 @@
 ---
 name: arch-orchestrator
-description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a one-question-at-a-time requirements conversation using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Prefer an advertised native user-input or elicitation control; use text choices only as a host fallback. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
+description: "Interview stakeholders, create a solution architecture, or update an existing architecture baseline. When invoked without an explicit mode and confirmed requirements, begin with preparation and a conversational requirements interview that defaults to one question at a time but may use bounded groups of related questions. Batch related answers for one reconciliation pass instead of reasoning after every answer, while using prioritized choices, relevant best practices or industry references, and a final custom-answer option before design. Prefer an advertised native user-input or elicitation control; use text choices only as a host fallback. Use for end-to-end or multi-domain architecture work, including modernization and migration. Use arch-evaluate for process audits and arch-review for design-quality reviews; narrow specialist requests do not require the full process."
 ---
 
 # Architecture authoring
@@ -26,24 +26,33 @@ instead of requiring those instructions to be repeated in every prompt.
    the interview.
 3. Prepare a prioritized question plan covering goals and scope, users and
    workflows, mandatory constraints, quality attributes, evidence and
-   ownership, and success or verification. Keep the plan in the checkpoint,
-   but expose only the next question unless the user asks for the full plan.
-4. Ask exactly one question per conversational turn. Offer a small ordered set
-   of choices: a recommended best-practice default first, a relevant
-   reference-backed industry option when one genuinely applies, other viable
-   alternatives with their trade-offs, and `Custom answer` as the final option.
-   Never invent a standard, citation or industry claim. Inspect the active host
-   capabilities first: when a native user-input or elicitation control is
-   advertised, invoke it with the question and choices and do not duplicate
-   them as numbered text. Use numbered choices only when that capability is not
-   exposed or the host reports that it failed.
-5. Mark the interview active, record the selected option or free-text answer and
-   its provenance, then reconcile and checkpoint before asking the next question.
-   Do not produce a candidate architecture, technology recommendation, ADR or
-   specialist selection until the interview has enough evidence and the
-   stakeholder explicitly confirms the requirements handoff. A user who
-   supplies a confirmed, traceable baseline and explicitly requests create or
-   update may skip the initial conversation only after provenance and
+   ownership, and success or verification. Partition related, independent
+   questions into small bounded batches in the checkpoint. Keep the plan in
+   the checkpoint, but expose only the next question or first related batch
+   unless the user asks for the full plan.
+4. Present one question at a time by default. When several questions share
+   context and no answer depends on another, present a bounded group (normally
+   two to four questions) or pre-plan that sequence for collection without a
+   new reasoning pass after each answer. Do not group independent decisions,
+   high-risk clarifications or questions whose answers can change the scope.
+   Offer each question a small ordered set of choices: a recommended
+   best-practice default first, a relevant reference-backed industry option
+   when one genuinely applies, other viable alternatives with their trade-offs,
+   and `Custom answer` as the final option. Never invent a standard, citation
+   or industry claim. Inspect the active host capabilities first: when a native
+   user-input or elicitation control supports a grouped form, invoke it with
+   the stable questions and choices; otherwise collect the prepared questions
+   sequentially or use a clearly labelled text group.
+5. Mark the interview active and record each selected option or free-text answer
+   and its provenance as it arrives. Persist raw answers locally, but send the
+   completed batch together for reconciliation and checkpointing rather than
+   invoking the reasoning/model turn after every answer. Reconcile early when
+   an answer is ambiguous, blocking, scope-changing or high-risk, then prepare
+   the next batch. Do not produce a candidate architecture, technology
+   recommendation, ADR or specialist selection until the interview has enough
+   evidence and the stakeholder explicitly confirms the requirements handoff.
+   A user who supplies a confirmed, traceable baseline and explicitly requests
+   create or update may skip the initial conversation only after provenance and
    convergence are checked.
 
 ## Workflow

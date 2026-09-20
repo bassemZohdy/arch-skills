@@ -38,16 +38,26 @@ plan or provisional analysis, but cannot claim the deterministic checks ran.
 
 ## Conversational interview controls
 
-The orchestrator's interview contract is host-neutral. It keeps one active
-question per turn and first checks whether the host advertises a native
-user-input or elicitation capability. A host adapter maps the ordered choices,
-stable option identifiers and final free-text option to its own controls, then
-returns the selected value and provenance. The skill must not print a duplicate
-numbered list when that native capability is available.
+The orchestrator's interview contract is host-neutral. It presents one active
+question by default, but can prepare a bounded group of related independent
+questions when that is more efficient. The adapter should separate presentation
+turns from reasoning turns: prepare a batch once, collect its answers locally,
+then submit the question IDs, values and provenance together for one
+reconciliation. It must not invoke the model after every answer. A blocking,
+ambiguous, scope-changing or high-risk answer may close the batch early and
+trigger one partial reconciliation.
+
+First check whether the host advertises a native user-input or elicitation
+capability. A host adapter maps the ordered choices, stable option identifiers
+and final free-text option to its own controls, then returns the selected values
+and provenance. The skill must not print a duplicate numbered list when that
+native capability is available.
 
 Hosts without a native capability should render the same choices as numbered or
 lettered text and accept the selected number, option text or a custom response.
-The checkpoint and question records remain the portable state. Codex app-server
+They may render a prepared batch sequentially and collect the answers before
+the next reconciliation. The checkpoint and question records remain the
+portable state. Codex app-server
 integrations may provide server-initiated user-input or MCP elicitation requests;
 that integration belongs to the host adapter, not to the canonical skill.
 

@@ -15,7 +15,7 @@ scenarios:
           - type: contains
             value: "requirements"
 
-  - name: "asks conversational prioritized choices with a custom fallback"
+  - name: "batches related answers before reconciliation without format instructions"
     steps:
       - prompt: "We need a customer order platform."
         assert:
@@ -27,6 +27,10 @@ scenarios:
             value: "custom answer"
           - type: contains
             value: "one question"
+          - type: contains
+            value: "batch"
+          - type: contains
+            value: "reconciliation"
 
   - name: "selects minimal skill set instead of all skills"
     steps:
