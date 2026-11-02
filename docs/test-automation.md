@@ -47,7 +47,7 @@ adapter. Configure a custom command for other APIs or hosts.
 
 Defaults select at most 10 scenarios with a 30-call ceiling. `--limit 0` selects
 all scenarios in the supplied manifests; omit `--manifest` to select from all
-38 YAML manifests. The runner rejects a selection exceeding `--max-calls`
+39 YAML manifests. The runner rejects a selection exceeding `--max-calls`
 before making calls. These are call/output limits, not monetary spending caps.
 `ARCH_TEST_MAX_TOKENS` defaults to 2048, with a hard adapter range of 1..16384.
 Truncated answers are errors, not successful short responses. There are no hidden
@@ -65,6 +65,14 @@ The HTTP adapter records generation settings but never its API key.
 Exit 0 means all selected scenarios met their minimum counts. Exit 1 means an
 assertion failure, execution error or invalid configuration. Exit 2 means one or
 more tests were unavailable. Unavailable attempts never improve the pass rate.
+
+### arch-evaluate calibration suite
+
+`tests/test-arch-evaluate-calibration.yaml` holds 42 typed scenarios whose expected
+values follow the packaged DAP scorer (exit-code classification, exact weighted S,
+T = min(F, B), N/A authorization, weight validity, readiness and freshness). It is
+not part of the 16-call smoke workflow. Run it with `--max-calls 42`. The latest
+recorded results are in the [calibration audit](audits/2026-11-02-arch-evaluate-calibration.md).
 
 ## GitHub setup
 
@@ -146,7 +154,7 @@ execution errors, emit `status: "unavailable"` or `"error"` with `reason`.
 Do not emit secrets in responses, reasons or traces. Stderr is not retained.
 
 Supported assertions: case-insensitive `contains`, `not_contains`, `contains_any`;
-`json_equals` with JSON Pointer and typed expected `value`; normalized
+`json_equals` with JSON Pointer and typed expected `value` (numbers compare by value, so 50 equals 50.0; booleans and strings never equal numbers); normalized
 `capability_used`, `skill_used` and `skill_not_used`; and `token_usage_under` (strictly less than total reported
 input plus output tokens). Missing required capability/token observations are
 unavailable, not passes. JSON answers must be raw JSON, not fenced Markdown.

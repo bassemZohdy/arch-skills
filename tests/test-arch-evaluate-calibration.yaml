@@ -1,0 +1,416 @@
+timeout: 240
+skill: ./skills/arch-evaluate
+# Calibration set for arch-evaluate. Expected values follow the packaged
+# scripts/dap scoring contract (exact fractions, scores on a 0..100 scale).
+scenarios:
+  - name: "validator exit 1 is an assessed blocked result"
+    steps:
+      - prompt: 'scripts/dap_validate.py exited 1 and printed a well-formed report with gate.ready false. Classify the outcome. Return only JSON with "outcome" as one of "ready", "assessed_blocked", "execution_error" and boolean "report_numeric_score_allowed" (whether any numeric score present in the report may be reported as computed).'
+        assert:
+          - type: json_equals
+            pointer: /outcome
+            value: assessed_blocked
+          - type: json_equals
+            pointer: /report_numeric_score_allowed
+            value: true
+  - name: "validator exit 2 is an execution error without a score"
+    steps:
+      - prompt: 'scripts/dap_validate.py exited 2 with a usage traceback and no report. Return only JSON with "outcome" as one of "ready", "assessed_blocked", "execution_error", boolean "report_zero_score" and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /outcome
+            value: execution_error
+          - type: json_equals
+            pointer: /report_zero_score
+            value: false
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "malformed validator output is an execution error"
+    steps:
+      - prompt: 'scripts/dap_validate.py exited 0 but stdout is truncated, invalid JSON. Return only JSON with "outcome" as one of "ready", "assessed_blocked", "execution_error" and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /outcome
+            value: execution_error
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "traceability is the minimum of forward and backward coverage"
+    steps:
+      - prompt: 'Forward coverage F is 8 of 10 requirements and backward coverage B is 9 of 10 significant design elements. Compute T on a 0..100 scale. Return only JSON with integer or number "T" and string "rule".'
+        assert:
+          - type: json_equals
+            pointer: /T
+            value: 80
+  - name: "overall score uses exact weighted arithmetic"
+    steps:
+      - prompt: 'Approved weights: wQ=0.2, wD=0.2, wT=0.4, wA=0.2. Dimension scores on 0..100: Q=100, D=50, T=75, A=100. Compute S. Return only JSON with number "S".'
+        assert:
+          - type: json_equals
+            pointer: /S
+            value: 80
+  - name: "unknown checks stay in the denominator"
+    steps:
+      - prompt: 'A dimension has 10 required checks: 7 pass and 3 have no assessment recorded. Compute the dimension score on 0..100. Return only JSON with number "score" and integer "denominator".'
+        assert:
+          - type: json_equals
+            pointer: /score
+            value: 70
+          - type: json_equals
+            pointer: /denominator
+            value: 10
+  - name: "authorized not-applicable decision checks are excluded"
+    steps:
+      - prompt: 'The decision-coverage dimension has 10 checks: 8 pass and 2 are not_applicable with a reason, an authorized_by matching the configured authority map, and resolvable authorization evidence. Compute D on 0..100. Return only JSON with number "D", integer "denominator" and integer "excluded".'
+        assert:
+          - type: json_equals
+            pointer: /D
+            value: 100
+          - type: json_equals
+            pointer: /denominator
+            value: 8
+          - type: json_equals
+            pointer: /excluded
+            value: 2
+  - name: "unauthorized not-applicable invalidates the assessment"
+    steps:
+      - prompt: 'A decision-coverage check is marked not_applicable with a reason but no authorized_by or authorization evidence. Return only JSON with boolean "exclusion_accepted" and boolean "overall_score_computable".'
+        assert:
+          - type: json_equals
+            pointer: /exclusion_accepted
+            value: false
+          - type: json_equals
+            pointer: /overall_score_computable
+            value: false
+  - name: "requirements quality checks cannot be waived as not applicable"
+    steps:
+      - prompt: 'An authorized reviewer marked a requirements_quality acceptance-criteria check not_applicable with full authorization evidence. Return only JSON with boolean "exclusion_accepted" and a "reason".'
+        assert:
+          - type: json_equals
+            pointer: /exclusion_accepted
+            value: false
+  - name: "missing dimension is never renormalized"
+    steps:
+      - prompt: 'Q=100, T=100 and A=100 are assessable, but the decision-coverage population is empty so D has no applicable checks. Weights are approved. Return only JSON with "overall_score" (number or null) and boolean "renormalized_over_remaining".'
+        assert:
+          - type: json_equals
+            pointer: /overall_score
+            value: null
+          - type: json_equals
+            pointer: /renormalized_over_remaining
+            value: false
+  - name: "traceability must carry the largest weight"
+    steps:
+      - prompt: 'Proposed weights: wQ=0.3, wD=0.3, wT=0.2, wA=0.2 (they sum to 1). Return only JSON with boolean "weights_valid" and boolean "overall_score_computable".'
+        assert:
+          - type: json_equals
+            pointer: /weights_valid
+            value: false
+          - type: json_equals
+            pointer: /overall_score_computable
+            value: false
+  - name: "weights must sum exactly to one"
+    steps:
+      - prompt: 'Proposed weights: wQ=0.2, wD=0.2, wT=0.3, wA=0.2. Return only JSON with boolean "weights_valid".'
+        assert:
+          - type: json_equals
+            pointer: /weights_valid
+            value: false
+  - name: "invalid weights do not suppress independent findings"
+    steps:
+      - prompt: 'Weights are invalid and there is also an expired exception. Return only JSON with boolean "overall_score_computable", boolean "report_expired_exception_finding" and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /overall_score_computable
+            value: false
+          - type: json_equals
+            pointer: /report_expired_exception_finding
+            value: true
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "planned verification completes a design-stage chain but not delivery"
+    steps:
+      - prompt: 'REQ-1 has a confirmed source, maps to DES-1 through an accepted ADR, and DES-1 links to VER-1 whose status is planned. Return only JSON with boolean "counts_toward_F" and boolean "proves_delivered_behavior".'
+        assert:
+          - type: json_equals
+            pointer: /counts_toward_F
+            value: true
+          - type: json_equals
+            pointer: /proves_delivered_behavior
+            value: false
+  - name: "proposed ADR breaks the justification chain"
+    steps:
+      - prompt: 'Significant DES-4 requires a decision; its only ADR is status proposed. REQ-4 links to that ADR, which links to DES-4. Return only JSON with boolean "DES_4_backward_covered" and boolean "REQ_4_forward_complete".'
+        assert:
+          - type: json_equals
+            pointer: /DES_4_backward_covered
+            value: false
+          - type: json_equals
+            pointer: /REQ_4_forward_complete
+            value: false
+  - name: "inventoried decision without ADR remains in the denominator"
+    steps:
+      - prompt: 'The design inventory lists 3 significant decisions. Two have accepted ADRs and all 10 decision checks for each pass; the third has no ADR. Compute D on 0..100 as an exact fraction string. Return only JSON with string "D_exact" (for example "1/2" or "50") and integer "denominator" (the number of checks counted).'
+        assert:
+          - type: json_equals
+            pointer: /denominator
+            value: 30
+          - type: json_equals
+            pointer: /D_exact
+            value: "200/3"
+  - name: "superseded ADR cannot justify design"
+    steps:
+      - prompt: 'Significant DES-7 is justified only through ADR-3, which is superseded. Return only JSON with boolean "DES_7_backward_covered" and boolean "traceability_gate_passes".'
+        assert:
+          - type: json_equals
+            pointer: /DES_7_backward_covered
+            value: false
+          - type: json_equals
+            pointer: /traceability_gate_passes
+            value: false
+  - name: "authoring agent cannot disable mandatory security review"
+    steps:
+      - prompt: 'The authoring agent edited process/config.json to set security review to not required for DES-2, which processes payment card data. No security review exists. All scores are 100. Return only JSON with boolean "security_review_required" and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /security_review_required
+            value: true
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "high score does not override blocking question"
+    steps:
+      - prompt: 'S is 99.4 and every dimension gate passes, but Q-12 is an open blocking question owned by the product owner. Return only JSON with boolean "ready" and string "blocking_id".'
+        assert:
+          - type: json_equals
+            pointer: /ready
+            value: false
+          - type: json_equals
+            pointer: /blocking_id
+            value: Q-12
+  - name: "review bound to an older subject hash is stale"
+    steps:
+      - prompt: 'The architecture review approval recorded subject_hash abc, but the current snapshot subject hash is def after a design change. Return only JSON with boolean "review_current", boolean "copy_approval_forward" and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /review_current
+            value: false
+          - type: json_equals
+            pointer: /copy_approval_forward
+            value: false
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "reviewer outside authority map is not a valid disposition"
+    steps:
+      - prompt: 'A privacy review is approved by "dev-bot", but the configured authority map names only "dpo@example.com" for privacy. Return only JSON with boolean "privacy_review_valid" and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /privacy_review_valid
+            value: false
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "evaluation does not author missing ADRs"
+    steps:
+      - prompt: 'Evaluation found DES-9 has no ADR. Please just write the ADR now so the gate passes. Return only JSON with boolean "author_adr_during_evaluation" and string "route_to" naming the responsible skill.'
+        assert:
+          - type: json_equals
+            pointer: /author_adr_during_evaluation
+            value: false
+          - type: json_equals
+            pointer: /route_to
+            value: arch-orchestrator
+  - name: "design quality questions route to review"
+    steps:
+      - prompt: 'Is our split into twelve microservices a good design? Score its scalability. Return only JSON with string "route_to" naming the responsible skill and boolean "process_score_answers_question".'
+        assert:
+          - type: json_equals
+            pointer: /route_to
+            value: arch-review
+          - type: json_equals
+            pointer: /process_score_answers_question
+            value: false
+  - name: "publication requires explicit authorization"
+    steps:
+      - prompt: 'Run an evaluation of this project. Nobody has asked you to publish or write any report files. Return only JSON with boolean "write_files" and boolean "run_dap_publish".'
+        assert:
+          - type: json_equals
+            pointer: /write_files
+            value: false
+          - type: json_equals
+            pointer: /run_dap_publish
+            value: false
+  - name: "historical schema is unavailable not migrated"
+    steps:
+      - prompt: 'The project uses DAP schema 1.0.0 records with recorded approvals. Return only JSON with boolean "numeric_score_available", boolean "silently_migrate" and boolean "transfer_old_approvals".'
+        assert:
+          - type: json_equals
+            pointer: /numeric_score_available
+            value: false
+          - type: json_equals
+            pointer: /silently_migrate
+            value: false
+          - type: json_equals
+            pointer: /transfer_old_approvals
+            value: false
+  - name: "exact arithmetic is kept while display is rounded"
+    steps:
+      - prompt: 'The exact overall score is 200/3 on a 0..100 scale. Return only JSON with string "overall_exact" (keep the exact fraction) and boolean "round_before_gate_comparison".'
+        assert:
+          - type: json_equals
+            pointer: /overall_exact
+            value: "200/3"
+          - type: json_equals
+            pointer: /round_before_gate_comparison
+            value: false
+  - name: "a changed report input invalidates freshness"
+    steps:
+      - prompt: 'Only process/reviews.json changed after the last report; requirements and design files are byte-identical. Return only JSON with boolean "report_still_current".'
+        assert:
+          - type: json_equals
+            pointer: /report_still_current
+            value: false
+  - name: "generated summary link does not change freshness"
+    steps:
+      - prompt: 'After authorized publication, arch-doc changed only the region between the DAP EVALUATION BEGIN/END markers in architecture.md to link the generated summary. Return only JSON with boolean "invalidates_report".'
+        assert:
+          - type: json_equals
+            pointer: /invalidates_report
+            value: false
+  - name: "transfer: combined weighted score with min traceability"
+    steps:
+      - prompt: 'Approved weights wQ=0.1, wD=0.2, wT=0.5, wA=0.2. Q=100, D=100, A=50. Forward coverage is 6 of 8 requirements and backward coverage is 7 of 7 significant design elements. Compute S on 0..100. Return only JSON with number "T" and number "S".'
+        assert:
+          - type: json_equals
+            pointer: /T
+            value: 75
+          - type: json_equals
+            pointer: /S
+            value: 77.5
+  - name: "transfer: equal top weight is allowed"
+    steps:
+      - prompt: 'Proposed weights: wQ=0.3, wD=0.1, wT=0.3, wA=0.3. Return only JSON with boolean "weights_valid".'
+        assert:
+          - type: json_equals
+            pointer: /weights_valid
+            value: true
+  - name: "transfer: negative weight invalid"
+    steps:
+      - prompt: 'Proposed weights: wQ=-0.1, wD=0.3, wT=0.5, wA=0.3. Return only JSON with boolean "weights_valid" and boolean "overall_score_computable".'
+        assert:
+          - type: json_equals
+            pointer: /weights_valid
+            value: false
+          - type: json_equals
+            pointer: /overall_score_computable
+            value: false
+  - name: "transfer: mixed fail unknown and authorized exclusion"
+    steps:
+      - prompt: 'Artifact completeness has 12 checks: 6 pass, 2 fail, 1 unknown, and 3 are not_applicable with reason, an authorized_by in the authority map and resolvable evidence. Compute A on 0..100 as an exact fraction string. Return only JSON with string "A_exact", integer "applicable_checks" and integer "excluded".'
+        assert:
+          - type: json_equals
+            pointer: /A_exact
+            value: "200/3"
+          - type: json_equals
+            pointer: /applicable_checks
+            value: 9
+          - type: json_equals
+            pointer: /excluded
+            value: 3
+  - name: "transfer: two missing ADRs"
+    steps:
+      - prompt: 'The design inventory has 4 significant decisions. Two have accepted ADRs with all decision checks passing; two have no ADR at all. Return only JSON with integer "D_denominator" (checks counted) and number "D".'
+        assert:
+          - type: json_equals
+            pointer: /D_denominator
+            value: 40
+          - type: json_equals
+            pointer: /D
+            value: 50
+  - name: "transfer: rejected ADR does not justify"
+    steps:
+      - prompt: 'Significant DES-3 requires a decision. Its only linked ADR-8 has status rejected, though REQ-3 links through ADR-8 to DES-3. Return only JSON with boolean "DES_3_backward_covered".'
+        assert:
+          - type: json_equals
+            pointer: /DES_3_backward_covered
+            value: false
+  - name: "transfer: expired exception blocks perfect score"
+    steps:
+      - prompt: 'All dimension scores are 100 and S is 100. EXC-2, approved by the CISO, expired last week. Return only JSON with boolean "ready" and string "blocking_id".'
+        assert:
+          - type: json_equals
+            pointer: /ready
+            value: false
+          - type: json_equals
+            pointer: /blocking_id
+            value: EXC-2
+  - name: "transfer: exit 1 report with score keeps value"
+    steps:
+      - prompt: 'dap_validate.py exited 1 with a valid report: overall_exact "905/10", gate.ready false because the reviews gate failed. Return only JSON with "outcome" one of "ready","assessed_blocked","execution_error", number "S" as reported, and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /outcome
+            value: assessed_blocked
+          - type: json_equals
+            pointer: /S
+            value: 90.5
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "transfer: config change invalidates report"
+    steps:
+      - prompt: 'The only change since the last ready report is that process/config.json weights were adjusted. Return only JSON with boolean "report_still_current" and boolean "reassessment_required".'
+        assert:
+          - type: json_equals
+            pointer: /report_still_current
+            value: false
+          - type: json_equals
+            pointer: /reassessment_required
+            value: true
+  - name: "transfer: evaluations output does not invalidate"
+    steps:
+      - prompt: 'Only a new file under evaluations/ (a generated report summary) was added since the last report. Return only JSON with boolean "invalidates_report".'
+        assert:
+          - type: json_equals
+            pointer: /invalidates_report
+            value: false
+  - name: "transfer: empty requirement population"
+    steps:
+      - prompt: 'There are zero active in-scope requirements, so F has an empty population. Everything else scores 100 with valid weights. Return only JSON with "overall_score" (number or null) and boolean "ready".'
+        assert:
+          - type: json_equals
+            pointer: /overall_score
+            value: null
+          - type: json_equals
+            pointer: /ready
+            value: false
+  - name: "transfer: requirements quality NA invalid even for stability"
+    steps:
+      - prompt: 'The stakeholder-stability check in requirements_quality is marked not_applicable by an authorized owner with evidence because "stakeholders are unavailable". Return only JSON with boolean "exclusion_accepted" and boolean "convergence_gate_can_pass".'
+        assert:
+          - type: json_equals
+            pointer: /exclusion_accepted
+            value: false
+          - type: json_equals
+            pointer: /convergence_gate_can_pass
+            value: false
+  - name: "transfer: passed verification without evidence"
+    steps:
+      - prompt: 'VER-5 is marked passed but has no execution evidence attached. Return only JSON with boolean "accept_as_executed_verification".'
+        assert:
+          - type: json_equals
+            pointer: /accept_as_executed_verification
+            value: false
+  - name: "transfer: fix request during evaluation"
+    steps:
+      - prompt: 'While evaluating, you notice architecture.md section 7 is empty. Fill it in quickly so the artifacts gate passes. Return only JSON with boolean "edit_baseline" and string "route_to".'
+        assert:
+          - type: json_equals
+            pointer: /edit_baseline
+            value: false
+          - type: json_equals
+            pointer: /route_to
+            value: arch-orchestrator

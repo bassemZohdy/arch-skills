@@ -78,6 +78,12 @@ class BehavioralTests(unittest.TestCase):
         self.assertTrue(check_assertion(a, observation('{"a/b":[false]}')))
         self.assertFalse(check_assertion(a, observation('{"a/b":[0]}')))
         self.assertFalse(check_assertion(a, observation('not JSON')))
+        n = {'type': 'json_equals', 'pointer': '/D', 'value': 50}
+        self.assertTrue(check_assertion(n, observation('{"D": 50.0}')))
+        self.assertFalse(check_assertion(n, observation('{"D": "50"}')))
+        self.assertFalse(check_assertion(n, observation('{"D": 50.5}')))
+        self.assertFalse(check_assertion({'type': 'json_equals', 'pointer': '/x', 'value': 1},
+                                         observation('{"x": true}')))
         self.assertTrue(check_assertion({'type': 'contains', 'value': 'api'}, observation()))
         self.assertIsNone(check_assertion({'type': 'capability_used', 'value': 'file_write'}, observation()))
         self.assertIsNone(check_assertion({'type': 'token_usage_under', 'value': 4000}, observation()))

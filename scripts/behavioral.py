@@ -132,6 +132,17 @@ def pointer_value(value, pointer):
     return value
 
 
+def json_normalized(value):
+    """Compare JSON numbers by value (50 == 50.0) while keeping booleans distinct."""
+    if isinstance(value, bool) or value is None or isinstance(value, str):
+        return value
+    if isinstance(value, (int, float)):
+        return {'$number': repr(float(value))}
+    if isinstance(value, list):
+        return [json_normalized(v) for v in value]
+    return {k: json_normalized(v) for k, v in value.items()}
+
+
 def check_assertion(assertion, observation):
     kind, expected = assertion['type'], assertion['value']
     response = observation['response']
@@ -144,7 +155,8 @@ def check_assertion(assertion, observation):
     if kind == 'json_equals':
         try:
             actual = pointer_value(json.loads(response), assertion['pointer'])
-            return json.dumps(actual, sort_keys=True) == json.dumps(expected, sort_keys=True)
+            return (json.dumps(json_normalized(actual), sort_keys=True)
+                    == json.dumps(json_normalized(expected), sort_keys=True))
         except (ValueError, KeyError, IndexError, TypeError):
             return False
     if kind == 'capability_used':

@@ -66,6 +66,43 @@ Unapproved/expired exceptions, conflicting constraints and blocked questions
 prevent readiness. Missing source, design or verification evidence breaks a
 design-stage trace chain. A planned test is not executed verification.
 
+## Scoring and gate rules
+
+These mirror the packaged scorer; apply them when interpreting or explaining a report.
+
+- **Validator outcome:** exit 0 with a well-formed report is ready; exit 1 with a
+  well-formed report is assessed but blocked, and its computed scores remain valid
+  report values; exit 2, a crash or malformed/truncated output (whatever the exit
+  code) is an execution error with no score, not a zero score and never ready.
+- **Dimension score:** passed ÷ counted checks × 100. Count checks, not targets: D
+  is ten checks per inventoried significant decision, so a decision without an ADR
+  adds ten failing checks. Fail and unknown (including missing assessments) stay
+  counted with zero credit.
+- **Not applicable:** excluded and reported only with a reason, an `authorized_by`
+  listed in the authority map and resolvable authorization evidence. An exclusion
+  lacking any of these is an invalid assessment, so no S is computed.
+  requirements_quality checks are never excludable, even with full authorization.
+- **Traceability:** T = min(F, B). F counts complete source → REQ → DES/accepted ADR
+  → VER chains, where planned VER completes a design-stage chain but never proves
+  delivery. B counts significant DES justified by active REQ or sourced CON. Only
+  accepted ADRs justify; proposed, rejected or superseded ones break the chain.
+- **Weights:** exactly four, nonnegative, summing to exactly 1, with traceability
+  greater than or equal to every other weight. Otherwise weights are invalid and
+  S is not computed, but every independent finding is still reported.
+- **Overall score:** S = wQ×Q + wD×D + wT×T + wA×A in exact fractions. Report
+  `overall_exact` as the exact string (for example `200/3` or `905/10`) and
+  `overall_score` as its number rounded to one decimal (66.7, 90.5); never compare
+  gates on the rounded value. If any dimension is unassessable or its
+  population is empty, S is null; never renormalize over remaining dimensions.
+- **Readiness:** all gates must pass regardless of S. Any open blocking question or
+  risk, an unapproved or expired exception, a missing or stale mandatory review, or
+  a reviewer outside the configured authority map blocks readiness. A review bound
+  to another subject hash or baseline is stale; never carry it forward.
+- **Freshness:** any change to a manifested input, including reviews, assessments,
+  configuration, rubric or schema, invalidates the previous report. Only generated
+  `evaluations/` output and the DAP EVALUATION BEGIN/END region of architecture.md
+  are excluded.
+
 ## Output
 
 Use `assets/evaluation-report-template.json` as the minimum report shape.
