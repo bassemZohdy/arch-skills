@@ -68,10 +68,10 @@ more tests were unavailable. Unavailable attempts never improve the pass rate.
 
 ### arch-evaluate calibration suite
 
-`tests/test-arch-evaluate-calibration.yaml` holds 42 typed scenarios whose expected
+`tests/test-arch-evaluate-calibration.yaml` holds 52 typed scenarios whose expected
 values follow the packaged DAP scorer (exit-code classification, exact weighted S,
 T = min(F, B), N/A authorization, weight validity, readiness and freshness). It is
-not part of the 16-call smoke workflow. Run it with `--max-calls 42`. The latest
+not part of the 16-call smoke workflow. Run it with `--max-calls 52`. The latest
 recorded results are in the [calibration audit](audits/2026-11-02-arch-evaluate-calibration.md).
 
 ## GitHub setup

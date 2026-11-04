@@ -10,7 +10,7 @@ from jsonschema import Draft202012Validator
 FRAMEWORK_VERSION = "1.0.0"
 SCHEMA_VERSION = "2.0.0"
 RUBRIC_VERSION = "1.0.0"
-EVALUATOR_VERSION = "2.0.1"
+EVALUATOR_VERSION = "2.0.2"
 FRAMEWORK = Path(__file__).resolve().parents[2] / "framework"
 RESULTS = {"pass", "fail", "unknown", "not_applicable"}
 KINDS = {"sources": "SRC", "requirements": "REQ", "constraints": "CON",

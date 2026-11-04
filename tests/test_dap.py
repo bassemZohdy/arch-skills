@@ -11,7 +11,7 @@ from dap_fixture import ROOT, make_project, bind_project, write
 from dap.contracts import ContractError, validate_config, validate_records
 from dap.persistence import ConcurrentRevisionError, content_hash, load_checkpoint, save_checkpoint
 from dap.publishing import publish_report
-from dap.scoring import evaluate_project, expected_checks
+from dap.scoring import display_score, evaluate_project, expected_checks
 from dap.snapshot import Snapshot, local_path, report_is_stale
 from dap.workflow import route, plan_change, interview_status
 
@@ -161,6 +161,15 @@ class DAPTests(unittest.TestCase):
         report = evaluate_project(self.project)
         self.assertFalse(report["gate"]["ready"])
         self.assertGreater(report["overall_score"], 99)
+
+    def test_display_score_rounds_exact_value_half_to_even(self):
+        from fractions import Fraction
+        self.assertEqual(display_score(Fraction(1997, 20)), 99.8)
+        self.assertEqual(display_score(Fraction(1999, 20)), 100.0)
+        self.assertEqual(display_score(Fraction(200, 3)), 66.7)
+        # Binary-float rounding of these exact halves would disagree.
+        self.assertEqual(display_score(Fraction(1003, 20)), 50.2)
+        self.assertEqual(display_score(Fraction(9, 4)), 2.2)
 
     def test_all_failed_checks_block(self):
         self.change("process/assessment.json", lambda a: [c.update(result="fail") for rows in a.values() for c in rows])

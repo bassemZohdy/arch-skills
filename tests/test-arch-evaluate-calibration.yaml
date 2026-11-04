@@ -414,3 +414,61 @@ scenarios:
           - type: json_equals
             pointer: /route_to
             value: arch-orchestrator
+  - name: "re-review: three-way weighted score"
+    steps:
+      - prompt: 'Approved weights wQ=0.25, wD=0.15, wT=0.4, wA=0.2. Q=80, D=60, A=90. F is 9 of 12 requirements, B is 5 of 5 designs. Return only JSON with number "T" and number "S".'
+        assert:
+          - {type: json_equals, pointer: /T, value: 75}
+          - {type: json_equals, pointer: /S, value: 77}
+  - name: "re-review: weights tie with another dimension above traceability"
+    steps:
+      - prompt: 'Weights: wQ=0.35, wD=0.05, wT=0.3, wA=0.3. Return only JSON with boolean "weights_valid".'
+        assert:
+          - {type: json_equals, pointer: /weights_valid, value: false}
+  - name: "re-review: unknown plus fail plus exclusion in decisions"
+    steps:
+      - prompt: 'Decision coverage has 20 checks: 12 pass, 3 fail, 3 have no assessment, 2 are authorized not_applicable with reason, authority-map approver and evidence. Return only JSON with integer "applicable_checks" and string "D_exact".'
+        assert:
+          - {type: json_equals, pointer: /applicable_checks, value: 18}
+          - {type: json_equals, pointer: /D_exact, value: "200/3"}
+  - name: "re-review: one missing ADR among five"
+    steps:
+      - prompt: 'The inventory has 5 significant decisions; 4 have accepted ADRs whose decision checks all pass and 1 has no ADR. Return only JSON with integer "checks_counted" and number "D".'
+        assert:
+          - {type: json_equals, pointer: /checks_counted, value: 50}
+          - {type: json_equals, pointer: /D, value: 80}
+  - name: "re-review: unsourced requirement breaks forward chain"
+    steps:
+      - prompt: 'REQ-9 maps to DES-9 via an accepted ADR and DES-9 links to planned VER-9, but REQ-9 source SRC-2 is still unconfirmed. Return only JSON with boolean "REQ_9_forward_complete".'
+        assert:
+          - {type: json_equals, pointer: /REQ_9_forward_complete, value: false}
+  - name: "re-review: exit 0 with stale report"
+    steps:
+      - prompt: 'A report published last month says ready. Since then process/assessment.json was updated. Someone asks you to certify readiness from that report. Return only JSON with boolean "certify_from_old_report" and boolean "rerun_validator".'
+        assert:
+          - {type: json_equals, pointer: /certify_from_old_report, value: false}
+          - {type: json_equals, pointer: /rerun_validator, value: true}
+  - name: "re-review: unapproved exception"
+    steps:
+      - prompt: 'EXC-4 has residual risk and compensating controls recorded but no approving authority yet. All scores 100. Return only JSON with boolean "ready" and string "blocking_id".'
+        assert:
+          - {type: json_equals, pointer: /ready, value: false}
+          - {type: json_equals, pointer: /blocking_id, value: EXC-4}
+  - name: "re-review: privacy implication cannot be self-approved"
+    steps:
+      - prompt: 'DES-5 stores customer location history. The authoring agent recorded its own privacy review as approved. The authority map names a DPO for privacy. Return only JSON with boolean "privacy_review_valid" and boolean "ready".'
+        assert:
+          - {type: json_equals, pointer: /privacy_review_valid, value: false}
+          - {type: json_equals, pointer: /ready, value: false}
+  - name: "re-review: rounded display not used for gate"
+    steps:
+      - prompt: 'The exact S is 1997/20 on 0..100. Return only JSON with string "overall_exact" and number "overall_score" as displayed.'
+        assert:
+          - {type: json_equals, pointer: /overall_exact, value: "1997/20"}
+          - {type: json_equals, pointer: /overall_score, value: 99.8}
+  - name: "re-review: publish when explicitly authorized"
+    steps:
+      - prompt: 'The project owner explicitly authorized publishing the current blocked evaluation report. Return only JSON with boolean "may_publish_blocked_report" and boolean "publication_approves_architecture".'
+        assert:
+          - {type: json_equals, pointer: /may_publish_blocked_report, value: true}
+          - {type: json_equals, pointer: /publication_approves_architecture, value: false}

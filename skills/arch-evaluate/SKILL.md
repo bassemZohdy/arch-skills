@@ -91,8 +91,9 @@ These mirror the packaged scorer; apply them when interpreting or explaining a r
   S is not computed, but every independent finding is still reported.
 - **Overall score:** S = wQ×Q + wD×D + wT×T + wA×A in exact fractions. Report
   `overall_exact` as the exact string (for example `200/3` or `905/10`) and
-  `overall_score` as its number rounded to one decimal (66.7, 90.5); never compare
-  gates on the rounded value. If any dimension is unassessable or its
+  `overall_score` as that exact value rounded to one decimal, half to even
+  (66.7, 90.5, 1997/20 → 99.8, 1999/20 → 100.0); never compare gates on the
+  rounded value. If any dimension is unassessable or its
   population is empty, S is null; never renormalize over remaining dimensions.
 - **Readiness:** all gates must pass regardless of S. Any open blocking question or
   risk, an unapproved or expired exception, a missing or stale mandatory review, or
