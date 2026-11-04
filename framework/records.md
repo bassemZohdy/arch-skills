@@ -103,7 +103,8 @@ Q expands eleven checks per active in-scope requirement plus five set checks and
 one stability check. D expands ten per significant inventoried decision. A expands
 three per arc42 section and three per supporting group. Scope and delivery
 exclusions remain explicit. Empty required populations prevent S. Exact rational
-arithmetic computes S; only display is rounded.
+arithmetic computes S; only display is rounded, to one decimal with ties to even
+on the exact value (never on a binary float).
 
 Use numbered level-two headings in architecture.md (1 through 12). Passing arc42
 checks cite the matching section's exact heading, for example

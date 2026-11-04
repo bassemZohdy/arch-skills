@@ -14,6 +14,11 @@ from .persistence import content_hash
 from .snapshot import Snapshot, report_is_stale
 
 
+def display_score(exact):
+    """Round the exact Fraction for display: one decimal, ties to even, never via binary float."""
+    return float(round(Fraction(exact), 1))
+
+
 def score_checks(checks, dimension):
     included = [c for c in checks if c["result"] != "not_applicable"]
     passed = sum(c["result"] == "pass" for c in included)
@@ -306,7 +311,7 @@ def _evaluate_project(root, config_path=None):
             "rubric_version": config["versions"]["rubric"], "configuration_version": config.get("configuration_version"),
             "baseline_revision": config.get("baseline_revision"), "evaluator": f"dap/{EVALUATOR_VERSION}",
             "generated_at": datetime.now(timezone.utc).isoformat(), "metrics": metrics,
-            "overall_score": round(float(score), 1) if score is not None else None,
+            "overall_score": display_score(score) if score is not None else None,
             "overall_exact": str(score) if score is not None else None, "assessable": score is not None,
             "gate": {"ready": all(gates.values()), "checks": gates, "blocking_findings": sorted(set(findings))},
             "findings": sorted(set(findings)), "trace_rows": rows, "subject_hash": snapshot.subject_hash(),

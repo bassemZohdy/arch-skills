@@ -53,6 +53,26 @@ Changes:
 - `json_equals` now compares JSON numbers by value (50 equals 50.0); booleans and
   strings still never equal numbers. A false negative had occurred on a correct answer.
 
+## Re-review — 2026-11-04
+
+After merging the calibration work and the two Dependabot workflow updates, the
+offline gate was rerun on main and ten new unseen scenarios were written.
+
+| Skill | Suite | Scenarios | Assertions |
+| --- | --- | --- | --- |
+| original | 10 re-review cases | 6/10 (60%) | 12/18 (66.7%) |
+| merged calibration | 10 re-review cases | 9/10 (90%) | 17/18 (94.4%) |
+| + rounding rule, evaluator 2.0.2 | 10 re-review cases, two runs | 10/10, 10/10 | 18/18, 18/18 |
+| + rounding rule, evaluator 2.0.2 | calibration 42 | 42/42 | 81/81 |
+| + rounding rule, evaluator 2.0.2 | existing 5 | 5/5 | 8/8 |
+
+Finding: the display rounding of `overall_score` was unspecified. The scorer
+rounded a binary float, which disagreed with exact rounding for 402 of the 200,001
+values n/2000 between 0 and 100 (for example 1003/20 displayed 50.1). Evaluator 2.0.2
+rounds the exact fraction to one decimal with ties to even, and the skill and
+records contract now state this. The ten re-review cases were then merged, so the
+suite holds 52 scenarios.
+
 ## Boundaries
 
 Response-only results do not prove host discovery, tool use, validator execution
