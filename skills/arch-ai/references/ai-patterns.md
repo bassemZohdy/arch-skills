@@ -57,6 +57,17 @@ while not done and steps < max_steps and cost < budget:
 4. Return errors as structured data the model can recover from
 5. Destructive operations require confirmation or elevated approval
 
+### Protocol boundaries
+
+- **MCP (tools/resources):** pin the negotiated specification revision. Revision
+  2026-07-28 is stateless, so authenticate and authorize each request; never rely
+  on a connection or session to imply user, tenant or consent.
+- **A2A (agent delegation):** treat a remote agent as an untrusted service. Verify
+  its identity and signed metadata where available, scope delegated credentials,
+  bound task lifetime and reconcile task state after timeouts.
+- Treat tool descriptions, resource content and remote-agent messages as untrusted
+  input that can carry injected instructions.
+
 ### Multi-Agent Caution
 
 Multi-agent systems multiply token cost and failure modes. Justify them only when:
@@ -94,10 +105,10 @@ Multi-agent systems multiply token cost and failure modes. Justify them only whe
 
 | Failure | Mitigation |
 |---------|------------|
-| Timeout | Timeout + retry with backoff; degrade to cached/simpler answer |
+| Timeout | Retry bounded read-only generation with backoff; reconcile unknown write/tool outcomes using operation IDs before retrying |
 | Malformed output | Schema validation + one repair retry |
 | Refusal | Detect and route to fallback flow |
-| Hallucination | Grounding, citations, confidence signals |
+| Hallucination | Check claims against retrieved evidence and calibrated evaluations; self-reported confidence is not verification |
 | Provider outage | Multi-provider abstraction or graceful degradation |
 
 ## Security Threat Model for AI Features
@@ -109,3 +120,10 @@ Multi-agent systems multiply token cost and failure modes. Justify them only whe
 | **Excessive agency** | Over-permissioned tools | User-scoped permissions, approval gates |
 | **Denial of wallet** | Unbounded loops, long inputs | Spend caps, step limits, input limits |
 | **Training data leakage** | PII in prompts sent to third parties | Redaction, data processing agreements |
+| **Goal hijack** | Injected content redirects an agent's objective | Fixed task scope, plan review, approval for out-of-scope actions |
+| **Memory/context poisoning** | Persisted memory, shared context, retrieved notes | Provenance, write controls, per-tenant memory, expiry and review |
+| **Insecure inter-agent communication** | Unauthenticated or spoofed agent messages | Mutual authentication, signed metadata, scoped delegation |
+| **Cascading failures** | One agent's error propagates through a chain | Step/time budgets, validation between hops, circuit breakers, human checkpoints |
+
+Map these controls to the [OWASP Top 10 for Agentic Applications](https://genai.owasp.org/)
+(2026) and record residual risk per agent and tool.

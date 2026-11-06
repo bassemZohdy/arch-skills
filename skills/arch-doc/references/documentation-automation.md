@@ -40,11 +40,8 @@
     npm run build:docs
     npm run test:docs
     
-- name: Deploy docs
-  uses: peaceiris/actions-gh-pages@v3
-  with:
-    github_token: ${{ secrets.GITHUB_TOKEN }}
-    publish_dir: ./docs
+# Publish with the repository's adopted deployment workflow and permissions.
+# Pin third-party actions to reviewed commit SHAs and verify artifact paths.
 ```
 
 ## Documentation Quality

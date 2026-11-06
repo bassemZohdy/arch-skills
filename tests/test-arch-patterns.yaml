@@ -6,43 +6,43 @@ scenarios:
     steps:
       - prompt: "When should I use Clean Architecture vs Layered Architecture?"
         assert:
-          - type: contains
-            value: "Clean Architecture"
-          - type: contains
-            value: "Layered"
+          - type: contains_any
+            value: ["dependency rule", "inward", "use case", "entities"]
+          - type: contains_any
+            value: ["CRUD", "simple", "indirection", "cost"]
 
   - name: "implements hexagonal architecture"
     steps:
       - prompt: "How do I implement Hexagonal Architecture (Ports and Adapters)?"
         assert:
-          - type: contains
-            value: "Hexagonal"
-          - type: contains
-            value: "Ports"
+          - type: contains_any
+            value: ["driving", "driven", "primary port", "secondary port"]
+          - type: contains_any
+            value: ["domain", "core", "infrastructure", "test"]
 
   - name: "applies pipes and filters"
     steps:
       - prompt: "When should I use the Pipes and Filters pattern?"
         assert:
-          - type: contains
-            value: "Pipes"
-          - type: contains
-            value: "Filters"
+          - type: contains_any
+            value: ["stage", "transform", "stream", "pipeline"]
+          - type: contains_any
+            value: ["compos", "reorder", "reuse", "independent"]
 
   - name: "selects event-driven pattern"
     steps:
       - prompt: "When should I use Event-Driven Architecture vs request-response?"
         assert:
-          - type: contains
-            value: "Event-Driven"
-          - type: contains
-            value: "request-response"
+          - type: contains_any
+            value: ["decoupl", "asynchronous", "broker", "eventual"]
+          - type: contains_any
+            value: ["synchronous", "immediate", "latency", "simplicity"]
 
   - name: "implements repository pattern"
     steps:
       - prompt: "How do I implement the Repository pattern in a clean architecture?"
         assert:
-          - type: contains
-            value: "Repository"
+          - type: contains_any
+            value: ["abstraction", "persistence", "port", "domain layer", "infrastructure"]
           - type: contains
             value: "interface"

@@ -8,12 +8,19 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
+
 class ConcurrentRevisionError(RuntimeError):
     pass
+
+
 def canonical_json(value: Any) -> bytes:
     return (json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False) + "\n").encode("utf-8")
+
+
 def content_hash(value: Any) -> str:
     return hashlib.sha256(canonical_json(value)).hexdigest()
+
+
 def atomic_write_json(path: Path, value: Any) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     data = canonical_json(value)
@@ -28,6 +35,8 @@ def atomic_write_json(path: Path, value: Any) -> str:
         if os.path.exists(name):
             os.unlink(name)
     return hashlib.sha256(data).hexdigest()
+
+
 def load_checkpoint(path: Path, project: Path | None = None) -> dict[str, Any]:
     if not path.exists():
         return {"revision": 0, "state": None}
@@ -41,6 +50,8 @@ def load_checkpoint(path: Path, project: Path | None = None) -> dict[str, Any]:
         if document["state"].get("subject_hash") != Snapshot(project).subject_hash():
             raise ValueError("checkpoint references a changed artifact baseline; reconcile before resuming")
     return document
+
+
 @contextmanager
 def exclusive_lock(path: Path):
     """Fail closed on contention; stale locks require explicit operator recovery."""
@@ -50,11 +61,14 @@ def exclusive_lock(path: Path):
     except FileExistsError as exc:
         raise ConcurrentRevisionError(f"operation locked: {path}; inspect interrupted operation before recovery") from exc
     try:
-        os.write(fd, str(os.getpid()).encode("ascii"))
-        os.close(fd)
+        try:
+            os.write(fd, str(os.getpid()).encode("ascii"))
+        finally:
+            os.close(fd)
         yield
     finally:
-        path.unlink()
+        # A lock removed by an operator mid-operation must not mask the operation's own outcome.
+        path.unlink(missing_ok=True)
 
 
 def save_checkpoint(path: Path, state: dict[str, Any], expected_revision: int | None = None) -> dict[str, Any]:

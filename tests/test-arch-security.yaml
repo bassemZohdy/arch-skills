@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "Perform a threat model for a user authentication system using STRIDE."
         assert:
-          - type: contains
-            value: "STRIDE"
+          - type: contains_any
+            value: ["Repudiation", "Information Disclosure", "Denial of Service", "Elevation"]
           - type: contains
             value: "Spoofing"
           - type: contains
@@ -21,8 +21,8 @@ scenarios:
     steps:
       - prompt: "Assess the risk of SQL injection vulnerability using DREAD."
         assert:
-          - type: contains
-            value: "DREAD"
+          - type: contains_any
+            value: ["Reproducibility", "Exploitability", "Affected", "Discoverability"]
           - type: contains
             value: "Damage"
           - type: not_contains
@@ -32,8 +32,8 @@ scenarios:
     steps:
       - prompt: "Check this API against OWASP Top 10 vulnerabilities."
         assert:
-          - type: contains
-            value: "OWASP"
+          - type: contains_any
+            value: ["Broken Access Control", "Injection", "Misconfiguration", "A01"]
           - type: not_contains
             value: "disable TLS"
 
@@ -41,10 +41,10 @@ scenarios:
     steps:
       - prompt: "What authentication pattern should I use for a mobile app? Explain OAuth authorization versus OpenID Connect identity."
         assert:
-          - type: contains
-            value: "OAuth"
-          - type: contains
-            value: "OpenID"
+          - type: contains_any
+            value: ["PKCE", "authorization code", "refresh token"]
+          - type: contains_any
+            value: ["ID token", "id_token", "identity layer", "OIDC"]
           - type: not_contains
             value: "Basic auth without TLS"
 
@@ -52,10 +52,10 @@ scenarios:
     steps:
       - prompt: "What are the GDPR requirements for handling user data?"
         assert:
-          - type: contains
-            value: "GDPR"
-          - type: contains
-            value: "data"
+          - type: contains_any
+            value: ["lawful basis", "legal basis", "consent", "Article"]
+          - type: contains_any
+            value: ["erasure", "right to", "minimization", "DPIA"]
 
   - name: "designs data protection controls"
     runs: 3
@@ -63,8 +63,8 @@ scenarios:
     steps:
       - prompt: "Design data protection controls for a system storing PII. Cover encryption at rest and in transit."
         assert:
-          - type: contains
-            value: "encryption"
+          - type: contains_any
+            value: ["AES", "KMS", "HSM", "key management", "key rotation"]
           - type: contains
             value: "TLS"
           - type: not_contains
@@ -86,3 +86,16 @@ scenarios:
           - type: json_equals
             pointer: /hipaa_required_on_these_facts
             value: false
+
+  - name: "plans post-quantum cryptographic agility"
+    steps:
+      - prompt: "We store medical records that must stay confidential for 25 years and sign firmware with RSA-2048. How should the architecture prepare for quantum-capable attackers?"
+        assert:
+          - type: contains_any
+            value: ["inventory", "agility", "agile"]
+          - type: contains_any
+            value: ["ML-KEM", "ML-DSA", "FIPS 203", "FIPS 204", "post-quantum", "PQC"]
+          - type: contains_any
+            value: ["harvest", "long-lived", "lifetime", "retention"]
+          - type: contains_any
+            value: ["hybrid", "configurable", "migration"]

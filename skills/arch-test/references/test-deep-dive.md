@@ -2,25 +2,20 @@
 
 **Source:** Testing Trophy, Contract Testing, Mutation Testing
 
-## Testing Trophy (Kent C. Dodds)
+## Choose a test portfolio
 
-```
-        ┌─────────┐
-        │  E2E    │  10%
-        ├─────────┤
-        │Integration│  20%
-        ├─────────┤
-        │  Unit   │  70%
-        └─────────┘
-```
+The [Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
+emphasizes integration tests with static analysis, unit tests and a smaller E2E
+layer. It is not the 70/20/10 pyramid. Choose the mix from failure risks,
+feedback speed and maintenance cost; neither model mandates percentages.
 
 ### Testing Levels
 
-| Level | Scope | Speed | Cost | Quantity |
-|-------|-------|-------|------|----------|
-| **Unit** | Single function/class | Milliseconds | Low | 70% |
-| **Integration** | Multiple components | Seconds | Medium | 20% |
-| **E2E** | Full system | Minutes | High | 10% |
+| Level | Scope | Typical speed | Main purpose |
+|-------|-------|---------------|--------------|
+| **Unit** | Function/class | Milliseconds | Local logic and edge cases |
+| **Integration** | Multiple components | Seconds | Boundary behavior and interoperability |
+| **E2E** | Full system | Seconds to minutes | Critical user journeys |
 
 ## Contract Testing
 
@@ -69,14 +64,13 @@ Consumer → Defines expectations → Provider → Validates
 ### Mutation Score
 
 ```
-Mutation Score = Killed Mutants / Total Mutants × 100%
+Mutation Score = Killed Mutants / Eligible Mutants × 100%
 ```
 
-| Score | Quality |
-|-------|---------|
-| > 80% | Good |
-| 60-80% | Acceptable |
-| < 60% | Needs improvement |
+Define the tool's denominator, handling of invalid/equivalent mutants and
+timeouts, and untested code before comparing results. Set a project-specific
+mutation target after a baseline, then inspect surviving mutants in critical
+paths; a single percentage is not a universal quality grade.
 
 ## Test Anti-patterns
 

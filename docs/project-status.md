@@ -1,10 +1,11 @@
 # Project status and operating guide
 
-Reviewed: 2026-09-20. This page is the current repository status reference. Historical
+Reviewed: 2026-11-06. This page is the current repository status reference. Historical
 counts and findings remain in the dated audit documents; open adoption work remains
 in [TODO.md](../TODO.md).
 
-Latest: [skill-by-skill and E2E review](audits/2026-09-20-skill-e2e-review.md).
+Latest: [skill freshness follow-up](audits/2026-11-06-skill-refresh.md), building on the
+[full skill freshness and validation review](audits/2026-09-24-skill-refresh.md).
 The local suite and static diagram inventory pass; live model/host and rendered
 diagram evidence remain separate adoption work.
 
@@ -13,17 +14,19 @@ diagram evidence remain separate adoption work.
 | Area | Current state | Evidence or command |
 | --- | --- | --- |
 | Skill library | 34 canonical skills; default profile exposes 3 entry points and expert exposes all 34 | `python scripts/build_packages.py --profile default ...` or `--profile expert ...` |
-| DAP contracts | Framework 1.0.0, schema 2.0.0, rubric 1.0.0 and evaluator 2.0.1 are implemented and version-checked | [implementation status](dap-implementation-status.md), [records](../framework/records.md) |
+| DAP contracts | Framework 1.0.0, schema 2.0.0, rubric 1.0.0 and evaluator 2.0.2 are implemented and version-checked | [implementation status](dap-implementation-status.md), [records](../framework/records.md) |
 | Deterministic validation | Structural, link, contract, lifecycle, publication and package-isolation checks run offline | `bash run-tests.sh` or `./run-tests.ps1` |
 | Review regressions | Packaged CLI lifecycle, evidence-path validation, archive protection, model-budget drift and current documentation inventory/version checks | `python -m unittest discover -s tests -p 'test_*.py'` |
 | Public routing | The three public entry points can load `arch-diagrams` as a bundled specialist for diagram-first work | [harness compatibility](harness-compatibility.md), [skill boundaries](skill-boundaries.md) |
-| Behavioral scenarios | 272 validated scenarios across 38 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
+| Behavioral scenarios | 331 validated scenarios across 41 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
+| Scenario inventory | 325 explicit skill cases plus 6 activation cases; definitions are not live pass results | [coverage analysis](coverage-analysis.md) |
+| Host-neutral observations | Optional adapter protocol supports resource-read evidence and default/expert activation scenarios; tool integrations remain external | [test automation](test-automation.md), [compatibility](harness-compatibility.md) |
 | DAP adapter checks | Result envelopes can be validated for assertion identity and workspace evidence paths | `python scripts/dap_adapter.py validate-execution ...` |
 | Diagram source checks | 33 Mermaid files/fenced blocks are inventoried and syntax headers are validated offline; rendering is opt-in | `python scripts/check_diagrams.py --output .cache/diagram-static`; manually trigger [diagram workflow](../.github/workflows/diagrams.yml) |
-| Baseline comparison | Compatible behavioral reports can be compared for selection drift and regressions | `python scripts/compare_behavioral.py baseline/report.json candidate/report.json ...` |
+| Baseline comparison | Every execution identity is checked; package-only comparisons preserve model/adapter/generation settings | `python scripts/compare_behavioral.py baseline/report.json candidate/report.json ...` |
 | Call-budget preflight | Preview scenario/repetition counts without model access or filesystem writes | `python scripts/behavioral.py plan --manifest tests/test-arch-evaluate.yaml --limit 0 --max-calls 7` |
-| Public links | Latest recheck: 351 probed; 301 reachable, 0 confirmed broken, 50 unverified | [Latest evidence](audits/2026-09-20-link-recheck-latest.json) |
-| CI automation | Four offline matrix jobs run on pushes and pull requests; public-link auditing is weekly; model smoke tests are manual | [.github/workflows](../.github/workflows/) |
+| Public links | Latest recheck (2026-11-06): 387 probed; 381 reachable, 0 confirmed broken, 6 unverified (blocked, challenge page or cross-host redirect) | [Latest evidence](audits/2026-11-06-link-recheck.json) |
+| CI automation | Four offline matrix jobs run on pushes and pull requests; public-link auditing and the cited-source freshness audit (optional GitHub Models review, findings filed as issues) are weekly; model smoke tests are manual | [.github/workflows](../.github/workflows/) |
 
 A passing offline check establishes repository and fixture invariants. It does not
 prove model behavior, semantic truth, human identity, architecture fitness or a

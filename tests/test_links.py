@@ -1,4 +1,5 @@
 """Regression coverage for links, anchors, resource reachability and probe results."""
+from http.client import IncompleteRead
 from pathlib import Path
 import sys
 import tempfile
@@ -46,11 +47,24 @@ class LinkTests(unittest.TestCase):
     def test_encoded_path_anchor_and_root_escape(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            (root / 'a b.md').write_text('# Résumé\n')
+            (root / 'a b.md').write_text('# Résumé\n', encoding='utf-8')
             (root / 'index.md').write_text('[ok](a%20b.md#r%C3%A9sum%C3%A9)\n[bad](../escape.md)\n')
             errors = check_local(root)['errors']
             self.assertEqual(len(errors), 1)
             self.assertIn('escapes root', errors[0])
+
+    def test_hidden_local_skills_are_not_canonical_link_inputs(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for folder in ('.local', '.runtime'):
+                local = root / 'skills' / folder / 'tool'
+                local.mkdir(parents=True)
+                (local / 'SKILL.md').write_text('[external-site-root](/missing)\n', encoding='utf-8')
+            (root / 'guide.md').write_text('[broken](missing.md)\n', encoding='utf-8')
+            report = check_local(root)
+            self.assertEqual(report['documents'], 1)
+            self.assertEqual(len(report['errors']), 1)
+            self.assertIn('guide.md', report['errors'][0])
 
     def test_http_denials_and_network_errors_are_not_broken(self):
         for code, status in [(404, 'broken'), (410, 'broken'), (403, 'unverified'), (429, 'unverified'), (500, 'unverified')]:
@@ -58,6 +72,28 @@ class LinkTests(unittest.TestCase):
                 self.assertEqual(probe('https://example.org')['status'], status)
         with patch('check_links.urlopen', side_effect=URLError('timeout')):
             self.assertEqual(probe('https://example.org')['status'], 'unverified')
+
+    def test_truncated_bodies_challenge_pages_and_cross_host_redirects_are_unverified(self):
+        class Response:
+            def __init__(self, status, url):
+                self.status, self.url = status, url
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+        with patch('check_links.urlopen', side_effect=IncompleteRead(b'partial')):
+            self.assertEqual(probe('https://example.org')['status'], 'unverified')
+        with patch('check_links.urlopen', return_value=Response(200, 'https://unblock.example.net/')):
+            result = probe('https://example.org/page')
+            self.assertEqual(result['status'], 'unverified')
+            self.assertIn('unblock.example.net', result['error'])
+        with patch('check_links.urlopen', return_value=Response(202, 'https://example.org/page')):
+            self.assertEqual(probe('https://example.org/page')['status'], 'unverified')
+        with patch('check_links.urlopen', return_value=Response(200, 'https://www.example.org/moved')):
+            self.assertEqual(probe('https://example.org/page')['status'], 'reachable')
 
     def test_orphan_chain_is_not_reachable_until_entry_links_it(self):
         with tempfile.TemporaryDirectory() as temp:

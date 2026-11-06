@@ -31,6 +31,6 @@ Thumbs.db
 !.env.example
 *.key
 
-# Codex system skills (not part of this repo)
+# Local host-managed overlays (not part of this repo)
 skills/.system/
 .zcode/

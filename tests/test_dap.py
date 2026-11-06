@@ -9,9 +9,9 @@ import unittest
 
 from dap_fixture import ROOT, make_project, bind_project, write
 from dap.contracts import ContractError, validate_config, validate_records
-from dap.persistence import ConcurrentRevisionError, content_hash, load_checkpoint, save_checkpoint
+from dap.persistence import ConcurrentRevisionError, content_hash, exclusive_lock, load_checkpoint, save_checkpoint
 from dap.publishing import publish_report
-from dap.scoring import evaluate_project, expected_checks
+from dap.scoring import display_score, evaluate_project, expected_checks
 from dap.snapshot import Snapshot, local_path, report_is_stale
 from dap.workflow import route, plan_change, interview_status
 
@@ -28,6 +28,23 @@ class DAPTests(unittest.TestCase):
         self.assertTrue(snapshot.evidence('requirements.json#/0/id'))
         for index in ('-1', '00', '+0', ' 0', '0~2'):
             self.assertFalse(snapshot.evidence(f'requirements.json#/{index}/id'), index)
+
+    def test_evidence_fragments_require_headings_pointers_or_quotes(self):
+        snapshot = Snapshot(self.project)
+        self.assertTrue(snapshot.evidence('evidence.md'))
+        self.assertTrue(snapshot.evidence('evidence.md#Interview'))
+        self.assertTrue(snapshot.evidence('architecture.md#1. introduction_goals'))
+        self.assertTrue(snapshot.evidence('evidence.md#No real stakeholder or production approval is claimed.'))
+        for locator in ('evidence.md#e', 'evidence.md#approval', 'evidence.md#Missing heading',
+                        'requirements.json#REQ-001', 'requirements.json#statement'):
+            self.assertFalse(snapshot.evidence(locator), locator)
+
+    def test_lock_removed_externally_does_not_mask_the_operation(self):
+        lock = Path(self.temp.name) / "external.lock"
+        with exclusive_lock(lock):
+            self.assertTrue(lock.exists())
+            lock.unlink()
+        self.assertFalse(lock.exists())
 
     def test_rtm_cannot_overwrite_an_archived_evaluation_summary(self):
         report = publish_report(self.project)
@@ -161,6 +178,15 @@ class DAPTests(unittest.TestCase):
         report = evaluate_project(self.project)
         self.assertFalse(report["gate"]["ready"])
         self.assertGreater(report["overall_score"], 99)
+
+    def test_display_score_rounds_exact_value_half_to_even(self):
+        from fractions import Fraction
+        self.assertEqual(display_score(Fraction(1997, 20)), 99.8)
+        self.assertEqual(display_score(Fraction(1999, 20)), 100.0)
+        self.assertEqual(display_score(Fraction(200, 3)), 66.7)
+        # Binary-float rounding of these exact halves would disagree.
+        self.assertEqual(display_score(Fraction(1003, 20)), 50.2)
+        self.assertEqual(display_score(Fraction(9, 4)), 2.2)
 
     def test_all_failed_checks_block(self):
         self.change("process/assessment.json", lambda a: [c.update(result="fail") for rows in a.values() for c in rows])

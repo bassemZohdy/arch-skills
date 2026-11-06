@@ -8,12 +8,12 @@ scenarios:
         assert:
           - type: contains
             value: "C4Context"
-          - type: contains
-            value: "System Context"
+          - type: contains_any
+            value: ["Rel(", "System_Ext", "title"]
           - type: contains
             value: "Person"
-          - type: contains
-            value: "System"
+          - type: contains_any
+            value: ["Enterprise_Boundary", "external", "boundary"]
           - type: capability_used
             value: "file_write"
           - type: token_usage_under
@@ -25,8 +25,8 @@ scenarios:
         assert:
           - type: contains
             value: "C4Container"
-          - type: contains
-            value: "Container"
+          - type: contains_any
+            value: ["Container(", "ContainerDb", "Rel("]
           - type: contains
             value: "System_Boundary"
 
@@ -41,14 +41,14 @@ scenarios:
     steps:
       - prompt: "Document an architecture decision to use PostgreSQL as the primary database. Use the MADR format."
         assert:
-          - type: contains
-            value: "ADR"
+          - type: contains_any
+            value: ["Accepted", "Proposed"]
           - type: contains
             value: "Status"
           - type: contains
             value: "Context"
-          - type: contains
-            value: "Decision"
+          - type: contains_any
+            value: ["Considered Options", "Decision Drivers", "Decision Outcome", "Pros and Cons"]
           - type: contains
             value: "Consequences"
           - type: capability_used
@@ -80,15 +80,15 @@ scenarios:
         assert:
           - type: contains
             value: "C4Component"
-          - type: contains
-            value: "Component"
+          - type: contains_any
+            value: ["Component(", "Container_Boundary", "interface"]
 
   - name: "uses TOGAF for enterprise architecture"
     steps:
       - prompt: "I need enterprise architecture documentation that follows TOGAF standards. What phases should I document?"
         assert:
-          - type: contains
-            value: "TOGAF"
+          - type: contains_any
+            value: ["Preliminary", "Architecture Vision", "Phase A", "Business Architecture"]
           - type: contains
             value: "ADM"
 
@@ -96,10 +96,10 @@ scenarios:
     steps:
       - prompt: "Document this system using ISO 42010 viewpoints and views."
         assert:
-          - type: contains
-            value: "ISO 42010"
-          - type: contains
-            value: "viewpoint"
+          - type: contains_any
+            value: ["stakeholder", "concern"]
+          - type: contains_any
+            value: ["architecture description", "model kind", "correspondence"]
 
   - name: "generates package diagram"
     steps:
@@ -125,7 +125,7 @@ scenarios:
     steps:
       - prompt: "How do I automate API documentation generation from code?"
         assert:
-          - type: contains
-            value: "documentation"
+          - type: contains_any
+            value: ["OpenAPI", "Swagger", "annotation", "pipeline"]
           - type: contains
             value: "automation"

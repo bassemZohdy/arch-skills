@@ -9,8 +9,12 @@ Run: python tests/test_activation.py
 """
 
 import re
+import sys
 import yaml
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from test_skills import FRONTMATTER
 
 SKILLS_DIR = Path(__file__).parent.parent / "skills"
 
@@ -20,18 +24,17 @@ def load_skill_description(skill_name):
     skmd = SKILLS_DIR / skill_name / "SKILL.md"
     if not skmd.exists():
         return None
-    content = skmd.read_text(encoding="utf-8")
-    parts = content.split("---")
-    if len(parts) < 3:
+    match = FRONTMATTER.match(skmd.read_text(encoding="utf-8"))
+    if not match:
         return None
     try:
-        fm = yaml.safe_load(parts[1])
-        return fm.get("description", "")
-    except Exception:
+        fm = yaml.safe_load(match.group(1))
+    except yaml.YAMLError:
         return None
+    return fm.get("description", "") if isinstance(fm, dict) else None
 
 
-def score_description(desc, skill_name):
+def score_description(desc):
     """Score a description on trigger quality. Returns (score, issues)."""
     issues = []
     score = 10
@@ -110,7 +113,7 @@ def main():
             results.append((skill, 0, ["No description"]))
             continue
 
-        score, issues = score_description(desc, skill)
+        score, issues = score_description(desc)
         results.append((skill, score, issues))
 
         if issues:

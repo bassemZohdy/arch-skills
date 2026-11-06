@@ -54,7 +54,7 @@ components:
 - name: Generate API docs
   run: |
     npx @redocly/cli build-docs openapi.yaml
-    npx openapi-generator generate -i openapi.yaml -g html
+    npx @openapitools/openapi-generator-cli generate -i openapi.yaml -g html
 ```
 
 ## Documentation Quality Checklist

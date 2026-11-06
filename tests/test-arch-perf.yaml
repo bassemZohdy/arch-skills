@@ -24,8 +24,8 @@ scenarios:
     steps:
       - prompt: "Design a load test for an API endpoint that needs to handle 1000 req/s."
         assert:
-          - type: contains
-            value: "load test"
+          - type: contains_any
+            value: ["ramp", "virtual users", "p95", "p99", "duration"]
           - type: contains
             value: "k6"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "Help me define SLOs and error budgets for a critical payment service."
         assert:
-          - type: contains
-            value: "SLO"
-          - type: contains
-            value: "error budget"
+          - type: contains_any
+            value: ["SLI", "indicator", "99.9", "availability"]
+          - type: contains_any
+            value: ["burn rate", "window", "30-day", "policy"]

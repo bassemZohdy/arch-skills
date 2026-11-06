@@ -154,6 +154,10 @@ Request → Bulkhead → Timeout → Service
 | Bulkhead | 10 concurrent | Immediate | 5s |
 | Timeout | - | - | 5s |
 
+These are the same placeholders as in Step 2. Derive real values from the
+caller's latency budget, downstream capacity and an explicit retry budget, and
+test them under load before adopting them.
+
 ## Step 5: Chaos Engineering
 
 ### Experiment Types

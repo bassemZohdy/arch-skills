@@ -168,7 +168,7 @@ outage window and recovery plan, regardless of whether the system is internal.
 | **Pod** | Smallest deployable unit |
 | **Deployment** | Manages pod replicas and rolling updates |
 | **Service** | Network endpoint for pods |
-| **Ingress** | External access routing |
+| **Ingress / Gateway API** | External access routing; prefer Gateway API for new routing designs and verify the controller's support lifecycle |
 | **ConfigMap / Secret** | Configuration and sensitive data |
 
 ### Kubernetes Best Practices
@@ -178,6 +178,7 @@ outage window and recovery plan, regardless of whether the system is internal.
 - Verify readiness, draining, capacity and mixed-version compatibility before claiming zero-downtime rolling updates
 - Enable horizontal auto-scaling based on metrics
 - Restrict pod communication with network policies
+- Inventory ingress and gateway controllers; the community [Ingress NGINX controller was retired](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/) in March 2026 and receives no further fixes, so plan migration rather than new adoption
 
 ## Step 5: GitOps
 
@@ -249,6 +250,12 @@ Use the current five-metric model, keeping historical series explicitly versione
 
 Do not substitute broad incident MTTR for deployment-specific recovery. See the
 [current DORA definitions](https://dora.dev/guides/dora-metrics/).
+
+When assessing AI-assisted delivery, DORA's 2025 research reports higher
+throughput alongside higher instability; pair the metrics with its
+[AI Capabilities Model](https://dora.dev/research/) practices, such as small
+batches, platform quality and value-stream visibility, rather than treating tool
+adoption as an outcome.
 
 Use a stable definition, baseline and trend for each metric. Do not turn published
 performance bands into universal targets or optimize delivery speed at the cost

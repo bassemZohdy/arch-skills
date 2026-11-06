@@ -5,7 +5,7 @@
 | Threat | Description | Mitigation |
 |--------|-------------|------------|
 | **Spoofing** | Identity impersonation | MFA, certificates, tokens |
-| **Tampering** | Data modification | HMAC, signing, checksums |
+| **Tampering** | Unauthorized data modification | Authenticated MACs or signatures with protected keys; unkeyed checksums detect accidental corruption only |
 | **Repudiation** | Denying actions | Audit logging, non-repudiation |
 | **Info Disclosure** | Data leakage | Encryption, access control |
 | **Denial of Service** | Availability attack | Rate limiting, DDoS protection |

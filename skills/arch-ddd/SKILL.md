@@ -136,6 +136,7 @@ When logic doesn't belong to any entity:
 class PricingService:
     def calculate_discount(self, order, customer):
         # Business rule involving multiple entities
+        raise NotImplementedError
 ```
 
 ## Step 4: Event Storming

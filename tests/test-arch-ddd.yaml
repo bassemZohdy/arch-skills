@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "Identify bounded contexts for an e-commerce platform with users, products, orders, and shipping."
         assert:
-          - type: contains
-            value: "bounded context"
+          - type: contains_any
+            value: ["ubiquitous language", "context map", "anti-corruption", "shared kernel"]
           - type: contains
             value: "domain"
 
@@ -15,8 +15,8 @@ scenarios:
     steps:
       - prompt: "Design aggregates for an order management domain."
         assert:
-          - type: contains
-            value: "aggregate"
+          - type: contains_any
+            value: ["root", "consistency boundary", "transaction", "reference by id", "identity"]
           - type: contains
             value: "invariant"
           - type: not_contains
@@ -26,10 +26,10 @@ scenarios:
     steps:
       - prompt: "Create a context map showing relationships between Sales, Shipping, and Finance contexts."
         assert:
-          - type: contains
-            value: "context map"
-          - type: contains
-            value: "relationship"
+          - type: contains_any
+            value: ["upstream", "downstream", "Customer-Supplier", "Conformist", "Anti-Corruption"]
+          - type: contains_any
+            value: ["Shared Kernel", "Published Language", "Open Host", "Partnership"]
           - type: not_contains
             value: "no dependencies"
 
@@ -37,8 +37,8 @@ scenarios:
     steps:
       - prompt: "When should I use a Value Object instead of an Entity in DDD?"
         assert:
-          - type: contains
-            value: "Value Object"
+          - type: contains_any
+            value: ["identity", "equality", "compared by"]
           - type: contains
             value: "immutable"
 
@@ -46,19 +46,19 @@ scenarios:
     steps:
       - prompt: "How do I refactor an anemic domain model to a rich domain model?"
         assert:
-          - type: contains
-            value: "anemic"
-          - type: contains
-            value: "rich"
+          - type: contains_any
+            value: ["invariant", "behavior", "encapsulat"]
+          - type: contains_any
+            value: ["move logic", "Move Method", "entity", "aggregate"]
 
   - name: "explains context mapping patterns"
     steps:
       - prompt: "Explain the difference between Customer-Supplier and Anti-Corruption Layer patterns in DDD context mapping."
         assert:
-          - type: contains
-            value: "Customer-Supplier"
-          - type: contains
-            value: "Anti-Corruption Layer"
+          - type: contains_any
+            value: ["upstream", "downstream"]
+          - type: contains_any
+            value: ["translat", "isolat", "legacy", "adapter"]
           - type: not_contains
             value: "same thing"
 
@@ -68,8 +68,8 @@ scenarios:
     steps:
       - prompt: "Walk me through the steps of running an Event Storming workshop for a new insurance claims system."
         assert:
-          - type: contains
-            value: "Event Storming"
+          - type: contains_any
+            value: ["orange", "sticky", "command", "policy", "hotspot"]
           - type: contains
             value: "domain event"
           - type: not_contains

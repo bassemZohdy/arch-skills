@@ -1,0 +1,89 @@
+name: Source freshness audit
+
+# Weekly check of the external sources that skills cite. Deterministic checks find
+# broken and changed sources; an optional GitHub Models review compares each cited
+# claim with the fetched source and keeps only schema-valid findings whose evidence
+# quote appears in that source. Findings become deduplicated, capped issues.
+on:
+  schedule:
+    - cron: '41 5 * * 3'
+  workflow_dispatch:
+    inputs:
+      create_issues:
+        description: Open issues for findings (otherwise report only)
+        type: boolean
+        default: false
+      max_reviews:
+        description: Claims to review with the model (0-50)
+        type: number
+        default: 8
+      max_issues:
+        description: Maximum new issues in this run (0-20)
+        type: number
+        default: 5
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read
+      issues: write
+      models: read
+    env:
+      # Leave SOURCE_AUDIT_MODEL unset to run only the deterministic checks.
+      SOURCE_AUDIT_MODEL: ${{ vars.SOURCE_AUDIT_MODEL }}
+      SOURCE_AUDIT_API_BASE: ${{ vars.SOURCE_AUDIT_API_BASE }}
+      # Only needed for a non-GitHub endpoint; the script never sends GITHUB_TOKEN elsewhere.
+      SOURCE_AUDIT_API_KEY: ${{ secrets.SOURCE_AUDIT_API_KEY }}
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.13'
+      - name: Restore the previous run's source state
+        run: |
+          mkdir -p .cache/source-audit-previous
+          # Any lookup failure (first run, API error) means starting without previous state.
+          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow source-audit.yml --branch main \
+            --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty') || run_id=""
+          if [ -n "$run_id" ]; then
+            gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name source-audit \
+              --dir .cache/source-audit-previous || echo "No previous state; treating this as a first run."
+          fi
+      - name: Audit cited sources
+        env:
+          CREATE_ISSUES: ${{ github.event_name == 'schedule' || inputs.create_issues }}
+          MAX_REVIEWS: ${{ inputs.max_reviews }}
+          MAX_ISSUES: ${{ inputs.max_issues }}
+        run: |
+          args=(--state .cache/source-audit-previous/state.json --output .cache/source-audit
+                --max-reviews "${MAX_REVIEWS:-8}" --max-issues "${MAX_ISSUES:-5}")
+          if [ -n "$SOURCE_AUDIT_MODEL" ]; then args+=(--model-review); fi
+          if [ "$CREATE_ISSUES" = "true" ]; then args+=(--create-issues); fi
+          python scripts/source_audit.py "${args[@]}"
+          cat .cache/source-audit/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain report and state for the next run
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: source-audit
+          path: |
+            .cache/source-audit/report.json
+            .cache/source-audit/state.json
+            .cache/source-audit/summary.md
+          if-no-files-found: error
+          retention-days: 90

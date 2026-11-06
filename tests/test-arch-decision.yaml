@@ -17,8 +17,8 @@ scenarios:
     steps:
       - prompt: "What gate criteria should I use for selecting a database? We need ACID compliance and SOC 2 certification."
         assert:
-          - type: contains
-            value: "Gate"
+          - type: contains_any
+            value: ["knockout", "pass/fail", "binary", "eligib"]
           - type: contains
             value: "Must"
 
@@ -26,19 +26,19 @@ scenarios:
     steps:
       - prompt: "List alternatives for our database selection. Include a do nothing option."
         assert:
-          - type: contains
-            value: "Alternative"
-          - type: contains
-            value: "Do Nothing"
+          - type: contains_any
+            value: ["status quo", "baseline", "defer"]
+          - type: contains_any
+            value: ["gate", "eligib", "viable"]
 
   - name: "creates weighted scoring criteria"
     steps:
       - prompt: "Create weighted evaluation criteria for database selection. Weights must sum to 100."
         assert:
-          - type: contains
-            value: "Weight"
-          - type: contains
-            value: "100"
+          - type: contains_any
+            value: ["0-5", "0 to 5", "scale", "anchor"]
+          - type: contains_any
+            value: ["overlap", "double-count", "independent"]
           - type: contains
             value: "Criterion"
 
@@ -46,8 +46,8 @@ scenarios:
     steps:
       - prompt: "Score PostgreSQL vs MongoDB for our use case. PostgreSQL has better ACID support, MongoDB has better horizontal scaling."
         assert:
-          - type: contains
-            value: "Score"
+          - type: contains_any
+            value: ["rationale", "evidence", "confidence"]
           - type: contains
             value: "weighted"
 
@@ -55,8 +55,8 @@ scenarios:
     steps:
       - prompt: "Run a sensitivity check on the database selection. What happens if we change the weight of scalability?"
         assert:
-          - type: contains
-            value: "Sensitivity"
+          - type: contains_any
+            value: ["reversal", "stable", "robust", "percentage point"]
           - type: contains
             value: "ranking"
 
@@ -64,10 +64,10 @@ scenarios:
     steps:
       - prompt: "Based on the scoring, what do you recommend for our database? What are the tradeoffs?"
         assert:
-          - type: contains
-            value: "Recommend"
-          - type: contains
-            value: "tradeoff"
+          - type: contains_any
+            value: ["second", "runner-up", "alternative"]
+          - type: contains_any
+            value: ["mitigation", "assumption", "review trigger"]
           - type: contains
             value: "risk"
 
@@ -86,8 +86,8 @@ scenarios:
     steps:
       - prompt: "I have criteria with weights 30, 25, 20, 15, 10. Do these sum to 100?"
         assert:
-          - type: contains
-            value: "100"
+          - type: contains_any
+            value: ["yes", "valid", "correct"]
           - type: not_contains
             value: "110"
 
@@ -106,7 +106,7 @@ scenarios:
     steps:
       - prompt: "I need a quick decision on which logging library to use. Run an expedited DAR."
         assert:
-          - type: contains
-            value: "Expedited"
+          - type: contains_any
+            value: ["2-4", "2 to 4", "lightweight", "reversible", "low-stakes"]
           - type: not_contains
             value: "Formal"

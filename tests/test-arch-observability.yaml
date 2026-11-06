@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "Design a structured logging strategy for microservices."
         assert:
-          - type: contains
-            value: "structured"
+          - type: contains_any
+            value: ["trace ID", "traceId", "correlation", "level"]
           - type: contains
             value: "JSON"
 
@@ -24,8 +24,8 @@ scenarios:
     steps:
       - prompt: "Create a monitoring dashboard using the RED method."
         assert:
-          - type: contains
-            value: "RED"
+          - type: contains_any
+            value: ["Errors", "Duration", "requests per second"]
           - type: contains
             value: "latency"
 
@@ -33,8 +33,8 @@ scenarios:
     steps:
       - prompt: "What alerting rules should I set for a payment service?"
         assert:
-          - type: contains
-            value: "alert"
+          - type: contains_any
+            value: ["SLO", "burn rate", "error budget", "runbook"]
           - type: contains
             value: "error rate"
 
@@ -42,18 +42,18 @@ scenarios:
     steps:
       - prompt: "Design an observability stack with logs, metrics, and traces."
         assert:
-          - type: contains
-            value: "logs"
-          - type: contains
-            value: "metrics"
-          - type: contains
-            value: "traces"
+          - type: contains_any
+            value: ["OpenTelemetry", "collector", "OTLP"]
+          - type: contains_any
+            value: ["Prometheus", "Grafana", "Loki", "Jaeger", "Tempo"]
+          - type: contains_any
+            value: ["correlation", "trace ID", "span"]
 
   - name: "creates monitoring automation"
     steps:
       - prompt: "How do I automate monitoring and alerting for my applications?"
         assert:
-          - type: contains
-            value: "monitoring"
-          - type: contains
-            value: "alerting"
+          - type: contains_any
+            value: ["Prometheus", "as code", "Terraform", "rules"]
+          - type: contains_any
+            value: ["runbook", "on-call", "SLO", "escalation"]

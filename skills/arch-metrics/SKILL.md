@@ -112,6 +112,9 @@ quadrantChart
 Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 ```
 
+These weights are an organization-specific example. Adopt and document a
+severity scale before comparing scores over time or across teams.
+
 ### Debt Trend
 
 | Trend | Meaning | Action |
@@ -155,12 +158,12 @@ graph LR
 
 ### Key Indicators
 
-| Indicator | Green | Yellow | Red |
-|-----------|-------|--------|-----|
-| Cyclomatic Complexity | < 10 | 10-20 | > 20 |
-| Test Coverage | > 80% | 60-80% | < 60% |
-| Debt Score | < 50 | 50-100 | > 100 |
-| Dependency Cycles | 0 | 1-2 | > 2 |
+| Indicator | Interpretation to define |
+|-----------|--------------------------|
+| Cyclomatic Complexity | Baseline and risk-adjusted review threshold |
+| Test Coverage | Coverage of critical behavior and change trend |
+| Debt Score | Tool-specific scale and agreed improvement trend |
+| Dependency Cycles | Allowed exceptions and affected module boundaries |
 
 Use green/yellow/red bands only after recording the measurement definition,
 sampling window and decision owner. Avoid collapsing unlike metrics into a single
@@ -172,9 +175,12 @@ health score unless the weighting and loss of information are explicit.
 |------|---------|----------|
 | **SonarQube** | Code quality | Multi |
 | **Structure101** | Architecture analysis | Multi |
-| **jDepend** | Java dependency analysis | Java |
+| **ArchUnit / jQAssistant** | Architecture rules and dependency analysis | Java |
+| **NDepend** | Metrics and dependency analysis | .NET |
 | **Dependency-Cruiser** | JS/TS dependency analysis | JS/TS |
 | **Pydeps** | Python dependency analysis | Python |
+
+Verify each tool's maintenance status and license before adopting it.
 
 ## Examples
 

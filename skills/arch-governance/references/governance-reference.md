@@ -1,5 +1,7 @@
 # Architecture Governance Reference
 
+Roles, approval assignments, cadences and numeric targets below are examples. Use the organization's adopted authority matrix and policy; these tables do not grant an agent approval authority.
+
 **Source:** TOGAF, ISO/IEC 42010, industry best practices
 
 ## Architecture Principles
@@ -111,6 +113,10 @@
 | **Exception Rate** | < 10% |
 | **Debt Trend** | Decreasing |
 | **Decision Documentation** | 100% |
+
+Targets are organization-specific signals, not universal compliance thresholds.
+Set them from risk appetite and baseline, and publish the definition, sampling
+window, owner and action for every metric.
 
 ### Monitoring Tools
 

@@ -6,17 +6,17 @@ scenarios:
     steps:
       - prompt: "Apply Nielsen's 10 usability heuristics to evaluate this user interface."
         assert:
-          - type: contains
-            value: "Nielsen"
-          - type: contains
-            value: "heuristic"
+          - type: contains_any
+            value: ["visibility of system status", "consistency", "error prevention", "recognition"]
+          - type: contains_any
+            value: ["severity", "rating", "finding", "issue"]
 
   - name: "conducts user research"
     steps:
       - prompt: "How do I conduct user research for a new feature?"
         assert:
-          - type: contains
-            value: "user research"
+          - type: contains_any
+            value: ["survey", "observation", "persona", "jobs to be done"]
           - type: contains
             value: "interview"
 
@@ -24,17 +24,17 @@ scenarios:
     steps:
       - prompt: "How do I create user personas for my application?"
         assert:
-          - type: contains
-            value: "persona"
-          - type: contains
-            value: "user"
+          - type: contains_any
+            value: ["goal", "pain point", "behavior", "research"]
+          - type: contains_any
+            value: ["segment", "scenario", "need", "fictional"]
 
   - name: "designs information architecture"
     steps:
       - prompt: "How do I design information architecture for a complex web application?"
         assert:
-          - type: contains
-            value: "information architecture"
+          - type: contains_any
+            value: ["card sort", "hierarchy", "taxonomy", "labeling"]
           - type: contains
             value: "navigation"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "How do I conduct usability testing for a mobile application?"
         assert:
-          - type: contains
-            value: "usability testing"
+          - type: contains_any
+            value: ["moderated", "think aloud", "think-aloud", "task success", "participant"]
           - type: contains
             value: "task"

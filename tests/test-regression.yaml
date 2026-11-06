@@ -21,12 +21,12 @@ scenarios:
     steps:
       - prompt: "Draft a concise MADR decision for choosing PostgreSQL instead of flat files for concurrent inventory updates. Include context, decision and consequences. No file-writing tools are available."
         assert:
-          - type: contains
-            value: Context
-          - type: contains
-            value: Decision
-          - type: contains
-            value: Consequences
+          - type: contains_any
+            value: ["## Context", "**Context**", "Context:"]
+          - type: contains_any
+            value: ["## Decision", "**Decision**", "Decision:"]
+          - type: contains_any
+            value: ["## Consequences", "**Consequences**", "Consequences:"]
   - name: "review does not invent a measured root cause"
     skill: ./skills/arch-review
     runs: 3

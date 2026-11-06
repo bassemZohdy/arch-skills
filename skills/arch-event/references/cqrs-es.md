@@ -16,8 +16,12 @@ Queries  ← Read Model  ← Read DB (denormalized)
 - Complex queries
 
 **Trade-offs:**
-- Eventual consistency
+- Eventual consistency when separate stores are updated asynchronously
 - Increased complexity
+
+CQRS separates command and query models; both can share one database. It does not
+require a broker, event sourcing or eventual consistency. Specify the consistency
+and freshness contract of the selected implementation.
 
 ## Event Sourcing
 

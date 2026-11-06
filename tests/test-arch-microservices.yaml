@@ -6,10 +6,10 @@ scenarios:
     steps:
       - prompt: "How do I decompose a monolithic application into microservices?"
         assert:
-          - type: contains
-            value: "decompose"
-          - type: contains
-            value: "monolith"
+          - type: contains_any
+            value: ["bounded context", "business capability", "strangler"]
+          - type: contains_any
+            value: ["modular", "seam", "data ownership", "incremental"]
 
   - name: "designs service boundaries"
     steps:
@@ -17,24 +17,24 @@ scenarios:
         assert:
           - type: contains
             value: "boundary"
-          - type: contains
-            value: "service"
+          - type: contains_any
+            value: ["bounded context", "business capability", "ownership", "team"]
 
   - name: "implements saga pattern"
     steps:
       - prompt: "How do I implement the saga pattern for distributed transactions?"
         assert:
-          - type: contains
-            value: "saga"
-          - type: contains
-            value: "distributed"
+          - type: contains_any
+            value: ["compensat", "orchestrat", "choreograph"]
+          - type: contains_any
+            value: ["idempoten", "eventual", "local transaction"]
 
   - name: "designs data management"
     steps:
       - prompt: "How should I manage data in a microservices architecture with database per service?"
         assert:
-          - type: contains
-            value: "database per service"
+          - type: contains_any
+            value: ["ownership", "API", "event", "CQRS", "replicat"]
           - type: contains
             value: "eventual consistency"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "How do I implement service discovery for microservices?"
         assert:
-          - type: contains
-            value: "service discovery"
+          - type: contains_any
+            value: ["Consul", "Eureka", "DNS", "client-side", "server-side"]
           - type: contains
             value: "registry"

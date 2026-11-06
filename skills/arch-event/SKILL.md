@@ -179,6 +179,12 @@ Business compensation on failure. Compensation is a new action that can fail or 
 }
 ```
 
+Where interoperability matters, align the envelope with
+[CloudEvents](https://cloudevents.io/) 1.0 attributes (`id`, `source`, `type`,
+`specversion`, `time`, `dataschema`) and describe channels and messages in
+[AsyncAPI](https://www.asyncapi.com/docs/reference/specification/latest) (3.1.0 is a
+non-breaking minor release of 3.0). Pin the versions the toolchain supports.
+
 ### Schema Evolution Strategies
 
 - **Additive changes** — Add new fields

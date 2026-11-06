@@ -19,6 +19,9 @@
 
 ## Well-Architected Pillars
 
+These concerns are shared by AWS and Azure. AWS also includes sustainability;
+use the provider-specific pillar sets in [cloud-deep-dive.md](cloud-deep-dive.md).
+
 | Pillar | Key Questions |
 |--------|---------------|
 | **Operational Excellence** | How do you run and monitor systems? |
@@ -28,6 +31,9 @@
 | **Cost** | How do you avoid unnecessary costs? |
 
 ## Cost Optimization
+
+Treat the following savings ranges as illustrative only. Model current prices,
+commitment utilization, interruption tolerance and operating costs for the workload.
 
 | Strategy | Savings | Effort |
 |----------|---------|--------|

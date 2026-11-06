@@ -12,10 +12,11 @@ import subprocess
 import sys
 
 import yaml
+from behavioral_identity import execution_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 TYPES = {'contains', 'not_contains', 'contains_any', 'json_equals',
-         'capability_used', 'skill_used', 'skill_not_used', 'token_usage_under'}
+         'capability_used', 'skill_used', 'skill_not_used', 'resource_read', 'token_usage_under'}
 
 
 class UniqueLoader(yaml.SafeLoader):
@@ -94,6 +95,7 @@ def load_cases(paths):
                 require(isinstance(step, dict) and not set(step) - {'prompt', 'assert'},
                         f'{case_id}: repeat settings belong on the scenario, not a step')
                 require(isinstance(step.get('prompt'), str) and step['prompt'].strip(), 'prompt required')
+                prompt = step['prompt'].casefold()
                 assertions = step.get('assert')
                 require(isinstance(assertions, list) and assertions, 'assertions required')
                 for assertion in assertions:
@@ -107,6 +109,9 @@ def load_cases(paths):
                     elif kind == 'contains_any':
                         require(isinstance(value, list) and value and
                                 all(isinstance(v, str) and v for v in value), 'contains_any needs strings')
+                        # An answer that echoes the question must not satisfy a keyword check.
+                        require(not any(v.casefold() in prompt for v in value),
+                                f'{case_id}: contains_any value echoes the prompt')
                     elif kind == 'json_equals':
                         pointer = assertion.get('pointer')
                         require(isinstance(pointer, str) and (not pointer or pointer.startswith('/'))
@@ -115,6 +120,8 @@ def load_cases(paths):
                         json.dumps(value, allow_nan=False)
                     else:
                         require(isinstance(value, str) and value.strip(), 'assertion value must be text')
+                        require(kind != 'contains' or value.casefold() not in prompt,
+                                f'{case_id}: contains value echoes the prompt; assert guidance the prompt does not state')
             cases.append(dict(id=case_id, mode=mode, skill=skill, skills=skills, runs=runs, min_passes=minimum,
                               timeout=timeout, steps=steps, manifest_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
     return cases
@@ -132,6 +139,17 @@ def pointer_value(value, pointer):
     return value
 
 
+def json_normalized(value):
+    """Compare JSON numbers by value (50 == 50.0) while keeping booleans distinct."""
+    if isinstance(value, bool) or value is None or isinstance(value, str):
+        return value
+    if isinstance(value, (int, float)):
+        return {'$number': repr(float(value))}
+    if isinstance(value, list):
+        return [json_normalized(v) for v in value]
+    return {k: json_normalized(v) for k, v in value.items()}
+
+
 def check_assertion(assertion, observation):
     kind, expected = assertion['type'], assertion['value']
     response = observation['response']
@@ -144,7 +162,8 @@ def check_assertion(assertion, observation):
     if kind == 'json_equals':
         try:
             actual = pointer_value(json.loads(response), assertion['pointer'])
-            return json.dumps(actual, sort_keys=True) == json.dumps(expected, sort_keys=True)
+            return (json.dumps(json_normalized(actual), sort_keys=True)
+                    == json.dumps(json_normalized(expected), sort_keys=True))
         except (ValueError, KeyError, IndexError, TypeError):
             return False
     if kind == 'capability_used':
@@ -159,6 +178,10 @@ def check_assertion(assertion, observation):
         if observation.get('skills_used') is None:
             return None
         return expected not in observation['skills_used']
+    if kind == 'resource_read':
+        if observation.get('resources_read') is None:
+            return None
+        return expected in observation['resources_read']
     if observation.get('total_tokens') is None:
         return None
     return observation['total_tokens'] < expected
@@ -176,6 +199,7 @@ def validate_observation(value):
                 all(isinstance(value[key].get(k), str) and value[key][k] for k in ('id', 'version')),
                 f'adapter output needs {key} id/version')
     require(value.get('execution_mode') in {'response-only', 'host'}, 'execution_mode required')
+    execution_identity(value, require_generation=False)
     if value.get('total_tokens') is not None:
         require(type(value['total_tokens']) is int and value['total_tokens'] >= 0, 'invalid token count')
     if value.get('capabilities_used') is not None:
@@ -184,6 +208,11 @@ def validate_observation(value):
     if value.get('skills_used') is not None:
         require(value['execution_mode'] == 'host' and isinstance(value['skills_used'], list)
                 and all(isinstance(v, str) for v in value['skills_used']), 'invalid skill trace')
+    if value.get('resources_read') is not None:
+        require(value['execution_mode'] == 'host' and isinstance(value['resources_read'], list)
+                and all(isinstance(v, str) and v and not v.startswith('/') and '\\' not in v
+                        and ':' not in v and all(p not in {'', '.', '..'} for p in v.split('/'))
+                        for v in value['resources_read']), 'invalid resource trace')
     return value
 
 
@@ -219,7 +248,7 @@ def run_cases(cases, packages, output, command, max_calls):
         package = packages if case['mode'] == 'activation' else packages / case['skill']
         if case['mode'] == 'activation':
             require(package.is_dir() and all((package / skill_name(skill)).is_dir() for skill in case['skills']),
-                    f'build the expert package first: {package}')
+                    f'build a package profile containing the declared activation skills first: {package}')
         else:
             require((package / 'SKILL.md').is_file() and (package / 'framework').is_dir()
                     and (package / 'package-manifest.json').is_file(),
@@ -249,18 +278,24 @@ def run_cases(cases, packages, output, command, max_calls):
                 else:
                     request['skills_root'] = str(package)
                 observation = invoke(command, request, workspace, case['timeout'])
-                if observation.get('adapter'):
-                    identities.append((observation.get('adapter'), observation.get('model')))
                 evidence = workspace / f'step-{number + 1}.json'
                 evidence.write_text(json.dumps({'request': request, 'observation': observation}, indent=2) + '\n', encoding='utf-8')
                 if observation['status'] != 'ok':
                     status = observation['status']
                     outcomes.append({'status': status, 'evidence': evidence.relative_to(output).as_posix()})
                     break
+                observed_identity = execution_identity(observation, require_generation=False)
+                if identities and observed_identity != identities[0][0]:
+                    status = 'error'
+                    outcomes.append({'status': status, 'evidence': evidence.relative_to(output).as_posix(),
+                                     'reason': 'adapter, model, execution mode or generation settings changed within case'})
+                    break
+                identities.append((observed_identity, observation))
                 assertions = [dict(a, passed=check_assertion(a, observation)) for a in step['assert']]
                 outcomes.append({'assertions': assertions, 'evidence': evidence.relative_to(output).as_posix(),
                                  'adapter': observation.get('adapter'), 'model': observation.get('model'),
-                                 'execution_mode': observation.get('execution_mode')})
+                                 'execution_mode': observation.get('execution_mode'),
+                                 'generation': observation.get('generation')})
                 if any(a['passed'] is None for a in assertions):
                     status = 'unavailable'
                 elif any(a['passed'] is False for a in assertions) and status == 'passed':
@@ -270,7 +305,8 @@ def run_cases(cases, packages, output, command, max_calls):
         counts = Counter(a['status'] for a in result['attempts'])
         result['pass_rate'] = counts['passed'] / case['runs']
         if identities:
-            result['adapter'], result['model'] = identities[0]
+            result.update({key: identities[0][1].get(key)
+                           for key in ('adapter', 'model', 'execution_mode', 'generation')})
         result['status'] = ('error' if counts['error'] else 'unavailable' if counts['unavailable'] else
                             'passed' if counts['passed'] >= case['min_passes'] else 'failed')
         report['cases'].append(result)

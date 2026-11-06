@@ -9,7 +9,7 @@ current capabilities and routing.
 
 The framework review below records the corrections made to the specification and the repository gaps that shaped the reference baseline. Current completion evidence is in [DAP implementation status](dap-implementation-status.md). This review does not certify any target architecture.
 
-The [original Google document](https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ) has been corrected in place. The [repository specification](deterministic-architecture-process.md) is its versioned implementation reference. Future semantic changes must reconcile both representations explicitly; automatic synchronisation is not currently implemented.
+The [original Google document](https://docs.google.com/document/d/1CiBfGY_tBrFVOTAIAnqjK4VNCDwZza0BV14i-dgWUpQ) (access-restricted; it answers unauthenticated link checks with HTTP 401) has been corrected in place. The [repository specification](deterministic-architecture-process.md) is its versioned implementation reference. Future semantic changes must reconcile both representations explicitly; automatic synchronisation is not currently implemented.
 
 ## Findings resolved in the specification
 

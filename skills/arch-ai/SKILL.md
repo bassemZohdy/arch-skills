@@ -162,8 +162,20 @@ cost. Track cost per successful task and alert on anomalies (see arch-cost).
 
 Use the [NIST AI RMF Generative AI Profile](https://www.nist.gov/itl/ai-risk-management-framework)
 and the [OWASP GenAI Security Project](https://genai.owasp.org/llm-top-10/) when
-the system has material safety, privacy or security impact. For MCP-based tool
-integration, also check the [OWASP MCP Top 10](https://owasp.org/projects/mcp-top-10).
+the system has material safety, privacy or security impact: the Top 10 for LLM
+Applications (2025) for model-facing risks and the Top 10 for Agentic Applications
+(2026, ASI01-ASI10) for goal hijack, tool misuse, identity abuse, memory poisoning,
+inter-agent communication and cascading failures. For MCP-based tool integration,
+also check the [OWASP MCP Top 10](https://owasp.org/projects/mcp-top-10).
+
+Pin the protocol revisions that clients, servers and agents actually negotiate.
+The [MCP 2026-07-28 revision](https://modelcontextprotocol.io/specification/) is
+stateless (no protocol-level session or initialization handshake), so carry
+identity, tenancy and authorization on every request rather than in session
+state. For agent-to-agent delegation, the Linux Foundation
+[A2A protocol](https://a2a-protocol.org/) reached v1.0 in 2026; verify the
+remote agent's identity and authority instead of trusting a self-described Agent
+Card, and apply the same least-privilege and approval rules as for tools.
 
 ## Cross-skill handoff
 

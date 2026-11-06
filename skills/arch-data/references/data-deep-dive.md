@@ -45,8 +45,9 @@
 
 | Dimension | Description | Measurement |
 |-----------|-------------|-------------|
-| **Accuracy** | Correct values | Validation rules |
-| **Completeness** | No missing data | Null checks |
+| **Accuracy** | Values match reality | Compare with a trusted observation or reference source |
+| **Validity** | Values obey the declared format/domain | Schema and business-rule validation |
+| **Completeness** | Required records and fields are present | Reconcile expected records and required-field coverage |
 | **Consistency** | Same across systems | Cross-reference |
 | **Timeliness** | Up-to-date | Freshness metrics |
 | **Uniqueness** | No duplicates | Dedup checks |

@@ -7,7 +7,7 @@
 | **Release Flags** | Toggle features on/off | Gradual rollout |
 | **Experiment Flags** | A/B testing | User experience testing |
 | **Ops Flags** | Operational control | Circuit breakers, maintenance |
-| **Permission Flags** | Access control | Beta users, admin features |
+| **Permission Flags** | Entitlement/experience selection alongside independent authorization | Beta users, licensed features |
 
 ## Rollout Strategies
 
@@ -16,7 +16,7 @@
 | **Big Bang** | Enable for all at once | High |
 | **Canary** | Small percentage first | Low |
 | **Ring-Based** | Internal → Beta → GA | Medium |
-| **Time-Based** | Enable at specific time | Low |
+| **Time-Based** | Enable at specific time | Depends on exposure and recovery |
 
 ## Feature Flag Tools
 
@@ -35,4 +35,4 @@
 3. **Testing** - Test both states
 4. **Rollout** - Gradually enable
 5. **Monitoring** - Track usage and errors
-6. **Cleanup** - Remove flag when stable
+6. **Cleanup** - Retire temporary flags after rollout; assign ongoing ownership/review to permanent entitlement or operational flags

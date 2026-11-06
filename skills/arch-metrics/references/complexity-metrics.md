@@ -1,5 +1,7 @@
 # Complexity Metrics Reference
 
+Numeric bands and debt weights are illustrative. Calibrate by language, component role, baseline and observed change risk; counts are indicators, not proof of design quality.
+
 ## Code Metrics
 
 | Metric | Description | Target |

@@ -16,17 +16,26 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from behavioral import check_assertion, invoke, load_cases, main, run_cases, validate_observation
-from build_packages import build
+from build_packages import build, PUBLIC
 from adapters.chat_completion import complete
 
 
 def observation(text='API'):
     return {'status': 'ok', 'response': text, 'execution_mode': 'response-only',
             'adapter': {'id': 'synthetic-test-double', 'version': '1'},
+            'generation': {'max_tokens': 100},
             'model': {'id': 'no-model-invoked', 'version': '1'}}
 
 
 class BehavioralTests(unittest.TestCase):
+    def test_default_activation_covers_public_package_entrypoints(self):
+        cases = load_cases([ROOT / 'tests/test-default-activation.yaml'])
+        expected = set(PUBLIC)
+        self.assertEqual({a['value'] for c in cases for s in c['steps'] for a in s['assert']
+                          if a['type'] == 'skill_used'}, expected)
+        self.assertTrue(all({p.removeprefix('./skills/') for p in c['skills']} == expected
+                            for c in cases))
+
     def test_manual_smoke_workflow_fits_its_declared_call_budget(self):
         workflow = yaml.safe_load((ROOT / '.github/workflows/behavioral.yml').read_text())
         command = next(step['run'] for step in workflow['jobs']['smoke']['steps']
@@ -60,7 +69,12 @@ class BehavioralTests(unittest.TestCase):
                    lambda d: d['scenarios'][0]['steps'][0].update(assertion=[]),
                    lambda d: d['scenarios'][0]['steps'][0]['assert'][0].update(type='unknown'),
                    lambda d: d.update(skill='./skills/../../outside'),
-                   lambda d: d['scenarios'].append(deepcopy(d['scenarios'][0]))]
+                   lambda d: d['scenarios'].append(deepcopy(d['scenarios'][0])),
+                   # Keyword assertions that echo the prompt are vacuous.
+                   lambda d: d['scenarios'][0]['steps'][0]['assert'].append(
+                       {'type': 'contains', 'value': d['scenarios'][0]['steps'][0]['prompt'][:12]}),
+                   lambda d: d['scenarios'][0]['steps'][0]['assert'].append(
+                       {'type': 'contains_any', 'value': ['zzz-absent', d['scenarios'][0]['steps'][0]['prompt'][:12]]})]
         with tempfile.TemporaryDirectory() as temp:
             file = Path(temp) / 'cases.yaml'
             for change in changes:
@@ -78,6 +92,12 @@ class BehavioralTests(unittest.TestCase):
         self.assertTrue(check_assertion(a, observation('{"a/b":[false]}')))
         self.assertFalse(check_assertion(a, observation('{"a/b":[0]}')))
         self.assertFalse(check_assertion(a, observation('not JSON')))
+        n = {'type': 'json_equals', 'pointer': '/D', 'value': 50}
+        self.assertTrue(check_assertion(n, observation('{"D": 50.0}')))
+        self.assertFalse(check_assertion(n, observation('{"D": "50"}')))
+        self.assertFalse(check_assertion(n, observation('{"D": 50.5}')))
+        self.assertFalse(check_assertion({'type': 'json_equals', 'pointer': '/x', 'value': 1},
+                                         observation('{"x": true}')))
         self.assertTrue(check_assertion({'type': 'contains', 'value': 'api'}, observation()))
         self.assertIsNone(check_assertion({'type': 'capability_used', 'value': 'file_write'}, observation()))
         self.assertIsNone(check_assertion({'type': 'token_usage_under', 'value': 4000}, observation()))
@@ -85,6 +105,26 @@ class BehavioralTests(unittest.TestCase):
                                         dict(observation(), total_tokens=4000)))
         with self.assertRaises(ValueError):
             validate_observation(dict(observation(), capabilities_used=['file_write']))
+        self.assertIsNone(check_assertion({'type': 'resource_read', 'value': 'references/guide.md'}, observation()))
+        traced = dict(observation(), execution_mode='host', resources_read=['references/guide.md'])
+        self.assertTrue(check_assertion({'type': 'resource_read', 'value': 'references/guide.md'}, traced))
+        for paths in (['../escape'], ['C:/host/secret'], ['/absolute'], ['references//guide.md']):
+            with self.assertRaises(ValueError):
+                validate_observation(dict(traced, resources_read=paths))
+        with self.assertRaises(ValueError):
+            validate_observation(dict(observation(), resources_read=['references/guide.md']))
+
+    def test_model_or_generation_drift_within_case_is_an_error(self):
+        case = dict(id='drift', mode='explicit', skill='arch-api', skills=None, runs=2, min_passes=2, timeout=5,
+                    steps=[{'prompt': 'Test', 'assert': [{'type': 'contains', 'value': 'API'}]}])
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            build(root / 'packages', profile='expert', selected=['arch-api'])
+            for index, changed in enumerate((dict(observation(), model={'id': 'other', 'version': '1'}),
+                                             dict(observation(), generation={'max_tokens': 200}))):
+                with patch('behavioral.invoke', side_effect=[observation(), changed]):
+                    report = run_cases([case], root / 'packages', root / f'run-{index}', ['synthetic'], 2)
+                self.assertEqual(report['counts'], {'error': 1})
 
     def test_subprocess_adapter_transport_and_errors(self):
         with tempfile.TemporaryDirectory() as temp:

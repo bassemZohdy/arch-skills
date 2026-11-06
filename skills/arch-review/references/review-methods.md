@@ -4,12 +4,18 @@
 
 ### Steps
 
+Follow the [SEI ATAM process](https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/),
+including the broader stakeholder scenario pass and reporting.
+
 1. **Present ATAM** - Explain the method
 2. **Present Business Drivers** - Describe business context
 3. **Present Architecture** - Describe the architecture
 4. **Identify Architectural Approaches** - Find patterns used
 5. **Generate Quality Attribute Utility Tree** - Prioritize quality attributes
 6. **Analyze Architectural Approaches** - Evaluate approaches
+7. **Brainstorm and Prioritize Scenarios** - Involve the wider stakeholder group
+8. **Analyze Architectural Approaches Again** - Evaluate the prioritized scenarios
+9. **Present Results** - Report risks, sensitivity points and trade-offs
 
 ### Quality Attribute Utility Tree
 

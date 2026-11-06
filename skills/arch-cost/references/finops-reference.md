@@ -1,6 +1,12 @@
 # FinOps Reference
 
-**Source:** FinOps Foundation (finops.org)
+**Source:** [FinOps Foundation framework](https://www.finops.org/framework/)
+
+Select the technology scope explicitly: public cloud, SaaS, data center, licensing
+or AI spend can require different allocation and optimization methods. Use the
+[technology categories](https://www.finops.org/framework/technology-categories/)
+and measure business value per unit, not cloud savings alone. Percentage savings
+below are illustrative and depend on current prices and actual utilization.
 
 ## FinOps Principles
 
@@ -9,7 +15,7 @@
 3. **Everyone takes ownership** - Cost awareness at all levels
 4. **FinOps data should be accessible, timely, and accurate** - Real-time visibility
 5. **FinOps should be enabled centrally** - Coordinated approach
-6. **Take advantage of the variable cost model of the cloud** - Leverage elasticity
+6. **Apply the relevant technology cost model** - Match commitments, licensing, consumption and elasticity to actual demand
 
 ## FinOps Phases
 

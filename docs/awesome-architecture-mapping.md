@@ -16,9 +16,14 @@ Microsoft Agent Framework, evaluation/test, skills/subagents/plugins and agent
 coding. ACP now refers to Agent Client Protocol in that catalog.
 
 The migration preserves topic-specific links. Source-route resolution is distinct
-from HTTP reachability and from validating resources inside a topic hub. See the
-[current audit](audits/2026-09-20-full-project-review.md) for executed checks and
-network limitations. Use primary specifications for normative decisions; this
+from HTTP reachability and from validating resources inside a topic hub. All hub
+links cited by the skills were reachable in the 2026-11-06 probe; the site's
+section inventory is rendered client-side, so the dated "no dedicated section"
+notes in each `references/awesome-architecture.md` remain statements about the
+2026-07 baseline until re-checked by hand. See the
+[2026-09-20 audit](audits/2026-09-20-full-project-review.md) for executed checks and
+network limitations. Use the [latest skill review](audits/2026-09-24-skill-refresh.md)
+for current repository link evidence. Use primary specifications for normative decisions; this
 community catalog is optional further reading.
 
 ## What the Site Is
@@ -28,8 +33,9 @@ page is a link hub with sections for Resources, Articles, Videos, Libraries, Sam
 it contains no prescriptive guidance of its own. Its value to this repo is twofold:
 
 1. **Taxonomy** — a comprehensive, community-validated map of architecture concerns.
-2. **Curated deep links** — per-topic external reading, now integrated into each skill via
-   `skills/<name>/references/awesome-architecture.md` (287 of 305 pages linked, 94%).
+2. **Curated deep links** — per-topic external reading. At this historical
+   baseline, 287 of 305 pages were linked (94%); this is not a current coverage
+   percentage.
 
 ## Taxonomy → Skill Mapping
 
@@ -95,5 +101,5 @@ arch-test → `microservices/testing`, arch-cost → `cloud-best-practices`).
   `services-boundries`, `high-availibility`, `debuging-development`.
 - The `/ai/` section (27 pages incl. MCP, A2A, agent frameworks, harness engineering) is the site's
   fastest-growing area — worth re-syncing periodically.
-- Future work: if dedicated skills for feature flags, FinOps, or governance tooling are ever added,
-  re-check the catalog for matching sections.
+- Re-check the catalog mapping when the upstream taxonomy or this repository's
+  specialist boundaries change.

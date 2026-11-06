@@ -1,6 +1,9 @@
 # Skill testing reference
 
-Skill behavior is host-dependent, so keep the skill contract and the test adapter separate. A scenario should describe the requested behavior and observable evidence; the selected host, model, command syntax and tool names belong in the adapter configuration.
+Skill behavior is host-dependent, so keep the skill contract and any tool-specific
+test adapter separate. A scenario describes the requested behavior and observable
+evidence. Selected hosts, model IDs, command syntax and tool names belong to
+external adapter configuration, not this repository's portable package.
 
 ## Testing levels
 
@@ -45,7 +48,9 @@ python scripts/behavioral.py run --manifest tests/test-arch-evaluate.yaml \
 ~~~
 
 Prefer typed JSON assertions for discrete decisions. Response keywords remain
-smoke checks, not proof of architectural quality. Record adapter/model versions
+smoke checks, not proof of architectural quality, and a keyword that already
+appears in the prompt is rejected by validation because echoing the question
+would satisfy it. Record adapter/model versions
 in reports, not skill instructions. File/traceability assertions belong to the
 separate DAP adapter suite, which still needs an actual host adapter.
 
@@ -94,4 +99,8 @@ unavailable, not as a passing or failing skill result.
 
 ## Authoring rule
 
-A canonical skill may describe inputs, outputs, decisions and evidence. It must not require a named assistant, model provider, CLI, tool API, installation directory or host-specific command. Put those details in adapter documentation, test configuration or packaging metadata.
+A canonical skill may describe inputs, outputs, decisions and evidence. It must
+not require a named assistant, model provider, CLI, tool API, installation
+directory or host-specific command. Keep integrations for individual tools in
+external adapter projects; this repository owns only portable skills, neutral
+scenario definitions, generic response transport and adapter contracts.

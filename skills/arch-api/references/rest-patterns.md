@@ -7,7 +7,7 @@
 - Use hierarchical paths for relationships
 
 ```
-/users/{id}/orders/{id}/items
+/users/{userId}/orders/{orderId}/items
 ```
 
 ## HTTP Methods
@@ -52,7 +52,7 @@ GET /items?page=2&limit=20&sort=-createdAt
 
 ## Versioning
 
-- URI: `/v1/users` (recommended for public)
+- URI: `/v1/users` (explicit routing; assess client and cache compatibility)
 - Header: `Accept: application/vnd.api.v1+json`
 - Query: `/users?version=1`
 

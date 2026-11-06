@@ -6,17 +6,17 @@ scenarios:
     steps:
       - prompt: "Create a feature flag for a new checkout experience with 10% rollout."
         assert:
-          - type: contains
-            value: "feature"
-          - type: contains
-            value: "flag"
+          - type: contains_any
+            value: ["percentage", "bucket", "hash", "stable"]
+          - type: contains_any
+            value: ["kill switch", "rollback", "default", "owner", "cleanup"]
 
   - name: "implements A/B testing"
     steps:
       - prompt: "How do I implement A/B testing for a new user interface?"
         assert:
-          - type: contains
-            value: "A/B"
+          - type: contains_any
+            value: ["control", "treatment", "hypothesis", "sample size"]
           - type: contains
             value: "variant"
 
@@ -24,25 +24,25 @@ scenarios:
     steps:
       - prompt: "Design a gradual rollout strategy for a new payment feature."
         assert:
-          - type: contains
-            value: "rollout"
-          - type: contains
-            value: "gradual"
+          - type: contains_any
+            value: ["canary", "ring", "percentage", "internal"]
+          - type: contains_any
+            value: ["guardrail", "metric", "rollback", "kill switch"]
 
   - name: "manages feature lifecycle"
     steps:
       - prompt: "How do I manage the lifecycle of a feature flag from creation to cleanup?"
         assert:
-          - type: contains
-            value: "lifecycle"
-          - type: contains
-            value: "cleanup"
+          - type: contains_any
+            value: ["owner", "expiry", "expiration", "review date"]
+          - type: contains_any
+            value: ["remove", "retire", "stale", "debt"]
 
   - name: "implements feature toggle"
     steps:
       - prompt: "Implement a feature toggle that can be controlled via API."
         assert:
-          - type: contains
-            value: "toggle"
-          - type: contains
-            value: "API"
+          - type: contains_any
+            value: ["endpoint", "PATCH", "PUT", "POST"]
+          - type: contains_any
+            value: ["authoriz", "audit", "cache", "propagat"]

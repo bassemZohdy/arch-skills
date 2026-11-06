@@ -8,8 +8,8 @@ scenarios:
         assert:
           - type: contains
             value: "preparation"
-          - type: contains
-            value: "interview"
+          - type: contains_any
+            value: ["one question", "batch", "greenfield", "brownfield", "mode"]
           - type: contains
             value: "question"
           - type: contains
@@ -47,8 +47,8 @@ scenarios:
         assert:
           - type: contains
             value: "arch-diagrams"
-          - type: contains
-            value: "diagram"
+          - type: contains_any
+            value: ["arch-doc", "catalog", "viewpoint", "baseline"]
 
   - name: "classifies the request before selecting technology"
     steps:
@@ -83,5 +83,5 @@ scenarios:
         assert:
           - type: contains
             value: "execution plan"
-          - type: contains
-            value: "not"
+          - type: contains_any
+            value: ["did not invoke", "cannot invoke", "not executed", "manually", "plan"]

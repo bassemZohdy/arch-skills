@@ -1,6 +1,10 @@
 # Framework implementation reference
 
-Status: corrected reference implementation. Normative framework: 1.0.0; executable schema: 2.0.0; rubric: 1.0.0. The 2026-09-20 audit found material gaps in the earlier completion claims. See the current implementation status and remediation review for implemented safeguards, executed tests and limits; this document is not a blanket conformance claim.
+Historical implementation plan for the corrected reference. Normative framework:
+1.0.0; executable schema: 2.0.0; rubric: 1.0.0. The 2026-09-20 audit found
+material gaps in the earlier completion claims. See [current project status](project-status.md)
+and [DAP implementation status](dap-implementation-status.md) for delivered
+safeguards, executed checks and limits; this plan is not a conformance claim.
 
 Use the [corrected framework](deterministic-architecture-process.md) as the normative reference and [the review](framework-review.md) for the rationale. Current delivery and verification are recorded in [DAP implementation status](dap-implementation-status.md); keep [TODO.md](../TODO.md) for open follow-up work.
 

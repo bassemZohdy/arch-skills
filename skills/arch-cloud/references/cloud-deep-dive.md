@@ -49,16 +49,21 @@
 | Pattern | Use Case | Services |
 |---------|----------|----------|
 | **Message Queue** | Async communication | SQS, Service Bus |
-| **Event Streaming** | Event-driven | Kafka, EventBridge |
+| **Event Streaming** | Replayable partitioned log | Kafka, Kinesis Data Streams |
+| **Event Bus** | Rule-based event routing | EventBridge |
 | **API Gateway** | External APIs | API Gateway, APIM |
 
 ## Cloud Migration Strategies
 
-### 6 R's
+### Seven migration strategies
+
+Use the [AWS seven-strategy taxonomy](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html)
+as a planning aid; estimate effort for the actual workload.
 
 | Strategy | Description | Effort |
 |----------|-------------|--------|
 | **Rehost** | Lift and shift | Low |
+| **Relocate** | Move the platform without redesigning applications | Platform-dependent |
 | **Replatform** | Minor optimizations | Medium |
 | **Repurchase** | Move to SaaS | Medium |
 | **Refactor** | Re-architecture | High |
@@ -68,6 +73,10 @@
 ## Cloud Cost Optimization
 
 ### Strategies
+
+The percentage ranges below are illustrative, not savings promises. Compare
+current regional prices, commitment utilization, interruption tolerance, idle
+capacity and migration/operating costs against a measured baseline.
 
 | Strategy | Savings | Effort |
 |----------|---------|--------|

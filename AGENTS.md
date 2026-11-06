@@ -62,3 +62,4 @@ Response-only results do not prove host discovery, tool use or DAP lifecycle beh
 - Use the available Agent Skills specification validator when the target host provides one; the repository's structural suite must remain independently runnable.
 - Skills are generic (framework/language agnostic) by design.
 - Host-specific installation paths are adapter configuration, not part of the skill contract.
+- Keep integrations for individual AI coding tools outside this repository. Maintain portable skill content, host-neutral scenarios and adapter contracts here; local host experiments are not product features or release requirements.

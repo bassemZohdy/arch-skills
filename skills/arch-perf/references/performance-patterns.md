@@ -7,16 +7,21 @@
 | **SLA** | Contractual commitment | 99.9% uptime |
 | **SLO** | Internal target | 99.95% uptime |
 | **SLI** | Measured metric | Success rate, latency |
-| **Error Budget** | Allowed failures | 0.05% = 22 min/month |
+| **Error Budget** | Allowed failures | 1 minus the adopted SLO |
 
 ### Error Budget Policy
+
+For a time-based availability SLI over exactly 30 days, 0.01% is 4.32 minutes
+and 0.05% is 21.6 minutes. A request-based budget is instead a fraction of eligible
+requests; it cannot be converted directly to downtime. The policy bands below are
+illustrative and need an accountable owner and explicit emergency exceptions.
 
 | Budget Remaining | Action |
 |------------------|--------|
 | > 50% | Normal development |
 | 25-50% | Caution, extra testing |
 | < 25% | Feature freeze, reliability focus |
-| 0% | Stop all changes, fix reliability |
+| 0% | Restrict feature releases; permit recovery and authorized emergency/security changes |
 
 ## Caching Patterns
 
@@ -32,7 +37,7 @@
 | Strategy | Description | Use Case |
 |----------|-------------|----------|
 | **Cache-Aside** | App manages cache | General purpose |
-| **Write-Through** | Write to cache and DB | Strong consistency |
+| **Write-Through** | Coordinate cache and DB writes | Define failure, invalidation and reader consistency semantics |
 | **Write-Behind** | Write to cache, async to DB | High write throughput |
 | **Read-Through** | Cache loads on miss | Read-heavy workloads |
 
@@ -66,9 +71,16 @@
 
 ## Performance Budgets
 
-| Metric | Budget | Tool |
-|--------|--------|------|
-| **Page Load** | < 3s | Lighthouse |
+Example budgets; replace them with values tied to a user journey, device/network
+class and business SLO. The web thresholds are the published
+[Core Web Vitals](https://web.dev/articles/vitals) "good" levels.
+
+| Metric | Example budget | Tool |
+|--------|----------------|------|
+| **Largest Contentful Paint** | <= 2.5s at the 75th percentile | Field measurement; Lighthouse for lab checks |
+| **Interaction to Next Paint** | <= 200ms at the 75th percentile | Field measurement |
+| **Cumulative Layout Shift** | <= 0.1 at the 75th percentile | Field measurement |
+| **First Contentful Paint** | <= 1.8s | Lighthouse |
 | **API Response** | < 200ms p95 | APM |
-| **First Contentful Paint** | < 1.8s | Lighthouse |
-| **Time to Interactive** | < 3.8s | Lighthouse |
+
+Use workload-specific latency/load targets and representative samples. For web responsiveness, use [INP](https://web.dev/articles/inp); [TTI was removed from Lighthouse 10](https://web.dev/articles/tti).

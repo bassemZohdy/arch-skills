@@ -13,12 +13,10 @@ than treating historical performance bands as universal gates.
 
 ## Deployment Strategies
 
-| Strategy | Downtime | Cost | Rollback | Use Case |
-|----------|----------|------|----------|----------|
-| **Blue-Green** | None | High | Instant | Critical systems |
-| **Canary** | None | Low | Quick | Gradual rollout |
-| **Rolling** | None | Low | Medium | Standard updates |
-| **Recreate** | Yes | Low | Slow | Development |
+Use the [deployment strategy comparison](deployment-strategies.md) for traffic,
+capacity and recovery trade-offs. Test readiness, connection draining and mixed
+version compatibility. Reverting traffic does not undo data changes or external
+effects; establish a separate state recovery or roll-forward plan.
 
 ## CI/CD Pipeline Best Practices
 
@@ -30,12 +28,15 @@ Code → Build → Test → Security → Stage → Deploy → Monitor
 
 ### Quality Gates
 
+Adopt gates against the workload's SLOs, risk and measured baseline; coverage
+alone does not prove correct behavior.
+
 | Gate | Metric | Threshold |
 |------|--------|-----------|
-| **Coverage** | Line coverage | > 80% |
-| **Security** | Vulnerabilities | 0 critical |
-| **Performance** | Response time | < 200ms |
-| **Complexity** | Cyclomatic | < 10 |
+| **Coverage** | Critical behavior exercised | Project-defined threshold and review |
+| **Security** | Vulnerability findings | Risk-based release policy |
+| **Performance** | Response time | Workload SLO and measured baseline |
+| **Complexity** | Cyclomatic | Risk-adjusted review threshold |
 
 ## GitOps Principles
 
@@ -66,7 +67,7 @@ Code → Build → Test → Security → Stage → Deploy → Monitor
 ### Rollback Triggers
 
 - Error rate exceeds threshold
-- Performance degradation > 50%
+- Performance degradation beyond the adopted workload threshold
 - Critical bug discovered
 - Security vulnerability identified
 - Data integrity issue

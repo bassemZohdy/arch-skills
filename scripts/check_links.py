@@ -11,6 +11,7 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import html
+from http.client import HTTPException
 import json
 from pathlib import Path
 import re
@@ -105,7 +106,8 @@ def check_local(root):
     root = Path(root).resolve()
     errors, external, count = [], {}, 0
     for document in sorted(root.rglob('*.md')):
-        if any(part in IGNORED for part in document.relative_to(root).parts):
+        parts = document.relative_to(root).parts
+        if (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(part in IGNORED for part in parts):
             continue
         content = document.read_text(encoding='utf-8')
         count += 1
@@ -131,16 +133,31 @@ def check_local(root):
     return {'documents': count, 'errors': errors, 'external': external}
 
 
+def host(url):
+    return (urlsplit(url).hostname or '').casefold().removeprefix('www.')
+
+
 def probe(url, timeout=10):
-    """403/429/network failures remain unverified, not broken links."""
+    """403/429/network failures remain unverified, not broken links.
+
+    So do non-200 success responses (bot challenges, placeholders) and redirects
+    to another host, which often land on a block page or a moved site.
+    """
     result = {'url': url, 'status': 'unverified'}
     try:
         request = Request(url, headers={'User-Agent': 'arch-skills-link-check/1.0'})
         with urlopen(request, timeout=timeout) as response:
-            result.update(status='reachable', http_status=response.status, final_url=response.url)
+            result.update(http_status=response.status, final_url=response.url)
+            if response.status != 200:
+                result['error'] = 'non-200 success response'
+            elif host(response.url) != host(url):
+                result['error'] = f'redirected to another host: {response.url}'
+            else:
+                result['status'] = 'reachable'
     except HTTPError as exc:
         result.update(status='broken' if exc.code in {404, 410} else 'unverified', http_status=exc.code)
-    except (URLError, TimeoutError, OSError, ValueError) as exc:
+    except (URLError, HTTPException, TimeoutError, OSError, ValueError) as exc:
+        # Truncated bodies (IncompleteRead) and resets leave the URL unverified.
         result['error'] = str(exc)
     return result
 
@@ -164,7 +181,8 @@ def main():
     print(f"{report['documents']} documents; {len(report['errors'])} local errors; {len(report['external'])} external URLs.")
     for result in report.get('probes', []):
         if result['status'] != 'reachable':
-            print(f"{result['status']}: {result['url']} ({result.get('http_status', result.get('error'))})")
+            detail = '; '.join(str(v) for v in (result.get('http_status'), result.get('error')) if v is not None)
+            print(f"{result['status']}: {result['url']} ({detail})")
     return int(bool(report['errors']) or any(r['status'] == 'broken' for r in report.get('probes', [])))
 
 

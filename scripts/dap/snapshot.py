@@ -13,6 +13,17 @@ BEGIN = "<!-- DAP EVALUATION BEGIN -->"
 END = "<!-- DAP EVALUATION END -->"
 REQUIRED = set(FILES.values()) | {"architecture.md", "process/config.json", "process/state.json",
     "process/reviews.json", "process/assessment.json", "process/history.jsonl"}
+MIN_QUOTE = 12  # shortest verbatim quote accepted as a non-heading text locator
+
+
+def anchors(body):
+    """Markdown ATX headings and explicit id attributes that a locator fragment may cite."""
+    values = set(re.findall(r'<[^>]+\bid=["\']([^"\']+)', body))
+    for line in body.splitlines():
+        heading = re.match(r"^ {0,3}#{1,6}\s+(.+?)(?:\s+#+)?\s*$", line)
+        if heading:
+            values.add(" ".join(heading[1].split()))
+    return values
 
 
 def normalized(path, data):
@@ -64,6 +75,7 @@ class Snapshot:
         if self.external_config:
             self.data["@config"] = self.external_config.read_bytes()
         self.manifest = self._manifest()
+        self._subject_hash = None
 
     def _manifest(self):
         files = [{"path": name, "sha256": hashlib.sha256(normalized(name, data)).hexdigest(), "bytes": len(normalized(name, data))}
@@ -81,7 +93,13 @@ class Snapshot:
             raise ContractError(f"invalid/missing assessed JSON {name}: {exc}") from exc
 
     def evidence(self, locator):
-        """Resolve local, frozen evidence; remote citations need a captured source record."""
+        """Resolve local, frozen evidence; remote citations need a captured source record.
+
+        A fragment is a JSON pointer (``requirements.json#/0/id``), an exact Markdown
+        heading or id attribute (``architecture.md#3. Context and Scope``) or, for
+        other text, a verbatim quote of at least MIN_QUOTE characters. A short word
+        that merely occurs somewhere in the file does not resolve.
+        """
         if not isinstance(locator, str):
             return False
         name, _, fragment = locator.partition("#")
@@ -90,6 +108,8 @@ class Snapshot:
         body = normalized(name, self.data[name]).decode("utf-8", errors="replace")
         if not body.strip():
             return False
+        if not fragment:
+            return True
         if fragment.startswith("/"):
             try:
                 item = json.loads(body)
@@ -106,13 +126,21 @@ class Snapshot:
                 return item is not None and item != ""
             except (ValueError, KeyError, TypeError, IndexError):
                 return False
-        return not fragment or fragment in body
+        if name.endswith(".json"):
+            return False  # JSON evidence must cite a pointer, not a substring
+        quote = " ".join(fragment.split())
+        if quote in anchors(body):
+            return True
+        return len(quote) >= MIN_QUOTE and quote in " ".join(body.split())
 
     def subject_hash(self):
         # Approval/checkpoint/assessment records bind this subject without a self-reference.
-        excluded = {"process/reviews.json", "process/assessment.json", "process/state.json", "process/history.jsonl",
-                    "process/exceptions.json", "process/manifest.json"}
-        return content_hash([x for x in self.manifest["files"] if x["path"] not in excluded])
+        # The snapshot is immutable after construction, so the hash is computed once.
+        if self._subject_hash is None:
+            excluded = {"process/reviews.json", "process/assessment.json", "process/state.json",
+                        "process/history.jsonl", "process/exceptions.json", "process/manifest.json"}
+            self._subject_hash = content_hash([x for x in self.manifest["files"] if x["path"] not in excluded])
+        return self._subject_hash
 
     def unchanged(self):
         try:

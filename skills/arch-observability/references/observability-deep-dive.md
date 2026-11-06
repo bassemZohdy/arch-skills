@@ -10,7 +10,7 @@
 | **Metrics** | Aggregated measurements | Counters, gauges |
 | **Traces** | Request flow | Distributed traces |
 
-## RED Method (Google SRE)
+## RED Method
 
 | Metric | Description | Measurement |
 |--------|-------------|-------------|
@@ -33,7 +33,7 @@
 | **Latency** | Time to serve request | p50, p95, p99 |
 | **Traffic** | Demand on system | Requests/sec |
 | **Errors** | Failure rate | Errors/sec |
-| **Saturation** | How full is service | CPU, memory, disk |
+| **Saturation** | Demand beyond service capacity | Queue depth, run-queue length, throttling and time waiting for resources |
 
 ## OpenTelemetry
 

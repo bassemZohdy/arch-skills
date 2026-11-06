@@ -15,7 +15,7 @@ authoring or duplicate the orchestration engine merely to reduce discovery noise
 
 The cleanup is therefore boundary-focused:
 
-- host names, commands, model identifiers and tool APIs belong to adapter documentation and test configuration;
+- host names, commands, model identifiers and tool APIs belong to external adapter documentation and configuration;
 - canonical skills describe architecture inputs, reasoning, outputs and evidence;
 - orchestration, design review and process evaluation remain separate;
 - governance, compliance and security remain separate because they answer different questions;
@@ -44,6 +44,6 @@ The cleanup is therefore boundary-focused:
 - No merges. Merging would make activation less precise and would mix different evidence types.
 - No splits. Each skill has one primary architectural concern and its current related-skill links describe supporting boundaries.
 - Clarify descriptions. Governance now points regulatory control design to arch-compliance; review and evaluation remain explicitly distinct.
-- Keep adapters outside skills. Adapter-specific tests and metadata can evolve without changing the portable skill contract.
+- Keep tool-specific adapters outside this repository. Their tests and metadata can evolve without changing the portable skill contract.
 
 Future consolidation should require a repeated overlap finding, shared inputs and outputs, and a smaller combined activation surface. A name change or a shorter file alone is not sufficient evidence for a merge.

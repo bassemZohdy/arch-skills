@@ -39,10 +39,17 @@ an auditor's opinion, and evidence absence is not proof a control never operated
 | **PCI DSS** | Payment card data | Cardholder data protection |
 | **SOC 2** | Service organizations | Trust service criteria |
 | **ISO 27001** | Information security | ISMS implementation |
-| **CCPA** | California consumers | Privacy rights |
+| **CCPA/CPRA** | California consumers | Privacy rights |
 | **SOX** | Financial reporting | Internal controls |
+| **EU AI Act** | AI systems placed on or used in the EU market | Prohibited practices and general-purpose AI obligations apply; transparency duties phase in; the Digital Omnibus (Regulation (EU) 2026/1744) postponed most high-risk obligations to December 2027 (Annex III) and August 2028 (Annex I) |
+| **NIS2** | Essential and important entities in the EU | Cybersecurity risk management and incident reporting |
+| **EU DORA** | EU financial entities and critical ICT third-party providers | ICT risk management, incident reporting, resilience testing, third-party risk |
+| **Cyber Resilience Act** | Products with digital elements on the EU market | Since 11 September 2026, report actively exploited vulnerabilities and severe incidents through ENISA's Single Reporting Platform (24-hour early warning, 72-hour notification, final report); main requirements apply from 11 December 2027 |
+| **European Accessibility Act** | Covered products and services in the EU | Applies since 28 June 2025; EN 301 549 provides the technical baseline; coordinate with arch-accessibility |
 
-Confirm the jurisdiction, effective date, scope, contractual obligations and
+EU instruments apply in phases, and some obligations and implementing acts are
+still being adopted or amended. Check the current official text and application
+dates rather than relying on this table. Confirm the jurisdiction, effective date, scope, contractual obligations and
 authoritative version before treating a regulation or framework as applicable.
 Translate obligations into control objectives, owners, evidence sources,
 frequency, retention and exception handling; do not treat a checklist as legal

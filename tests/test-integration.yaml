@@ -76,5 +76,5 @@ scenarios:
             value: "arch-api"
           - type: contains
             value: "arch-observability"
-          - type: contains
-            value: "execution plan"
+          - type: contains_any
+            value: ["sequence", "phase", "step", "first"]

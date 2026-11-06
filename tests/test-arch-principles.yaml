@@ -15,10 +15,10 @@ scenarios:
     steps:
       - prompt: "How do I reduce coupling between two modules without destroying cohesion?"
         assert:
-          - type: contains
-            value: "Coupling"
-          - type: contains
-            value: "Cohesion"
+          - type: contains_any
+            value: ["interface", "dependency inversion", "boundary", "contract"]
+          - type: contains_any
+            value: ["responsibility", "related", "together", "single"]
 
   - name: "reasons about CAP"
     steps:
@@ -26,8 +26,8 @@ scenarios:
         assert:
           - type: contains
             value: "CAP"
-          - type: contains
-            value: "Availability"
+          - type: contains_any
+            value: ["stale", "eventual", "PACELC", "favor availability"]
 
   - name: "applies YAGNI"
     steps:

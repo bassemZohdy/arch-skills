@@ -19,8 +19,8 @@ scenarios:
     steps:
       - prompt: "Should I use REST or GraphQL for a mobile app that needs flexible data fetching?"
         assert:
-          - type: contains
-            value: "GraphQL"
+          - type: contains_any
+            value: ["over-fetch", "under-fetch", "single endpoint", "complexity limit", "N+1"]
           - type: contains
             value: "trade-off"
 
@@ -28,12 +28,14 @@ scenarios:
     steps:
       - prompt: "Design a consistent error response format for a REST API. Include validation errors."
         assert:
-          - type: contains
-            value: "error"
-          - type: contains
-            value: "code"
-          - type: contains
-            value: "message"
+          - type: contains_any
+            value: ["problem+json", "extension member", "stack trace", "machine-readable"]
+          - type: contains_any
+            value: ["problem", "9457", "7807"]
+          - type: contains_any
+            value: ["status", "code"]
+          - type: contains_any
+            value: ["detail", "message"]
           - type: contains_any
             value: ["redact", "sensitive", "internal", "disclos", "sanitiz"]
 
@@ -41,8 +43,8 @@ scenarios:
     steps:
       - prompt: "What versioning strategy should I use for a public REST API?"
         assert:
-          - type: contains
-            value: "version"
+          - type: contains_any
+            value: ["deprecat", "sunset", "compatib", "breaking"]
           - type: contains_any
             value: ["URI", "header", "media type", "path"]
 
@@ -61,23 +63,23 @@ scenarios:
     steps:
       - prompt: "Design a GraphQL schema for an e-commerce product catalog with types, queries, and mutations."
         assert:
-          - type: contains
-            value: "type"
+          - type: contains_any
+            value: ["input Create", "input type", "ID!"]
           - type: contains
             value: "Query"
-          - type: contains
-            value: "Mutation"
+          - type: contains_any
+            value: ["pagination", "cursor", "connection", "edges"]
 
   - name: "designs gRPC service"
     steps:
       - prompt: "Design a gRPC service definition for an internal user lookup service. Use proto3 syntax."
         assert:
-          - type: contains
-            value: "service"
+          - type: contains_any
+            value: ["returns (", "GetUser", "stream "]
           - type: contains
             value: "message"
-          - type: contains
-            value: "proto3"
+          - type: contains_any
+            value: ["package ", "status code", "deadline", "health"]
 
   - name: "writes API governance checklist"
     runs: 3
@@ -85,9 +87,9 @@ scenarios:
     steps:
       - prompt: "Create an API governance checklist for a team publishing external APIs. Include naming, versioning, and deprecation."
         assert:
-          - type: contains
-            value: "naming"
-          - type: contains
-            value: "deprecation"
+          - type: contains_any
+            value: ["lint", "style guide", "review"]
+          - type: contains_any
+            value: ["sunset", "timeline", "notice", "migration"]
           - type: not_contains
             value: "no governance needed"

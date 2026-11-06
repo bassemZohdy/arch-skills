@@ -343,7 +343,7 @@ Tests needed across the library:
 
 ## Reproduction observations
 
-Run `python docs/audits/dap_audit_probe.py`. It uses disposable copies under the repository, prints JSON and removes its own temporary copies. It is a diagnostic script, not a test suite whose successful exit means DAP conformance.
+`docs/audits/dap_audit_probe.py` reproduced these observations on disposable copies at the audited commit. On the current runtime it exits with a historical-only notice and modifies nothing (re-checked 2026-11-06); the captured evidence linked below is the record. It is a diagnostic script, not a test suite whose successful exit means DAP conformance.
 
 The captured [machine-readable evidence and 33-skill inventory](2026-09-20-dap-evidence.json) records the observed results for this audit baseline.
 

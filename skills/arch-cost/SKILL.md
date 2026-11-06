@@ -64,6 +64,11 @@ the adopted [FinOps Framework](https://www.finops.org/framework/) revision.
 | **Environment** | Deployment stage | dev, staging, prod |
 | **Cost Center** | Financial tracking | engineering, marketing |
 
+Normalize billing data from multiple providers with the
+[FOCUS specification](https://focus.finops.org/) (FinOps Open Cost and Usage
+Specification; 1.4 was ratified in June 2026). Pin the adopted version and verify
+each provider's export conformance before comparing costs across sources.
+
 ### Cost Allocation Methods
 
 | Method | Description |

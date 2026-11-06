@@ -62,6 +62,33 @@ decision becomes ignored policy.
 | **Automated** | Every commit/build | ArchUnit tests |
 | **Manual** | Periodic reviews | Architecture review |
 
+## Step 1: Identify Architectural Decisions
+
+From your ADRs, extract decisions that can be automated:
+- Layer boundaries
+- Dependency rules
+- Naming conventions
+- Performance requirements
+
+## Step 2: Choose Validation Approach
+
+| Decision Type | Validation Approach |
+|---------------|---------------------|
+| Layer boundaries | ArchUnit dependency rules |
+| Naming conventions | ArchUnit naming rules |
+| Performance | Benchmark tests |
+| Security | Vulnerability scanning |
+| Dependencies | Dependency checking |
+
+## Step 3: Implement Tests
+
+Write tests that verify each decision, keeping them deterministic and fast:
+- Name each test after the decision it guards (e.g. `ServicesMustNotReferenceInfrastructure`).
+- Prefer real dependency-analysis tools (ArchUnit, dependency-cruiser, Spring's `BeanFactory`) over ad-hoc regex.
+- Make failures self-documenting: the assertion message should state the violated rule and where to read the ADR.
+
+The patterns and tools below give concrete starting points.
+
 ## Fitness Function Patterns
 
 ### 1. Dependency Rules
@@ -161,6 +188,13 @@ profile, warm-up, sample count, error reporting and a declared environment.
 | [Dependabot](https://github.com/dependabot) | Multi | Dependency updates |
 | [Decision Guardian](https://github.com/DecispherHQ/decision-guardian) | Multi | ADR enforcement |
 
+## Step 4: Integrate into CI/CD
+
+Add tests to your build pipeline so violations are caught before merge, not in production:
+- Run atomic/static checks (dependency rules, naming, lint) on every commit and fail the build.
+- Run heavier dynamic checks (benchmarks, contract tests) on PRs or nightly to keep PR feedback fast.
+- Gate merges on the fitness-function suite, not just unit tests.
+
 ## CI/CD Integration
 
 ### GitHub Actions Example
@@ -174,14 +208,14 @@ jobs:
   architecture-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      
+      - uses: actions/checkout@v7 # pin third-party actions to a commit SHA in real pipelines
+
       - name: Run ArchUnit tests
         run: ./gradlew test --tests "*ArchitectureTest*"
-      
+
       - name: Check dependency rules
         run: ./gradlew dependencyCheck
-        
+
       - name: Performance benchmarks
         run: ./gradlew benchmark
 ```
@@ -199,38 +233,6 @@ quality-gates:
       - metric: code-coverage
         threshold: 80%
 ```
-
-## Step 1: Identify Architectural Decisions
-
-From your ADRs, extract decisions that can be automated:
-- Layer boundaries
-- Dependency rules
-- Naming conventions
-- Performance requirements
-
-## Step 2: Choose Validation Approach
-
-| Decision Type | Validation Approach |
-|---------------|---------------------|
-| Layer boundaries | ArchUnit dependency rules |
-| Naming conventions | ArchUnit naming rules |
-| Performance | Benchmark tests |
-| Security | Vulnerability scanning |
-| Dependencies | Dependency checking |
-
-## Step 3: Implement Tests
-
-Write tests that verify each decision, keeping them deterministic and fast:
-- Name each test after the decision it guards (e.g. `ServicesMustNotReferenceInfrastructure`).
-- Prefer real dependency-analysis tools (ArchUnit, dependency-cruiser, Spring's `BeanFactory`) over ad-hoc regex.
-- Make failures self-documenting: the assertion message should state the violated rule and where to read the ADR.
-
-## Step 4: Integrate into CI/CD
-
-Add tests to your build pipeline so violations are caught before merge, not in production:
-- Run atomic/static checks (dependency rules, naming, lint) on every commit and fail the build.
-- Run heavier dynamic checks (benchmarks, contract tests) on PRs or nightly to keep PR feedback fast.
-- Gate merges on the fitness-function suite, not just unit tests.
 
 ## Step 5: Monitor and Alert
 

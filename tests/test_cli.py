@@ -30,6 +30,9 @@ class CLITests(unittest.TestCase):
     def test_manifest_missing_project_is_a_cli_error(self):
         self.assert_cli_error(self.run_cli("dap_manifest.py", self.root / "missing"))
 
+    def test_rtm_missing_project_is_a_cli_error(self):
+        self.assert_cli_error(self.run_cli("dap_rtm.py", self.root / "missing"))
+
     def test_manifest_rejects_malformed_comparison(self):
         project = make_project(self.root / "architecture")
         comparison = self.root / "comparison.json"

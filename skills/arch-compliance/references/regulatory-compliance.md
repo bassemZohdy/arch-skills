@@ -10,7 +10,13 @@
 | **Storage limitation** | No longer than needed | Automated deletion, retention schedules |
 | **Data subject rights** | Access, rectification, erasure | Self-service portal, API |
 | **Data protection by design** | Privacy from start | Privacy by design, default settings |
-| **Breach notification** | 72-hour notification | Incident response plan |
+| **Breach notification** | Determine recipient, risk threshold and deadline under Articles 33–34 | Incident response plan |
+
+Under [GDPR Articles 33–34](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng),
+controllers notify the authority without undue delay and, where feasible, within
+72 hours of awareness, unless risk to individuals is unlikely; explain delays.
+Processors notify controllers without undue delay. High-risk breaches normally
+require notifying affected people without undue delay, subject to Article 34 exceptions.
 
 ### GDPR Article 25 - Privacy by Design
 
@@ -31,9 +37,9 @@
 
 | Requirement | Description |
 |-------------|-------------|
-| **Build secure networks** | Firewalls, secure configurations |
-| **Protect cardholder data** | Encryption, access control |
-| **Maintain vulnerability mgmt** | Anti-virus, secure development |
+| **Build secure networks** | Network security controls, secure configurations |
+| **Protect account data** | Minimize storage, strong cryptography in storage and transit |
+| **Maintain vulnerability mgmt** | Anti-malware, secure software development, patching |
 | **Implement strong access** | Unique IDs, physical access control |
 | **Monitor networks** | Track, monitor, audit |
 | **Maintain policy** | Information security policy |

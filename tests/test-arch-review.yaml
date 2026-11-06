@@ -6,10 +6,10 @@ scenarios:
     steps:
       - prompt: "Review this architecture description: A monolithic Java application with REST API, MySQL database, and no caching layer. Identify design patterns and anti-patterns."
         assert:
-          - type: contains
-            value: "pattern"
-          - type: contains
-            value: "anti-pattern"
+          - type: contains_any
+            value: ["Repository", "layered", "MVC", "Strategy"]
+          - type: contains_any
+            value: ["God", "tight coupling", "circular", "anemic", "N+1"]
           - type: contains
             value: "SOLID"
           - type: not_contains
@@ -36,8 +36,8 @@ scenarios:
     steps:
       - prompt: "Assess technical debt in this codebase: 3-year-old codebase with 45% test coverage, 15 TODO comments, and outdated dependencies."
         assert:
-          - type: contains
-            value: "technical debt"
+          - type: contains_any
+            value: ["priorit", "severity", "interest", "remediat"]
           - type: contains
             value: "testing debt"
           - type: contains
@@ -47,12 +47,12 @@ scenarios:
     steps:
       - prompt: "Check if this architecture follows best practices: Layered architecture with business logic in controllers, no dependency injection."
         assert:
-          - type: contains
-            value: "best practice"
+          - type: contains_any
+            value: ["violat", "anti-pattern", "fat controller", "SOLID"]
           - type: contains
             value: "separation of concerns"
-          - type: contains
-            value: "dependency injection"
+          - type: contains_any
+            value: ["inversion", "constructor", "testab", "coupling"]
 
   - name: "generates review report"
     steps:
@@ -80,10 +80,10 @@ scenarios:
     steps:
       - prompt: "Does this architecture have fitness functions set up? Check for automated architecture validation."
         assert:
-          - type: contains
-            value: "fitness function"
-          - type: contains
-            value: "automated"
+          - type: contains_any
+            value: ["ArchUnit", "dependency rule", "pipeline", "guardrail"]
+          - type: contains_any
+            value: ["evidence", "cannot", "unknown", "no information"]
 
   - name: "provides severity ratings"
     steps:
@@ -100,7 +100,7 @@ scenarios:
     steps:
       - prompt: "Evaluate this system using the ISO 25010 quality model."
         assert:
-          - type: contains
-            value: "ISO 25010"
+          - type: contains_any
+            value: ["maintainability", "reliability", "performance efficiency", "security"]
           - type: contains
             value: "functional suitability"

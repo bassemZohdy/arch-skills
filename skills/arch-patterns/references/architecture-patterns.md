@@ -54,7 +54,7 @@
 ### Layer Rules
 
 - Dependencies point downward only
-- Don't skip layers
+- For strict layering, do not skip layers; document permitted skips in relaxed layering
 - Communicate via interfaces
 - Single responsibility per layer
 

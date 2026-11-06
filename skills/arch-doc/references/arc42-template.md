@@ -32,7 +32,7 @@ Describe the system's purpose and quality requirements.
 |-------------------|----------|----------|
 | Performance | High | 95% of requests < 200ms |
 | Scalability | High | Handle 10x current load |
-| Security | High | OWASP Top 10 compliance |
+| Security | High | Verify adopted ASVS criteria against identified threats; Top 10 supports risk awareness |
 
 ## 1.3 Stakeholders
 | Role | Interest |
@@ -203,9 +203,9 @@ Detailed quality requirements with measurable scenarios.
 ## 10.1 Performance
 | Metric | Target | Measurement |
 |--------|--------|-------------|
-| Response time (p95) | < 200ms | APM monitoring |
-| Throughput | 1000 req/s | Load testing |
-| Database query | < 50ms | Query analysis |
+| Response time (p95) | [e.g. < 200 ms, from the agreed SLO] | APM monitoring |
+| Throughput | [e.g. 1000 req/s at peak] | Load testing |
+| Database query | [e.g. < 50 ms p95] | Query analysis |
 
 ## 10.2 Scalability
 - Horizontal scaling for API tier

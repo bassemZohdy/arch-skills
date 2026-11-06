@@ -131,10 +131,10 @@ Reject request, log attempt, alert security team
 
 | Metric | Target | Measurement Method |
 |--------|--------|-------------------|
-| Code Coverage | > 80% | Test reports |
-| Cyclomatic Complexity | < 10 | Static analysis |
-| Technical Debt | Decreasing | SonarQube |
-| Documentation | Complete | Audit |
+| Code Coverage | Project-defined critical-path and trend target | Test reports |
+| Cyclomatic Complexity | Risk-adjusted review threshold | Static analysis |
+| Technical Debt | Agreed improvement trend | Debt inventory |
+| Documentation | Required views and evidence current | Audit |
 
 ## Review Checklists
 

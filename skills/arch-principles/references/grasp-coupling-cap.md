@@ -87,8 +87,13 @@ Extends CAP to normal operation: **if Partition, choose A or C; Else choose Late
 
 ### Consistency Spectrum
 
-Strong → linearizability → sequential → causal → read-your-writes → monotonic reads → eventual.
-Each step down buys availability and latency; each step up costs coordination. Document where each data flow sits and why.
+Specify consistency guarantees per operation. Linearizability respects real-time
+ordering; sequential consistency preserves a single order consistent with each
+process; causal consistency preserves causal dependencies. Read-your-writes and
+monotonic reads are distinct session guarantees, not successive rungs on a single
+ladder. Eventual convergence alone promises neither. Measure coordination cost,
+latency and failure behavior rather than assuming every weaker guarantee buys
+availability. See [Jepsen's consistency models](https://jepsen.io/consistency).
 
 ## Persistence Ignorance
 
