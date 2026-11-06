@@ -8,8 +8,8 @@ host-neutral and useful to a reader who has not seen this repository before.
 1. Read [AGENTS.md](AGENTS.md) and the relevant skill entry point.
 2. Keep each `SKILL.md` under 500 lines and put detailed material in
    `references/` or reusable output files in `assets/`.
-3. Keep host-specific commands, model names and adapter behavior outside the
-   canonical skill instructions.
+3. Keep integrations for individual AI coding tools outside this repository.
+   Canonical skills, scenario manifests and adapter contracts must remain portable.
 4. Update tests and documentation when a contract, package profile or public
    workflow changes.
 
@@ -55,6 +55,6 @@ External probes are explicit and separate from offline CI:
 python scripts/check_links.py --external --output .cache/link-audit.json
 ```
 
-Keep access-denied, throttled and timed-out URLs unverified. Repair a moved link
+Keep access-denied, throttled, timed-out and cross-host-redirected URLs unverified. Repair a moved link
 from the publisher's current page/source tree, not a guessed slug. Templates and
 synthetic fixtures must not claim approval or product evaluation evidence.

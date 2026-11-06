@@ -1,5 +1,7 @@
 # Metrics Deep Dive
 
+Numeric bands and debt weights are illustrative. Calibrate by language, component role, baseline and observed change risk; counts are indicators, not proof of design quality.
+
 **Source:** SIG Maintainability, Code Climate, SonarQube
 
 ## Complexity Metrics
@@ -48,7 +50,7 @@ not a universal goal to maximize abstractness or minimize outgoing dependencies.
 |-----------|--------|----------------|
 | **SRP** | Class responsibility count | Manual review |
 | **OCP** | Open for extension | Pattern analysis |
-| **LSP** | Subtype substitutability | Test coverage |
+| **LSP** | Subtype substitutability | Behavioral contract tests across implementations |
 | **ISP** | Interface size | Method count |
 | **DIP** | Dependency direction | Dependency graph |
 
@@ -57,7 +59,7 @@ not a universal goal to maximize abstractness or minimize outgoing dependencies.
 | Category | Metric | Measurement |
 |----------|--------|-------------|
 | **Code Debt** | Code smells | SonarQube |
-| **Test Debt** | Coverage gaps | < 80% = debt |
+| **Test Debt** | Coverage gaps | Untested critical behaviors and ineffective assertions |
 | **Doc Debt** | Missing docs | Coverage % |
 | **Dependency Debt** | Outdated packages | Age, CVEs |
 | **Architecture Debt** | Violations | Dependency cycles |
@@ -70,12 +72,12 @@ Debt Score = (Critical × 10) + (High × 5) + (Medium × 2) + (Low × 1)
 
 ## Dashboard Metrics
 
-| Indicator | Green | Yellow | Red |
-|-----------|-------|--------|-----|
-| Cyclomatic Complexity | < 10 | 10-20 | > 20 |
-| Test Coverage | > 80% | 60-80% | < 60% |
-| Debt Score | < 50 | 50-100 | > 100 |
-| Dependency Cycles | 0 | 1-2 | > 2 |
+| Indicator | Interpretation to define |
+|-----------|--------------------------|
+| Cyclomatic Complexity | Baseline and risk-adjusted review threshold |
+| Test Coverage | Coverage of critical behavior and change trend |
+| Debt Score | Tool-specific scale and agreed improvement trend |
+| Dependency Cycles | Allowed exceptions and affected module boundaries |
 
 ## Tools
 

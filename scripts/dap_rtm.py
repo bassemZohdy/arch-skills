@@ -3,6 +3,7 @@
 from __future__ import annotations
 import argparse
 from pathlib import Path
+import sys
 from dap.contracts import FILES, validate_records
 from dap.graph import trace_coverage
 from dap.snapshot import Snapshot
@@ -38,7 +39,7 @@ def main():
         print(output)
         return 0
     except (ValueError, OSError, KeyError) as exc:
-        print(f"RTM refused: {exc}")
+        print(f"RTM refused: {exc}", file=sys.stderr)
         return 2
 
 

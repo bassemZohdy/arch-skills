@@ -19,10 +19,10 @@ scenarios:
     steps:
       - prompt: "Create a Kubernetes deployment manifest for a Node.js application with 3 replicas."
         assert:
-          - type: contains
-            value: "Deployment"
-          - type: contains
-            value: "replicas"
+          - type: contains_any
+            value: ["apiVersion", "apps/v1"]
+          - type: contains_any
+            value: ["resources", "limits", "readinessProbe", "livenessProbe"]
           - type: not_contains
             value: "latest"
 
@@ -41,10 +41,10 @@ scenarios:
     steps:
       - prompt: "How do I implement a GitOps workflow with Flux for Kubernetes?"
         assert:
-          - type: contains
-            value: "GitOps"
-          - type: contains
-            value: "Flux"
+          - type: contains_any
+            value: ["reconcil", "declarative", "desired state", "source of truth"]
+          - type: contains_any
+            value: ["Kustomization", "HelmRelease", "GitRepository", "controller"]
 
   - name: "creates Ansible playbook"
     steps:
@@ -58,8 +58,8 @@ scenarios:
     steps:
       - prompt: "Design a blue-green deployment strategy for a critical production system."
         assert:
-          - type: contains
-            value: "blue-green"
+          - type: contains_any
+            value: ["switch", "idle", "cutover", "schema", "state"]
           - type: contains
             value: "zero-downtime"
 
@@ -67,8 +67,8 @@ scenarios:
     steps:
       - prompt: "How do I implement a canary release strategy for gradual rollout?"
         assert:
-          - type: contains
-            value: "canary"
+          - type: contains_any
+            value: ["error rate", "health", "automated rollback", "metrics", "abort"]
           - type: contains
             value: "percentage"
 
@@ -76,25 +76,25 @@ scenarios:
     steps:
       - prompt: "Create a rollback plan for a deployment that introduces a critical bug."
         assert:
-          - type: contains
-            value: "rollback"
-          - type: contains
-            value: "plan"
+          - type: contains_any
+            value: ["previous version", "artifact", "redeploy", "feature flag"]
+          - type: contains_any
+            value: ["schema", "migration", "data", "backward compatib"]
 
   - name: "sets up GitOps"
     steps:
       - prompt: "How do I set up GitOps with ArgoCD for Kubernetes deployments?"
         assert:
-          - type: contains
-            value: "GitOps"
-          - type: contains
-            value: "ArgoCD"
+          - type: contains_any
+            value: ["sync", "reconcil", "desired state", "drift"]
+          - type: contains_any
+            value: ["AppProject", "ApplicationSet", "Helm", "Kustomize", "RBAC"]
 
   - name: "defines DORA metrics"
     steps:
       - prompt: "What are DORA metrics and how do I measure deployment performance?"
         assert:
-          - type: contains
-            value: "DORA"
+          - type: contains_any
+            value: ["lead time", "change failure", "recovery", "rework"]
           - type: contains
             value: "deployment frequency"

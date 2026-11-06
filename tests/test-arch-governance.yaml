@@ -6,37 +6,37 @@ scenarios:
     steps:
       - prompt: "How do I establish an architecture review board for our organization?"
         assert:
-          - type: contains
-            value: "architecture"
-          - type: contains
-            value: "board"
+          - type: contains_any
+            value: ["charter", "decision rights", "quorum", "chair"]
+          - type: contains_any
+            value: ["cadence", "exception", "ADR", "escalation"]
 
   - name: "defines architecture principles"
     steps:
       - prompt: "Define architecture principles for a microservices platform."
         assert:
-          - type: contains
-            value: "principle"
-          - type: contains
-            value: "microservices"
+          - type: contains_any
+            value: ["ownership", "autonomy", "API first", "observab", "database per service"]
+          - type: contains_any
+            value: ["rationale", "implication", "statement"]
 
   - name: "manages exceptions"
     steps:
       - prompt: "How do I manage architecture exceptions when standards cannot be met?"
         assert:
-          - type: contains
-            value: "exception"
-          - type: contains
-            value: "standard"
+          - type: contains_any
+            value: ["expiry", "expiration", "time-box", "compensating"]
+          - type: contains_any
+            value: ["owner", "approv", "risk", "renew"]
 
   - name: "tracks technical debt"
     steps:
       - prompt: "How do I track and manage technical debt across multiple teams?"
         assert:
-          - type: contains
-            value: "technical debt"
-          - type: contains
-            value: "track"
+          - type: contains_any
+            value: ["register", "backlog", "inventory"]
+          - type: contains_any
+            value: ["owner", "priorit", "interest", "trend"]
 
   - name: "creates ADR process"
     steps:
@@ -44,5 +44,5 @@ scenarios:
         assert:
           - type: contains
             value: "ADR"
-          - type: contains
-            value: "decision"
+          - type: contains_any
+            value: ["template", "MADR", "status", "supersed"]

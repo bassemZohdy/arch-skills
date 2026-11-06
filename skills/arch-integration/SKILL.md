@@ -99,8 +99,8 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 |------|-------------|
 | **Istio** | Full-featured service mesh |
 | **Linkerd** | Lightweight service mesh |
-| **Consul Connect** | HashiCorp service mesh |
-| **AWS App Mesh** | Existing workloads only: support ends September 30, 2026; plan migration |
+| **Consul service mesh** | HashiCorp service mesh (formerly Consul Connect) |
+| **AWS App Mesh** | Discontinued September 30, 2026; do not select. Treat remaining references as migration context only |
 
 ## Step 4: Integration Contracts
 

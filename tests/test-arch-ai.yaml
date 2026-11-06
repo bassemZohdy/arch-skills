@@ -33,8 +33,8 @@ scenarios:
     steps:
       - prompt: "How should I evaluate the quality of my LLM-powered summarization feature before and after deployment?"
         assert:
-          - type: contains
-            value: "eval"
+          - type: contains_any
+            value: ["regression", "LLM-as-judge", "human review", "rubric"]
           - type: contains
             value: "golden"
 
@@ -46,3 +46,16 @@ scenarios:
             value: "cach"
           - type: contains
             value: "model"
+
+  - name: "secures stateless MCP tools and agent delegation"
+    steps:
+      - prompt: "Our agent calls internal tools over MCP and delegates research to a partner agent over A2A. How should identity, authorization and injected instructions be handled?"
+        assert:
+          - type: contains_any
+            value: ["each request", "every request", "per request", "per-request", "stateless"]
+          - type: contains_any
+            value: ["least privilege", "least-privilege", "scoped", "approval"]
+          - type: contains_any
+            value: ["untrusted", "as data", "not instructions", "privileged action"]
+          - type: contains_any
+            value: ["verify", "authenticat", "signed"]

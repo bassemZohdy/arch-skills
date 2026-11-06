@@ -4,16 +4,20 @@
 
 | Strategy | Downtime | Cost | Complexity | Rollback | Use Case |
 |----------|----------|------|------------|----------|----------|
-| **Blue-Green** | None | High | High | Instant | Critical systems |
-| **Canary** | None | Low | Medium | Quick | Gradual rollout |
-| **Rolling** | None | Low | Low | Medium | Standard updates |
+| **Blue-Green** | Low when cutover is validated | Parallel capacity | High | Traffic switch only while state-compatible | Rehearsed environment switch |
+| **Canary** | Depends on routing, capacity and health | Variable | Medium | Stop exposure; reconcile affected state | Gradual rollout |
+| **Rolling** | Depends on readiness, draining and capacity | May need surge capacity | Medium | Requires mixed-version/state compatibility | Incremental fleet updates |
 | **Recreate** | Yes | Low | Low | Slow | Development |
+
+Separate application rollback from data recovery. Account for writes since cutover,
+schema compatibility, replay and reconciliation before restoring or switching back.
+Use expand/migrate/contract changes and verify quantitative promotion/abort criteria.
 
 ## CI/CD Best Practices
 
 | Practice | Description |
 |----------|-------------|
-| **Fast builds** | < 10 minutes target |
+| **Fast builds** | Keep commit-stage feedback short (about 10 minutes is a common goal); set the target from measured team feedback needs |
 | **Parallel stages** | Run independent tests together |
 | **Artifact immutability** | Same artifact across environments |
 | **Automated rollback** | Quick recovery capability |
@@ -30,7 +34,7 @@ Git Push → Controller → Diff → Apply → Kubernetes
 **Benefits:**
 - Audit trail in Git
 - Automated reconciliation
-- Easy rollback
+- Auditable desired-state changes; rollback still requires compatible application/data state
 - Version control for infrastructure
 
 ## Environment Strategy
@@ -66,7 +70,7 @@ Git Push → Controller → Diff → Apply → Kubernetes
 ### Rollback Triggers
 
 - Error rate exceeds threshold
-- Performance degradation > 50%
+- Performance or error-budget degradation beyond the workload's adopted threshold
 - Critical bug discovered
 - Security vulnerability identified
 - Data integrity issue

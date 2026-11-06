@@ -31,9 +31,16 @@
 | **Version APIs** | /v1/users, /v2/users |
 | **Paginate** | ?page=1&limit=20 |
 | **Filter** | ?status=active&sort=name |
-| **Error handling** | Consistent error format |
+| **Error handling** | Consistent error format; RFC 9457 Problem Details for HTTP APIs |
 
 ## OpenAPI 3.1 Structure
+
+This example targets 3.1-compatible tooling. OpenAPI 3.2.0 (September 2025) is a
+compatible feature release that adds, for example, hierarchical tags, streaming
+media types and additional HTTP methods; adopt it only after the generators,
+linters, gateways and documentation tools in the toolchain support it. Select a
+supported edition from the [OpenAPI publication catalog](https://spec.openapis.org/oas/);
+do not confuse the contract format version with the API's own release version.
 
 ```yaml
 openapi: 3.1.0
@@ -41,7 +48,7 @@ info:
   title: API Title
   version: 1.0.0
 paths:
-  /resource:
+  /resource/{id}:
     get:
       summary: Get resource
       parameters:
@@ -83,7 +90,7 @@ components:
 
 | Practice | Description |
 |----------|-------------|
-| **Proto3 syntax** | Use proto3 |
+| **Protobuf syntax** | Choose proto3 or a supported [Edition](https://protobuf.dev/editions/overview/) for the compiler and runtime fleet |
 | **Meaningful names** | Clear service/method names |
 | **Streaming** | Use streaming for large data |
 | **Error handling** | gRPC status codes |

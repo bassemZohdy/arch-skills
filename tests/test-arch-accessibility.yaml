@@ -6,17 +6,17 @@ scenarios:
     steps:
       - prompt: "Check this web application for WCAG 2.1 AA compliance."
         assert:
-          - type: contains
-            value: "WCAG"
-          - type: contains
-            value: "AA"
+          - type: contains_any
+            value: ["success criteri", "perceivable", "operable", "understandable"]
+          - type: contains_any
+            value: ["screen reader", "assistive", "manual"]
 
   - name: "implements ARIA patterns"
     steps:
       - prompt: "How do I implement ARIA labels for screen reader accessibility?"
         assert:
-          - type: contains
-            value: "ARIA"
+          - type: contains_any
+            value: ["native", "semantic HTML", "role"]
           - type: contains
             value: "aria-label"
 
@@ -24,8 +24,8 @@ scenarios:
     steps:
       - prompt: "What are the minimum color contrast ratios for WCAG AA compliance?"
         assert:
-          - type: contains
-            value: "contrast"
+          - type: contains_any
+            value: ["3:1", "large text", "non-text"]
           - type: contains
             value: "4.5:1"
 
@@ -33,8 +33,8 @@ scenarios:
     steps:
       - prompt: "How do I test keyboard navigation accessibility?"
         assert:
-          - type: contains
-            value: "keyboard"
+          - type: contains_any
+            value: ["tab order", "keyboard trap", "focus indicator", "Shift+Tab"]
           - type: contains
             value: "focus"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "Create an accessibility statement for a web application."
         assert:
-          - type: contains
-            value: "accessibility"
-          - type: contains
-            value: "statement"
+          - type: contains_any
+            value: ["conformance", "known limitations", "feedback", "contact"]
+          - type: contains_any
+            value: ["WCAG", "EN 301 549", "Section 508"]

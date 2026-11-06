@@ -1,6 +1,8 @@
 # DAP implementation status
 
-Reviewed: 2026-09-20. Framework 1.0.0; schema 2.0.0; rubric 1.0.0; evaluator 2.0.2.
+Implementation assessment: 2026-09-20. Framework 1.0.0; schema 2.0.0;
+rubric 1.0.0; evaluator 2.0.2. See [project status](project-status.md) for
+the latest inventory and validation results.
 
 The earlier schema-1 implementation passed limited tests but did not implement all
 readiness, traceability, authority or freshness requirements. Its completion claims
@@ -42,8 +44,8 @@ Current counts, operating commands and status-label rules are maintained in the 
 
 ## Validation
 
-See [remediation review](audits/2026-09-20-remediation-review.md) for the final
-executed test counts and limitations. Reproduce with:
+The [remediation review](audits/2026-09-20-remediation-review.md) records the
+2026-09-20 test run. For current results, run:
 
 ~~~sh
 python tests/test_skills.py

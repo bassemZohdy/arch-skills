@@ -11,7 +11,7 @@ from .contracts import (ContractError, DIMENSIONS, EVALUATOR_VERSION, FILES, KIN
                         read_json, validate_policy, validate_records, validate_versions, validate_weights)
 from .graph import active, trace_coverage
 from .persistence import content_hash
-from .snapshot import Snapshot, report_is_stale
+from .snapshot import Snapshot, normalized, report_is_stale
 
 
 def display_score(exact):
@@ -97,7 +97,6 @@ def assess(expected, supplied, snapshot, config, records, findings):
             if dimension == "artifact_completeness" and check["target_id"].startswith("arc42:") and result == "pass":
                 locators = [e for e in evidence if e.startswith("architecture.md#")]
                 substantive = False
-                from .snapshot import normalized
                 architecture = normalized("architecture.md", snapshot.data["architecture.md"]).decode("utf-8")
                 sections = snapshot.json("@rubric")["dimensions"]["artifact_completeness"]["arc42_sections"]
                 section_number = sections.index(check["target_id"].split(":", 1)[1]) + 1

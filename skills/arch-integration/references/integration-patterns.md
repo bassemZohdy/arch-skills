@@ -18,8 +18,8 @@
 |---------|-------------|----------|
 | **Message Queue** | Point-to-point messaging | Task distribution |
 | **Pub/Sub** | Topic-based messaging | Event broadcasting |
-| **Event Streaming** | Ordered event log | Event sourcing |
-| **Saga** | Distributed transaction | Multi-service operations |
+| **Event Streaming** | Log ordered within a defined partition/key scope | Replay and stream processing |
+| **Saga** | Local transactions with compensations; no global atomic rollback | Multi-service operations |
 | **Message Channel** | Direct connection | Simple messaging |
 | **Publish-Subscribe Channel** | One-to-many delivery | Broadcasting |
 | **Datatype Channel** | Typed messages | Strong typing |
@@ -54,7 +54,7 @@
 
 | Component | Description |
 |-----------|-------------|
-| **Data Plane** | Sidecar proxies handle communication |
+| **Data Plane** | Sidecar or ambient proxies handle communication, depending on the mesh |
 | **Control Plane** | Manages proxy configuration |
 
 ### Service Mesh Features
@@ -73,7 +73,7 @@
 | **Istio** | Full-featured service mesh |
 | **Linkerd** | Lightweight service mesh |
 | **Consul Connect** | HashiCorp service mesh |
-| **AWS App Mesh** | AWS-managed mesh |
+| **AWS App Mesh** | Discontinued September 30, 2026; migration context only |
 | **Cilium** | eBPF-based networking |
 
 ## Integration Security
@@ -91,7 +91,7 @@
 
 | Anti-Pattern | Problem | Solution |
 |--------------|---------|----------|
-| **Point-to-Point** | Tangled dependencies | Use middleware |
+| **Unmanaged integration coupling** | Changes ripple through undocumented contracts | Establish ownership/contracts; add mediation only when it reduces measured coupling |
 | **Integration Monolith** | Single integration point | Decompose |
 | **Shared Database** | Tight coupling | Separate data |
 | **Synchronous Everything** | Cascading failures | Use async |
@@ -100,5 +100,7 @@
 ## Product lifecycle
 
 Before adopting a listed tool, verify its support lifecycle and target runtime.
-[AWS App Mesh support ends September 30, 2026](https://docs.aws.amazon.com/app-mesh/latest/userguide/what-is-app-mesh.html);
-use it only as existing-system context and plan a supported migration.
+[AWS App Mesh was discontinued on September 30, 2026](https://docs.aws.amazon.com/app-mesh/latest/userguide/what-is-app-mesh.html):
+its console and resources are no longer accessible. Do not select it; treat any
+remaining configuration as migration evidence and confirm the replacement mesh or
+service-to-service networking option against the target runtime.

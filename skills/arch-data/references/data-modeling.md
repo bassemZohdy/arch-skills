@@ -23,20 +23,13 @@
 ### Star Schema
 
 ```
-        ┌──────────┐
-        │   Time   │
-        └────┬─────┘
-             │
-┌──────────┐ │ ┌──────────┐
-│ Product  ├─┴─┤ Location │
-└────┬─────┘   └────┬─────┘
-     │              │
-     └──────┬───────┘
-            │
-     ┌──────┴───────┐
-     │   Fact_Sales │
-     └──────────────┘
+             Time
+              |
+Product -- Fact_Sales -- Location
 ```
+
+Each dimension joins directly to the fact table. Declare the fact grain and
+dimension keys before choosing measures or handling slowly changing dimensions.
 
 ## NoSQL Modeling
 

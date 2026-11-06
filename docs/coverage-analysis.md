@@ -1,167 +1,49 @@
-# Test Coverage Analysis
+# Skill and scenario coverage
 
-The inventory below is a historical coverage baseline, not a current pass result. Use the repository test commands and DAP implementation status for current verification evidence.
+Reviewed: 2026-11-06. This is an inventory of checked-in skills and validated
+scenario definitions, not a model or host pass-rate report. The commands in
+[project status](project-status.md) produce current execution results.
 
-## Coverage Summary
+The repository has **34 canonical skills** and **331 scenarios in 41 YAML
+manifests**. Of these, 325 explicitly target a skill and 6 test activation
+across a candidate set. Every canonical skill has at least one explicit
+scenario. `python scripts/behavioral.py validate` checks the manifests and
+assertions offline; it does not execute a model, observe tool calls or prove
+that a host discovers the right skill.
 
-| Metric | Count |
-|--------|-------|
-| Skills | 33 |
-| Structural Tests | 224 |
-| Behavioral scenarios (historical) | 185 |
-| Total tests (historical) | 409 |
+| Skill | Explicit scenarios | Skill | Explicit scenarios |
+| --- | ---: | --- | ---: |
+| arch-accessibility | 6 | arch-ai | 7 |
+| arch-antipatterns | 6 | arch-api | 9 |
+| arch-cloud | 9 | arch-compliance | 6 |
+| arch-cost | 6 | arch-data | 9 |
+| arch-ddd | 9 | arch-decision | 12 |
+| arch-devops | 12 | arch-diagrams | 10 |
+| arch-doc | 14 | arch-evaluate | 59 |
+| arch-event | 11 | arch-features | 7 |
+| arch-fitness | 11 | arch-frontend | 6 |
+| arch-governance | 6 | arch-integration | 6 |
+| arch-metrics | 6 | arch-microservices | 6 |
+| arch-migration | 6 | arch-observability | 7 |
+| arch-orchestrator | 14 | arch-patterns | 6 |
+| arch-perf | 6 | arch-principles | 6 |
+| arch-refactoring | 6 | arch-resilience | 6 |
+| arch-review | 12 | arch-security | 11 |
+| arch-test | 6 | arch-usability | 6 |
 
-## Skills Coverage
+The six activation scenarios are separate from the explicit counts above.
+Structural, contract and isolated-package checks are Python tests rather than
+per-skill scenario counts; run the full offline gate with `./run-tests.ps1` or
+`bash run-tests.sh`. See [skill testing](skill-testing.md) for what each layer
+establishes and [test automation](test-automation.md) for optional live runs.
 
-### Process (1 skill)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-evaluate | 1 | 1 | 7 | 0 |
-
-
-### Orchestration (1 skill)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-orchestrator | 3 | 3 | 7 | 5 |
-
-### Core Architecture (5 skills)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-doc | 8 | 11 | 7 | 12 |
-| arch-review | 6 | 1 | 7 | 8 |
-| arch-fitness | 3 | 1 | 7 | 10 |
-| arch-decision | 2 | 1 | 7 | 9 |
-| arch-governance | 3 | 1 | 7 | 5 |
-
-### Design Fundamentals (2 skills)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-principles | 3 | 1 | 7 | 5 |
-| arch-antipatterns | 3 | 1 | 7 | 5 |
-
-### Technical Architecture (4 skills)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-security | 4 | 1 | 7 | 5 |
-| arch-perf | 3 | 1 | 7 | 5 |
-| arch-resilience | 3 | 1 | 7 | 5 |
-| arch-test | 3 | 1 | 7 | 5 |
-
-### System Architecture (10 skills)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-api | 4 | 1 | 7 | 5 |
-| arch-cloud | 3 | 1 | 7 | 5 |
-| arch-event | 4 | 1 | 7 | 5 |
-| arch-ddd | 4 | 1 | 7 | 5 |
-| arch-data | 3 | 1 | 7 | 5 |
-| arch-metrics | 3 | 1 | 7 | 5 |
-| arch-integration | 2 | 1 | 7 | 5 |
-| arch-microservices | 2 | 1 | 7 | 5 |
-| arch-patterns | 2 | 1 | 7 | 5 |
-| arch-refactoring | 2 | 1 | 7 | 5 |
-
-### Frontend (1 skill)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-frontend | 3 | 1 | 7 | 5 |
-
-### Operations (4 skills)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-observability | 3 | 1 | 7 | 6 |
-| arch-migration | 3 | 1 | 7 | 5 |
-| arch-devops | 4 | 1 | 7 | 10 |
-| arch-cost | 2 | 1 | 7 | 5 |
-
-### Feature Management (1 skill)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-features | 2 | 1 | 7 | 5 |
-
-### AI (1 skill)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-ai | 2 | 1 | 7 | 5 |
-
-### NFR (3 skills)
-
-| Skill | References | Assets | Tests | Scenarios |
-|-------|------------|--------|-------|-----------|
-| arch-usability | 2 | 1 | 7 | 5 |
-| arch-accessibility | 2 | 1 | 7 | 5 |
-| arch-compliance | 3 | 1 | 7 | 5 |
-
-The evaluator is covered by the deterministic DAP checks; it is not represented as a model scenario because it operates on frozen artifacts and repository scripts.
-
-## NFR Coverage Matrix
-
-| NFR | Primary Skill | Supporting Skills | Status |
-|-----|---------------|-------------------|--------|
-| Performance | arch-perf | arch-cloud, arch-resilience | ✅ 100% |
-| Scalability | arch-perf | arch-cloud | ✅ 100% |
-| Availability | arch-resilience | arch-observability | ✅ 100% |
-| Reliability | arch-resilience | arch-test | ✅ 100% |
-| Security | arch-security | arch-compliance | ✅ 100% |
-| Maintainability | arch-metrics | arch-doc | ✅ 100% |
-| Testability | arch-test | arch-fitness | ✅ 100% |
-| Observability | arch-observability | arch-metrics | ✅ 100% |
-| Deployability | arch-devops | arch-cloud | ✅ 100% |
-| Usability | arch-usability | arch-accessibility | ✅ 100% |
-| Accessibility | arch-accessibility | arch-usability | ✅ 100% |
-| Compliance | arch-compliance | arch-security | ✅ 100% |
-| Data Integrity | arch-data | arch-metrics | ✅ 100% |
-| Auditability | arch-compliance | arch-observability | ✅ 100% |
-| Recoverability | arch-resilience | arch-migration | ✅ 100% |
-| Modifiability | arch-metrics | arch-doc | ✅ 100% |
-
-## Skill Relationships
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        arch-review                              │
-│                    (Orchestration Layer)                        │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-        ▼                     ▼                     ▼
-┌───────────────┐    ┌───────────────┐    ┌───────────────┐
-│  arch-doc     │    │  arch-fitness │    │  arch-metrics │
-│  (Document)   │    │  (Validate)   │    │  (Measure)    │
-└───────────────┘    └───────────────┘    └───────────────┘
-        │                     │                     │
-        ▼                     ▼                     ▼
-┌───────────────────────────────────────────────────────────────┐
-│                    Specialized Skills                         │
-├───────────┬───────────┬───────────┬───────────┬───────────────┤
-│ Security  │ Perf      │ Resilience│ Test      │ Data          │
-│ API       │ Cloud     │ Event     │ DDD       │ Migration     │
-│ Observability │ Usability │ Accessibility │ Compliance │ AI │
-│ Integration │ Microservices │ DevOps │ Cost │ Governance     │
-│ Patterns  │ Refactoring │ Frontend │ Features │ Fitness       │
-│ Principles │ Antipatterns │      │           │               │
-└───────────┴───────────┴───────────┴───────────┴───────────────┘
-```
-
-## External Resources
-
-Every skill includes `references/awesome-architecture.md` with curated deep links into
-[awesome-architecture.com](https://awesome-architecture.com/). See
-[awesome-architecture-mapping.md](awesome-architecture-mapping.md) for the full taxonomy-to-skill
-analysis.
-
-In addition, every skill cites its specialized reference files (`*-deep-dive.md`,
-`*-patterns.md`, topic references) from `## Further Reading`, so deeper guidance is
-loadable on demand. Diagrams use fenced Mermaid blocks (per the
-Mermaid > PlantUML > Draw.io priority in `AGENTS.md`).
+Skill presence is not a percentage measure of architecture quality. A concern
+such as performance can route to `arch-perf` with `arch-cloud` or
+`arch-resilience` as supporting specialists; security routes to
+`arch-security`, accessibility to `arch-accessibility`, and process readiness to
+`arch-evaluate`. These are ownership boundaries, not claims that every project
+requirement or standard clause is covered. The [skill boundaries](skill-boundaries.md)
+give the full responsibility map. `arch-orchestrator` coordinates authoring;
+`arch-review` assesses design fitness and `arch-evaluate` assesses process
+evidence. For source-link taxonomy history, see the dated
+[awesome-architecture mapping](awesome-architecture-mapping.md).

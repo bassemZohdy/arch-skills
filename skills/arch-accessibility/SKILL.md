@@ -26,7 +26,10 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 ```
 
 Use WCAG 2.2 as the current baseline unless a contract or jurisdiction names a
-different version. Map each claim to the exact success criterion and test
+different version. EN 301 549 V4.1.1 (September 2026) moves the European ICT
+standard to WCAG 2.2 and maps it to the European Accessibility Act; until it is
+cited in the EU Official Journal, presumption of conformity still references
+V3.2.1 (WCAG 2.1 AA). Record which edition the obligation actually cites. Map each claim to the exact success criterion and test
 condition. Combine automated rules with keyboard, screen-reader, zoom/reflow and
 representative disabled-user evaluation; automation alone cannot establish
 conformance.
@@ -151,7 +154,7 @@ inertness and a no-focusable-content fallback; a two-element Tab trap is incompl
 
 ```html
 <!-- Bad: color only -->
-<span style="color: red">Error</span>
+<span style="color: red">●</span>
 
 <!-- Good: color + icon + text -->
 <span class="error">

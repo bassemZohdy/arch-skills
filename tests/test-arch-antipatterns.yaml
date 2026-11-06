@@ -22,8 +22,8 @@ scenarios:
     steps:
       - prompt: "What is a Big Ball of Mud and how do I start fixing one?"
         assert:
-          - type: contains
-            value: "Big Ball of Mud"
+          - type: contains_any
+            value: ["cyclic", "dependenc", "incremental", "one responsibility"]
           - type: contains
             value: "boundaries"
 

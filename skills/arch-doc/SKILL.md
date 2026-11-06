@@ -96,6 +96,10 @@ drift.
 | Deployment | **Mermaid** | Good infrastructure support |
 | Complex Layouts | **Draw.io** | When visual editing needed |
 
+Mermaid's C4 syntax is still marked experimental upstream. Keep it for
+Markdown-embedded views, and use the PlantUML C4 templates in
+`assets/plantuml-templates/` when stable rendering matters.
+
 ### Generating Diagrams
 
 Use `assets/mermaid-templates/` for Markdown diagrams,
@@ -228,7 +232,6 @@ While framework-agnostic, adjust recommendations based on detected stack:
 
 - `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
 - `references/documentation-automation.md` — Documentation Automation Reference
-- `references/skill-testing.md` — Skill Testing Reference
 
 ## Cross-skill handoff
 

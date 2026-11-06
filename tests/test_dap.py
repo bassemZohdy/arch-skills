@@ -9,7 +9,7 @@ import unittest
 
 from dap_fixture import ROOT, make_project, bind_project, write
 from dap.contracts import ContractError, validate_config, validate_records
-from dap.persistence import ConcurrentRevisionError, content_hash, load_checkpoint, save_checkpoint
+from dap.persistence import ConcurrentRevisionError, content_hash, exclusive_lock, load_checkpoint, save_checkpoint
 from dap.publishing import publish_report
 from dap.scoring import display_score, evaluate_project, expected_checks
 from dap.snapshot import Snapshot, local_path, report_is_stale
@@ -28,6 +28,23 @@ class DAPTests(unittest.TestCase):
         self.assertTrue(snapshot.evidence('requirements.json#/0/id'))
         for index in ('-1', '00', '+0', ' 0', '0~2'):
             self.assertFalse(snapshot.evidence(f'requirements.json#/{index}/id'), index)
+
+    def test_evidence_fragments_require_headings_pointers_or_quotes(self):
+        snapshot = Snapshot(self.project)
+        self.assertTrue(snapshot.evidence('evidence.md'))
+        self.assertTrue(snapshot.evidence('evidence.md#Interview'))
+        self.assertTrue(snapshot.evidence('architecture.md#1. introduction_goals'))
+        self.assertTrue(snapshot.evidence('evidence.md#No real stakeholder or production approval is claimed.'))
+        for locator in ('evidence.md#e', 'evidence.md#approval', 'evidence.md#Missing heading',
+                        'requirements.json#REQ-001', 'requirements.json#statement'):
+            self.assertFalse(snapshot.evidence(locator), locator)
+
+    def test_lock_removed_externally_does_not_mask_the_operation(self):
+        lock = Path(self.temp.name) / "external.lock"
+        with exclusive_lock(lock):
+            self.assertTrue(lock.exists())
+            lock.unlink()
+        self.assertFalse(lock.exists())
 
     def test_rtm_cannot_overwrite_an_archived_evaluation_summary(self):
         report = publish_report(self.project)

@@ -1,5 +1,7 @@
 # Governance Deep Dive
 
+Roles, approval assignments, cadences and numeric targets below are examples. Use the organization's adopted authority matrix and policy; these tables do not grant an agent approval authority.
+
 **Source:** TOGAF, ISO/IEC 42010, The Open Group
 
 ## Architecture Governance Framework

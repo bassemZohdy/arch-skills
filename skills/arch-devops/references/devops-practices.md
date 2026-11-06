@@ -31,7 +31,7 @@
 | **Pod** | Smallest deployable unit |
 | **Deployment** | Manages pod replicas |
 | **Service** | Network endpoint for pods |
-| **Ingress** | External access routing |
+| **Ingress / Gateway API** | External access routing; prefer Gateway API for new routing designs and verify the controller's support lifecycle |
 | **ConfigMap** | Configuration data |
 | **Secret** | Sensitive configuration |
 | **StatefulSet** | Stateful applications |
@@ -55,10 +55,10 @@
 
 | Object | Purpose |
 |--------|---------|
-| **Namespace** | Resource isolation |
+| **Namespace** | Resource grouping/scoping; combine RBAC, quotas and network policies for isolation |
 | **Label** | Resource organization |
 | **Annotation** | Non-identifying metadata |
-| **Finalizer** | Deletion prevention |
+| **Finalizer** | Delays deletion until cleanup obligations complete |
 | **Owner Reference** | Garbage collection |
 
 ## GitOps Principles

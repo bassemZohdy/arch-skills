@@ -6,17 +6,17 @@ scenarios:
     steps:
       - prompt: "Review this system for GDPR compliance. What data processing activities need documentation?"
         assert:
-          - type: contains
-            value: "GDPR"
-          - type: contains
-            value: "data processing"
+          - type: contains_any
+            value: ["Article 30", "records of processing", "lawful basis", "legal basis"]
+          - type: contains_any
+            value: ["DPIA", "data subject", "retention", "processor"]
 
   - name: "designs audit trail"
     steps:
       - prompt: "Design an audit trail for a financial transaction system."
         assert:
-          - type: contains
-            value: "audit"
+          - type: contains_any
+            value: ["immutable", "tamper", "append-only", "integrity"]
           - type: contains
             value: "log"
 
@@ -24,8 +24,8 @@ scenarios:
     steps:
       - prompt: "How should I implement data retention policies for GDPR compliance?"
         assert:
-          - type: contains
-            value: "retention"
+          - type: contains_any
+            value: ["storage limitation", "deletion", "erasure", "purpose"]
           - type: contains
             value: "policy"
 
@@ -33,8 +33,8 @@ scenarios:
     steps:
       - prompt: "What should a GDPR-compliant privacy policy include?"
         assert:
-          - type: contains
-            value: "privacy"
+          - type: contains_any
+            value: ["legal basis", "lawful basis", "data subject", "controller"]
           - type: contains
             value: "consent"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "What SOC 2 controls should be in place for a SaaS application?"
         assert:
-          - type: contains
-            value: "SOC 2"
-          - type: contains
-            value: "control"
+          - type: contains_any
+            value: ["trust service", "trust services", "Type II", "Type 2"]
+          - type: contains_any
+            value: ["evidence", "auditor", "change management", "access review"]

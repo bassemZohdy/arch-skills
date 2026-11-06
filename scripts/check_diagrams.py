@@ -16,7 +16,31 @@ KNOWN_STARTS = (
     "stateDiagram", "classDiagram", "erDiagram", "journey", "gantt", "pie",
     "mindmap", "timeline", "quadrantChart", "gitGraph", "C4Context",
     "C4Container", "C4Component", "C4Dynamic", "C4Deployment",
+    "requirementDiagram", "xychart-beta", "sankey-beta", "block-beta",
+    "architecture-beta", "packet-beta", "kanban", "zenuml",
 )
+
+
+def diagram_header(source: str):
+    """Return the diagram-type line, skipping YAML front matter, directives and comments."""
+    lines = source.lstrip().splitlines()
+    index = 0
+    if lines and lines[0].strip() == "---":
+        closing = next((i for i in range(1, len(lines)) if lines[i].strip() == "---"), None)
+        if closing is None:
+            raise ValueError("unterminated Mermaid front matter")
+        index = closing + 1
+    # %%{init: ...}%% directives and %% comments may precede the diagram type.
+    while index < len(lines) and (not lines[index].strip() or lines[index].lstrip().startswith("%%")):
+        index += 1
+    return lines[index].strip() if index < len(lines) else ""
+
+
+def excluded(path: Path, root: Path):
+    parts = path.relative_to(root).parts
+    return (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(
+        part in {'.git', '.cache', '__pycache__', 'node_modules', '.venv'}
+        for part in parts)
 
 
 def fenced_sources(path: Path):
@@ -42,12 +66,12 @@ def discover_sources(root: Path):
     root = root.resolve()
     sources = []
     for path in sorted(root.rglob("*.mmd")):
-        if any(part in {".git", ".cache", "__pycache__"} for part in path.parts):
+        if excluded(path, root):
             continue
         sources.append({"path": path, "line": 1, "kind": "file",
                         "source": path.read_text(encoding="utf-8")})
     for path in sorted(root.rglob("*.md")):
-        if any(part in {".git", ".cache", "__pycache__"} for part in path.parts):
+        if excluded(path, root):
             continue
         for line, source in fenced_sources(path):
             sources.append({"path": path, "line": line, "kind": "fence", "source": source})
@@ -57,7 +81,9 @@ def discover_sources(root: Path):
 def validate_source(source: str, label: str):
     if not source.strip():
         raise ValueError(f"empty Mermaid source: {label}")
-    first = source.lstrip().splitlines()[0].strip()
+    first = diagram_header(source)
+    if not first:
+        raise ValueError(f"Mermaid source has no diagram type after directives: {label}")
     if not first.startswith(KNOWN_STARTS):
         raise ValueError(f"unknown Mermaid diagram header {first!r}: {label}")
     if "\x00" in source:

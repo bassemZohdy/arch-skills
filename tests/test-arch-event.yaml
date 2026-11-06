@@ -6,10 +6,10 @@ scenarios:
     steps:
       - prompt: "Identify the domain events for an order management system with payment and shipping."
         assert:
-          - type: contains
-            value: "event"
-          - type: contains
-            value: "domain"
+          - type: contains_any
+            value: ["OrderPlaced", "PaymentReceived", "OrderShipped", "past tense"]
+          - type: contains_any
+            value: ["aggregate", "bounded context", "integration event"]
           - type: not_contains
             value: "just use REST"
 
@@ -17,17 +17,17 @@ scenarios:
     steps:
       - prompt: "Should I use pub/sub or point-to-point messaging for a notification system?"
         assert:
-          - type: contains
-            value: "pub/sub"
-          - type: contains
-            value: "point-to-point"
+          - type: contains_any
+            value: ["topic", "fan-out", "broadcast"]
+          - type: contains_any
+            value: ["queue", "competing consumer", "exactly one consumer"]
 
   - name: "designs CQRS"
     steps:
       - prompt: "Design a CQRS pattern for a reporting system that needs separate read and write models."
         assert:
-          - type: contains
-            value: "CQRS"
+          - type: contains_any
+            value: ["projection", "eventual", "command", "denormaliz"]
           - type: contains
             value: "read model"
 
@@ -44,8 +44,8 @@ scenarios:
     steps:
       - prompt: "Design a saga for an order fulfillment process spanning order, payment, and shipping services."
         assert:
-          - type: contains
-            value: "saga"
+          - type: contains_any
+            value: ["orchestrat", "choreograph", "coordinator"]
           - type: contains
             value: "compensation"
 
@@ -64,8 +64,8 @@ scenarios:
     steps:
       - prompt: "How do I ensure idempotent event processing for payment events?"
         assert:
-          - type: contains
-            value: "idempotent"
+          - type: contains_any
+            value: ["event ID", "eventId", "unique", "processed", "inbox"]
           - type: contains
             value: "deduplication"
 

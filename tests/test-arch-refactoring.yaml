@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "What are the common code smells in a Java application?"
         assert:
-          - type: contains
-            value: "code smell"
+          - type: contains_any
+            value: ["Long Method", "Feature Envy", "Duplicated Code", "Primitive Obsession"]
           - type: contains
             value: "God Class"
 
@@ -24,25 +24,25 @@ scenarios:
     steps:
       - prompt: "When should I use the Extract Method refactoring?"
         assert:
-          - type: contains
-            value: "Extract Method"
-          - type: contains
-            value: "method"
+          - type: contains_any
+            value: ["fragment", "long", "readab", "reuse"]
+          - type: contains_any
+            value: ["name", "inline", "comment", "duplicate"]
 
   - name: "plans incremental refactoring"
     steps:
       - prompt: "How do I plan an incremental refactoring strategy for a legacy codebase?"
         assert:
-          - type: contains
-            value: "incremental"
-          - type: contains
-            value: "legacy"
+          - type: contains_any
+            value: ["characterization", "safety net", "test"]
+          - type: contains_any
+            value: ["small", "reversible", "strangler", "commit"]
 
   - name: "refactors to clean architecture"
     steps:
       - prompt: "How do I refactor a layered architecture to clean architecture?"
         assert:
-          - type: contains
-            value: "clean architecture"
+          - type: contains_any
+            value: ["use case", "entities", "inward", "dependency rule", "interface adapters"]
           - type: contains
             value: "dependency"

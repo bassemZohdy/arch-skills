@@ -20,12 +20,13 @@
 ```
 
 ### Error Format
+Media type: `application/problem+json` ([RFC 9457](https://www.rfc-editor.org/rfc/rfc9457)) or the existing published format: [Format]
 ```json
 {
-  "error": {
-    "code": "ERROR_CODE",
-    "message": "Description"
-  }
+  "type": "[Problem type URI]",
+  "title": "[Short summary]",
+  "status": 400,
+  "detail": "[Occurrence-specific explanation]"
 }
 ```
 

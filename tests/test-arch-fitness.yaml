@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "What are architecture fitness functions and how do they work?"
         assert:
-          - type: contains
-            value: "fitness function"
+          - type: contains_any
+            value: ["Evolutionary Architectures", "Ford", "atomic", "holistic", "objective"]
           - type: contains
             value: "automated"
           - type: contains
@@ -21,8 +21,8 @@ scenarios:
     steps:
       - prompt: "Create an ArchUnit test to enforce that service layer does not depend on infrastructure layer in a Java project."
         assert:
-          - type: contains
-            value: "ArchUnit"
+          - type: contains_any
+            value: ["@Test", "@ArchTest", "importClasses", "ClassFileImporter"]
           - type: contains
             value: "dependOnClassesThat"
           - type: capability_used
@@ -38,10 +38,10 @@ scenarios:
         assert:
           - type: contains
             value: "dependency"
-          - type: contains
-            value: "controller"
-          - type: contains
-            value: "service"
+          - type: contains_any
+            value: ["..controller..", "resideInAPackage", "dependOnClassesThat", "forbidden"]
+          - type: contains_any
+            value: ["noClasses", "onlyDependOn", "layered", "Layer"]
           - type: contains
             value: "repository"
 
@@ -49,12 +49,12 @@ scenarios:
     steps:
       - prompt: "Show me how to integrate architecture fitness functions into a GitHub Actions CI/CD pipeline."
         assert:
-          - type: contains
-            value: "github"
-          - type: contains
-            value: "actions"
-          - type: contains
-            value: "pipeline"
+          - type: contains_any
+            value: ["workflow", ".github/workflows", "on: [push"]
+          - type: contains_any
+            value: ["runs-on", "steps:", "uses:"]
+          - type: contains_any
+            value: ["fail the build", "exit code", "gate", "merge"]
 
   - name: "performance fitness function"
     steps:
@@ -62,17 +62,17 @@ scenarios:
         assert:
           - type: contains
             value: "performance"
-          - type: contains
-            value: "200ms"
-          - type: contains
-            value: "response time"
+          - type: contains_any
+            value: ["p95", "p99", "percentile"]
+          - type: contains_any
+            value: ["warm-up", "load", "benchmark", "sample"]
 
   - name: "creates ArchUnitTS test"
     steps:
       - prompt: "Create an ArchUnitTS test to enforce layer dependencies in a TypeScript project."
         assert:
-          - type: contains
-            value: "ArchUnitTS"
+          - type: contains_any
+            value: ["projectFiles", "inFolder", "dependOn", "shouldNot"]
           - type: contains
             value: "describe"
           - type: contains
@@ -82,8 +82,8 @@ scenarios:
     steps:
       - prompt: "Create a quality gate configuration for architecture compliance."
         assert:
-          - type: contains
-            value: "quality gate"
+          - type: contains_any
+            value: ["coverage", "vulnerabilit", "fail", "block"]
           - type: contains
             value: "threshold"
 
@@ -91,25 +91,25 @@ scenarios:
     steps:
       - prompt: "Create a fitness function to enforce naming conventions for controllers."
         assert:
-          - type: contains
-            value: "naming"
-          - type: contains
-            value: "Controller"
+          - type: contains_any
+            value: ["haveSimpleNameEndingWith", "suffix", "regex", "ending"]
+          - type: contains_any
+            value: ["resideInAPackage", "..controller..", "class"]
 
   - name: "creates module structure rule"
     steps:
       - prompt: "Create a fitness function to ensure no cyclic dependencies between modules."
         assert:
-          - type: contains
-            value: "cyclic"
-          - type: contains
-            value: "module"
+          - type: contains_any
+            value: ["slices()", "beFreeOfCycles", "beFreeOfCyclicDependencies", "circular", "acyclic"]
+          - type: contains_any
+            value: ["package", "slice", "boundary"]
 
   - name: "automates security scanning"
     steps:
       - prompt: "How do I automate security scanning in my CI/CD pipeline?"
         assert:
-          - type: contains
-            value: "security"
-          - type: contains
-            value: "scanning"
+          - type: contains_any
+            value: ["SAST", "dependency", "SBOM", "Trivy", "Snyk"]
+          - type: contains_any
+            value: ["fail the build", "severity", "critical", "high"]

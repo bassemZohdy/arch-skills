@@ -27,16 +27,13 @@
 
 ## Threat Modeling Frameworks
 
-### STRIDE + DREAD
+### STRIDE and risk assessment
 
-| Threat | DREAD Factor | Mitigation |
-|--------|--------------|------------|
-| **Spoofing** | Damage: High | MFA, certificates |
-| **Tampering** | Reproducibility: Medium | HMAC, signing |
-| **Repudiation** | Discoverability: Low | Audit logging |
-| **Info Disclosure** | Damage: High | Encryption, access control |
-| **DoS** | Affected Users: High | Rate limiting, DDoS protection |
-| **EoP** | Exploitability: Medium | Least privilege, RBAC |
+Use the [threat-modeling reference](threat-modeling.md) to enumerate threats.
+For each concrete scenario, record prerequisites, affected assets, likelihood,
+impact, control evidence and residual risk. A STRIDE category does not imply a
+fixed risk score or correspond to one DREAD factor. Use DREAD only when adopted
+and calibrated by the organization.
 
 ### Attack Trees
 

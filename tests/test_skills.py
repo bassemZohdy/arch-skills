@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from check_links import prose
 
 ROOT = Path(__file__).resolve().parents[1]
+FRONTMATTER = re.compile(r"\A---\r?\n(.*?)\r?\n---(?:\r?\n|$)", re.S)
 
 
 def discover_skills(skills_dir):
@@ -33,7 +34,7 @@ def validate_skill(directory, shared_root=None):
         return ["missing SKILL.md"]
     text = entry.read_text(encoding="utf-8")
     try:
-        match = re.match(r"\A---\r?\n(.*?)\r?\n---(?:\r?\n|$)", text, re.S)
+        match = FRONTMATTER.match(text)
         if not match:
             raise ValueError("missing YAML frontmatter")
         meta = yaml.safe_load(match.group(1))

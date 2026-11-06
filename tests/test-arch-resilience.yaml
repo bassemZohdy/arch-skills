@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "Implement a circuit breaker pattern for calling a payment service."
         assert:
-          - type: contains
-            value: "circuit breaker"
+          - type: contains_any
+            value: ["half-open", "open state", "trip", "fallback"]
           - type: contains
             value: "threshold"
 
@@ -15,26 +15,26 @@ scenarios:
     steps:
       - prompt: "Design a retry policy with exponential backoff for transient failures."
         assert:
-          - type: contains
-            value: "retry"
-          - type: contains
-            value: "exponential"
+          - type: contains_any
+            value: ["jitter", "max attempts", "budget", "idempoten"]
+          - type: contains_any
+            value: ["multiplier", "base delay", "cap", "max delay"]
 
   - name: "implements bulkhead"
     steps:
       - prompt: "Implement bulkhead isolation for multiple downstream services."
         assert:
-          - type: contains
-            value: "bulkhead"
-          - type: contains
-            value: "isolation"
+          - type: contains_any
+            value: ["pool", "semaphore", "thread", "concurrent"]
+          - type: contains_any
+            value: ["blast radius", "exhaust", "partition", "degrad"]
 
   - name: "creates fallback strategy"
     steps:
       - prompt: "Design a fallback strategy when a recommendation service is unavailable."
         assert:
-          - type: contains
-            value: "fallback"
+          - type: contains_any
+            value: ["cache", "default", "stale", "popular"]
           - type: contains
             value: "degraded"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "How do I run chaos engineering experiments on my distributed system?"
         assert:
-          - type: contains
-            value: "chaos"
-          - type: contains
-            value: "experiment"
+          - type: contains_any
+            value: ["steady state", "hypothesis", "blast radius"]
+          - type: contains_any
+            value: ["abort", "rollback", "game day", "inject"]

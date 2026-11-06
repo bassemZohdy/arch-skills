@@ -5,6 +5,11 @@ The format follows the [Agent Skills specification](https://agentskills.io/speci
 Discovery and invocation are host responsibilities; a skill does not supply a
 scheduler, a subagent API, credentials or durable storage by itself.
 
+Keep integrations for individual AI coding tools in external adapters. This
+repository maintains shared skill content, package builders, deterministic checks
+and a host-neutral observation protocol. A compatible response API adapter is
+optional test transport; it does not make a particular provider or host required.
+
 ## Distribution profiles
 
 - Default: arch-orchestrator, arch-evaluate and arch-review are the only SKILL.md
@@ -66,9 +71,8 @@ Hosts without a native capability should render the same choices as numbered or
 lettered text and accept the selected number, option text or a custom response.
 They may render a prepared batch sequentially and collect the answers before
 the next reconciliation. The checkpoint and question records remain the
-portable state. Codex app-server
-integrations may provide server-initiated user-input or MCP elicitation requests;
-that integration belongs to the host adapter, not to the canonical skill.
+portable state. Server-initiated user-input or MCP elicitation mechanisms belong
+to the external host adapter, not to the canonical skill.
 
 ## Verified boundaries
 

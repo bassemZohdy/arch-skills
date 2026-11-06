@@ -7,16 +7,18 @@ and repository capabilities are documented in [docs/project-status.md](docs/proj
 
 - Configure the endpoint/model and run the 16-call smoke workflow; record the first
   real baseline. Synthetic adapters and mocked HTTP are not live skill-quality evidence.
-- Implement one actual host adapter and execute the seven DAP lifecycle scenarios,
+- Execute the seven DAP lifecycle scenarios through an external host adapter,
   including fixture setup, artifact verification, preserved history and baseline
   immutability.
-- Configure a host adapter for the activation manifest and retain observed routing
-  traces from the host.
+- Run the two reference-loading cases and default/expert activation manifests
+  through external adapters that supply actual resource and activation evidence.
+  Keep host-specific trace collection and configuration outside the repository.
 
 ## Quality calibration and release evidence
 
 - Calibrate keyword assertions on real outputs; move priority cases to typed
-  decisions, artifact checks or reviewed semantic rubrics.
+  decisions, artifact checks or reviewed semantic rubrics. Start with the
+  prompt-echo cases the lint above will flag.
 - Compare repeated baseline/candidate runs with identical pinned model and host
   settings before introducing a live-quality release threshold. Two or three samples
   are smoke tests, not a reliability estimate.
@@ -32,9 +34,21 @@ and repository capabilities are documented in [docs/project-status.md](docs/proj
 
 ## External verification
 
-- Recheck the 50 [currently unverified URLs](docs/audits/2026-09-20-link-recheck-latest.json)
-  from an unrestricted network;
-  do not treat blocked, rate-limited or timed-out probes as broken links.
+- Enable the model step of the source freshness audit: set the repository variable
+  `SOURCE_AUDIT_MODEL` to a GitHub Models model ID, run the workflow manually with
+  `create_issues` off, review `report.json`, then let scheduled runs file issues.
+  The model path is covered by offline tests only and has not run against a live endpoint.
+- Recheck the 6 [currently unverified URLs](docs/audits/2026-11-06-link-recheck.json)
+  (private Google Doc, EUR-Lex challenge page, eCFR block redirect, hhs.gov and two
+  iso.org pages) with authorized access or another network; replace the eCFR link
+  once a stable URL is confirmed. Do not treat blocked, rate-limited or timed-out
+  probes as broken links.
+- Re-verify the dated "no dedicated section" notes in each
+  `references/awesome-architecture.md` by hand: the site's section list is rendered
+  client-side and could not be checked automatically on 2026-11-06.
+- Dependabot cannot see the inline Mermaid CLI pin in `.github/workflows/diagrams.yml`
+  (documented in `docs/test-automation.md`); track it in a `package.json` if
+  automated bumps are wanted.
 
 ## Diagram rendering coverage
 

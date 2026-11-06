@@ -6,43 +6,43 @@ scenarios:
     steps:
       - prompt: "Assess this legacy monolith for migration readiness. It has 500k LOC, no tests, and is 10 years old."
         assert:
-          - type: contains
-            value: "legacy"
-          - type: contains
-            value: "monolith"
+          - type: contains_any
+            value: ["characterization", "risk", "dependenc", "seam"]
+          - type: contains_any
+            value: ["strangler", "incremental", "modular", "assessment matrix"]
 
   - name: "designs strangler fig"
     steps:
       - prompt: "Design a strangler fig migration plan to extract user management from a monolith."
         assert:
-          - type: contains
-            value: "strangler"
-          - type: contains
-            value: "fig"
+          - type: contains_any
+            value: ["facade", "façade", "proxy", "router", "route"]
+          - type: contains_any
+            value: ["incremental", "seam", "decommission", "redirect"]
 
   - name: "plans database migration"
     steps:
       - prompt: "Plan a zero-downtime database migration from MySQL to PostgreSQL."
         assert:
-          - type: contains
-            value: "database"
-          - type: contains
-            value: "migration"
+          - type: contains_any
+            value: ["dual write", "dual-write", "CDC", "replication", "backfill"]
+          - type: contains_any
+            value: ["cutover", "reconcil", "rollback", "verify"]
 
   - name: "assesses migration risks"
     steps:
       - prompt: "What are the risks of migrating from SOAP to REST APIs?"
         assert:
-          - type: contains
-            value: "risk"
-          - type: contains
-            value: "SOAP"
+          - type: contains_any
+            value: ["WS-Security", "WSDL", "contract", "schema", "consumer"]
+          - type: contains_any
+            value: ["parallel run", "facade", "adapter", "compatib"]
 
   - name: "creates rollback strategy"
     steps:
       - prompt: "Design a rollback strategy for a critical system migration."
         assert:
-          - type: contains
-            value: "rollback"
+          - type: contains_any
+            value: ["trigger", "point of no return", "irreversible", "cutover"]
           - type: contains
             value: "backup"

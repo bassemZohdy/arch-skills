@@ -6,7 +6,7 @@
 - [List assets]
 
 ### Threats Identified
-| ID | Threat | STRIDE | Risk (DREAD) | Mitigation |
+| ID | Threat | STRIDE | Risk rationale and evidence | Mitigation |
 |----|--------|--------|--------------|------------|
 
 ### Versioned security verification

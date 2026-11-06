@@ -1,0 +1,45 @@
+skill: ./skills/arch-devops
+timeout: 180
+scenarios:
+  - name: deployment references preserve state recovery conditions
+    steps:
+      - prompt: >-
+          Read references/deployment-strategies.md and references/deployment-deep-dive.md
+          in the packaged skill, then assess whether blue-green guarantees zero
+          downtime and instant complete rollback after schema changes and new writes.
+          Return raw JSON with booleans guaranteed_zero_downtime,
+          traffic_switch_undoes_data_writes, and needs_state_recovery_plan.
+        assert:
+          - type: resource_read
+            value: arch-devops/references/deployment-strategies.md
+          - type: resource_read
+            value: arch-devops/references/deployment-deep-dive.md
+          - type: json_equals
+            pointer: /guaranteed_zero_downtime
+            value: false
+          - type: json_equals
+            pointer: /traffic_switch_undoes_data_writes
+            value: false
+          - type: json_equals
+            pointer: /needs_state_recovery_plan
+            value: true
+  - name: cqrs reference allows a shared data store
+    skill: ./skills/arch-event
+    steps:
+      - prompt: >-
+          Read references/cqrs-es.md in the packaged skill. We separate command
+          and query models but use one relational database and no event log.
+          Return raw JSON with booleans cqrs_requires_event_sourcing,
+          cqrs_requires_separate_databases, and async_projection_can_lag.
+        assert:
+          - type: resource_read
+            value: arch-event/references/cqrs-es.md
+          - type: json_equals
+            pointer: /cqrs_requires_event_sourcing
+            value: false
+          - type: json_equals
+            pointer: /cqrs_requires_separate_databases
+            value: false
+          - type: json_equals
+            pointer: /async_projection_can_lag
+            value: true

@@ -4,6 +4,8 @@
 
 ## Architecture Styles
 
+Separate deployment boundaries, loading and rendering choices; these mechanisms can coexist. See [frontend-patterns.md](frontend-patterns.md) for the distinction.
+
 | Style | Description | Use Case |
 |-------|-------------|----------|
 | **Monolithic** | Single codebase | Small teams |

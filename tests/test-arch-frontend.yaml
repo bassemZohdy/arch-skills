@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "Design a micro frontends architecture for a large e-commerce platform."
         assert:
-          - type: contains
-            value: "micro frontend"
+          - type: contains_any
+            value: ["Module Federation", "shell", "composition", "team"]
           - type: contains
             value: "independent"
 
@@ -15,26 +15,26 @@ scenarios:
     steps:
       - prompt: "What state management pattern should I use for a complex React application?"
         assert:
-          - type: contains
-            value: "state"
-          - type: contains
-            value: "management"
+          - type: contains_any
+            value: ["server state", "query cache", "React Query", "TanStack"]
+          - type: contains_any
+            value: ["Redux", "Zustand", "Context", "Jotai"]
 
   - name: "creates component library"
     steps:
       - prompt: "How do I create a shared component library for multiple frontend applications?"
         assert:
-          - type: contains
-            value: "component"
-          - type: contains
-            value: "library"
+          - type: contains_any
+            value: ["design system", "Storybook", "tokens"]
+          - type: contains_any
+            value: ["versioning", "semver", "package", "monorepo"]
 
   - name: "optimizes performance"
     steps:
       - prompt: "How do I optimize frontend performance for a React application?"
         assert:
-          - type: contains
-            value: "performance"
+          - type: contains_any
+            value: ["code splitting", "lazy", "bundle", "memo", "Core Web Vitals"]
           - type: contains
             value: "optimization"
 
@@ -42,7 +42,7 @@ scenarios:
     steps:
       - prompt: "How do I implement lazy loading for routes in a React application?"
         assert:
-          - type: contains
-            value: "lazy"
-          - type: contains
-            value: "loading"
+          - type: contains_any
+            value: ["React.lazy", "Suspense", "dynamic import", "import("]
+          - type: contains_any
+            value: ["chunk", "code splitting", "fallback", "bundle"]

@@ -2,18 +2,23 @@
 
 ## Nielsen's 10 Heuristics
 
-| # | Heuristic | Description | Severity |
-|---|-----------|-------------|----------|
-| 1 | Visibility of System Status | Show what's happening | High |
-| 2 | Match Between System and Real World | Use user's language | High |
-| 3 | User Control and Freedom | Undo, redo, escape | High |
-| 4 | Consistency and Standards | Follow conventions | Medium |
-| 5 | Error Prevention | Prevent errors before they occur | High |
-| 6 | Recognition Rather Than Recall | Make options visible | Medium |
-| 7 | Flexibility and Efficiency of Use | Shortcuts for experts | Medium |
-| 8 | Aesthetic and Minimalist Design | Only essential info | Low |
-| 9 | Help Users Recognize Errors | Clear error messages | High |
-| 10 | Help and Documentation | Provide help when needed | Low |
+| # | Heuristic | Description |
+|---|-----------|-------------|
+| 1 | Visibility of System Status | Show what's happening |
+| 2 | Match Between System and Real World | Use user's language |
+| 3 | User Control and Freedom | Undo, redo, escape |
+| 4 | Consistency and Standards | Follow conventions |
+| 5 | Error Prevention | Prevent errors before they occur |
+| 6 | Recognition Rather Than Recall | Make options visible |
+| 7 | Flexibility and Efficiency of Use | Shortcuts for experts |
+| 8 | Aesthetic and Minimalist Design | Only essential info |
+| 9 | Help Users Recognize Errors | Clear error messages |
+| 10 | Help and Documentation | Provide help when needed |
+
+Assess each observed problem from its frequency, impact and persistence, using
+[Nielsen's severity guidance](https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/).
+A heuristic category does not have an inherent severity. Agree remediation timing
+from user impact and release context; the actions below are examples.
 
 ## Severity Scale
 

@@ -1,6 +1,6 @@
 # Compliance Deep Dive
 
-**Source:** GDPR Text, HIPAA Rules, PCI DSS 4.0, SOC 2
+**Source:** GDPR Text, HIPAA Rules, PCI DSS 4.0.1, SOC 2
 
 ## GDPR Comprehensive Guide
 
@@ -29,6 +29,11 @@
 
 ### Privacy by Design (Article 25)
 
+Under [GDPR Article 12(3)](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng),
+respond without undue delay, normally within one month. Complexity or request
+volume may justify two additional months; inform the person within the first
+month with reasons. Rights have conditions and exceptions; erasure is not absolute.
+
 1. Implement appropriate technical measures
 2. Integrate data protection into processing
 3. Apply data protection principles
@@ -37,6 +42,11 @@
 ## HIPAA Comprehensive Guide
 
 ### Protected Health Information (PHI)
+
+These are possible identifiers, not a rule that every name or device ID is PHI.
+Apply the [HHS definition](https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html):
+individually identifiable health information held or transmitted by a covered
+entity or business associate, subject to the rule's exclusions.
 
 - Names, dates, email addresses
 - Medical records and history
@@ -66,7 +76,10 @@
 - Workstation use and security
 - Device and media controls
 
-## PCI DSS 4.0
+## PCI DSS 4.0.1
+
+Use the adopted requirements in the [PCI SSC document library](https://www.pcisecuritystandards.org/document_library/).
+The summary below groups requirements; it is not a complete control checklist.
 
 ### Requirements
 

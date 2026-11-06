@@ -60,7 +60,7 @@ like-for-like options and their trust, failure and release boundaries.
 
 | Tool | Description |
 |------|-------------|
-| **Module Federation** | Webpack built-in |
+| **Module Federation** | Runtime module sharing; version 2.0 is bundler-independent (webpack, Rspack, Vite) |
 | **Single-SPA** | Framework-agnostic |
 | **Web Components** | Browser native |
 | **iframe** | Simple isolation |
@@ -85,6 +85,7 @@ like-for-like options and their trust, failure and release boundaries.
 | **Redux** | Centralized state | Complex state logic |
 | **Zustand** | Lightweight state | Simple state needs |
 | **Jotai** | Atomic state | Fine-grained updates |
+| **Signals** | Framework-native reactive primitives (Angular, Vue, Solid, Preact) | Fine-grained updates without a store |
 
 ## Step 4: Framework Selection
 

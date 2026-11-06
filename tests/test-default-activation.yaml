@@ -1,0 +1,25 @@
+mode: activation
+skills:
+  - ./skills/arch-orchestrator
+  - ./skills/arch-review
+  - ./skills/arch-evaluate
+timeout: 180
+scenarios:
+  - name: architecture interview selects orchestrator
+    steps:
+      - prompt: Interview me to establish requirements and design a solution architecture for an inventory service.
+        assert:
+          - type: skill_used
+            value: arch-orchestrator
+  - name: design fitness selects review
+    steps:
+      - prompt: Review this architecture's design fitness, quality-attribute trade-offs and technical debt without auditing DAP process completeness.
+        assert:
+          - type: skill_used
+            value: arch-review
+  - name: frozen baseline assessment selects evaluate
+    steps:
+      - prompt: Assess DAP completeness, evidence freshness and readiness for a frozen architecture baseline without modifying it.
+        assert:
+          - type: skill_used
+            value: arch-evaluate

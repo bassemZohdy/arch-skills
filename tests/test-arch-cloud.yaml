@@ -26,8 +26,8 @@ scenarios:
     steps:
       - prompt: "Should I use serverless or containers for a spiky background job that runs 50 times per day?"
         assert:
-          - type: contains
-            value: "serverless"
+          - type: contains_any
+            value: ["cold start", "pay-per", "pay per", "idle", "execution time"]
           - type: not_contains
             value: "provisioned always"
 
@@ -53,10 +53,10 @@ scenarios:
     steps:
       - prompt: "Design a hybrid architecture where regulated data stays on-premises and the web tier runs in cloud."
         assert:
-          - type: contains
-            value: "hybrid"
-          - type: contains
-            value: "on-premises"
+          - type: contains_any
+            value: ["VPN", "Direct Connect", "ExpressRoute", "private connectivity", "interconnect"]
+          - type: contains_any
+            value: ["residency", "egress", "latency", "identity"]
 
   - name: "reviews Azure Well-Architected"
     steps:
@@ -73,8 +73,8 @@ scenarios:
     steps:
       - prompt: "What are common cloud architecture anti-patterns in a lift-and-shift migration?"
         assert:
-          - type: contains
-            value: "lift-and-shift"
+          - type: contains_any
+            value: ["right-siz", "over-provision", "managed service", "re-architect", "rearchitect"]
           - type: contains
             value: "egress"
           - type: not_contains

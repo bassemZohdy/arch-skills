@@ -24,17 +24,17 @@ scenarios:
     steps:
       - prompt: "Design a dimensional model for a sales analytics data warehouse with facts and dimensions."
         assert:
-          - type: contains
-            value: "fact"
-          - type: contains
-            value: "dimension"
+          - type: contains_any
+            value: ["star schema", "star", "snowflake"]
+          - type: contains_any
+            value: ["grain", "surrogate key", "slowly changing", "SCD"]
 
   - name: "chooses data pipeline"
     steps:
       - prompt: "Should I use ETL or ELT for loading data into Snowflake from multiple sources?"
         assert:
-          - type: contains
-            value: "ELT"
+          - type: contains_any
+            value: ["transform in", "warehouse compute", "raw", "staging", "dbt"]
           - type: not_contains
             value: "do it manually"
 
@@ -44,26 +44,26 @@ scenarios:
         assert:
           - type: contains
             value: "accuracy"
-          - type: contains
-            value: "classification"
+          - type: contains_any
+            value: ["PHI", "restricted", "confidential", "HIPAA"]
 
   - name: "designs data lineage"
     steps:
       - prompt: "How do I track data lineage from source systems to the analytics dashboard?"
         assert:
-          - type: contains
-            value: "lineage"
-          - type: contains
-            value: "source"
+          - type: contains_any
+            value: ["catalog", "metadata", "OpenLineage", "graph"]
+          - type: contains_any
+            value: ["transformation", "pipeline", "upstream", "downstream"]
 
   - name: "designs streaming pipeline"
     steps:
       - prompt: "Design a streaming data pipeline for real-time clickstream analytics."
         assert:
-          - type: contains
-            value: "stream"
-          - type: contains
-            value: "real-time"
+          - type: contains_any
+            value: ["Kafka", "Kinesis", "Flink", "Pub/Sub"]
+          - type: contains_any
+            value: ["window", "event time", "late", "checkpoint", "watermark"]
 
   - name: "classifies data sensitivity"
     runs: 3

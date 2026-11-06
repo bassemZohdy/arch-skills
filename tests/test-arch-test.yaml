@@ -6,8 +6,8 @@ scenarios:
     steps:
       - prompt: "Design a test pyramid for a microservices architecture."
         assert:
-          - type: contains
-            value: "test pyramid"
+          - type: contains_any
+            value: ["integration", "end-to-end", "E2E", "contract"]
           - type: contains
             value: "unit"
 
@@ -15,8 +15,8 @@ scenarios:
     steps:
       - prompt: "How do I implement contract testing between services?"
         assert:
-          - type: contains
-            value: "contract"
+          - type: contains_any
+            value: ["consumer", "provider", "broker"]
           - type: contains
             value: "Pact"
 
@@ -24,8 +24,8 @@ scenarios:
     steps:
       - prompt: "Create a test strategy for a new feature with API, database, and UI components."
         assert:
-          - type: contains
-            value: "test strategy"
+          - type: contains_any
+            value: ["unit", "integration", "end-to-end", "E2E"]
           - type: contains
             value: "coverage"
 
@@ -33,8 +33,8 @@ scenarios:
     steps:
       - prompt: "What quality gates should I set for my CI/CD pipeline?"
         assert:
-          - type: contains
-            value: "quality gate"
+          - type: contains_any
+            value: ["fail", "block", "threshold", "mutation"]
           - type: contains
             value: "coverage"
 

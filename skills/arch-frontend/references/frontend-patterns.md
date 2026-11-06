@@ -2,6 +2,11 @@
 
 ## Architecture Styles
 
+Choose composition/deployment boundaries, module loading and rendering separately.
+Module Federation can implement a micro frontend, and server components can be
+used within either a monolith or a micro frontend. These rows are not alternatives
+on a single axis; server components and SSR are also distinct mechanisms.
+
 | Style | Description | Use Case |
 |-------|-------------|----------|
 | **Monolithic** | Single codebase | Small teams, simple apps |

@@ -7,7 +7,7 @@
 | **OAuth 2.0** | Delegated authorization; not an identity protocol | Medium |
 | **OpenID Connect** | Identity layer on OAuth | Medium |
 | **SAML** | Enterprise SSO | High |
-| **JWT** | Stateless tokens | Low |
+| **JWT** | Token format, not an authentication protocol; validate issuer, audience, algorithm, expiry and revocation strategy | Context-dependent |
 | **API Keys** | Service-to-service | Low |
 
 ## Authorization Patterns
@@ -27,6 +27,14 @@
 | **In Transit** | TLS 1.3 | Network |
 | **In Use** | Confidential computing | Specialized |
 | **Key Management** | HSM, KMS | AWS KMS, Azure Key Vault |
+| **Post-quantum readiness** | Crypto inventory, hybrid key exchange, then PQC signatures | NIST FIPS 203/204/205 |
+
+Prioritize post-quantum migration by data lifetime ("harvest now, decrypt later")
+and by signing roots with long validity. NIST's transition guidance (IR 8547, a
+draft at the time of review) proposes deprecating RSA-2048 and ECC P-256 by 2030
+and disallowing them after 2035; confirm the current final dates and any sector or
+government mandate before setting the project's timeline. Keep algorithms
+configurable so a later change does not require redesign.
 
 ## API Security
 

@@ -104,19 +104,24 @@ facts. Live-model scenarios remain optional and are not implied by passing tests
 | DAP stages, records and authority rules | [DAP specification](docs/deterministic-architecture-process.md) and [records](framework/records.md) |
 | Package profiles and specialist loading | [Harness compatibility](docs/harness-compatibility.md) |
 | Validation levels and host-neutral scenarios | [Skill testing](docs/skill-testing.md) and [test automation](docs/test-automation.md) |
+| Per-skill scenario inventory and evidence limits | [Coverage analysis](docs/coverage-analysis.md) |
 | Skill ownership and routing boundaries | [Skill boundaries](docs/skill-boundaries.md) |
+| Architecture practice routing | [Practice reference](docs/best-practices-master.md) |
 | Only unfinished repository work | [TODO](TODO.md) |
 
 ## Automated behavioral testing
 
-The scenario runner validates 324 scenarios across all 34 skills without a model.
+The scenario runner validates 331 scenarios across all 34 skills without a model.
 For live response tests, build the expert packages and configure a compatible
 model endpoint; see [test automation](docs/test-automation.md) for commands,
 adapter integration, repeat counts, evidence and limits.
 
-GitHub Actions includes a manually triggered, 16-call model smoke suite and a
-weekly external-link audit. Model tests require endpoint/model variables and an
-API-key secret when the provider requires one. They do not run on pull requests.
+GitHub Actions includes a manually triggered, 16-call model smoke suite, a
+weekly external-link audit and a weekly
+[cited-source freshness audit](docs/test-automation.md#source-freshness-audit)
+that files deduplicated issues for broken or outdated sources. Model tests
+require endpoint/model variables and an API-key secret when the provider
+requires one. They do not run on pull requests.
 Offline checks remain the required CI gate; missing model access never counts as
 a successful behavioral run.
 
@@ -135,9 +140,11 @@ Offline checks validate local Markdown targets/anchors, skill names and resource
 reachability, plus decision arithmetic and isolated package execution. For an
 explicit online link audit, run `python scripts/check_links.py --external
 --output .cache/link-audit.json` on one line. HTTP 404/410 are reported as broken;
-403/429/timeouts remain unverified. A reachable URL does not prove its claims.
-See the latest [skill-by-skill and E2E review](docs/audits/2026-09-20-skill-e2e-review.md)
-for corrected concerns, executed tests and remaining coverage boundaries.
+403/429, timeouts, non-200 success responses and redirects to another host remain
+unverified. A reachable URL does not prove its claims.
+See the latest [skill freshness follow-up](docs/audits/2026-11-06-skill-refresh.md) and the
+[full skill freshness and validation review](docs/audits/2026-09-24-skill-refresh.md)
+for skill-by-skill findings, executed checks and remaining coverage boundaries.
 
 ## Repository layout
 
@@ -150,9 +157,9 @@ for corrected concerns, executed tests and remaining coverage boundaries.
 | docs/ | Process specification, audits, boundaries and usage guidance |
 | examples/ | Clearly labelled historical schema-1 regression inputs |
 
-The [audit](docs/audits/2026-09-20-dap-skill-audit.md) records the earlier defects;
-the [remediation review](docs/audits/2026-09-20-remediation-review.md) records the
-changes and validation. [TODO](TODO.md) distinguishes remaining adoption work.
+The dated [DAP audit](docs/audits/2026-09-20-dap-skill-audit.md) and
+[remediation review](docs/audits/2026-09-20-remediation-review.md) preserve
+earlier findings. [TODO](TODO.md) distinguishes remaining adoption work.
 
 ## License
 

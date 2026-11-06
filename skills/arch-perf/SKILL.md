@@ -27,6 +27,9 @@ Return evidence-linked proposals and VER plans, not invented approvals or delive
 
 ## Step 1: Define Performance Requirements
 
+The examples below illustrate measurable forms, not default targets. Derive
+actual thresholds from user needs, workload shape and an approved SLO.
+
 | Metric | Description | Example |
 |--------|-------------|---------|
 | **Latency** | Time for single request | p95 < 200ms |
@@ -131,12 +134,13 @@ headroom and cost. Validate it with production-like load and tail-latency data.
 
 ## Step 5: Performance Budgets
 
-| Resource | Budget | Measurement |
-|----------|--------|-------------|
-| **Page Load** | < 3s | Lighthouse |
+| Resource | Example budget | Measurement |
+|----------|----------------|-------------|
+| **Largest Contentful Paint** | <= 2.5s at p75 | Field data (RUM); Lighthouse for lab checks |
+| **Interaction to Next Paint** | <= 200ms at p75 | Field data (RUM) |
 | **API Response** | < 200ms p95 | APM |
 | **Database Query** | < 50ms | Query analyzer |
-| **Bundle Size** | < 200KB | Webpack |
+| **JavaScript Bundle** | < 200KB compressed | Bundler report |
 
 Budgets are hypotheses until tied to a user journey, device/network class and
 business SLO. Keep p50, p95 and p99 visible and record the measurement method.

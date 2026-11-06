@@ -50,7 +50,7 @@ Load these links when the user wants external reading, reference implementations
 | Topic | Link |
 |-------|------|
 | Ingress Controller | [ingress-controller](https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-ingress-controller) |
-| NGINX Ingress | [nginx-ingress](https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-nginx-ingress) |
+| NGINX Ingress (community controller retired March 2026; migration context only) | [nginx-ingress](https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-nginx-ingress) |
 | Traefik Ingress | [traefik-ingress](https://awesome-architecture.com/topics/devops-kubernetes-ingress-controller-traefik-ingress) |
 
 ## Dev Tools

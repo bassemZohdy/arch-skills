@@ -101,6 +101,11 @@ if (variant === 'control') {
 | **Flagsmith** | Open Source | Feature flag service |
 | **Flipper** | Open Source | Feature flags for Ruby |
 | **FeatureHub** | Open Source | Feature management |
+| **OpenFeature** | Open standard (CNCF) | Vendor-neutral evaluation API and SDKs; OFREP defines remote evaluation over HTTP |
+
+Prefer evaluating flags through a vendor-neutral API such as OpenFeature so that
+the provider can change without rewriting call sites. Verify each tool's current
+license, hosting model and support lifecycle before selection.
 
 ## Step 5: Feature Rollout Strategies
 

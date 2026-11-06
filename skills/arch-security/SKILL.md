@@ -89,6 +89,9 @@ substitute for a security decision.
 - Encryption in transit (TLS 1.3)
 - Key management (HSM, KMS)
 - Data masking and tokenization
+- Cryptographic agility: inventory algorithms, keys and certificates; plan the
+  post-quantum migration (NIST FIPS 203/204/205: ML-KEM, ML-DSA, SLH-DSA), starting
+  with long-lived confidential data and hybrid key exchange where the stack supports it
 
 ### API Security
 - Rate limiting and throttling
@@ -150,6 +153,8 @@ than treating the general web Top 10 as sufficient.
 - `references/security-deep-dive.md` — Security Architecture Deep Dive
 - `references/security-patterns.md` — Security Patterns Reference
 - `references/threat-modeling.md` — Threat Modeling Reference
+- [OWASP ASVS](https://github.com/OWASP/ASVS) — Versioned application verification requirements
+- [OWASP Top 10:2025](https://owasp.org/projects/top-ten) — Current web application risk categories
 
 ## Cross-skill handoff
 
@@ -164,6 +169,3 @@ authentication; use an identity protocol such as OpenID Connect when needed.
 - **arch-api** - API-specific security controls
 - **arch-ai** - Prompt injection and AI-specific threats
 - **arch-devops** - Secrets management and pipeline security
-
-- [OWASP ASVS](https://github.com/OWASP/ASVS) — Versioned application verification requirements
-- [OWASP Top 10:2025](https://owasp.org/www-project-top-ten/) — Current web application risk categories

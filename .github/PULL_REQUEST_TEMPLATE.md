@@ -10,9 +10,10 @@ Describe the resulting behavior and the problem it solves.
 
 ## Validation
 
-- [ ] `python tests/test_skills.py`
-- [ ] `python -m unittest discover -s tests -p 'test_*.py'`
-- [ ] `python tests/test_activation.py`
+- [ ] `./run-tests.ps1` or `bash run-tests.sh`, which runs the full offline gate:
+  `python scripts/check_links.py`, `python scripts/behavioral.py validate`,
+  `python tests/test_skills.py`, `python -m unittest discover -s tests -p 'test_*.py'`
+  and `python tests/test_activation.py`
 - [ ] Fresh package profile built when packaging or shared contracts changed
 - [ ] Optional behavioral results identify the adapter, model and actual evidence
 

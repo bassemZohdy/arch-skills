@@ -145,7 +145,7 @@
 
 **Violation Signs:**
 - Hardcoded values
-- Config in source control
+- Secrets or environment-specific credentials in source control
 - No validation
 - Default credentials
 

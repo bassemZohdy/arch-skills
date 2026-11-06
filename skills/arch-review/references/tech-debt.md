@@ -147,7 +147,7 @@
 |----|----------|------|--------|--------|----------|--------|
 | TD-001 | Code | Extract auth service | High | Large | High | Open |
 | TD-002 | Testing | Add integration tests | High | Medium | High | In Progress |
-| TD-003 | Dependency | Update React to v18 | Medium | Small | Medium | Open |
+| TD-003 | Dependency | Upgrade an unsupported dependency to an adopted supported version | Medium | Small | Medium | Open |
 | TD-004 | Docs | Document API endpoints | Medium | Medium | Medium | Open |
 | TD-005 | Infra | Add monitoring | High | Large | High | Planned |
 ```

@@ -16,7 +16,7 @@
 
 | Practice | Description |
 |----------|-------------|
-| **Fast builds** | < 10 minutes target |
+| **Fast builds** | Keep commit-stage feedback short (about 10 minutes is a common goal); set the target from measured team feedback needs |
 | **Parallel stages** | Run independent tests together |
 | **Artifact immutability** | Same artifact across environments |
 | **Automated rollback** | Quick recovery capability |

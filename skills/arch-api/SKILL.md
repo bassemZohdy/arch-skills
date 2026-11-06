@@ -78,26 +78,30 @@ GET    /users/{id}/orders → List user's orders
 | 403 | Forbidden | Insufficient permissions |
 | 404 | Not Found | Resource doesn't exist |
 | 409 | Conflict | State conflict |
-| 422 | Unprocessable | Business logic error |
+| 422 | Unprocessable Content | Well-formed but semantically invalid request |
 | 429 | Too Many Requests | Rate limit |
 | 500 | Internal Error | Server error |
 
 ### Pagination
 
+Prefer cursor pagination for collections that grow or change between requests;
+offset paging (`?page=2&limit=20`) is acceptable only for small, stable lists.
+
 ```
-GET /users?page=2&limit=20
+GET /users?limit=20&cursor=eyJpZCI6MTIwfQ
 
 Response:
 {
   "data": [...],
-  "pagination": {
-    "page": 2,
+  "page": {
     "limit": 20,
-    "total": 150,
-    "pages": 8
+    "next_cursor": "eyJpZCI6MTQwfQ",
+    "has_more": true
   }
 }
 ```
+
+Keep cursors opaque, bind them to a stable sort key and document their lifetime.
 
 For retried writes, define an idempotency-key policy and retention window. For
 concurrent updates, choose an explicit conflict strategy such as ETags with
@@ -170,18 +174,25 @@ Choose versioning from consumer tooling, caching, routing and compatibility need
 
 ## Step 6: Error Handling
 
+For HTTP APIs, prefer [RFC 9457 Problem Details](https://www.rfc-editor.org/rfc/rfc9457)
+(`application/problem+json`, which obsoletes RFC 7807) unless an existing published
+contract already fixes another format. Use a stable `type` URI as the machine-readable
+error identity and add documented extension members for field-level details. Never
+return stack traces, internal identifiers or secrets in `detail`.
+
 ```json
 {
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Invalid input",
-    "details": [
-      {
-        "field": "email",
-        "message": "Must be valid email"
-      }
-    ]
-  }
+  "type": "https://api.example.com/problems/validation-error",
+  "title": "Request validation failed",
+  "status": 422,
+  "detail": "One or more fields are invalid.",
+  "instance": "/users",
+  "errors": [
+    {
+      "pointer": "/email",
+      "detail": "Must be a valid email address"
+    }
+  ]
 }
 ```
 

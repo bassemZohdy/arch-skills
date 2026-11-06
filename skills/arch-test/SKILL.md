@@ -179,10 +179,10 @@ Commit → Unit Tests → Build → Integration Tests → Deploy → E2E Tests
 
 | Gate | Metric | Threshold |
 |------|--------|-----------|
-| **Coverage** | Line coverage | > 80% |
-| **Mutation** | Mutation score | > 70% |
-| **Performance** | Test duration | < 10 min |
-| **Flakiness** | Flaky test rate | < 1% |
+| **Coverage** | Line coverage | Project-defined, with critical paths reviewed |
+| **Mutation** | Mutation score | Project-defined after a baseline |
+| **Performance** | Test duration | Project-defined CI budget |
+| **Flakiness** | Flaky test rate | Project-defined reliability target |
 
 Choose thresholds from a baseline and the risk of the system; do not treat the
 sample values above as universal architecture rules. Track test duration,

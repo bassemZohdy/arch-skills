@@ -2,7 +2,7 @@
 
 ADRs capture important architectural decisions along with their context and consequences.
 
-**Source:** [github.com/joelparkerhenderson/architecture-decision-record](https://github.com/joelparkerhenderson/architecture-decision-record) (16k+ stars)
+**Source:** [github.com/architecture-decision-record/architecture-decision-record](https://github.com/architecture-decision-record/architecture-decision-record)
 
 ## What is an ADR?
 
@@ -181,7 +181,7 @@ Fitness functions are automated checks that verify decisions are maintained.
 | [adr-tools](https://github.com/npryce/adr-tools) | Bash | Command-line tools for ADRs |
 | [adr-tools-python](https://bitbucket.org/tinkerer_/adr-tools-python/src/master/) | Python | Python implementation |
 | [Decision Guardian](https://github.com/DecispherHQ/decision-guardian) | Multi | ADR enforcement for PRs |
-| [Mneme HQ](https://github.com/TheoV823/mneme) | Multi | ADR enforcement for AI coding agents |
+| [Mneme HQ](https://github.com/MnemeHQ/mneme) | Multi | ADR enforcement for AI coding agents |
 
 ## Common ADR Templates
 

@@ -8,7 +8,7 @@ Extended patterns, sizing heuristics, and operational guidance.
 
 | Heuristic | Threshold |
 |-----------|-----------|
-| Team owns ≥3 bounded contexts | Split by context |
+| Team owns multiple bounded contexts | Assess ownership and change coupling; context count alone does not justify extraction |
 | Module changes independently | Candidate for extraction |
 | Module has different scaling needs | Candidate for extraction |
 | Module has different security/regulatory requirements | Candidate for extraction |
@@ -24,16 +24,18 @@ Extended patterns, sizing heuristics, and operational guidance.
 | **Tech Services** | "The Redis service", "The Email service" — utility, not business |
 | **Sync Chain** | A→B→C→D synchronous calls; latency multiplies, failures cascade |
 
-### Sizing Rules of Thumb
+### Sizing Signals
 
-| Metric | Guideline |
-|--------|-----------|
-| **Team size** | 4-8 people per service |
-| **Code size** | 5K-50K LOC |
-| **Endpoints** | 5-25 REST endpoints |
-| **Database tables** | 5-25 tables owned |
-| **Release cadence** | Independent (daily to weekly) |
-| **Build time** | < 10 minutes |
+Size follows business capability, cohesion and team ownership, not code or
+endpoint counts. Treat the signals below as prompts for review, not limits.
+
+| Signal | Healthy indication |
+|--------|--------------------|
+| **Ownership** | One team can own, understand and operate the service end to end |
+| **Cohesion** | Most changes for one business capability touch only this service |
+| **Data** | The service owns its data; other services do not read its tables |
+| **Release cadence** | Deployable independently on the owning team's schedule |
+| **Build and test time** | Short enough for the team's feedback loop; measure trend rather than a fixed limit |
 
 ## Communication Patterns Deep Dive
 
@@ -44,8 +46,12 @@ Extended patterns, sizing heuristics, and operational guidance.
 | Caller needs immediate response | Caller can continue without response |
 | Operation is fast (<100ms) | Operation takes seconds or minutes |
 | Result is required to continue | Result is informative/fire-and-forget |
-| Exactly-once semantics needed | At-least-once is acceptable |
+| Caller must observe completion before proceeding | Completion can be tracked through a durable status/event contract |
 | Single service involved | Multiple services must react |
+
+Neither synchronous calls nor asynchronous delivery alone guarantee exactly-once
+business effects. A timeout can leave a completed write unobserved. Define stable
+operation IDs, atomic state changes, deduplication and reconciliation before retrying.
 
 ### Async Reliability Patterns
 
@@ -60,10 +66,14 @@ Prevents dual-write problem: message published but DB transaction rolled back.
 #### Idempotent Consumer
 
 ```
-Consumer receives event → Check processed_events table → If new: process + mark processed
+Consumer receives event → Transaction: claim unique (consumer, event ID) + apply business update → Commit → Acknowledge
 ```
 
-Use event ID + consumer name as dedup key. TTL on dedup table = max redelivery window.
+Enforce the claim and business update in one atomic transaction; separate
+check-then-write operations race under concurrent delivery. External effects need
+their own idempotency keys or reconciliation. Retain deduplication records for the
+supported retry, late-arrival and replay horizon; intentional replay after expiry
+must not silently repeat business effects.
 
 #### Ordering Guarantees
 
@@ -71,7 +81,7 @@ Use event ID + consumer name as dedup key. TTL on dedup table = max redelivery w
 |------|----------|
 | Global order | Single partition — don't do this at scale |
 | Per-entity order | Partition by entity ID (order_id, user_id) |
-| Causal order | Vector clocks or Lamport timestamps |
+| Causal order | Carry dependency metadata and enforce delivery/application order; timestamps alone do not enforce it |
 | No ordering needed | Any partition strategy |
 
 ## Data Ownership Patterns
@@ -81,7 +91,7 @@ Use event ID + consumer name as dedup key. TTL on dedup table = max redelivery w
 | Pattern | Description | Risk |
 |---------|-------------|------|
 | **Separate schema** | Same DB, different schemas per service | Low isolation; easy to cheat |
-| **Separate database** | Different DB instances | True isolation; operational overhead |
+| **Separate database** | Separate logical databases, optionally on shared infrastructure | Enforce access ownership; physical fault isolation depends on placement |
 | **Separate technology** | Service A uses PostgreSQL, B uses DynamoDB | Polyglot persistence; DBA skills spread thin |
 
 ### Data Duplication: When It's OK
@@ -144,7 +154,8 @@ Intentional duplication IS acceptable when:
 ### Conway's Law Alignment
 
 - If two teams own services that constantly coordinate → merge teams or merge services
-- If one team owns services that never coordinate → split the team
+- If one team owns services that rarely coordinate, assess ownership and cognitive
+  load before changing the organization; lack of coordination is not a split mandate
 - Organizational coupling = architectural coupling (Conway's Law works both ways)
 
 ## Migration from Monolith
@@ -153,7 +164,8 @@ Intentional duplication IS acceptable when:
 
 1. Identify a bounded context in the monolith
 2. Add a facade/router that diverts specific routes to new service
-3. Extract data: dual-write + backfill → cut over reads → remove monolith code
+3. Extract data with a named authoritative writer, restartable backfill and CDC/outbox
+   or another verified replication boundary; reconcile before switching readers/writers
 4. Iterate: one bounded context at a time
 5. Decommission monolith when all contexts migrated
 
@@ -165,4 +177,5 @@ Before extracting microservices, try:
 3. Use async messaging between modules
 4. Only extract when team scale or independent deployment forces it
 
-A modular monolith gives 80% of microservices benefits at 20% of the operational cost.
+Compare a modular monolith against the same requirements and measured operating
+costs. Do not assume a fixed benefit or cost percentage for either topology.
