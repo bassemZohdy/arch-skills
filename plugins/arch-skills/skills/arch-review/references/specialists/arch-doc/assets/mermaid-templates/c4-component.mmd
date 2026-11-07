@@ -1,0 +1,18 @@
+C4Component
+    title Component Diagram for [Container Name]
+
+    Container_Ext(user, "User", "External actor")
+    Container_Ext(ext, "External System", "External dependency")
+
+    Container_Boundary(container, "Container Name") {
+        Component(comp1, "Component 1", "Technology", "Responsibility")
+        Component(comp2, "Component 2", "Technology", "Responsibility")
+        Component(comp3, "Component 3", "Technology", "Responsibility")
+        ComponentDb(compdb, "Data Access", "Technology", "Data operations")
+    }
+
+    Rel(user, comp1, "Uses", "Interface")
+    Rel(comp1, comp2, "Calls", "Interface")
+    Rel(comp1, comp3, "Delegates", "Interface")
+    Rel(comp2, compdb, "Reads/Writes", "SQL")
+    Rel(comp3, ext, "Integrates", "API")

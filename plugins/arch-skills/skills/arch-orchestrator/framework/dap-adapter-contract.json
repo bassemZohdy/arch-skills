@@ -1,0 +1,57 @@
+{
+  "contract_version": "1.0.0",
+  "protocol": "dap-adapter",
+  "scenario_manifest_schema_version": "2.0",
+  "fixture_resolution": "generated:<name> selects a disposable schema-2 fixture from tests/dap_fixture.py. Resolve the source skill identifier to a complete built package, never install the source directory directly.",
+  "purpose": "Host-neutral interchange contract for optional live DAP behavioral scenarios.",
+  "request": {
+    "required": [
+      "protocol_version",
+      "scenario_id",
+      "skill_root",
+      "prompt",
+      "workspace"
+    ],
+    "workspace": "An isolated writable workspace. The adapter must preserve durable DAP records and return their evidence locations."
+  },
+  "result": {
+    "required": [
+      "protocol_version",
+      "scenario_id",
+      "status",
+      "run_id",
+      "adapter",
+      "model",
+      "started_at",
+      "finished_at",
+      "assertions",
+      "evidence"
+    ],
+    "status_values": [
+      "passed",
+      "failed",
+      "unavailable"
+    ],
+    "version_requirements": {
+      "adapter": [
+        "id",
+        "version"
+      ],
+      "model": [
+        "id",
+        "version"
+      ]
+    },
+    "evidence_rule": "Passed/failed executions require nonempty assertion outcomes and evidence objects with workspace-relative paths. Each outcome names a supported type and boolean passed. The validate-execution command additionally requires a unique assertion_id for every manifest assertion and verifies each evidence file exists inside the workspace. Passed requires all outcomes true; failed requires at least one false. Unavailable requires a reason and no executed assertions. Timestamps must be timezone-aware and ordered. Envelope validation alone does not prove host execution."
+  },
+  "assertion_types": [
+    "file_exists",
+    "file_contains",
+    "json_path_equals",
+    "response_contains",
+    "response_not_contains",
+    "gate_ready",
+    "evidence_present"
+  ],
+  "host_boundary": "Harness commands, model identifiers, credentials, tool APIs and durable-state integrations belong to an external adapter. They must not be added to canonical SKILL.md files."
+}

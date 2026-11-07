@@ -1,0 +1,26 @@
+@startuml Sequence Diagram
+skinparam sequenceMessageAlign center
+
+title Sequence Diagram
+
+actor Client
+participant "API Gateway" as Gateway
+participant "Service" as Service
+database "Database" as DB
+participant "External Service" as Ext
+
+Client -> Gateway: Request
+Gateway -> Service: Forward request
+Service -> DB: Query data
+DB --> Service: Result
+Service -> Ext: External call
+Ext --> Service: Response
+Service --> Gateway: Response
+Gateway --> Client: Response
+
+note right of Service: Error handling
+Service --> Service: Handle error
+Service --> Gateway: Error response
+Gateway --> Client: Error response
+
+@enduml

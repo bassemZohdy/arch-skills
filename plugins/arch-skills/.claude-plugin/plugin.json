@@ -1,0 +1,17 @@
+{
+  "name": "arch-skills",
+  "version": "0.1.0",
+  "description": "Software architecture skills: end-to-end architecture design orchestration, process evaluation, and design review with 30+ bundled specialist modules (patterns, quality attributes, security, data, integration, decisions, diagrams).",
+  "author": {
+    "name": "Bassem Zohdy"
+  },
+  "homepage": "https://github.com/bassemZohdy/arch-skills",
+  "repository": "https://github.com/bassemZohdy/arch-skills",
+  "license": "MIT",
+  "keywords": [
+    "architecture",
+    "design-review",
+    "adr",
+    "agent-skills"
+  ]
+}

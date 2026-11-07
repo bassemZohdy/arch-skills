@@ -1,0 +1,25 @@
+graph LR
+    subgraph System["System Boundary"]
+        subgraph Package1["Package A"]
+            ModuleA[Module A]
+            ModuleB[Module B]
+        end
+        subgraph Package2["Package B"]
+            ModuleC[Module C]
+            ModuleD[Module D]
+        end
+        subgraph Package3["Package C"]
+            ModuleE[Module E]
+            ModuleF[Module F]
+        end
+    end
+
+    ModuleA --> ModuleC
+    ModuleA --> ModuleE
+    ModuleB --> ModuleC
+    ModuleD --> ModuleF
+    ModuleE --> ModuleD
+
+    style Package1 fill:#e1f5fe
+    style Package2 fill:#f3e5f5
+    style Package3 fill:#e8f5e9

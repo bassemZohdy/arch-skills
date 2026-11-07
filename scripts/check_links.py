@@ -107,7 +107,7 @@ def check_local(root):
     errors, external, count = [], {}, 0
     for document in sorted(root.rglob('*.md')):
         parts = document.relative_to(root).parts
-        if (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(part in IGNORED for part in parts):
+        if parts[:1] == ('plugins',) or (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(part in IGNORED for part in parts):  # plugins/ is generated from skills/
             continue
         content = document.read_text(encoding='utf-8')
         count += 1

@@ -18,6 +18,9 @@ try {
     python tests/test_activation.py
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+    python scripts/build_plugin.py --check
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
     Write-Host 'All offline checks passed.' -ForegroundColor Green
 }
 finally {

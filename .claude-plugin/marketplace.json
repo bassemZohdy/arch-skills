@@ -1,0 +1,11 @@
+{
+  "name": "arch-skills",
+  "owner": { "name": "Bassem Zohdy" },
+  "plugins": [
+    {
+      "name": "arch-skills",
+      "source": "./plugins/arch-skills",
+      "description": "Software architecture skills: end-to-end design orchestration, process evaluation and design review with 30+ bundled specialist modules."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant Client
+    participant Gateway as API Gateway
+    participant Service as Service
+    participant DB as Database
+    participant Ext as External Service
+
+    Client->>Gateway: Request
+    Gateway->>Service: Forward request
+    Service->>DB: Query data
+    DB-->>Service: Result
+    Service->>Ext: External call
+    Ext-->>Service: Response
+    Service-->>Gateway: Response
+    Gateway-->>Client: Response
+
+    Note over Service,Ext: Error handling
+    Service-->>Service: Handle error
+    Service-->>Gateway: Error response
+    Gateway-->>Client: Error response

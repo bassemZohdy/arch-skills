@@ -19,6 +19,29 @@ specialists. There is one orchestration engine and one canonical source per skil
 The default public entry points can therefore route diagram-first requests to the
 bundled `arch-diagrams` specialist without exposing a fourth public entry point.
 
+## Install as a plugin
+
+The repository is a plugin marketplace for Claude Code and Codex. The plugin is
+generated from the built default packages (three public entry points, 30+ bundled
+specialists) in `plugins/arch-skills/`, so every skill carries its own shared contracts.
+
+~~~sh
+# Claude Code
+/plugin marketplace add bassemZohdy/arch-skills
+/plugin install arch-skills --marketplace bassemZohdy/arch-skills
+
+# Codex (verified on codex-cli 0.167.0)
+codex plugin marketplace add bassemZohdy/arch-skills
+codex plugin add arch-skills@arch-skills
+
+# Any skills.sh-compatible agent (installs from the built plugin folder, not the source skills)
+npx skills add https://github.com/bassemZohdy/arch-skills/tree/main/plugins/arch-skills --skill arch-review
+~~~
+
+Do not run `npx skills add bassemZohdy/arch-skills` against the repository root: it lists
+the unbuilt source skills, which lack the bundled framework files. Regenerate the plugin with
+`python scripts/build_plugin.py` after changing sources; CI fails when it is stale.
+
 ## Build and install
 
 Use Python 3.10+ and the declared dependencies:

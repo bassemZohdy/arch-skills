@@ -38,7 +38,7 @@ def diagram_header(source: str):
 
 def excluded(path: Path, root: Path):
     parts = path.relative_to(root).parts
-    return (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(
+    return parts[:1] == ('plugins',) or (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(
         part in {'.git', '.cache', '__pycache__', 'node_modules', '.venv'}
         for part in parts)
 
