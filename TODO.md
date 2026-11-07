@@ -57,3 +57,27 @@ and repository capabilities are documented in [docs/project-status.md](docs/proj
 - Add equivalent pinned PlantUML and Draw.io renderer jobs only if those formats
   become required release evidence; the current static inventory covers all
   Mermaid sources.
+
+## Publishing and distribution
+
+Each bullet below is tracked as a GitHub issue. AGENTS.md keeps per-tool integrations
+outside this repository, and skills must be built (`scripts/build_packages.py`) before
+install because shared dependencies are added by the builder, so the plugin layout is
+generated output, not the source tree.
+
+- Decide where plugin manifests live. Options: a generated distribution repository
+  (for example `arch-skills-plugin`) that fits the AGENTS.md rule, or amending that rule
+  to allow `.claude-plugin/` here. Record the decision in `docs/`. (#8)
+- Generate Claude Code plugin and marketplace manifests from the built packages
+  (`.claude-plugin/plugin.json`, `marketplace.json`), splitting the roughly 30 skills as
+  the existing profiles do (default three entry points, expert) rather than one plugin
+  that loads every description into each session. (#9)
+- Generate the Codex manifests (`.codex-plugin/plugin.json`,
+  `.agents/plugins/marketplace.json`) from the same built packages and pin the version
+  in them to the package version, since Codex caches installs by that version. (#10)
+- Verify `npx skills add bassemZohdy/arch-skills` against a built package in an isolated
+  directory; shared dependencies must resolve from a single-skill install. (#11)
+- Set the GitHub repository description and topics (for example agent-skills,
+  software-architecture, architecture-decision-records, claude-code). (#12)
+- After the decision and manifests exist, the owner submits the default profile to the
+  Anthropic plugin directory (portal login and terms acceptance) and records the reference. (#13)
