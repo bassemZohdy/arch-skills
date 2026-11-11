@@ -20,7 +20,7 @@ import build_packages  # noqa: E402
 
 ROOT = build_packages.ROOT
 PLUGIN_DIR = ROOT / "plugins" / "arch-skills"
-PLUGIN_VERSION = "0.1.0"  # bump on every change to the generated plugin; Codex caches installs by it
+PLUGIN_VERSION = "0.1.1"  # bump on every change to the generated plugin; Codex caches installs by it
 REPO = "https://github.com/bassemZohdy/arch-skills"
 DESCRIPTION = ("Software architecture skills: end-to-end architecture design orchestration, "
                "process evaluation, and design review with 30+ bundled specialist modules "

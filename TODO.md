@@ -45,6 +45,16 @@ These tasks are not implemented or approved governance policy.
 - [ ] **Live verification:** test skills with independent real host sessions,
   record evidence and quality baselines, and separate results from synthetic tests.
 
+## New specialist adoption evidence
+
+- [ ] Validate `arch-reverse` on multiple real language/codebase types with
+  reviewed evidence traceability, missed boundaries and false-positive analysis.
+- [ ] Validate `arch-interview` on actual solution and governance interviews;
+  measure contradiction handling, source provenance and approval separation.
+- [ ] Reassess host activation and routing of the new specialists, especially
+  against `arch-doc`, `arch-migration`, `arch-orchestrator` and
+  `arch-governance` to detect duplication or inappropriate skill activation.
+
 ## Live model and host integration
 
 - Configure the endpoint/model and run the 16-call smoke workflow; record the first

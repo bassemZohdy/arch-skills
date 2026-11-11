@@ -1,6 +1,6 @@
 # Skill boundaries and consolidation review
 
-Reviewed against all 34 canonical skills in skills/*/SKILL.md.
+Reviewed against the 36 canonical skill inventory in skills/*/SKILL.md.
 
 ## Review result
 
@@ -38,6 +38,24 @@ The cleanup is therefore boundary-focused:
 | arch-security / arch-compliance | Security controls protect systems; compliance maps obligations, evidence and retention. |
 | arch-data / arch-ai | General data ownership and lifecycle differ from AI-specific data, model and evaluation concerns. |
 | arch-features / arch-devops | Feature management controls exposure and experimentation; DevOps controls build, deploy and release operations. |
+
+## Additional discovery skill boundary review (2026-11-11)
+
+- `arch-reverse` owns code/manifest evidence discovery and provisional
+  as-built reconstruction. `arch-doc` assembles descriptions, `arch-diagrams`
+  owns editable views, `arch-review` judges design fitness, and
+  `arch-migration` owns modernization. These are complementary, not duplicates.
+- `arch-interview` owns conversational architecture/governance elicitation.
+  `arch-orchestrator` retains DAP requirement interviews, stage control,
+  baseline convergence, checkpoints and authorized create/update.
+  `arch-governance` retains policy/waiver authority.
+- Audit the boundary map across the 36 known names: no other skill pair has
+  an identified full ownership duplication requiring removal. In particular
+  retain decision analysis versus ADR documentation, compliance versus security,
+  API versus integration/event, and data versus AI.
+- Cleanup is limited to explicit discovery handoffs, catalog routing,
+  documentation counts and portable packaging. Skill creation and offline
+  checks do not establish live-model quality or stakeholder approval.
 
 ## Cleanup decisions
 

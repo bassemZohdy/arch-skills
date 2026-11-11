@@ -14,7 +14,7 @@ Canonical instructions, references and templates remain host-neutral.
 
 The default distribution exposes only those three skills. It bundles the remaining
 capabilities as selectively loaded resources, not additional discoverable SKILL.md
-entry points. The expert profile exposes all 34 canonical skills, or just selected
+entry points. The expert profile exposes all 36 canonical skills, or just selected
 specialists. There is one orchestration engine and one canonical source per skill.
 The default public entry points can therefore route diagram-first requests to the
 bundled `arch-diagrams` specialist without exposing a fourth public entry point.
@@ -78,6 +78,18 @@ Example requests:
 - Expert installation: use arch-api for a focused contract review.
 - Expert installation: use arch-diagrams when the diagram itself is the primary deliverable.
 
+## Architecture discovery specialists
+
+`arch-reverse` reconstructs existing architecture from authorized code and
+technical artifacts; `arch-interview` extracts architecture and draft
+governance expectations from stakeholder conversations. Both are bundled
+specialists in the three-entry default distribution and independent specialist
+entry points in the 36-skill expert distribution. `arch-orchestrator` retains
+requirements convergence and lifecycle coordination.
+
+[Architecture review profile model](docs/architecture-review-model.md) is a
+proposal; the runtime organization profile resolver is not yet implemented.
+
 ## DAP contracts and validation
 
 The [Deterministic Architecture Process](docs/deterministic-architecture-process.md)
@@ -134,7 +146,7 @@ facts. Live-model scenarios remain optional and are not implied by passing tests
 
 ## Automated behavioral testing
 
-The scenario runner validates 331 scenarios across all 34 skills without a model.
+The scenario runner validates 339 scenario definitions across all 36 skills without a model.
 For live response tests, build the expert packages and configure a compatible
 model endpoint; see [test automation](docs/test-automation.md) for commands,
 adapter integration, repeat counts, evidence and limits.
@@ -173,7 +185,7 @@ for skill-by-skill findings, executed checks and remaining coverage boundaries.
 
 | Path | Purpose |
 | --- | --- |
-| skills/ | 34 canonical skill definitions and domain assets |
+| skills/ | 36 canonical skill definitions and domain assets |
 | framework/ | Versioned schemas, rubric, shared contribution and record contracts |
 | scripts/ | Portable packaging, evaluation, graph, checkpoint and publication helpers |
 | tests/ | Offline structure, contract, lifecycle and isolated-package tests |

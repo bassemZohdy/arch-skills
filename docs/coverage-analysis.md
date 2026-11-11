@@ -1,14 +1,15 @@
 # Skill and scenario coverage
 
-Reviewed: 2026-11-06. This is an inventory of checked-in skills and validated
+Reviewed: 2026-11-11. This is an inventory of checked-in skills and validated
 scenario definitions, not a model or host pass-rate report. The commands in
 [project status](project-status.md) produce current execution results.
 
-The repository has **34 canonical skills** and **331 scenarios in 41 YAML
-manifests**. Of these, 325 explicitly target a skill and 6 test activation
+The repository has **36 canonical skills** and **339 scenario definitions in 43 YAML
+manifests**. Of these, 333 explicitly target a skill and 6 test activation
 across a candidate set. Every canonical skill has at least one explicit
-scenario. `python scripts/behavioral.py validate` checks the manifests and
-assertions offline; it does not execute a model, observe tool calls or prove
+scenario. The new counts describe checked-in definitions; execute
+`python scripts/behavioral.py validate` for validation evidence.
+That tool checks manifests and assertions offline; it does not execute a model, observe tool calls or prove
 that a host discovers the right skill.
 
 | Skill | Explicit scenarios | Skill | Explicit scenarios |
@@ -30,6 +31,7 @@ that a host discovers the right skill.
 | arch-refactoring | 6 | arch-resilience | 6 |
 | arch-review | 12 | arch-security | 11 |
 | arch-test | 6 | arch-usability | 6 |
+| arch-interview | 4 | arch-reverse | 4 |
 
 The six activation scenarios are separate from the explicit counts above.
 Structural, contract and isolated-package checks are Python tests rather than

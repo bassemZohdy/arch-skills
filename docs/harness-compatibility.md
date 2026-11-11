@@ -18,7 +18,7 @@ optional test transport; it does not make a particular provider or host required
 - The default public entry points may load `arch-diagrams` through that catalogue
   for diagram-first creation or review; hosts still discover only the three public
   entry points.
-- Expert: all 34 entry points, or selected specialists using --skill. Narrow
+- Expert: all 36 entry points, or selected specialists using --skill. Narrow
   expert requests do not require the entire DAP workflow.
 - Both: the repository license, framework contracts, Python runtime/dependencies and content hashes are
   copied from one canonical source. There are no manually maintained host mirrors.
@@ -48,6 +48,14 @@ does not require a subagent; delegate only if supported and authorized.
 Use Python 3.10+ and requirements.txt for deterministic helpers. Test scripts from
 an unrelated working directory. A host without execution support can return a
 plan or provisional analysis, but cannot claim the deterministic checks ran.
+
+## Architecture discovery specialist routing
+
+`arch-reverse` recovers source-derived as-built architecture, whereas
+`arch-interview` elicits draft architecture/governance knowledge from people.
+They are bundled as optional specialists in the default three-entry interface
+and available directly in the expert profile. The requirement interview and
+its convergence contract still belong to `arch-orchestrator`.
 
 ## Conversational interview controls
 

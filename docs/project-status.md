@@ -1,6 +1,6 @@
 # Project status and operating guide
 
-Reviewed: 2026-11-06. This page is the current repository status reference. Historical
+Reviewed: 2026-11-11. This page is the current repository status reference. Historical
 counts and findings remain in the dated audit documents; open adoption work remains
 in [TODO.md](../TODO.md).
 
@@ -13,13 +13,14 @@ diagram evidence remain separate adoption work.
 
 | Area | Current state | Evidence or command |
 | --- | --- | --- |
-| Skill library | 34 canonical skills; default profile exposes 3 entry points and expert exposes all 34 | `python scripts/build_packages.py --profile default ...` or `--profile expert ...` |
+| Skill library | 36 canonical skills; default profile exposes 3 entry points and expert exposes all 36 | `python scripts/build_packages.py --profile default ...` or `--profile expert ...` |
+| Architecture discovery | Added `arch-reverse` and `arch-interview` specialist instructions and routing; behavior requires independent model/host checks | [skill boundaries](skill-boundaries.md) |
 | DAP contracts | Framework 1.0.0, schema 2.0.0, rubric 1.0.0 and evaluator 2.0.2 are implemented and version-checked | [implementation status](dap-implementation-status.md), [records](../framework/records.md) |
 | Deterministic validation | Structural, link, contract, lifecycle, publication and package-isolation checks run offline | `bash run-tests.sh` or `./run-tests.ps1` |
 | Review regressions | Packaged CLI lifecycle, evidence-path validation, archive protection, model-budget drift and current documentation inventory/version checks | `python -m unittest discover -s tests -p 'test_*.py'` |
 | Public routing | The three public entry points can load `arch-diagrams` as a bundled specialist for diagram-first work | [harness compatibility](harness-compatibility.md), [skill boundaries](skill-boundaries.md) |
-| Behavioral scenarios | 331 validated scenarios across 41 manifests, covering all 34 skills and activation cases | `python scripts/behavioral.py validate` |
-| Scenario inventory | 325 explicit skill cases plus 6 activation cases; definitions are not live pass results | [coverage analysis](coverage-analysis.md) |
+| Behavioral scenarios | 339 checked-in scenario definitions across 43 manifests (including two new specialist manifests); live model pass rates remain unverified | `python scripts/behavioral.py validate` |
+| Scenario inventory | 333 explicit skill cases plus 6 activation cases; definitions are not live pass results | [coverage analysis](coverage-analysis.md) |
 | Host-neutral observations | Optional adapter protocol supports resource-read evidence and default/expert activation scenarios; tool integrations remain external | [test automation](test-automation.md), [compatibility](harness-compatibility.md) |
 | DAP adapter checks | Result envelopes can be validated for assertion identity and workspace evidence paths | `python scripts/dap_adapter.py validate-execution ...` |
 | Diagram source checks | 33 Mermaid files/fenced blocks are inventoried and syntax headers are validated offline; rendering is opt-in | `python scripts/check_diagrams.py --output .cache/diagram-static`; manually trigger [diagram workflow](../.github/workflows/diagrams.yml) |
