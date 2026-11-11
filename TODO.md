@@ -3,6 +3,48 @@
 Only unfinished work is listed here. Current implementation status, available commands
 and repository capabilities are documented in [docs/project-status.md](docs/project-status.md).
 
+## Architecture evaluation platform reuse (proposed)
+
+The reusable knowledge belongs in this repository; the future web application
+owns tenants, users, uploaded architectures, profile administration, runtime
+persistence and reports. The design is captured in
+[ADR-0001](docs/adr/0001-reusable-architecture-knowledge.md) and
+[architecture review model](docs/architecture-review-model.md).
+These tasks are not implemented or approved governance policy.
+
+- [ ] **Catalog schema and migration:** create a standalone versioned review
+  reference/rule/decision-option schema. Keep existing DAP `criteria-catalog.json`
+  and its rubric/version unchanged unless a separately tested migration is agreed.
+- [ ] **Reusable architecture knowledge:** curate and validate reference artifact
+  categories, evaluation dimensions, decision areas with exclusive options,
+  pattern/anti-pattern relationships and source provenance. Avoid pretending
+  this is a complete or normative industry enumeration.
+- [ ] **Profile resolver:** organization defaults + scoped profile overrides,
+  applicability, single-select expected options per decision area, enforcement
+  levels, exceptions and immutable evaluation snapshots. Do not allow profiles
+  to silently drop binding obligations.
+- [ ] **Design-review executor:** implement and test rule evaluation, evidence
+  locators, applicability/exclusion, pass/fail/unknown/not-applicable, finding
+  traceability and pass/fail/needs-review gates separately from DAP readiness.
+- [ ] **Create and update reuse:** demonstrate that authoring, change-impact
+  analysis and design review use the same versioned catalog without duplicating
+  rules or rewriting approved ADRs.
+- [ ] **Fitness function mapping:** map automatable rules to document, static
+  source and runtime verification, preserving planned-vs-executed distinction
+  and human adjudication for non-automatable checks.
+- [ ] **Consumer API contracts:** specify app-neutral request/result envelopes,
+  frozen inputs, profile/catalog identity and version, structured findings,
+  source/evidence references, gate results, unavailable status, and auth boundary.
+- [ ] **Test fixtures:** add representative modular-monolith and microservices
+  architectures with a variety of profile selections, conditional applicability,
+  conflicts, exceptions, insufficient evidence, unapproved profile and update
+  invalidation. Include property/invariant tests for gate precedence and unknowns.
+- [ ] **Packaging and validation:** increment plugin version, rebuild generated
+  Claude/Codex plugin with `scripts/build_plugin.py`, run the full offline
+  suite, and record actual results. Do not hand-edit generated `plugins/` files.
+- [ ] **Live verification:** test skills with independent real host sessions,
+  record evidence and quality baselines, and separate results from synthetic tests.
+
 ## Live model and host integration
 
 - Configure the endpoint/model and run the 16-call smoke workflow; record the first
