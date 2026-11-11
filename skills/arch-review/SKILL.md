@@ -27,6 +27,37 @@ evidence gaps during review or require full DAP for a narrow standalone review.
 7. Prioritize Actions → Remediation roadmap
 ```
 
+## Profile-driven architecture design review
+
+For a submission assessed under an organization evaluation profile, keep the
+submitted architecture and applicable profile snapshot read-only. Distinguish:
+
+- **Reference artifact:** sourced regulation/control, policy, standard, principle,
+  guideline, reference architecture, approved scoped ADR, or pattern guidance.
+- **Criterion:** architecture quality or conformance concern (for example
+  consistency, resilience, security, interoperability or technical suitability).
+- **Rule:** applicable, evidence-testable condition linked to a criterion and,
+  where relevant, a reference artifact; include stable ID and source/version.
+- **Gate:** administrator-defined acceptance condition aggregating rule outcomes;
+  gates do not define architectural knowledge and weighted scores do not override
+  blocking obligations.
+
+If a profile snapshot is provided, identify its version, select only applicable
+rules, and distinguish required, advisory and human-review checks. Record the
+proposed design option separately from the profile's expected single-select
+option in each configured decision area. Evaluate applicability before declaring
+a deviation. Lack of evidence is `unknown`, not a confirmed violation or a pass;
+allow `not_applicable` only with a grounded reason and required authority. Report
+per-rule result, architectural evidence locator, reference provenance, risk,
+recommended action, exception/review status and separate gate outcome. Do not
+infer the implemented system's behavior from architecture documents.
+
+Without an approved organizational profile, perform an explicitly scoped
+design-quality review using reusable principles and quality-attribute scenarios.
+Do not invent organization-wide prohibitions or claim formal compliance. Keep
+DAP process-readiness findings in `arch-evaluate` rather than combining its
+scoring contract with design-quality gate outcomes.
+
 ## Step 1: Understand Context
 
 Gather before reviewing:
