@@ -7,6 +7,25 @@ description: Drive structured architecture decision-making using Decision Analys
 
 Structured decision-making for architecture and technology choices.
 
+## Decision options catalog versus ADR records
+
+For reusable architecture evaluation profiles, define a **decision area** with
+stable ID, description, scope, mutually exclusive options and an explicit
+`not_applicable` choice when justified. A profile selects at most one expected
+option per area and separately specifies the rule's enforcement. Relevant areas
+include architecture topology (modular monolith/microservices), interaction model
+(synchronous/asynchronous/hybrid), data ownership, consistency strategy,
+deployment model, resilience approach and tenancy/isolation. These are examples,
+not mandatory defaults. Split orthogonal properties into different areas; do
+not misclassify event-driven interaction as an alternative to microservices.
+
+A catalog option is **not** an ADR. An ADR is the scoped record of a particular
+candidate's decision, rationale, alternatives, dependencies, consequences and
+human disposition. Compare an actual choice with a configured expected option
+only when its applicability is established; present deviations with evidence,
+risk and trade-offs rather than automatically claiming design inferiority.
+Hard governance constraints remain eligibility gates, never weighted preferences.
+
 ## Workflow
 
 ```
