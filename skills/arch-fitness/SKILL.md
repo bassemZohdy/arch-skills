@@ -16,6 +16,21 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/template.md` and record protected decision/requirement, rule ID and scope, measurement, tolerated variance, owner, evidence output, failure action and exception expiry.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+## Translating architecture review rules into verifiable checks
+
+When a profile-driven architecture review rule can be objectively checked,
+create a fitness function linked to the stable rule ID, profile/catalog version,
+reference provenance, target architecture baseline, applicability predicate,
+measurement, evidence location, owner and threshold. Distinguish document-based
+design checks from executable code/deployment/runtime checks. A planned fitness
+function is not an executed pass and must not be used to certify implementation.
+
+Export results as `pass`, `fail`, `unknown` or authorized
+`not_applicable`, retaining observed values, environment and execution
+revision. The consuming evaluation gate may aggregate results, but a mandatory
+rule cannot be overridden by a weighted quality score or an undocumented
+exception. Non-automatable rules require explicit human-review routing.
+
 ## Workflow
 
 ```
