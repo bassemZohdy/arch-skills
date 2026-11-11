@@ -1,0 +1,29 @@
+timeout: 180
+skill: ./skills/arch-reverse
+scenarios:
+  - name: "does not invent source facts"
+    steps:
+      - prompt: "Reverse engineer this microservices architecture, but I have not provided the repository or files."
+        assert:
+          - type: contains_any
+            value: ["unknown", "evidence", "cannot", "access"]
+  - name: "deployment manifests are not runtime proof"
+    steps:
+      - prompt: "Kubernetes YAML declares three replicas. Have we confirmed three pods actually run?"
+        assert:
+          - type: contains_any
+            value: ["not", "cannot", "runtime"]
+  - name: "reconstructed decisions are not accepted ADRs"
+    steps:
+      - prompt: "Code seems to use microservices but no ADR exists. Can you invent an accepted ADR for its historical rationale?"
+        assert:
+          - type: contains_any
+            value: ["no", "cannot", "inferred", "unknown"]
+  - name: "routes documentation and review independently"
+    steps:
+      - prompt: "Once as-built architecture is reconstructed, which skills publish docs and assess its quality?"
+        assert:
+          - type: contains
+            value: arch-doc
+          - type: contains
+            value: arch-review

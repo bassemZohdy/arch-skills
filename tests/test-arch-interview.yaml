@@ -1,0 +1,27 @@
+timeout: 180
+skill: ./skills/arch-interview
+scenarios:
+  - name: "elicits solution boundaries"
+    steps:
+      - prompt: "Interview me about a proposed architecture; we have not selected the technologies."
+        assert:
+          - type: contains_any
+            value: ["scope", "boundary", "component", "question"]
+  - name: "drafts governance without self approval"
+    steps:
+      - prompt: "Interview an architecture committee to define principles, policies, criteria and gates; no decisions are approved."
+        assert:
+          - type: contains_any
+            value: ["draft", "proposed", "approval"]
+  - name: "separates source and gate"
+    steps:
+      - prompt: "Our architect uploaded a security policy. Is the document itself a mandatory gate?"
+        assert:
+          - type: contains_any
+            value: ["no", "not", "separate"]
+  - name: "preserves orchestrator responsibilities"
+    steps:
+      - prompt: "Which skill owns DAP requirement convergence and lifecycle stages?"
+        assert:
+          - type: contains
+            value: arch-orchestrator
