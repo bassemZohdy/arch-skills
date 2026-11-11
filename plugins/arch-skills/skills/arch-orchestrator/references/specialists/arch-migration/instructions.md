@@ -14,6 +14,13 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/plan-template.md` and record old/new baseline revisions, phase dependencies, owners, reconciliation evidence, quantitative cutover/rollback criteria and irreversible-step approval.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+## Current-state discovery
+
+When the existing system is undocumented, use `arch-reverse` to recover
+current components, data ownership, interfaces and dependencies before
+planning migration. This skill owns modernization strategies and cutover
+sequencing, not reverse engineering or source discovery.
+
 ## Workflow
 
 ```

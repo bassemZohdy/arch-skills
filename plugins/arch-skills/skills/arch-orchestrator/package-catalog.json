@@ -79,6 +79,10 @@
     "instructions": "references/specialists/arch-integration/instructions.md",
     "resource_root": "references/specialists/arch-integration"
   },
+  "arch-interview": {
+    "instructions": "references/specialists/arch-interview/instructions.md",
+    "resource_root": "references/specialists/arch-interview"
+  },
   "arch-metrics": {
     "instructions": "references/specialists/arch-metrics/instructions.md",
     "resource_root": "references/specialists/arch-metrics"
@@ -114,6 +118,10 @@
   "arch-resilience": {
     "instructions": "references/specialists/arch-resilience/instructions.md",
     "resource_root": "references/specialists/arch-resilience"
+  },
+  "arch-reverse": {
+    "instructions": "references/specialists/arch-reverse/instructions.md",
+    "resource_root": "references/specialists/arch-reverse"
   },
   "arch-review": {
     "instructions": "references/specialists/arch-review/instructions.md",
