@@ -88,6 +88,16 @@ silently rewrite approved decisions or waive a required human review. Skills
 remain host- and application-neutral; a consuming web application owns profile
 administration, user accounts, storage and orchestration of calls.
 
+## Discovery specialist routing
+
+Use `arch-interview` to discover a proposed/existing solution architecture
+through conversations or elicit a draft organizational governance profile.
+The orchestrator retains its existing DAP requirement interview, checkpoint
+and approval boundaries; do not duplicate that engine in the specialist.
+Use `arch-reverse` for read-only recovery from code and technical evidence.
+Reconcile claims with observations before create/update; neither discovery
+mode authorizes silent modification of an accepted baseline.
+
 ## Workflow
 
 1. Select interview, create or update from the user's requested outcome. Read

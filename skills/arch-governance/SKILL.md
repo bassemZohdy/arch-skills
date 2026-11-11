@@ -55,6 +55,13 @@ not job titles. Keep profile ownership, approval, exception authority, audit
 history, effective configuration and review identities in the consuming platform.
 Do not make all artifact types mandatory for every architecture.
 
+## Structured governance discovery
+
+Use `arch-interview` to elicit proposed governance artifacts, principles,
+standards, decision options, evaluation criteria, rules, profiles and gates.
+Verify authority and external obligations independently; an interview never
+approves a policy, automatically creates a mandatory gate or waives controls.
+
 ## Workflow
 
 ```

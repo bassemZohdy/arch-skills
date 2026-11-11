@@ -9,6 +9,13 @@ Generate scoped architecture documentation with diagrams. Do not label missing
 or inferred sections complete. For diagram-first requests, route to `arch-diagrams`
 when available; otherwise provide a bounded view and disclose missing validation.
 
+## As-built architecture handoff
+
+When reconstructing existing-system documentation, use `arch-reverse` for
+provenance-tagged source observations and `arch-interview` for stakeholder
+testimony. Record observed, inferred and unknown details distinctly, especially
+for runtime deployment and historical ADR rationale.
+
 ## Workflow
 
 For DAP create/update work, read `references/dap-arc42-mapping.md` and the packaged

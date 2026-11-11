@@ -7,6 +7,15 @@ description: "Review architecture design fitness across patterns, quality attrib
 
 Orchestrate comprehensive architecture reviews using specialized skills.
 
+## Discovery boundaries
+
+For source-code-based architecture reconstruction, use `arch-reverse` to
+produce an evidence-tagged snapshot before reviewing the recovered design.
+Use `arch-interview` to elicit missing architectural facts or draft governance
+expectations. Keep testimony, observed code and inferred decisions separate;
+evaluate the declared frozen baseline and applicable profile, not an invented
+or silently reconstructed version.
+
 ## Workflow
 
 Keep the assessed baseline read-only. Resolve bundled specialists using the

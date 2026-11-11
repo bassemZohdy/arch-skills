@@ -15,6 +15,13 @@ during requirements and refine them iteratively; do not defer security, metrics
 or fitness criteria until the design is final. Resolve names through the built
 package catalog, or report a missing optional specialist in a selected expert install.
 
+## Architecture Discovery
+
+| Skill | Purpose | Select When | Needs | Produces | Dependencies |
+|-------|---------|-------------|-------|----------|--------------|
+| arch-reverse | Recover as-built architecture from code and technical evidence | Existing undocumented or drifting architecture | Authorized repository snapshot, relevant deployment artifacts | Evidence-backed inventory, candidate views, inferred decisions, unknowns | arch-diagrams, arch-doc; arch-review only for independent quality |
+| arch-interview | Elicit architecture or governance knowledge from people | Architecture discovery or governance profile onboarding | Interview mode, participant, scope, sources, authority | Structured draft architecture or governance records, questions and approval gaps | arch-orchestrator for lifecycle; arch-governance for authority |
+
 ## Design & Structure
 
 | Skill | Purpose | Select When | Needs | Produces | Dependencies |
@@ -91,7 +98,7 @@ package catalog, or report a missing optional specialist in a selected expert in
 
 Use this when a request names capabilities rather than repo skills:
 
-- requirements-analysis → orchestrator itself (no dedicated skill; do basic analysis, flag for review)
+- requirements-analysis → arch-orchestrator retains DAP requirement convergence; arch-interview handles architecture/governance discovery
 - domain-modeling → arch-ddd
 - architecture-style-selection → arch-patterns
 - application-architecture → arch-patterns + arch-principles
@@ -117,3 +124,7 @@ Use this when a request names capabilities rather than repo skills:
 - architecture-diagrams → arch-diagrams
 - diagram-as-code → arch-diagrams
 - architecture-review → arch-review
+- architecture-reverse-engineering → arch-reverse
+- code-to-architecture → arch-reverse + arch-diagrams
+- architecture-discovery-interview → arch-interview
+- architecture-governance-interview → arch-interview + arch-governance
