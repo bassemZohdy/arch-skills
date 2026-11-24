@@ -1,6 +1,6 @@
 {
   "name": "arch-skills",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Software architecture skills: end-to-end architecture design orchestration, process evaluation, and design review with 30+ bundled specialist modules (patterns, quality attributes, security, data, integration, decisions, diagrams).",
   "author": {
     "name": "Bassem Zohdy"

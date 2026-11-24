@@ -1,0 +1,17 @@
+{
+  "rubric_version": "1.0.0",
+  "dimensions": {
+    "requirements_quality": {
+      "per_requirement": ["necessary", "outcome_or_constraint", "unambiguous", "complete", "singular", "correct", "conformant", "feasible", "traceable", "verifiable", "bounded"],
+      "set_level": ["consistent", "coverage", "dependency_closure", "collectively_feasible", "affordable"],
+      "stability": ["confirmed_stable_baseline"]
+    },
+    "decision_coverage": ["id_owner", "decision_statement", "context", "alternatives", "criteria_evidence", "consequences", "dependencies", "status", "authority", "review_disposition"],
+    "artifact_completeness": {
+      "arc42_sections": ["introduction_goals", "constraints", "context_scope", "solution_strategy", "building_blocks", "runtime", "deployment", "crosscutting", "decisions", "quality_requirements", "risks_debt", "glossary"],
+      "supporting_groups": ["requirements", "decisions", "traceability", "verification", "questions_assumptions", "checkpoint_history", "configuration", "reviews_exceptions"]
+    }
+  },
+  "results": ["pass", "fail", "unknown", "not_applicable"]
+}
+
