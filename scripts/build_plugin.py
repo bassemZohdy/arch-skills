@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-"""Generate the installable plugin (default profile) under plugins/arch-skills.
+"""Generate the installable plugins under plugins/ from the built default packages.
 
-The plugin ships the built default packages, not the source skills: shared
-framework files and specialist modules are added by scripts/build_packages.py.
-Use --check in CI to fail when the committed plugin differs from a fresh build.
+Two editions are generated:
+
+- arch-skills: the full plugin (three skills, bundled Python helpers).
+- solution-architecture-skills: a script-free edition for the Claude plugin directory,
+  which accepts only text, JSON, YAML and image files from unverified organizations.
+  It omits arch-evaluate, whose core is the deterministic scripts.
+
+The plugins ship the built default packages, not the source skills: shared framework
+files and specialist modules are added by scripts/build_packages.py.
+Use --check in CI to fail when a committed plugin differs from a fresh build.
 """
 from __future__ import annotations
 
@@ -19,19 +26,43 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_packages  # noqa: E402
 
 ROOT = build_packages.ROOT
-PLUGIN_DIR = ROOT / "plugins" / "arch-skills"
-PLUGIN_VERSION = "0.1.1"  # bump on every change to the generated plugin; Codex caches installs by it
+PLUGINS = ROOT / "plugins"
+PLUGIN_VERSION = "0.1.2"  # bump on every change to a generated plugin; Codex caches installs by it
 REPO = "https://github.com/bassemZohdy/arch-skills"
-DESCRIPTION = ("Software architecture skills: end-to-end architecture design orchestration, "
-               "process evaluation, and design review with 30+ bundled specialist modules "
-               "(patterns, quality attributes, security, data, integration, decisions, diagrams).")
+EDITIONS = {
+    "arch-skills": {
+        "skills": None,  # all default entry points
+        "strip_scripts": False,
+        "readme": "assets/plugin-readme.md",
+        "description": ("Software architecture skills: end-to-end architecture design orchestration, "
+                        "process evaluation, and design review with 30+ bundled specialist modules "
+                        "(patterns, quality attributes, security, data, integration, decisions, diagrams)."),
+    },
+    "solution-architecture-skills": {
+        "skills": ("arch-orchestrator", "arch-review"),
+        "strip_scripts": True,
+        "readme": "assets/plugin-readme-directory.md",
+        "description": ("Interview stakeholders, create or update a solution architecture, and review design "
+                        "quality with 30+ bundled specialist modules (patterns, quality attributes, security, "
+                        "data, integration, decisions, diagrams). Instructions only; no scripts."),
+    },
+}
+NOTICE = """
+## Script-free edition
+
+This edition ships without the Python helper scripts (`scripts/dap*.py`, `validate_math.py`)
+because the plugin directory accepts only text, JSON, YAML and image files. Never run,
+simulate or claim a deterministic check. Where an instruction names a helper script, do the
+check by hand, label the result provisional, and tell the user that the full `arch-skills`
+plugin from https://github.com/bassemZohdy/arch-skills bundles the scripts.
+"""
 
 
-def manifest(codex):
+def manifest(name, description, codex):
     data = {
-        "name": "arch-skills",
+        "name": name,
         "version": PLUGIN_VERSION,
-        "description": DESCRIPTION,
+        "description": description,
         "author": {"name": "Bassem Zohdy"},
         "homepage": REPO,
         "repository": REPO,
@@ -43,18 +74,41 @@ def manifest(codex):
     return json.dumps(data, indent=2) + "\n"
 
 
-def generate(destination: Path) -> None:
+def strip_scripts(package: Path) -> None:
+    """Remove executable helpers, annotate SKILL.md and rewrite the package manifest to match."""
+    for path in sorted(package.rglob("*"), reverse=True):
+        if path.is_file() and (path.suffix == ".py" or path.name == "requirements.txt"):
+            path.unlink()
+        elif path.is_dir() and not any(path.iterdir()):
+            path.rmdir()
+    entry = package / "SKILL.md"
+    entry.write_bytes(entry.read_bytes().rstrip(b"\n") + b"\n" + NOTICE.encode("utf-8"))
+    manifest_path = package / "package-manifest.json"
+    data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    data["files"] = {p.relative_to(package).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                     for p in sorted(package.rglob("*"), key=lambda q: q.relative_to(package).as_posix())
+                     if p.is_file() and p != manifest_path}
+    manifest_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def generate(destination: Path, name: str = "arch-skills") -> None:
+    edition = EDITIONS[name]
     with tempfile.TemporaryDirectory() as tmp:
         packages = Path(tmp) / "packages"
         names = build_packages.build(packages, "default")
-        shutil.copytree(packages, destination / "skills")
-    assert names, "no packages built"
+        assert names, "no packages built"
+        keep = edition["skills"] or tuple(names)
+        (destination / "skills").mkdir(parents=True)
+        for skill in keep:
+            shutil.copytree(packages / skill, destination / "skills" / skill)
+            if edition["strip_scripts"]:
+                strip_scripts(destination / "skills" / skill)
     for folder, codex in ((".claude-plugin", False), (".codex-plugin", True)):
         target = destination / folder
         target.mkdir(parents=True)
-        (target / "plugin.json").write_text(manifest(codex), encoding="utf-8", newline="\n")
+        (target / "plugin.json").write_text(manifest(name, edition["description"], codex), encoding="utf-8", newline="\n")
     # The plugin directory requires a README and a listing icon inside the plugin folder.
-    shutil.copyfile(ROOT / "assets/plugin-readme.md", destination / "README.md")
+    shutil.copyfile(ROOT / edition["readme"], destination / "README.md")
     shutil.copyfile(ROOT / "assets/plugin-icon.png", destination / ".claude-plugin/icon.png")
 
 
@@ -63,33 +117,41 @@ def digest(root: Path) -> dict:
             for p in sorted(root.rglob("*")) if p.is_file()}
 
 
+def check(name: str) -> bool:
+    plugin_dir = PLUGINS / name
+    with tempfile.TemporaryDirectory() as tmp:
+        fresh = Path(tmp) / name
+        generate(fresh, name)
+        want, have = digest(fresh), digest(plugin_dir) if plugin_dir.exists() else {}
+        changed = sorted(set(want) ^ set(have) | {k for k in want.keys() & have.keys() if want[k] != have[k]})
+        detail = []
+        for rel in changed[:3]:
+            fresh_lines = (fresh / rel).read_text(encoding="utf-8", errors="replace").splitlines() if (fresh / rel).is_file() else []
+            kept_lines = (plugin_dir / rel).read_text(encoding="utf-8", errors="replace").splitlines() if (plugin_dir / rel).is_file() else []
+            detail += [f"{rel}: {tag} {line}" for tag, lines, other in (("fresh", fresh_lines, kept_lines), ("committed", kept_lines, fresh_lines))
+                       for line in lines if line not in other][:4]
+    if want != have:
+        print(f"plugins/{name} is out of date ({len(changed)} files differ, e.g. {changed[:3]}); run python scripts/build_plugin.py")
+        print("\n".join(detail))
+        return False
+    print(f"plugins/{name} matches a fresh build")
+    return True
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="fail if plugins/arch-skills differs from a fresh build")
+    parser.add_argument("--check", action="store_true", help="fail if a committed plugin differs from a fresh build")
     args = parser.parse_args()
     if args.check:
-        with tempfile.TemporaryDirectory() as tmp:
-            fresh = Path(tmp) / "arch-skills"
-            generate(fresh)
-            want, have = digest(fresh), digest(PLUGIN_DIR) if PLUGIN_DIR.exists() else {}
-            changed = sorted(set(want) ^ set(have) | {k for k in want.keys() & have.keys() if want[k] != have[k]})
-            detail = []
-            for name in changed[:3]:
-                fresh_lines = (fresh / name).read_text(encoding="utf-8", errors="replace").splitlines() if (fresh / name).is_file() else []
-                kept_lines = (PLUGIN_DIR / name).read_text(encoding="utf-8", errors="replace").splitlines() if (PLUGIN_DIR / name).is_file() else []
-                detail += [f"{name}: {tag} {line}" for tag, lines, other in (("fresh", fresh_lines, kept_lines), ("committed", kept_lines, fresh_lines))
-                           for line in lines if line not in other][:4]
-        if want != have:
-            print(f"plugins/arch-skills is out of date ({len(changed)} files differ, e.g. {changed[:3]}); run python scripts/build_plugin.py")
-            print("\n".join(detail))
-            return 1
-        print("plugins/arch-skills matches a fresh build")
-        return 0
-    if PLUGIN_DIR.exists():
-        shutil.rmtree(PLUGIN_DIR)  # generated output only; never touches sources
-    PLUGIN_DIR.parent.mkdir(parents=True, exist_ok=True)
-    generate(PLUGIN_DIR)
-    print(f"wrote {PLUGIN_DIR.relative_to(ROOT)} (version {PLUGIN_VERSION})")
+        results = [check(name) for name in EDITIONS]
+        return 0 if all(results) else 1
+    for name in EDITIONS:
+        plugin_dir = PLUGINS / name
+        if plugin_dir.exists():
+            shutil.rmtree(plugin_dir)  # generated output only; never touches sources
+        plugin_dir.parent.mkdir(parents=True, exist_ok=True)
+        generate(plugin_dir, name)
+        print(f"wrote {plugin_dir.relative_to(ROOT)} (version {PLUGIN_VERSION})")
     return 0
 
 
