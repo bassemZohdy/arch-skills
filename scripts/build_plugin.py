@@ -72,9 +72,16 @@ def main() -> int:
             fresh = Path(tmp) / "arch-skills"
             generate(fresh)
             want, have = digest(fresh), digest(PLUGIN_DIR) if PLUGIN_DIR.exists() else {}
-        if want != have:
             changed = sorted(set(want) ^ set(have) | {k for k in want.keys() & have.keys() if want[k] != have[k]})
+            detail = []
+            for name in changed[:3]:
+                fresh_lines = (fresh / name).read_text(encoding="utf-8", errors="replace").splitlines() if (fresh / name).is_file() else []
+                kept_lines = (PLUGIN_DIR / name).read_text(encoding="utf-8", errors="replace").splitlines() if (PLUGIN_DIR / name).is_file() else []
+                detail += [f"{name}: {tag} {line}" for tag, lines, other in (("fresh", fresh_lines, kept_lines), ("committed", kept_lines, fresh_lines))
+                           for line in lines if line not in other][:4]
+        if want != have:
             print(f"plugins/arch-skills is out of date ({len(changed)} files differ, e.g. {changed[:3]}); run python scripts/build_plugin.py")
+            print("\n".join(detail))
             return 1
         print("plugins/arch-skills matches a fresh build")
         return 0
