@@ -52,7 +52,7 @@ def generate(destination: Path) -> None:
     for folder, codex in ((".claude-plugin", False), (".codex-plugin", True)):
         target = destination / folder
         target.mkdir(parents=True)
-        (target / "plugin.json").write_text(manifest(codex), encoding="utf-8")
+        (target / "plugin.json").write_text(manifest(codex), encoding="utf-8", newline="\n")
     # The plugin directory requires a README and a listing icon inside the plugin folder.
     shutil.copyfile(ROOT / "assets/plugin-readme.md", destination / "README.md")
     shutil.copyfile(ROOT / "assets/plugin-icon.png", destination / ".claude-plugin/icon.png")
