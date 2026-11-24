@@ -67,7 +67,7 @@ def build(destination, profile="default", selected=None):
                 copy_skill(source, module, module=True)
                 catalog[other] = {"instructions": f"references/specialists/{other}/instructions.md",
                                   "resource_root": f"references/specialists/{other}"}
-            (package / "package-catalog.json").write_text(json.dumps(catalog, indent=2) + "\n", encoding="utf-8")
+            (package / "package-catalog.json").write_text(json.dumps(catalog, indent=2) + "\n", encoding="utf-8", newline="\n")
         # Deterministic shared contracts are bundled, never resolved from the source checkout.
         shutil.copytree(ROOT / "framework", package / "framework")
         shutil.copytree(ROOT / "scripts/dap", package / "scripts/dap", ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
@@ -75,10 +75,11 @@ def build(destination, profile="default", selected=None):
             shutil.copyfile(script, package / "scripts" / script.name)
         shutil.copyfile(ROOT / "requirements.txt", package / "requirements.txt")
         shutil.copyfile(ROOT / "LICENSE", package / "LICENSE")
+        # Sort by posix string: Path ordering is case-insensitive on Windows, so manifests differed by OS.
         files = {p.relative_to(package).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-                 for p in sorted(package.rglob("*")) if p.is_file()}
+                 for p in sorted(package.rglob("*"), key=lambda q: q.relative_to(package).as_posix()) if p.is_file()}
         (package / "package-manifest.json").write_text(json.dumps({"profile": profile, "name": name,
-            "public_entry": "SKILL.md", "files": files}, indent=2) + "\n", encoding="utf-8")
+            "public_entry": "SKILL.md", "files": files}, indent=2) + "\n", encoding="utf-8", newline="\n")
     return names
 
 
