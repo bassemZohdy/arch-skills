@@ -3,6 +3,8 @@
   "name": "arch-evaluate",
   "public_entry": "SKILL.md",
   "files": {
+    "LICENSE": "b637333d749724227d2b3939cc263d8e3c161d82d431bdf83a2fd78eff7acd04",
+    "SKILL.md": "9b5035bbd4d4b5381acac1c0b09b364995e2da877a7ca4c6caac6c9b06937c21",
     "assets/evaluation-report-template.json": "46c710241e68d433b65b3f32f1249bd0590b768769d4bfc39e15746473dcd9ff",
     "framework/config.example.json": "77dd7ec107efc3a5cc6041a46d7060249b99c3cddbee483d7a368b3db0f28c13",
     "framework/contract-version.json": "535c6232bc12c30a5ddc67929af7240687931a8c760aeea3a0f4b8413e2ab919",
@@ -12,7 +14,6 @@
     "framework/project-schema.json": "a611f14576796460b3b74fc4f0411aebf722233d0ca857fafe2ac9e4b6e4ff4b",
     "framework/records.md": "8594ca1778fb5babf3fe81b1a5940d4f1fcaee690c8d36d07680ff951a98c32e",
     "framework/schema-2-migration.md": "d926cb2c58c0d29c472a6c295e0a3aeeebbbfe809de7ed5805775288adf5e79b",
-    "LICENSE": "b637333d749724227d2b3939cc263d8e3c161d82d431bdf83a2fd78eff7acd04",
     "package-catalog.json": "daa8e6ec7810143f66876add12c35dafa084c01ae74b970b078a43764e6f3235",
     "references/evaluation-contract.md": "19f37266991e2894d653b5a692ba0b961109bec255ae04a0fa659bee2d22710d",
     "references/specialists/arch-accessibility/assets/review-template.md": "6fb9290f03c3e99552517ffbaec05b6d51a5c263c83a9424e1482d4d54e89a36",
@@ -214,7 +215,6 @@
     "scripts/dap_manifest.py": "d33969a6bca81800b86644dc6e11177feb6651026016ed33e02dea72f114edad",
     "scripts/dap_publish.py": "14db144fab51df32458c94b687cad81b3077355b6e7bca7ca3f32c3940988a33",
     "scripts/dap_rtm.py": "8fe45cdc40f94a425f394ae8203d63a11a2d31a1358d79a09458b392c1a9853e",
-    "scripts/dap_validate.py": "628b50f08aca93096764c4b7b105087bf97a2ce0cc75598b291cd171e3279b96",
-    "SKILL.md": "9b5035bbd4d4b5381acac1c0b09b364995e2da877a7ca4c6caac6c9b06937c21"
+    "scripts/dap_validate.py": "628b50f08aca93096764c4b7b105087bf97a2ce0cc75598b291cd171e3279b96"
   }
 }
