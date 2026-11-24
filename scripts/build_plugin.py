@@ -18,6 +18,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import sys
 import tempfile
@@ -27,7 +28,7 @@ import build_packages  # noqa: E402
 
 ROOT = build_packages.ROOT
 PLUGINS = ROOT / "plugins"
-PLUGIN_VERSION = "0.1.2"  # bump on every change to a generated plugin; Codex caches installs by it
+PLUGIN_VERSION = "0.1.3"  # bump on every change to a generated plugin; Codex caches installs by it
 REPO = "https://github.com/bassemZohdy/arch-skills"
 EDITIONS = {
     "arch-skills": {
@@ -55,6 +56,9 @@ because the plugin directory accepts only text, JSON, YAML and image files. Neve
 simulate or claim a deterministic check. Where an instruction names a helper script, do the
 check by hand, label the result provisional, and tell the user that the full `arch-skills`
 plugin from https://github.com/bassemZohdy/arch-skills bundles the scripts.
+
+Diagram templates (`*-templates/*.mmd`, `.puml`, `.drawio`) ship with an added `.txt` suffix for
+the same reason. Drop the `.txt` suffix when you save a template into the user's project.
 """
 
 
@@ -74,6 +78,10 @@ def manifest(name, description, codex):
     return json.dumps(data, indent=2) + "\n"
 
 
+TEMPLATE_SUFFIXES = (".mmd", ".puml", ".drawio")
+TEMPLATE_REFERENCE = re.compile(rb"(-templates/[\w.-]+?\.(?:mmd|puml|drawio))(?!\.txt)")
+
+
 def strip_scripts(package: Path) -> None:
     """Remove executable helpers, annotate SKILL.md and rewrite the package manifest to match."""
     for path in sorted(package.rglob("*"), reverse=True):
@@ -81,6 +89,16 @@ def strip_scripts(package: Path) -> None:
             path.unlink()
         elif path.is_dir() and not any(path.iterdir()):
             path.rmdir()
+    # The directory accepts only Markdown, text, JSON, YAML and images, so diagram templates become .txt.
+    for path in sorted(package.rglob("*")):
+        if path.is_file() and path.suffix in TEMPLATE_SUFFIXES:
+            path.rename(path.with_name(path.name + ".txt"))
+    for path in sorted(package.rglob("*")):
+        if path.is_file() and path.suffix in (".md", ".yaml", ".yml") or path.is_file() and path.suffix == ".json" and path.name != "package-manifest.json":
+            text = path.read_bytes()
+            updated = TEMPLATE_REFERENCE.sub(rb"\1.txt", text)
+            if updated != text:
+                path.write_bytes(updated)
     entry = package / "SKILL.md"
     entry.write_bytes(entry.read_bytes().rstrip(b"\n") + b"\n" + NOTICE.encode("utf-8"))
     manifest_path = package / "package-manifest.json"

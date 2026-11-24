@@ -157,7 +157,7 @@ How the system is deployed to infrastructure.
 - Deployment environments
 - Network and security boundaries
 
-**Use deployment diagram format** from `assets/mermaid-templates/deployment.mmd`.
+**Use deployment diagram format** from `assets/mermaid-templates/deployment.mmd.txt`.
 
 ### 8. Cross-cutting Concepts
 
