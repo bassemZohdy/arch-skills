@@ -21,8 +21,7 @@ optional test transport; it does not make a particular provider or host required
 - Expert: all 34 entry points, or selected specialists using --skill. Narrow
   expert requests do not require the entire DAP workflow.
 - Both: the repository license, framework contracts, Python runtime/dependencies and content hashes are
-  copied from one canonical source. There are no manually maintained host mirrors; the generated Claude Code plugin
-  in `plugins/arch-skills/` is built by `scripts/build_plugin.py` and tested for drift.
+  copied from one canonical source. There are no manually maintained host mirrors.
 
 The default interface presents interview/create/update/evaluate workflows. It
 does not add four engines or hide evaluation inside an authoring-only path.

@@ -1,6 +1,6 @@
 # Architecture Skills plugin
 
-Portable software architecture skills for Claude Code. The plugin exposes three skills:
+Portable software architecture skills for Claude Code and Codex. The plugin exposes three skills:
 
 - `arch-orchestrator`: interview stakeholders, create a solution architecture, or update an existing baseline.
 - `arch-evaluate`: assess process completeness, traceability and evidence freshness of an architecture baseline.
@@ -20,7 +20,7 @@ skill invokes them, and make no network calls. The plugin has no hooks, MCP serv
 
 ```
 /plugin marketplace add bassemZohdy/arch-skills
-/plugin install arch-skills@arch-skills
+/plugin install arch-skills --marketplace bassemZohdy/arch-skills
 ```
 
 ## Source and license

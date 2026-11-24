@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build a Claude Code plugin directory from the default portable packages.
+"""Generate the installable plugin (default profile) under plugins/arch-skills.
 
-The plugin contains only the three public entry points. Each skill directory is a
-complete built package, so shared framework contracts resolve from an isolated install.
+The plugin ships the built default packages, not the source skills: shared
+framework files and specialist modules are added by scripts/build_packages.py.
+Use --check in CI to fail when the committed plugin differs from a fresh build.
 """
 from __future__ import annotations
 
@@ -12,107 +13,78 @@ import json
 from pathlib import Path
 import shutil
 import sys
+import tempfile
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_packages  # noqa: E402
 
-PLUGIN_NAME = "arch-skills"
-VERSION = "0.1.0"
-DESCRIPTION = (
-    "Software architecture skills: interview stakeholders, create or update a solution "
-    "architecture, evaluate process readiness and review design quality. 31 specialist "
-    "modules (APIs, data, security, resilience, diagrams, decisions, fitness functions) "
-    "load on demand."
-)
-MANIFEST = {
-    "name": PLUGIN_NAME,
-    "version": VERSION,
-    "description": DESCRIPTION,
-    "author": {"name": "Bassem Zohdy", "url": "https://github.com/bassemZohdy"},
-    "homepage": "https://github.com/bassemZohdy/arch-skills",
-    "repository": "https://github.com/bassemZohdy/arch-skills",
-    "license": "MIT",
-    "keywords": ["architecture", "software-architecture", "design-review", "adr",
-                 "diagrams", "quality-attributes", "documentation"],
-}
+ROOT = build_packages.ROOT
+PLUGIN_DIR = ROOT / "plugins" / "arch-skills"
+PLUGIN_VERSION = "0.1.1"  # bump on every change to the generated plugin; Codex caches installs by it
+REPO = "https://github.com/bassemZohdy/arch-skills"
+DESCRIPTION = ("Software architecture skills: end-to-end architecture design orchestration, "
+               "process evaluation, and design review with 30+ bundled specialist modules "
+               "(patterns, quality attributes, security, data, integration, decisions, diagrams).")
 
 
-README = """# Architecture Skills plugin
-
-Portable software architecture skills for Claude Code. The plugin exposes three skills:
-
-- `arch-orchestrator`: interview stakeholders, create a solution architecture, or update an existing baseline.
-- `arch-evaluate`: assess process completeness, traceability and evidence freshness of an architecture baseline.
-- `arch-review`: review design fitness, quality attributes, trade-offs, risks and technical debt.
-
-Thirty-one specialist modules (APIs, data, security, resilience, diagrams, decisions, fitness
-functions and more) are bundled as instructions that the three skills load on demand. They are not
-separate skills.
-
-## What the plugin runs
-
-The plugin is Markdown instructions, templates and small deterministic Python helpers in
-`scripts/` inside each skill. The helpers need Python 3.10+ and PyYAML, run locally only when a
-skill invokes them, and make no network calls. The plugin has no hooks, MCP servers or background processes.
-
-## Install
-
-```
-/plugin marketplace add bassemZohdy/arch-skills
-/plugin install arch-skills@arch-skills
-```
-
-## Source and license
-
-This folder is generated from https://github.com/bassemZohdy/arch-skills with
-`python scripts/build_plugin.py`. Do not edit it by hand. Licensed under MIT, see `LICENSE`.
-"""
+def manifest(codex):
+    data = {
+        "name": "arch-skills",
+        "version": PLUGIN_VERSION,
+        "description": DESCRIPTION,
+        "author": {"name": "Bassem Zohdy"},
+        "homepage": REPO,
+        "repository": REPO,
+        "license": "MIT",
+        "keywords": ["architecture", "design-review", "adr", "agent-skills"],
+    }
+    if codex:
+        data["skills"] = "./skills/"
+    return json.dumps(data, indent=2) + "\n"
 
 
-def normalize_text(skills_dir):
-    """Rewrite text files with LF and refresh package hashes so output is identical on every OS."""
-    for package in sorted(p for p in Path(skills_dir).iterdir() if p.is_dir()):
-        manifest_path = package / "package-manifest.json"
-        for path in sorted(package.rglob("*")):
-            if path.is_file() and path != manifest_path:
-                data = path.read_bytes()
-                if b"\0" not in data and b"\r\n" in data:
-                    path.write_bytes(data.replace(b"\r\n", b"\n"))
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        manifest["files"] = {p.relative_to(package).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-                             for p in sorted(package.rglob("*")) if p.is_file() and p != manifest_path}
-        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
+def generate(destination: Path) -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        packages = Path(tmp) / "packages"
+        names = build_packages.build(packages, "default")
+        shutil.copytree(packages, destination / "skills")
+    assert names, "no packages built"
+    for folder, codex in ((".claude-plugin", False), (".codex-plugin", True)):
+        target = destination / folder
+        target.mkdir(parents=True)
+        (target / "plugin.json").write_text(manifest(codex), encoding="utf-8")
+    # The plugin directory requires a README and a listing icon inside the plugin folder.
+    shutil.copyfile(ROOT / "assets/plugin-readme.md", destination / "README.md")
+    shutil.copyfile(ROOT / "assets/plugin-icon.png", destination / ".claude-plugin/icon.png")
 
 
-def build(destination):
-    destination = Path(destination).resolve()
-    if destination.exists():
-        raise ValueError("destination must not exist; choose a fresh directory (no implicit deletion/overwrite)")
-    destination.mkdir(parents=True)
-    names = build_packages.build(destination / "skills", "default")
-    normalize_text(destination / "skills")
-    manifest_dir = destination / ".claude-plugin"
-    manifest_dir.mkdir()
-    manifest_text = json.dumps(MANIFEST, indent=2) + "\n"
-    (manifest_dir / "plugin.json").write_text(manifest_text, encoding="utf-8", newline="\n")
-    (destination / "README.md").write_text(README, encoding="utf-8", newline="\n")
-    shutil.copyfile(ROOT / "assets/plugin-icon.png", manifest_dir / "icon.png")  # binary
-    license_bytes = (ROOT / "LICENSE").read_bytes().replace(b"\r\n", b"\n")
-    (destination / "LICENSE").write_bytes(license_bytes)
-    return names
+def digest(root: Path) -> dict:
+    return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes().replace(b"\r\n", b"\n")).hexdigest()  # ignore checkout line endings
+            for p in sorted(root.rglob("*")) if p.is_file()}
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--check", action="store_true", help="fail if plugins/arch-skills differs from a fresh build")
     args = parser.parse_args()
-    try:
-        names = build(args.output)
-    except (ValueError, OSError) as exc:
-        parser.exit(2, f"plugin build refused: {exc}\n")
-    print(json.dumps({"output": str(args.output.resolve()), "skills": names}, indent=2))
+    if args.check:
+        with tempfile.TemporaryDirectory() as tmp:
+            fresh = Path(tmp) / "arch-skills"
+            generate(fresh)
+            want, have = digest(fresh), digest(PLUGIN_DIR) if PLUGIN_DIR.exists() else {}
+        if want != have:
+            changed = sorted(set(want) ^ set(have) | {k for k in want.keys() & have.keys() if want[k] != have[k]})
+            print(f"plugins/arch-skills is out of date ({len(changed)} files differ, e.g. {changed[:3]}); run python scripts/build_plugin.py")
+            return 1
+        print("plugins/arch-skills matches a fresh build")
+        return 0
+    if PLUGIN_DIR.exists():
+        shutil.rmtree(PLUGIN_DIR)  # generated output only; never touches sources
+    PLUGIN_DIR.parent.mkdir(parents=True, exist_ok=True)
+    generate(PLUGIN_DIR)
+    print(f"wrote {PLUGIN_DIR.relative_to(ROOT)} (version {PLUGIN_VERSION})")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

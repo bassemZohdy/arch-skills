@@ -1,21 +1,17 @@
 {
   "name": "arch-skills",
   "version": "0.1.0",
-  "description": "Software architecture skills: interview stakeholders, create or update a solution architecture, evaluate process readiness and review design quality. 31 specialist modules (APIs, data, security, resilience, diagrams, decisions, fitness functions) load on demand.",
+  "description": "Software architecture skills: end-to-end architecture design orchestration, process evaluation, and design review with 30+ bundled specialist modules (patterns, quality attributes, security, data, integration, decisions, diagrams).",
   "author": {
-    "name": "Bassem Zohdy",
-    "url": "https://github.com/bassemZohdy"
+    "name": "Bassem Zohdy"
   },
   "homepage": "https://github.com/bassemZohdy/arch-skills",
   "repository": "https://github.com/bassemZohdy/arch-skills",
   "license": "MIT",
   "keywords": [
     "architecture",
-    "software-architecture",
     "design-review",
     "adr",
-    "diagrams",
-    "quality-attributes",
-    "documentation"
+    "agent-skills"
   ]
 }

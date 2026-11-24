@@ -10,8 +10,6 @@ host-neutral and useful to a reader who has not seen this repository before.
    `references/` or reusable output files in `assets/`.
 3. Keep integrations for individual AI coding tools outside this repository.
    Canonical skills, scenario manifests and adapter contracts must remain portable.
-   The generated Claude Code plugin in `plugins/arch-skills/` is the one exception and
-   must be rebuilt with `scripts/build_plugin.py`, never edited by hand.
 4. Update tests and documentation when a contract, package profile or public
    workflow changes.
 

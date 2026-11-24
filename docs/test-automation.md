@@ -248,7 +248,7 @@ identities. Candidate errors fail, and unavailable observations never become pas
 
 ## Portable resource and activation tests
 
-Keep integrations for individual AI coding tools outside this repository. Supply
+Keep host-specific test integrations outside this repository. Supply
 an external command implementing the protocol above through `--adapter-command`.
 The canonical packages and scenarios do not require a specific executable,
 installation directory, model family or vendor event format.

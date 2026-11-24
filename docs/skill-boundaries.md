@@ -44,6 +44,6 @@ The cleanup is therefore boundary-focused:
 - No merges. Merging would make activation less precise and would mix different evidence types.
 - No splits. Each skill has one primary architectural concern and its current related-skill links describe supporting boundaries.
 - Clarify descriptions. Governance now points regulatory control design to arch-compliance; review and evaluation remain explicitly distinct.
-- Keep tool-specific adapters outside this repository. Their tests and metadata can evolve without changing the portable skill contract.
+- Keep tool-specific adapters out of the canonical sources (the generated plugin manifests under `plugins/` and the marketplace files are the only host-specific files here). Their tests and metadata can evolve without changing the portable skill contract.
 
 Future consolidation should require a repeated overlap finding, shared inputs and outputs, and a smaller combined activation surface. A name change or a shorter file alone is not sufficient evidence for a merge.

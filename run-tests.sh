@@ -8,5 +8,6 @@ python3 scripts/behavioral.py validate
 python3 tests/test_skills.py
 python3 -m unittest discover -s tests -p 'test_*.py'
 python3 tests/test_activation.py
+python3 scripts/build_plugin.py --check
 
 echo 'All offline checks passed.'

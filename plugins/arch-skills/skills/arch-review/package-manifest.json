@@ -3,6 +3,8 @@
   "name": "arch-review",
   "public_entry": "SKILL.md",
   "files": {
+    "LICENSE": "c89dc57801bb7e468af26a792abaaca95532dd6dbe92c2775a71382ae7ff25c0",
+    "SKILL.md": "65ef4d931f180f6f17dc977ae2c8dc543c619e1f619ceace3e3867c577ea823c",
     "assets/review-template.md": "2470cece543589b4aa931d57fa46a1be2c2796943bcfaee125ccfc3e3b2cc783",
     "framework/config.example.json": "77dd7ec107efc3a5cc6041a46d7060249b99c3cddbee483d7a368b3db0f28c13",
     "framework/contract-version.json": "535c6232bc12c30a5ddc67929af7240687931a8c760aeea3a0f4b8413e2ab919",
@@ -12,7 +14,6 @@
     "framework/project-schema.json": "a611f14576796460b3b74fc4f0411aebf722233d0ca857fafe2ac9e4b6e4ff4b",
     "framework/records.md": "8594ca1778fb5babf3fe81b1a5940d4f1fcaee690c8d36d07680ff951a98c32e",
     "framework/schema-2-migration.md": "d926cb2c58c0d29c472a6c295e0a3aeeebbbfe809de7ed5805775288adf5e79b",
-    "LICENSE": "c89dc57801bb7e468af26a792abaaca95532dd6dbe92c2775a71382ae7ff25c0",
     "package-catalog.json": "98ade75aea09951d2243ce7fbf0e1a9103ac2cf1724b5400328a4c8f3660bbcd",
     "references/awesome-architecture.md": "c2c3a18062aab31e7dc0f3bc9b1c0d24954fa196eb1386cf8d20099ec944129b",
     "references/best-practices.md": "2da1a078d5722a5aa37a5f0ed5ad13a245e60b84cf6123079ff85bf2e11d8cde",
@@ -214,7 +215,6 @@
     "scripts/dap_manifest.py": "d33969a6bca81800b86644dc6e11177feb6651026016ed33e02dea72f114edad",
     "scripts/dap_publish.py": "14db144fab51df32458c94b687cad81b3077355b6e7bca7ca3f32c3940988a33",
     "scripts/dap_rtm.py": "8fe45cdc40f94a425f394ae8203d63a11a2d31a1358d79a09458b392c1a9853e",
-    "scripts/dap_validate.py": "628b50f08aca93096764c4b7b105087bf97a2ce0cc75598b291cd171e3279b96",
-    "SKILL.md": "65ef4d931f180f6f17dc977ae2c8dc543c619e1f619ceace3e3867c577ea823c"
+    "scripts/dap_validate.py": "628b50f08aca93096764c4b7b105087bf97a2ce0cc75598b291cd171e3279b96"
   }
 }
