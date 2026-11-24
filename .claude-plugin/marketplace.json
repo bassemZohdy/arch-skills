@@ -6,6 +6,11 @@
       "name": "arch-skills",
       "source": "./plugins/arch-skills",
       "description": "Software architecture skills: end-to-end design orchestration, process evaluation and design review with 30+ bundled specialist modules."
+    },
+    {
+      "name": "solution-architecture-skills",
+      "source": "./plugins/solution-architecture-skills",
+      "description": "Script-free edition for the plugin directory: design orchestration and design review with 30+ bundled specialist modules."
     }
   ]
 }

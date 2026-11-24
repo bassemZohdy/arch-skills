@@ -1,0 +1,231 @@
+---
+name: arch-test
+description: Design test strategy, test architecture, contract testing and verification standards. Use when planning unit, integration, contract, or end-to-end tests, reducing flakiness, testing distributed workflows, or setting evidence-based quality gates for a system.
+---
+
+# Test Architecture
+
+Systematic approach to designing test strategies.
+
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/strategy-template.md` and record VER register with requirement/constraint/design mappings, method, acceptance threshold, environment, owner and planned versus executed evidence.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
+## Workflow
+
+```
+1. Define Strategy → What to test and when?
+2. Design Pyramid → Unit, integration, e2e balance
+3. Implement Contracts → Service boundaries
+4. Plan Automation → CI/CD integration
+5. Measure → Coverage and effectiveness
+6. Maintain → Keep tests valuable
+```
+
+## Step 1: Test Pyramid
+
+```mermaid
+graph TB
+    Unit["Unit &mdash; many, fast, cheap"]
+    Integration["Integration &mdash; some, medium speed"]
+    E2E["E2E &mdash; few, slow, expensive"]
+    Unit --> Integration
+    Integration --> E2E
+```
+
+- The **Unit** layer is the wide base: most tests live here, run in milliseconds, and are cheap.
+- The **Integration** layer is the middle band: fewer tests, seconds each, medium cost.
+- The **E2E** layer is the narrow apex: few tests, minutes each, expensive.
+
+| Level | Scope | Speed | Cost | Quantity |
+|-------|-------|-------|------|----------|
+| **Unit** | Single function/class | Milliseconds | Low | Many, risk-based |
+| **Integration** | Multiple components | Seconds | Medium | Targeted boundaries |
+| **E2E** | Full system | Minutes | High | Few, critical journeys |
+
+## Step 2: Test Types
+
+### Unit Tests
+
+Test individual components in isolation.
+
+```python
+def test_order_total():
+    order = Order(items=[Item(price=10), Item(price=20)])
+    assert order.total == 30
+```
+
+**Best Practices:**
+- Test one coherent behavior; use all assertions needed to verify its observable outcome
+- Fast execution
+- No external dependencies
+- Deterministic results
+
+### Integration Tests
+
+Test component interactions.
+
+```python
+def test_create_order():
+    order = order_service.create_order(customer_id=123, items=[...])
+    assert order.id is not None
+    assert order.status == "created"
+```
+
+**Best Practices:**
+- Test real integrations
+- Use test databases/services
+- Clean up after tests
+- Test error scenarios
+
+### Contract Tests
+
+Verify service contracts between teams.
+
+```json
+{
+  "provider": "OrderService",
+  "consumer": "ShippingService",
+  "interaction": {
+    "description": "Get order by ID",
+    "request": {
+      "method": "GET",
+      "path": "/orders/123"
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "id": "123",
+        "status": "shipped"
+      }
+    }
+  }
+}
+```
+
+**Tools:**
+- Pact — Contract testing framework
+- Spring Cloud Contract — JVM contracts
+
+### E2E Tests
+
+Test complete user flows.
+
+```python
+def test_purchase_flow():
+    browser.goto("/products")
+    browser.click(".add-to-cart")
+    browser.click(".checkout")
+    browser.fill("#email", "test@example.com")
+    browser.click(".submit-order")
+    assert browser.text(".confirmation") == "Order placed"
+```
+
+**Best Practices:**
+- Test critical paths only
+- Use page object model
+- Parallelize when possible
+- Isolate accounts/data per run and suppress real payments, emails and other
+  external side effects. Production test execution needs explicit authorization.
+- Quarantine a flaky test only with an owner, defect link and expiry; retries may reduce noise but must not hide the defect
+
+## Step 3: Testing Patterns
+
+### Given-When-Then
+
+```python
+def test_order_placement():
+    # Given
+    customer = create_customer()
+    product = create_product(stock=10)
+    
+    # When
+    order = place_order(customer, product, quantity=2)
+    
+    # Then
+    assert order.status == "confirmed"
+    assert product.stock == 8
+```
+
+### Test Data Management
+
+| Strategy | Use Case |
+|----------|----------|
+| **Factories** | Create test data dynamically |
+| **Fixtures** | Pre-defined test data |
+| **Builders** | Complex object construction |
+| **Seeds** | Database initialization |
+
+### Mocking vs Stubbing
+
+| Type | Purpose | Example |
+|------|---------|---------|
+| **Mock** | Verify interactions | Verify email sent |
+| **Stub** | Provide canned responses | Return fixed user |
+| **Spy** | Record calls | Count API calls |
+
+## Step 4: Test Automation
+
+### CI/CD Integration
+
+```
+Commit → Unit Tests → Build → Integration Tests → Deploy → E2E Tests
+```
+
+### Quality Gates
+
+| Gate | Metric | Threshold |
+|------|--------|-----------|
+| **Coverage** | Line coverage | Project-defined, with critical paths reviewed |
+| **Mutation** | Mutation score | Project-defined after a baseline |
+| **Performance** | Test duration | Project-defined CI budget |
+| **Flakiness** | Flaky test rate | Project-defined reliability target |
+
+Choose thresholds from a baseline and the risk of the system; do not treat the
+sample values above as universal architecture rules. Track test duration,
+flakiness, escaped defects, mutation or property-based results where useful, and
+the coverage of critical requirements and failure modes.
+
+## Step 5: Anti-patterns
+
+| Anti-pattern | Problem | Solution |
+|--------------|---------|----------|
+| **Test Pyramid Inversion** | Too many E2E, few unit | Balance pyramid |
+| **Fragile Tests** | Break with changes | Stable selectors |
+| **Slow Tests** | Block CI pipeline | Parallelize, optimize |
+| **Flaky Tests** | Non-deterministic | Isolate, fix |
+
+## Examples
+
+- Define a test pyramid for a web app with a slow payment flow.
+- Add contract tests between order and shipping services.
+- Reduce flaky E2E coverage by moving logic into faster integration tests.
+
+## Common Gotchas
+
+- Do not over-rotate to E2E tests when unit or integration tests will catch the same behavior sooner.
+- Keep selectors and test data stable so refactors do not break healthy tests.
+- Separate contract tests from smoke tests; they answer different questions.
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/test-deep-dive.md` — Test Architecture Deep Dive
+- `references/test-strategy.md` — Test Pyramid Reference
+
+## Cross-skill handoff
+
+Consume requirement scenarios, contracts and risks from the selected specialists. Return
+a risk-to-verification map with planned versus executed evidence, realistic environments
+and known exclusions. Cover authorization failures, concurrency, duplicate delivery,
+dependency failure and schema/version skew where applicable; pass adopted architecture
+invariants to arch-fitness and execution/promotion gates to arch-devops.
+
+## Related Skills
+
+- **arch-fitness** - Architecture tests as part of the suite
+- **arch-refactoring** - The safety net tests provide
+- **arch-devops** - Where the tests run in the pipeline

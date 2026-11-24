@@ -1,0 +1,134 @@
+{
+  "arch-accessibility": {
+    "instructions": "references/specialists/arch-accessibility/instructions.md",
+    "resource_root": "references/specialists/arch-accessibility"
+  },
+  "arch-ai": {
+    "instructions": "references/specialists/arch-ai/instructions.md",
+    "resource_root": "references/specialists/arch-ai"
+  },
+  "arch-antipatterns": {
+    "instructions": "references/specialists/arch-antipatterns/instructions.md",
+    "resource_root": "references/specialists/arch-antipatterns"
+  },
+  "arch-api": {
+    "instructions": "references/specialists/arch-api/instructions.md",
+    "resource_root": "references/specialists/arch-api"
+  },
+  "arch-cloud": {
+    "instructions": "references/specialists/arch-cloud/instructions.md",
+    "resource_root": "references/specialists/arch-cloud"
+  },
+  "arch-compliance": {
+    "instructions": "references/specialists/arch-compliance/instructions.md",
+    "resource_root": "references/specialists/arch-compliance"
+  },
+  "arch-cost": {
+    "instructions": "references/specialists/arch-cost/instructions.md",
+    "resource_root": "references/specialists/arch-cost"
+  },
+  "arch-data": {
+    "instructions": "references/specialists/arch-data/instructions.md",
+    "resource_root": "references/specialists/arch-data"
+  },
+  "arch-ddd": {
+    "instructions": "references/specialists/arch-ddd/instructions.md",
+    "resource_root": "references/specialists/arch-ddd"
+  },
+  "arch-decision": {
+    "instructions": "references/specialists/arch-decision/instructions.md",
+    "resource_root": "references/specialists/arch-decision"
+  },
+  "arch-devops": {
+    "instructions": "references/specialists/arch-devops/instructions.md",
+    "resource_root": "references/specialists/arch-devops"
+  },
+  "arch-diagrams": {
+    "instructions": "references/specialists/arch-diagrams/instructions.md",
+    "resource_root": "references/specialists/arch-diagrams"
+  },
+  "arch-doc": {
+    "instructions": "references/specialists/arch-doc/instructions.md",
+    "resource_root": "references/specialists/arch-doc"
+  },
+  "arch-evaluate": {
+    "instructions": "references/specialists/arch-evaluate/instructions.md",
+    "resource_root": "references/specialists/arch-evaluate"
+  },
+  "arch-event": {
+    "instructions": "references/specialists/arch-event/instructions.md",
+    "resource_root": "references/specialists/arch-event"
+  },
+  "arch-features": {
+    "instructions": "references/specialists/arch-features/instructions.md",
+    "resource_root": "references/specialists/arch-features"
+  },
+  "arch-fitness": {
+    "instructions": "references/specialists/arch-fitness/instructions.md",
+    "resource_root": "references/specialists/arch-fitness"
+  },
+  "arch-frontend": {
+    "instructions": "references/specialists/arch-frontend/instructions.md",
+    "resource_root": "references/specialists/arch-frontend"
+  },
+  "arch-governance": {
+    "instructions": "references/specialists/arch-governance/instructions.md",
+    "resource_root": "references/specialists/arch-governance"
+  },
+  "arch-integration": {
+    "instructions": "references/specialists/arch-integration/instructions.md",
+    "resource_root": "references/specialists/arch-integration"
+  },
+  "arch-metrics": {
+    "instructions": "references/specialists/arch-metrics/instructions.md",
+    "resource_root": "references/specialists/arch-metrics"
+  },
+  "arch-microservices": {
+    "instructions": "references/specialists/arch-microservices/instructions.md",
+    "resource_root": "references/specialists/arch-microservices"
+  },
+  "arch-migration": {
+    "instructions": "references/specialists/arch-migration/instructions.md",
+    "resource_root": "references/specialists/arch-migration"
+  },
+  "arch-observability": {
+    "instructions": "references/specialists/arch-observability/instructions.md",
+    "resource_root": "references/specialists/arch-observability"
+  },
+  "arch-patterns": {
+    "instructions": "references/specialists/arch-patterns/instructions.md",
+    "resource_root": "references/specialists/arch-patterns"
+  },
+  "arch-perf": {
+    "instructions": "references/specialists/arch-perf/instructions.md",
+    "resource_root": "references/specialists/arch-perf"
+  },
+  "arch-principles": {
+    "instructions": "references/specialists/arch-principles/instructions.md",
+    "resource_root": "references/specialists/arch-principles"
+  },
+  "arch-refactoring": {
+    "instructions": "references/specialists/arch-refactoring/instructions.md",
+    "resource_root": "references/specialists/arch-refactoring"
+  },
+  "arch-resilience": {
+    "instructions": "references/specialists/arch-resilience/instructions.md",
+    "resource_root": "references/specialists/arch-resilience"
+  },
+  "arch-review": {
+    "instructions": "references/specialists/arch-review/instructions.md",
+    "resource_root": "references/specialists/arch-review"
+  },
+  "arch-security": {
+    "instructions": "references/specialists/arch-security/instructions.md",
+    "resource_root": "references/specialists/arch-security"
+  },
+  "arch-test": {
+    "instructions": "references/specialists/arch-test/instructions.md",
+    "resource_root": "references/specialists/arch-test"
+  },
+  "arch-usability": {
+    "instructions": "references/specialists/arch-usability/instructions.md",
+    "resource_root": "references/specialists/arch-usability"
+  }
+}

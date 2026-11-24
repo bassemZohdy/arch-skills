@@ -1,0 +1,18 @@
+@startuml System Context Diagram
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title System Context Diagram for [System Name]
+
+Person(user, "User Type", "Description of user role")
+
+System(system, "System Name", "Brief description of what the system does")
+
+System_Ext(ext1, "External System 1", "What it provides")
+System_Ext(ext2, "External System 2", "What it provides")
+
+Rel(user, system, "Uses")
+Rel(system, ext1, "Integrates with")
+Rel(system, ext2, "Integrates with")
+
+SHOW_LEGEND()
+@enduml
