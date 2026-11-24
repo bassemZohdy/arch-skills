@@ -19,7 +19,7 @@ The C4 Model provides a hierarchical way to visualize software architecture at d
 
 **When to Use:** Start here for an unfamiliar system; a focused lower-level request can use an existing context baseline.
 
-**Diagram:** `assets/mermaid-templates/c4-context.mmd`
+**Diagram:** `assets/mermaid-templates/c4-context.mmd.txt`
 
 **Example:**
 ```mermaid
@@ -58,7 +58,7 @@ C4Context
 - Communication protocols (REST vs GraphQL vs gRPC)
 - Data storage choices (SQL vs NoSQL)
 
-**Diagram:** `assets/mermaid-templates/c4-container.mmd`
+**Diagram:** `assets/mermaid-templates/c4-container.mmd.txt`
 
 **Example:**
 ```mermaid
@@ -102,7 +102,7 @@ C4Container
 - When onboarding new developers
 - When making changes to internal structure
 
-**Diagram:** `assets/mermaid-templates/c4-component.mmd`
+**Diagram:** `assets/mermaid-templates/c4-component.mmd.txt`
 
 ### Level 4: Code Diagram
 

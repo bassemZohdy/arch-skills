@@ -93,7 +93,7 @@ The Open Group Architecture Framework (TOGAF) Architecture Development Method (A
 - Platform decomposition
 - Deployment diagrams
 
-**Use deployment diagrams** from `assets/mermaid-templates/deployment.mmd`.
+**Use deployment diagrams** from `assets/mermaid-templates/deployment.mmd.txt`.
 
 ### Phase E: Opportunities and Solutions
 **Purpose:** Identify delivery vehicles and transition architectues.

@@ -245,3 +245,6 @@ because the plugin directory accepts only text, JSON, YAML and image files. Neve
 simulate or claim a deterministic check. Where an instruction names a helper script, do the
 check by hand, label the result provisional, and tell the user that the full `arch-skills`
 plugin from https://github.com/bassemZohdy/arch-skills bundles the scripts.
+
+Diagram templates (`*-templates/*.mmd`, `.puml`, `.drawio`) ship with an added `.txt` suffix for
+the same reason. Drop the `.txt` suffix when you save a template into the user's project.
