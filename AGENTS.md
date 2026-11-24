@@ -63,3 +63,4 @@ Response-only results do not prove host discovery, tool use or DAP lifecycle beh
 - Skills are generic (framework/language agnostic) by design.
 - Host-specific installation paths are adapter configuration, not part of the skill contract.
 - Keep integrations for individual AI coding tools outside this repository. Maintain portable skill content, host-neutral scenarios and adapter contracts here; local host experiments are not product features or release requirements.
+- One exception: the Claude Code plugin (`.claude-plugin/marketplace.json`, `plugins/arch-skills/`) is a generated distribution of the default profile, built by `scripts/build_plugin.py` and checked by `tests/test_plugin.py`. Never edit `plugins/arch-skills/` by hand; rebuild it into a fresh directory and replace it whenever skills, framework or scripts change.

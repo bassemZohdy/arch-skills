@@ -107,6 +107,8 @@ def check_local(root):
     errors, external, count = [], {}, 0
     for document in sorted(root.rglob('*.md')):
         parts = document.relative_to(root).parts
+        if parts[:2] == ('plugins', 'arch-skills'):  # generated copy of skills/
+            continue
         if (parts[:1] == ('skills',) and any(part.startswith('.') for part in parts[1:])) or any(part in IGNORED for part in parts):
             continue
         content = document.read_text(encoding='utf-8')

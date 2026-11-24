@@ -7,3 +7,6 @@
 *.yaml text eol=lf
 *.yml text eol=lf
 *.ps1 text eol=crlf
+
+# Generated Claude Code plugin: identical bytes on every OS (hashes in package-manifest.json)
+plugins/** text=auto eol=lf

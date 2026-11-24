@@ -1,0 +1,15 @@
+{
+  "name": "arch-skills",
+  "description": "Architecture skills for Claude Code: interview, create, update, evaluate and review.",
+  "owner": { "name": "Bassem Zohdy", "url": "https://github.com/bassemZohdy" },
+  "plugins": [
+    {
+      "name": "arch-skills",
+      "source": "./plugins/arch-skills",
+      "description": "Interview, create, update, evaluate and review software architecture with three public skills and 31 on-demand specialist modules.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": ["architecture", "design-review", "adr", "diagrams"]
+    }
+  ]
+}

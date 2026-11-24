@@ -1,0 +1,170 @@
+---
+name: arch-migration
+description: Plan migrations and legacy modernization. Use when planning database migrations, modernizing legacy systems, implementing strangler fig pattern, assessing migration risks, or creating rollback strategies.
+---
+
+# Migration Planning
+
+Systematic approach to planning and executing system migrations.
+
+## DAP contribution
+
+For a DAP invocation, read `framework/contribution-contract.md` from the outer
+package root (the repository root in a source checkout). Keep standalone tasks
+within their requested scope. Use `assets/plan-template.md` and record old/new baseline revisions, phase dependencies, owners, reconciliation evidence, quantitative cutover/rollback criteria and irreversible-step approval.
+Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
+
+## Workflow
+
+```
+1. Assess Current State → What do we have?
+2. Define Target State → Where are we going?
+3. Choose Strategy → How to get there?
+4. Plan Phases → Break into steps
+5. Assess Risks → What could go wrong?
+6. Execute & Validate → Run and verify
+```
+
+## Step 1: Assess Current State
+
+| Dimension | Assessment |
+|-----------|------------|
+| **Codebase** | Size, complexity, dependencies |
+| **Data** | Volume, format, relationships |
+| **Infrastructure** | Servers, networks, dependencies |
+| **Team** | Skills, capacity, availability |
+| **Constraints** | Budget, timeline, compliance |
+
+### Legacy Assessment Matrix
+
+| Factor | Low (1) | Medium (3) | High (5) |
+|--------|---------|------------|----------|
+| **Code Quality** | Clean, tested | Mixed | Messy, untested |
+| **Documentation** | Complete | Partial | None |
+| **Dependencies** | Few, modern | Some outdated | Many deprecated |
+| **Team Knowledge** | Deep | Some familiarity | No expertise |
+
+## Step 2: Migration Patterns
+
+### Strangler Fig Pattern
+
+**Best for:** Incrementally replacing legacy systems.
+
+```
+Phase 1: Identify seam → Extract small capability
+Phase 2: Route traffic → New system handles subset
+Phase 3: Expand coverage → More capabilities move
+Phase 4: Decommission → Remove legacy
+```
+
+### Branch by Abstraction
+
+**Best for:** Replacing internal components without changing interfaces.
+
+1. Create abstraction layer
+2. Implement new component
+3. Toggle between old/new
+4. Remove abstraction
+
+### Parallel Run
+
+**Best for:** Validating new system matches legacy behavior.
+
+1. Run both systems
+2. Compare outputs
+3. Gradually shift traffic
+4. Remove old system
+
+Shadow execution must not charge, notify or mutate production twice. Suppress
+candidate side effects or isolate them in a test sink; reconcile outputs with
+privacy-safe data and a named authoritative writer.
+
+### Database Migration Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| **Schema Migration** | Add/modify columns, tables |
+| **Data Migration** | Move data between systems |
+| **Dual Write** | Write to both old and new |
+| **CDC** | Change Data Capture |
+| **ETL** | Extract, Transform, Load |
+
+Prefer expand-and-contract for live schema changes: add a compatible shape,
+deploy readers/writers, backfill and reconcile, switch consumers, then remove the
+old shape only after an observed deprecation window. Rehearse the migration and
+rollback with production-like volume and failure injection.
+
+## Step 3: Risk Assessment
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| Data loss | Low | Critical | Backups, checksums |
+| Downtime | Medium | High | Blue-green, rolling |
+| Performance degradation | Medium | Medium | Load testing |
+| Feature gaps | High | Medium | Feature parity list |
+| Team burnout | Medium | High | Realistic timeline |
+
+## Step 4: Migration Checklist
+
+### Pre-Migration
+- [ ] Backup created and verified
+- [ ] Rollback plan documented
+- [ ] Team aligned on process
+- [ ] Monitoring in place
+- [ ] Communication plan ready
+
+### During Migration
+- [ ] Progress tracked
+- [ ] Errors logged
+- [ ] Performance monitored
+- [ ] Stakeholders updated
+- [ ] Checkpoints validated
+
+### Post-Migration
+- [ ] All data verified
+- [ ] Performance acceptable
+- [ ] Legacy decommissioned
+- [ ] Documentation updated
+- [ ] Lessons learned captured
+
+## Step 5: Rollback Strategy
+
+| Trigger | Action |
+|---------|--------|
+| Data integrity issues | Stop affected writes; reconcile before a tested restore/replay or forward repair |
+| Performance degradation | Route to legacy only while its data and contracts remain compatible |
+| Critical bugs | Disable the affected path if its fallback is safe |
+| Complete failure | Invoke the rehearsed recovery plan within approved data-loss limits |
+
+## Examples
+
+- Plan a strangler-fig migration of a legacy ERP module to services.
+- Design a dual-write-plus-backfill database migration with verification.
+- Run old and new billing engines in parallel and reconcile outputs before cutover.
+
+## Common Gotchas
+
+- Long-lived dual-write setups drift; add continuous reconciliation and a firm cutover date.
+- A migration without a tested rollback path is a one-way door taken blind.
+- Feature parity lists always miss undocumented behavior users depend on; parallel-run to find it.
+- Dual-write cutovers need ownership, reconciliation metrics and a stop condition; "both writes succeeded" is not proof of equal state.
+
+## Further Reading
+
+- `references/awesome-architecture.md` — Curated external articles, videos, libraries, and samples per topic (awesome-architecture.com)
+- `references/migration-deep-dive.md` — Migration Deep Dive
+- `references/migration-patterns.md` — Migration Patterns Reference
+
+## Cross-skill handoff
+
+Consume source/target contracts, authoritative data and recovery limits. Assign a single
+writer or an explicit dual-write reconciliation protocol for every phase. Give arch-test
+reconciliation and cutover evidence and arch-devops stop/rollback triggers. Mark
+irreversible steps and data written after cutover: restoring an old backup alone can
+lose valid transactions; plan replay, reconciliation or forward repair.
+
+## Related Skills
+
+- **arch-refactoring** - Code-level restructuring within the migration
+- **arch-devops** - Deployment strategies for cutover
+- **arch-data** - Data movement and validation
