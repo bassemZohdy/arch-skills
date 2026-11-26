@@ -28,7 +28,7 @@ import build_packages  # noqa: E402
 
 ROOT = build_packages.ROOT
 PLUGINS = ROOT / "plugins"
-PLUGIN_VERSION = "0.1.3"  # bump on every change to a generated plugin; Codex caches installs by it
+PLUGIN_VERSION = "0.2.0"  # bump on every change to a generated plugin; Codex caches installs by it
 REPO = "https://github.com/bassemZohdy/arch-skills"
 EDITIONS = {
     "arch-skills": {

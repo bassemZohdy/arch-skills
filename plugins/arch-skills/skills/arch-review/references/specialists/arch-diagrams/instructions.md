@@ -19,6 +19,13 @@ questions, and validation status. A rendered image or diagram source is not proo
 that the deployed system matches it, and a planned verification is not execution
 evidence.
 
+## Reverse-engineered views
+
+When `arch-reverse` supplies a recovered architecture, retain stable IDs,
+path/line evidence, revision and observed/inferred/unknown classifications in
+the diagram handoff. A rendered view does not upgrade an inferred dependency
+or intended deployment topology into operational proof.
+
 ## Workflow
 
 1. **Frame the view.** Identify the audience, concern, decision or question, scope,

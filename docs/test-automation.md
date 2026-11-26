@@ -7,7 +7,7 @@ Current counts and operating commands are in [project status](project-status.md)
 | Layer | Execution | What a pass establishes |
 | --- | --- | --- |
 | Structure, links, DAP contracts and package isolation | Every push/PR to main, Linux/Windows, Python 3.10/3.13 | Deterministic repository invariants |
-| YAML scenario validation | Same offline CI | Valid assertions, repeat counts, known skills, coverage of all 34 skills and activation cases |
+| YAML scenario validation | Same offline CI | Valid assertions, repeat counts, known skills, coverage of all 36 skills and activation cases |
 | Public external links | Weekly Monday 06:23 UTC and manual dispatch | Reachability at probe time; 404/410 fail; blocked, rate-limited, timed-out, non-200 and cross-host-redirected responses remain unverified |
 | Cited-source freshness | Weekly Wednesday 05:41 UTC and manual dispatch | Broken/changed cited sources and, when a model is configured, grounded claim-versus-source findings filed as deduplicated issues |
 | Model response smoke tests | Manual `Optional model response tests` workflow | Selected explicit-skill responses satisfy their assertions |
@@ -85,7 +85,7 @@ adapter. Configure a custom command for other APIs or hosts.
 
 Defaults select at most 10 scenarios with a 30-call ceiling. `--limit 0` selects
 all scenarios in the supplied manifests; omit `--manifest` to select from all
-41 YAML manifests. The runner rejects a selection exceeding `--max-calls`
+43 YAML manifests. The runner rejects a selection exceeding `--max-calls`
 before making calls. These are call/output limits, not monetary spending caps.
 `ARCH_TEST_MAX_TOKENS` defaults to 2048, with a hard adapter range of 1..16384.
 Truncated answers are errors, not successful short responses. There are no hidden

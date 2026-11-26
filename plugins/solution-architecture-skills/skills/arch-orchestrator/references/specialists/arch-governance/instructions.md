@@ -28,6 +28,40 @@ package root (the repository root in a source checkout). Keep standalone tasks
 within their requested scope. Use `assets/review-template.md` and record policy provenance and version, review type and authority, baseline-bound disposition, delegation limits, exception expiry and handoff/cadence owners.
 Return evidence-linked proposals and VER plans, not invented approvals or delivery proof.
 
+## Governance artifact, rule and gate catalog
+
+For organization-wide or profile-specific architecture evaluation configuration,
+model these separately instead of equating an uploaded document with a gate:
+
+1. **Reference artifacts:** source/version/owner/effective dates, authority,
+   scope, provenance and supersession; categories include external obligations,
+   controls, policies, standards, principles, guidance, reference architectures,
+   patterns, scoped approved decisions and authorized exceptions.
+2. **Evaluation criteria:** reusable quality/conformance dimensions, each with
+   a stable ID, description and optional references.
+3. **Rules:** specific checks mapping criteria to applicability conditions,
+   required evidence, evaluation method, severity, enforcement, source references
+   and exception policy. Rules may have multiple sources; sources can justify
+   multiple rules.
+4. **Evaluation profiles:** versioned selections of rules and decision-area
+   expectations, inheriting mandatory organization-level controls. Profile
+   overrides must not silently disable binding requirements.
+5. **Quality gates:** explicit thresholds/conditions over outcomes, with pass,
+   fail and needs-review states; missing evidence is not an automatic pass.
+
+A governance administrator or architecture committee configures profiles;
+a submitter supplies the candidate architecture. These are authorization roles,
+not job titles. Keep profile ownership, approval, exception authority, audit
+history, effective configuration and review identities in the consuming platform.
+Do not make all artifact types mandatory for every architecture.
+
+## Structured governance discovery
+
+Use `arch-interview` to elicit proposed governance artifacts, principles,
+standards, decision options, evaluation criteria, rules, profiles and gates.
+Verify authority and external obligations independently; an interview never
+approves a policy, automatically creates a mandatory gate or waives controls.
+
 ## Workflow
 
 ```

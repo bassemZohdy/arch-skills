@@ -62,6 +62,42 @@ instead of requiring those instructions to be repeated in every prompt.
    create or update may skip the initial conversation only after provenance and
    convergence are checked.
 
+## Reusable knowledge in create and update workflows
+
+When an authorized evaluation profile or reusable architecture catalog is
+provided, retain the exact catalog/profile version and reference provenance.
+During creation, consult applicable policies, principles, standards, reference
+architectures, patterns, anti-patterns, quality criteria, architecture decision
+areas and rules **before** choosing design alternatives. Reuse the same definitions
+for subsequent read-only design review; do not hardcode microservices, a database,
+hosting provider or other technology as an organizational default.
+
+Treat each configured decision area as a single-select expectation, including
+an explicit `not_applicable` disposition when justified. Record the candidate
+design's actual option independently, its trade-offs and any variance against
+the profile. Separate orthogonal decision areas (for example architectural
+topology and interaction model) instead of forcing incompatible options into
+one exclusive list. Governance restrictions are never outweighed by option
+scores or author preferences.
+
+For architecture updates, calculate impact through linked requirements,
+constraints, design elements, accepted/superseded ADRs, verification and rules.
+Preserve the prior approved baseline; invalidate only the affected prior review
+evidence and then assess the complete revised candidate for readiness. Do not
+silently rewrite approved decisions or waive a required human review. Skills
+remain host- and application-neutral; a consuming web application owns profile
+administration, user accounts, storage and orchestration of calls.
+
+## Discovery specialist routing
+
+Use `arch-interview` to discover a proposed/existing solution architecture
+through conversations or elicit a draft organizational governance profile.
+The orchestrator retains its existing DAP requirement interview, checkpoint
+and approval boundaries; do not duplicate that engine in the specialist.
+Use `arch-reverse` for read-only recovery from code and technical evidence.
+Reconcile claims with observations before create/update; neither discovery
+mode authorizes silent modification of an accepted baseline.
+
 ## Workflow
 
 1. Select interview, create or update from the user's requested outcome. Read

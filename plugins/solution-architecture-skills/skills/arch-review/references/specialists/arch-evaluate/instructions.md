@@ -34,6 +34,22 @@ disagreements rather than inferring undocumented interviews or approvals.
 7. For a requested design review, route separately to arch-review. Return
    missing evidence and next actions; do not invoke authoring to fill the gaps.
 
+## Boundary with configurable architecture review profiles
+
+The packaged DAP rubric in `framework/criteria-catalog.json` measures process
+and artifact evidence under its fixed, versioned contract. An organization
+architecture evaluation profile, architecture options catalog, or design-quality
+gate set is a **separate** input to `arch-review` and must not be silently
+substituted for this rubric or change the Q/D/F/B/T/A/S formulas. A web
+application may present both assessments side by side, with independent result
+identifiers, versions, evidence and gate outcomes.
+
+In create/update workflows, reference the matching frozen DAP baseline and
+profile evaluation when available, but report `unknown` or `unavailable`
+when the corresponding evaluator was not run. Do not merge findings, copy
+approvals between revisions or imply that process readiness establishes
+architecture design conformance.
+
 ## Invocation
 
 Resolve these paths from the installed package root, not a repository checkout:
